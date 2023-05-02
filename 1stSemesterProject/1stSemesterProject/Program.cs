@@ -10,6 +10,7 @@ namespace _1stSemesterProject
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("yo");
         }
     }
 }
