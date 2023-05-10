@@ -21,6 +21,7 @@ namespace SynsPunkt_ApS
         {
             MessageBox.Show("Test");
             MessageBox.Show("testSenbastian");
+            MessageBox.Show("Test virker det?");
         }
     }
 }
