@@ -16,5 +16,15 @@ namespace SynsPunkt_ApS.UI
         {
             InitializeComponent();
         }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_login_Click(object sender, EventArgs e)
+        {
+            Services.UserLogIn.GetUserLogin(tb_username.Text, tb_password.Text);
+        }
     }
 }

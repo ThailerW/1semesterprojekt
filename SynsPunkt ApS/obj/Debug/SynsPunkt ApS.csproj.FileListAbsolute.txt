@@ -9,3 +9,4 @@ C:\GitHub\1st Semester Project\SynsPunkt ApS\obj\Debug\SynsPunkt ApS.csproj.Gene
 C:\GitHub\1st Semester Project\SynsPunkt ApS\obj\Debug\SynsPunkt ApS.csproj.CoreCompileInputs.cache
 C:\GitHub\1st Semester Project\SynsPunkt ApS\obj\Debug\SynsPunkt ApS.exe
 C:\GitHub\1st Semester Project\SynsPunkt ApS\obj\Debug\SynsPunkt ApS.pdb
+C:\GitHub\1st Semester Project\SynsPunkt ApS\obj\Debug\SynsPunkt_ApS.UI.LoginForm.resources
