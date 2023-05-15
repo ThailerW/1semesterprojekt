@@ -46,15 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Models\Permissions.cs" />
+    <Compile Include="Models\Rolle.cs" />
+    <Compile Include="UI\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="UI\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Ansat.cs" />
+    <Compile Include="Models\Booking.cs" />
+    <Compile Include="Models\Kunde.cs" />
+    <Compile Include="Models\Leverandør.cs" />
+    <Compile Include="Models\Optiker.cs" />
+    <Compile Include="Models\Ordre.cs" />
+    <Compile Include="Models\Rapport.cs" />
+    <Compile Include="Models\Vare.cs" />
+    <Compile Include="Models\VareLinje.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="UI\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -79,11 +90,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Database\" />
-    <Folder Include="Models\" />
-    <Folder Include="Services\" />
-    <Folder Include="UI\" />
+    <Content Include="Database\TextFile1.txt" />
+    <Content Include="Services\TextFile1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
