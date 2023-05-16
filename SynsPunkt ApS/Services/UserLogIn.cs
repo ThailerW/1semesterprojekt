@@ -12,20 +12,25 @@ namespace SynsPunkt_ApS.Services
     {
         /// <summary>
         /// Theis: Checker om brugerens indtastede oplysninger er tilsvarende med data i databasen.
+        /// Martin: Tilføjet return type
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
-        public static void GetUserLogin(string username, string password)
+        /// <returns>True hvis login er successfuld, ellers false</returns>
+        public static bool GetUserLogin(string username, string password)
         {
             bool validUser = Database.CheckerUserInfo.CheckUserInfoDB(username, password);
 
             if (validUser)
             {
-                LoginForm loginForm = new LoginForm();
-                loginForm.Hide();
                 MainMenu mainMenu = new MainMenu();
                 mainMenu.Show();
                 MessageBox.Show("Login success!");
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

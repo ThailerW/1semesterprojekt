@@ -22,9 +22,17 @@ namespace SynsPunkt_ApS.UI
 
         }
 
+        /// <summary>
+        /// Martin: Hvis GetUserLogin returnere true(gør den på successfuld login), så gemmes LoginForm
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_login_Click(object sender, EventArgs e)
         {
-            Services.UserLogIn.GetUserLogin(tb_username.Text, tb_password.Text);
+            if (Services.UserLogIn.GetUserLogin(tb_username.Text, tb_password.Text))
+            {
+                this.Hide();
+            };
         }
     }
 }
