@@ -8,5 +8,22 @@ namespace SynsPunkt_ApS.Database
 {
     public class CRUD_Kunde
     {
+        public void CreateKunde()
+        {
+            // Logik
+        }
+        public void ReadKunde ()
+        {
+            // Logik
+        }
+        public void UpdateKunde()
+        {
+            // Logik
+        }
+        public void DeleteKunde()
+        {
+            // Logik
+        }
+
     }
 }
