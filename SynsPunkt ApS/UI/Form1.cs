@@ -27,47 +27,9 @@ namespace SynsPunkt_ApS
 
         }
 
-        private void button8_Click(object sender, EventArgs e)
-        {
+           
 
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_Vareoversigt_Click(object sender, EventArgs e)
-        {
-            tabControl.SelectedTab = tabPage_kundeoversigt ;
-
-        }
-
+        
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
@@ -78,11 +40,7 @@ namespace SynsPunkt_ApS
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+      
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -138,9 +96,19 @@ namespace SynsPunkt_ApS
 
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void btn_Vareoversigt_Click_1(object sender, EventArgs e)
         {
+            tabControl.SelectedTab = tabPage_vareoversigt;
+        }
 
+        private void btn_Kundeoversigt_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectedTab = tabPage_kundeoversigt;
+        }
+
+        private void btn_Bookingoversigt_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectedTab = tabPage_BookingOversigt ;
         }
     }
 }

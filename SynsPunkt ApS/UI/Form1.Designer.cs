@@ -44,14 +44,14 @@
             this.label_UserName = new System.Windows.Forms.Label();
             this.pbox_UserNameLogo = new System.Windows.Forms.PictureBox();
             this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.tabPage9 = new System.Windows.Forms.TabPage();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.tabPage_Rapport = new System.Windows.Forms.TabPage();
+            this.tabPage_OpretMedarbejder = new System.Windows.Forms.TabPage();
             this.button9 = new System.Windows.Forms.Button();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage_Leverandoer = new System.Windows.Forms.TabPage();
+            this.tabPage_OpretKunder = new System.Windows.Forms.TabPage();
+            this.tabPage_OpretVare = new System.Windows.Forms.TabPage();
+            this.tabPage_OpretBooking = new System.Windows.Forms.TabPage();
+            this.tabPage_BookingOversigt = new System.Windows.Forms.TabPage();
             this.tabPage_kundeoversigt = new System.Windows.Forms.TabPage();
             this.tabPage_vareoversigt = new System.Windows.Forms.TabPage();
             this.btn_SendFakturaMail = new System.Windows.Forms.Button();
@@ -65,7 +65,7 @@
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbox_UserNameLogo)).BeginInit();
-            this.tabPage8.SuspendLayout();
+            this.tabPage_OpretMedarbejder.SuspendLayout();
             this.tabPage_vareoversigt.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.SuspendLayout();
@@ -112,6 +112,7 @@
             this.btn_Bookingoversigt.TabIndex = 4;
             this.btn_Bookingoversigt.Text = "Bookingoversigt";
             this.btn_Bookingoversigt.UseVisualStyleBackColor = true;
+            this.btn_Bookingoversigt.Click += new System.EventHandler(this.btn_Bookingoversigt_Click);
             // 
             // btn_opretBooking
             // 
@@ -123,7 +124,6 @@
             this.btn_opretBooking.TabIndex = 3;
             this.btn_opretBooking.Text = "Opret Booking";
             this.btn_opretBooking.UseVisualStyleBackColor = true;
-            this.btn_opretBooking.Click += new System.EventHandler(this.button10_Click);
             // 
             // btn_Kundeoversigt
             // 
@@ -135,7 +135,7 @@
             this.btn_Kundeoversigt.TabIndex = 2;
             this.btn_Kundeoversigt.Text = "Kundeoversigt";
             this.btn_Kundeoversigt.UseVisualStyleBackColor = true;
-            this.btn_Kundeoversigt.Click += new System.EventHandler(this.button1_Click);
+            this.btn_Kundeoversigt.Click += new System.EventHandler(this.btn_Kundeoversigt_Click);
             // 
             // btn_Vareoversigt
             // 
@@ -148,7 +148,7 @@
             this.btn_Vareoversigt.TabIndex = 1;
             this.btn_Vareoversigt.Text = "Vareoversigt";
             this.btn_Vareoversigt.UseVisualStyleBackColor = true;
-            this.btn_Vareoversigt.Click += new System.EventHandler(this.btn_Vareoversigt_Click);
+            this.btn_Vareoversigt.Click += new System.EventHandler(this.btn_Vareoversigt_Click_1);
             // 
             // btn_Rapport
             // 
@@ -160,7 +160,6 @@
             this.btn_Rapport.TabIndex = 1;
             this.btn_Rapport.Text = "Rapport";
             this.btn_Rapport.UseVisualStyleBackColor = true;
-            this.btn_Rapport.Click += new System.EventHandler(this.button7_Click);
             // 
             // btn_OpretLeverandoer
             // 
@@ -172,7 +171,6 @@
             this.btn_OpretLeverandoer.TabIndex = 1;
             this.btn_OpretLeverandoer.Text = "Opret leverandør";
             this.btn_OpretLeverandoer.UseVisualStyleBackColor = true;
-            this.btn_OpretLeverandoer.Click += new System.EventHandler(this.button5_Click);
             // 
             // btn_OpretMedarbejder
             // 
@@ -184,7 +182,6 @@
             this.btn_OpretMedarbejder.TabIndex = 1;
             this.btn_OpretMedarbejder.Text = "Opret medarbedjer";
             this.btn_OpretMedarbejder.UseVisualStyleBackColor = true;
-            this.btn_OpretMedarbejder.Click += new System.EventHandler(this.button6_Click);
             // 
             // btn_opretVare
             // 
@@ -196,7 +193,6 @@
             this.btn_opretVare.TabIndex = 1;
             this.btn_opretVare.Text = "Opret vare";
             this.btn_opretVare.UseVisualStyleBackColor = true;
-            this.btn_opretVare.Click += new System.EventHandler(this.button3_Click);
             // 
             // btn_OpretKunder
             // 
@@ -208,7 +204,6 @@
             this.btn_OpretKunder.TabIndex = 1;
             this.btn_OpretKunder.Text = "Opret kunder";
             this.btn_OpretKunder.UseVisualStyleBackColor = true;
-            this.btn_OpretKunder.Click += new System.EventHandler(this.button4_Click);
             // 
             // panel2
             // 
@@ -253,27 +248,27 @@
             this.tabPage10.TabIndex = 9;
             this.tabPage10.Text = "tabPage10";
             // 
-            // tabPage9
+            // tabPage_Rapport
             // 
-            this.tabPage9.BackColor = System.Drawing.Color.White;
-            this.tabPage9.Location = new System.Drawing.Point(4, 30);
-            this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(910, 693);
-            this.tabPage9.TabIndex = 8;
-            this.tabPage9.Text = "tabPage9";
+            this.tabPage_Rapport.BackColor = System.Drawing.Color.White;
+            this.tabPage_Rapport.Location = new System.Drawing.Point(4, 30);
+            this.tabPage_Rapport.Name = "tabPage_Rapport";
+            this.tabPage_Rapport.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Rapport.Size = new System.Drawing.Size(910, 693);
+            this.tabPage_Rapport.TabIndex = 8;
+            this.tabPage_Rapport.Text = "tabPage9";
             // 
-            // tabPage8
+            // tabPage_OpretMedarbejder
             // 
-            this.tabPage8.BackColor = System.Drawing.Color.White;
-            this.tabPage8.Controls.Add(this.button9);
-            this.tabPage8.Location = new System.Drawing.Point(4, 30);
-            this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(910, 693);
-            this.tabPage8.TabIndex = 7;
-            this.tabPage8.Text = "tabPage8";
-            this.tabPage8.Click += new System.EventHandler(this.tabPage8_Click);
+            this.tabPage_OpretMedarbejder.BackColor = System.Drawing.Color.White;
+            this.tabPage_OpretMedarbejder.Controls.Add(this.button9);
+            this.tabPage_OpretMedarbejder.Location = new System.Drawing.Point(4, 30);
+            this.tabPage_OpretMedarbejder.Name = "tabPage_OpretMedarbejder";
+            this.tabPage_OpretMedarbejder.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_OpretMedarbejder.Size = new System.Drawing.Size(910, 693);
+            this.tabPage_OpretMedarbejder.TabIndex = 7;
+            this.tabPage_OpretMedarbejder.Text = "tabPage8";
+            this.tabPage_OpretMedarbejder.Click += new System.EventHandler(this.tabPage8_Click);
             // 
             // button9
             // 
@@ -287,60 +282,60 @@
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
-            // tabPage7
+            // tabPage_Leverandoer
             // 
-            this.tabPage7.BackColor = System.Drawing.Color.White;
-            this.tabPage7.Location = new System.Drawing.Point(4, 30);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(910, 693);
-            this.tabPage7.TabIndex = 6;
-            this.tabPage7.Text = "tabPage7";
-            this.tabPage7.Click += new System.EventHandler(this.tabPage7_Click);
+            this.tabPage_Leverandoer.BackColor = System.Drawing.Color.White;
+            this.tabPage_Leverandoer.Location = new System.Drawing.Point(4, 30);
+            this.tabPage_Leverandoer.Name = "tabPage_Leverandoer";
+            this.tabPage_Leverandoer.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Leverandoer.Size = new System.Drawing.Size(910, 693);
+            this.tabPage_Leverandoer.TabIndex = 6;
+            this.tabPage_Leverandoer.Text = "tabPage7";
+            this.tabPage_Leverandoer.Click += new System.EventHandler(this.tabPage7_Click);
             // 
-            // tabPage6
+            // tabPage_OpretKunder
             // 
-            this.tabPage6.BackColor = System.Drawing.Color.White;
-            this.tabPage6.Location = new System.Drawing.Point(4, 30);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(910, 693);
-            this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "tabPage6";
-            this.tabPage6.Click += new System.EventHandler(this.tabPage6_Click);
+            this.tabPage_OpretKunder.BackColor = System.Drawing.Color.White;
+            this.tabPage_OpretKunder.Location = new System.Drawing.Point(4, 30);
+            this.tabPage_OpretKunder.Name = "tabPage_OpretKunder";
+            this.tabPage_OpretKunder.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_OpretKunder.Size = new System.Drawing.Size(910, 693);
+            this.tabPage_OpretKunder.TabIndex = 5;
+            this.tabPage_OpretKunder.Text = "tabPage6";
+            this.tabPage_OpretKunder.Click += new System.EventHandler(this.tabPage6_Click);
             // 
-            // tabPage5
+            // tabPage_OpretVare
             // 
-            this.tabPage5.BackColor = System.Drawing.Color.White;
-            this.tabPage5.Location = new System.Drawing.Point(4, 30);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(910, 693);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "tabPage5";
-            this.tabPage5.Click += new System.EventHandler(this.tabPage5_Click);
+            this.tabPage_OpretVare.BackColor = System.Drawing.Color.White;
+            this.tabPage_OpretVare.Location = new System.Drawing.Point(4, 30);
+            this.tabPage_OpretVare.Name = "tabPage_OpretVare";
+            this.tabPage_OpretVare.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_OpretVare.Size = new System.Drawing.Size(910, 693);
+            this.tabPage_OpretVare.TabIndex = 4;
+            this.tabPage_OpretVare.Text = "tabPage5";
+            this.tabPage_OpretVare.Click += new System.EventHandler(this.tabPage5_Click);
             // 
-            // tabPage4
+            // tabPage_OpretBooking
             // 
-            this.tabPage4.BackColor = System.Drawing.Color.White;
-            this.tabPage4.Location = new System.Drawing.Point(4, 30);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(910, 693);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "tabPage4";
-            this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
+            this.tabPage_OpretBooking.BackColor = System.Drawing.Color.White;
+            this.tabPage_OpretBooking.Location = new System.Drawing.Point(4, 30);
+            this.tabPage_OpretBooking.Name = "tabPage_OpretBooking";
+            this.tabPage_OpretBooking.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_OpretBooking.Size = new System.Drawing.Size(910, 693);
+            this.tabPage_OpretBooking.TabIndex = 3;
+            this.tabPage_OpretBooking.Text = "tabPage4";
+            this.tabPage_OpretBooking.Click += new System.EventHandler(this.tabPage4_Click);
             // 
-            // tabPage3
+            // tabPage_BookingOversigt
             // 
-            this.tabPage3.BackColor = System.Drawing.Color.White;
-            this.tabPage3.Location = new System.Drawing.Point(4, 30);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(910, 693);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+            this.tabPage_BookingOversigt.BackColor = System.Drawing.Color.White;
+            this.tabPage_BookingOversigt.Location = new System.Drawing.Point(4, 30);
+            this.tabPage_BookingOversigt.Name = "tabPage_BookingOversigt";
+            this.tabPage_BookingOversigt.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_BookingOversigt.Size = new System.Drawing.Size(910, 693);
+            this.tabPage_BookingOversigt.TabIndex = 2;
+            this.tabPage_BookingOversigt.Text = "tabPage3";
+            this.tabPage_BookingOversigt.Click += new System.EventHandler(this.tabPage3_Click);
             // 
             // tabPage_kundeoversigt
             // 
@@ -438,13 +433,13 @@
             // 
             this.tabControl.Controls.Add(this.tabPage_vareoversigt);
             this.tabControl.Controls.Add(this.tabPage_kundeoversigt);
-            this.tabControl.Controls.Add(this.tabPage3);
-            this.tabControl.Controls.Add(this.tabPage4);
-            this.tabControl.Controls.Add(this.tabPage5);
-            this.tabControl.Controls.Add(this.tabPage6);
-            this.tabControl.Controls.Add(this.tabPage7);
-            this.tabControl.Controls.Add(this.tabPage8);
-            this.tabControl.Controls.Add(this.tabPage9);
+            this.tabControl.Controls.Add(this.tabPage_BookingOversigt);
+            this.tabControl.Controls.Add(this.tabPage_OpretBooking);
+            this.tabControl.Controls.Add(this.tabPage_OpretVare);
+            this.tabControl.Controls.Add(this.tabPage_OpretKunder);
+            this.tabControl.Controls.Add(this.tabPage_Leverandoer);
+            this.tabControl.Controls.Add(this.tabPage_OpretMedarbejder);
+            this.tabControl.Controls.Add(this.tabPage_Rapport);
             this.tabControl.Controls.Add(this.tabPage10);
             this.tabControl.Location = new System.Drawing.Point(283, 0);
             this.tabControl.Name = "tabControl";
@@ -472,7 +467,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbox_UserNameLogo)).EndInit();
-            this.tabPage8.ResumeLayout(false);
+            this.tabPage_OpretMedarbejder.ResumeLayout(false);
             this.tabPage_vareoversigt.ResumeLayout(false);
             this.tabPage_vareoversigt.PerformLayout();
             this.tabControl.ResumeLayout(false);
@@ -497,14 +492,14 @@
         private System.Windows.Forms.Button btn_Indstillinger;
         private System.Windows.Forms.Button btn_Bookingoversigt;
         private System.Windows.Forms.TabPage tabPage10;
-        private System.Windows.Forms.TabPage tabPage9;
-        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.TabPage tabPage_Rapport;
+        private System.Windows.Forms.TabPage tabPage_OpretMedarbejder;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage_Leverandoer;
+        private System.Windows.Forms.TabPage tabPage_OpretKunder;
+        private System.Windows.Forms.TabPage tabPage_OpretVare;
+        private System.Windows.Forms.TabPage tabPage_OpretBooking;
+        private System.Windows.Forms.TabPage tabPage_BookingOversigt;
         private System.Windows.Forms.TabPage tabPage_kundeoversigt;
         private System.Windows.Forms.TabPage tabPage_vareoversigt;
         private System.Windows.Forms.Button btn_SendFakturaMail;
