@@ -50,9 +50,9 @@
             // 
             // btn_login
             // 
-            this.btn_login.BackColor = System.Drawing.Color.PeachPuff;
+            this.btn_login.BackColor = System.Drawing.Color.Black;
             this.btn_login.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_login.ForeColor = System.Drawing.Color.Black;
+            this.btn_login.ForeColor = System.Drawing.Color.Transparent;
             this.btn_login.Location = new System.Drawing.Point(444, 478);
             this.btn_login.Name = "btn_login";
             this.btn_login.Size = new System.Drawing.Size(280, 66);
@@ -66,14 +66,14 @@
             this.tb_password.Location = new System.Drawing.Point(444, 390);
             this.tb_password.Name = "tb_password";
             this.tb_password.PasswordChar = '*';
-            this.tb_password.Size = new System.Drawing.Size(280, 22);
+            this.tb_password.Size = new System.Drawing.Size(280, 29);
             this.tb_password.TabIndex = 3;
             // 
             // tb_username
             // 
             this.tb_username.Location = new System.Drawing.Point(444, 339);
             this.tb_username.Name = "tb_username";
-            this.tb_username.Size = new System.Drawing.Size(280, 22);
+            this.tb_username.Size = new System.Drawing.Size(280, 29);
             this.tb_username.TabIndex = 4;
             // 
             // label1
@@ -82,7 +82,7 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(444, 320);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 13);
+            this.label1.Size = new System.Drawing.Size(198, 21);
             this.label1.TabIndex = 5;
             this.label1.Text = "MEDARBEJDERNUMMER";
             // 
@@ -92,13 +92,13 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(444, 374);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 13);
+            this.label2.Size = new System.Drawing.Size(131, 21);
             this.label2.TabIndex = 6;
             this.label2.Text = "ADGANGSKODE";
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1200, 727);

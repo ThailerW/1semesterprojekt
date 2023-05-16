@@ -32,6 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_Indstillinger = new System.Windows.Forms.Button();
             this.btn_Bookingoversigt = new System.Windows.Forms.Button();
+            this.btn_Leverandoeroversigt = new System.Windows.Forms.Button();
             this.btn_opretBooking = new System.Windows.Forms.Button();
             this.btn_Kundeoversigt = new System.Windows.Forms.Button();
             this.btn_Vareoversigt = new System.Windows.Forms.Button();
@@ -41,6 +42,7 @@
             this.btn_opretVare = new System.Windows.Forms.Button();
             this.btn_OpretKunder = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btn_Exit = new System.Windows.Forms.Button();
             this.label_UserName = new System.Windows.Forms.Label();
             this.pbox_UserNameLogo = new System.Windows.Forms.PictureBox();
             this.tabPage_Rapport = new System.Windows.Forms.TabPage();
@@ -62,9 +64,7 @@
             this.richTextBoxVare = new System.Windows.Forms.RichTextBox();
             this.listVare = new System.Windows.Forms.ListView();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.btn_Leverandoeroversigt = new System.Windows.Forms.Button();
             this.tabPage_Indstillinger = new System.Windows.Forms.TabPage();
-            this.btn_Exit = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbox_UserNameLogo)).BeginInit();
@@ -118,6 +118,18 @@
             this.btn_Bookingoversigt.Text = "Bookingoversigt";
             this.btn_Bookingoversigt.UseVisualStyleBackColor = true;
             this.btn_Bookingoversigt.Click += new System.EventHandler(this.btn_Bookingoversigt_Click);
+            // 
+            // btn_Leverandoeroversigt
+            // 
+            this.btn_Leverandoeroversigt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Leverandoeroversigt.ForeColor = System.Drawing.Color.White;
+            this.btn_Leverandoeroversigt.Location = new System.Drawing.Point(0, 360);
+            this.btn_Leverandoeroversigt.Name = "btn_Leverandoeroversigt";
+            this.btn_Leverandoeroversigt.Size = new System.Drawing.Size(280, 40);
+            this.btn_Leverandoeroversigt.TabIndex = 3;
+            this.btn_Leverandoeroversigt.Text = "Leverandøroversigt";
+            this.btn_Leverandoeroversigt.UseVisualStyleBackColor = true;
+            this.btn_Leverandoeroversigt.Click += new System.EventHandler(this.btn_Leverandoeroversigt_Click);
             // 
             // btn_opretBooking
             // 
@@ -226,6 +238,17 @@
             this.panel2.Size = new System.Drawing.Size(280, 213);
             this.panel2.TabIndex = 0;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // btn_Exit
+            // 
+            this.btn_Exit.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Exit.Location = new System.Drawing.Point(3, -3);
+            this.btn_Exit.Name = "btn_Exit";
+            this.btn_Exit.Size = new System.Drawing.Size(45, 54);
+            this.btn_Exit.TabIndex = 2;
+            this.btn_Exit.Text = "X";
+            this.btn_Exit.UseVisualStyleBackColor = true;
+            this.btn_Exit.Click += new System.EventHandler(this.X);
             // 
             // label_UserName
             // 
@@ -381,39 +404,51 @@
             // 
             // btn_SendFakturaMail
             // 
+            this.btn_SendFakturaMail.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btn_SendFakturaMail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_SendFakturaMail.ForeColor = System.Drawing.Color.Transparent;
             this.btn_SendFakturaMail.Location = new System.Drawing.Point(666, 499);
             this.btn_SendFakturaMail.Name = "btn_SendFakturaMail";
             this.btn_SendFakturaMail.Size = new System.Drawing.Size(224, 67);
             this.btn_SendFakturaMail.TabIndex = 13;
             this.btn_SendFakturaMail.Text = "Print Faktura";
-            this.btn_SendFakturaMail.UseVisualStyleBackColor = true;
+            this.btn_SendFakturaMail.UseVisualStyleBackColor = false;
             // 
             // btn_PrintFaktura
             // 
+            this.btn_PrintFaktura.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btn_PrintFaktura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_PrintFaktura.ForeColor = System.Drawing.Color.Transparent;
             this.btn_PrintFaktura.Location = new System.Drawing.Point(666, 586);
             this.btn_PrintFaktura.Name = "btn_PrintFaktura";
             this.btn_PrintFaktura.Size = new System.Drawing.Size(224, 67);
             this.btn_PrintFaktura.TabIndex = 13;
             this.btn_PrintFaktura.Text = "Send Faktura Mail";
-            this.btn_PrintFaktura.UseVisualStyleBackColor = true;
+            this.btn_PrintFaktura.UseVisualStyleBackColor = false;
             // 
             // btn_FjernFraKurv
             // 
+            this.btn_FjernFraKurv.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btn_FjernFraKurv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_FjernFraKurv.ForeColor = System.Drawing.Color.Transparent;
             this.btn_FjernFraKurv.Location = new System.Drawing.Point(413, 586);
             this.btn_FjernFraKurv.Name = "btn_FjernFraKurv";
             this.btn_FjernFraKurv.Size = new System.Drawing.Size(224, 67);
             this.btn_FjernFraKurv.TabIndex = 12;
             this.btn_FjernFraKurv.Text = "Fjern fra kurv";
-            this.btn_FjernFraKurv.UseVisualStyleBackColor = true;
+            this.btn_FjernFraKurv.UseVisualStyleBackColor = false;
             // 
             // btn_tilfoejTilKurv
             // 
+            this.btn_tilfoejTilKurv.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btn_tilfoejTilKurv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_tilfoejTilKurv.ForeColor = System.Drawing.Color.Transparent;
             this.btn_tilfoejTilKurv.Location = new System.Drawing.Point(413, 499);
             this.btn_tilfoejTilKurv.Name = "btn_tilfoejTilKurv";
             this.btn_tilfoejTilKurv.Size = new System.Drawing.Size(224, 67);
             this.btn_tilfoejTilKurv.TabIndex = 11;
             this.btn_tilfoejTilKurv.Text = "Tilføj til kurv";
-            this.btn_tilfoejTilKurv.UseVisualStyleBackColor = true;
+            this.btn_tilfoejTilKurv.UseVisualStyleBackColor = false;
             // 
             // labelVare
             // 
@@ -461,18 +496,6 @@
             this.tabControl.TabIndex = 2;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
-            // btn_Leverandoeroversigt
-            // 
-            this.btn_Leverandoeroversigt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Leverandoeroversigt.ForeColor = System.Drawing.Color.White;
-            this.btn_Leverandoeroversigt.Location = new System.Drawing.Point(0, 360);
-            this.btn_Leverandoeroversigt.Name = "btn_Leverandoeroversigt";
-            this.btn_Leverandoeroversigt.Size = new System.Drawing.Size(280, 40);
-            this.btn_Leverandoeroversigt.TabIndex = 3;
-            this.btn_Leverandoeroversigt.Text = "Leverandøroversigt";
-            this.btn_Leverandoeroversigt.UseVisualStyleBackColor = true;
-            this.btn_Leverandoeroversigt.Click += new System.EventHandler(this.btn_Leverandoeroversigt_Click);
-            // 
             // tabPage_Indstillinger
             // 
             this.tabPage_Indstillinger.Location = new System.Drawing.Point(4, 30);
@@ -482,17 +505,6 @@
             this.tabPage_Indstillinger.TabIndex = 10;
             this.tabPage_Indstillinger.Text = "tabPage1";
             this.tabPage_Indstillinger.UseVisualStyleBackColor = true;
-            // 
-            // btn_Exit
-            // 
-            this.btn_Exit.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Exit.Location = new System.Drawing.Point(3, 3);
-            this.btn_Exit.Name = "btn_Exit";
-            this.btn_Exit.Size = new System.Drawing.Size(55, 56);
-            this.btn_Exit.TabIndex = 2;
-            this.btn_Exit.Text = "X";
-            this.btn_Exit.UseVisualStyleBackColor = true;
-            this.btn_Exit.Click += new System.EventHandler(this.X);
             // 
             // MainMenu
             // 
