@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SynsPunkt_ApS.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,11 @@ namespace SynsPunkt_ApS.Services
 
             if (validUser)
             {
-                MessageBox.Show("Login succes!");
+                LoginForm loginForm = new LoginForm();
+                loginForm.Hide();
+                MainMenu mainMenu = new MainMenu();
+                mainMenu.Show();
+                MessageBox.Show("Login success!");
             }
         }
     }
