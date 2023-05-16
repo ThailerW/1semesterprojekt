@@ -8,5 +8,23 @@ namespace SynsPunkt_ApS.Database
 {
     public class CRUD_Vare
     {
+        public void CreateVare()
+        {
+            // Logik
+        }
+
+        public void ReadVare()
+        {
+            // Logik
+        }
+
+        public void UpdateVare()
+        {
+            // Logik
+        }
+        public void DeleteVare()
+        {
+            // Logik
+        }
     }
 }
