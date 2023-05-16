@@ -62,8 +62,9 @@ namespace SynsPunkt_ApS
 
         }
 
-        private void productsButton_Click(object sender, EventArgs e)
+        private void btn_Vareoversigt_Click(object sender, EventArgs e)
         {
+            tabControl.SelectedTab = tabPage_kundeoversigt ;
 
         }
 
