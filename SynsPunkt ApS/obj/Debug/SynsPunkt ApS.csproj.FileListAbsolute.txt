@@ -11,7 +11,6 @@ C:\GitHub\1st Semester Project\SynsPunkt ApS\obj\Debug\SynsPunkt ApS.pdb
 C:\GitHub\1st Semester Project\SynsPunkt ApS\obj\Debug\SynsPunkt_ApS.UI.LoginForm.resources
 C:\Programming\Git\1sem project\SynsPunkt ApS\obj\Debug\SynsPunkt ApS.csproj.AssemblyReference.cache
 C:\Programming\Git\1sem project\SynsPunkt ApS\obj\Debug\SynsPunkt ApS.csproj.SuggestedBindingRedirects.cache
-C:\Programming\Git\1sem project\SynsPunkt ApS\obj\Debug\SynsPunkt_ApS.Form1.resources
 C:\Programming\Git\1sem project\SynsPunkt ApS\obj\Debug\SynsPunkt_ApS.Properties.Resources.resources
 C:\Programming\Git\1sem project\SynsPunkt ApS\obj\Debug\SynsPunkt_ApS.UI.LoginForm.resources
 C:\Programming\Git\1sem project\SynsPunkt ApS\obj\Debug\SynsPunkt ApS.csproj.GenerateResource.cache
@@ -34,3 +33,4 @@ C:\Users\Martin Ngo\Sourcetree clones\1. Semestersprojekt\SynsPunkt ApS\obj\Debu
 C:\Users\Martin Ngo\Sourcetree clones\1. Semestersprojekt\SynsPunkt ApS\obj\Debug\SynsPunkt ApS.csproj.CoreCompileInputs.cache
 C:\Users\Martin Ngo\Sourcetree clones\1. Semestersprojekt\SynsPunkt ApS\obj\Debug\SynsPunkt ApS.exe
 C:\Users\Martin Ngo\Sourcetree clones\1. Semestersprojekt\SynsPunkt ApS\obj\Debug\SynsPunkt ApS.pdb
+C:\Programming\Git\1sem project\SynsPunkt ApS\obj\Debug\SynsPunkt_ApS.MainMenu.resources

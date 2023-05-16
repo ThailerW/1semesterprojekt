@@ -108,7 +108,52 @@ namespace SynsPunkt_ApS
 
         private void btn_Bookingoversigt_Click(object sender, EventArgs e)
         {
-            tabControl.SelectedTab = tabPage_BookingOversigt ;
+            tabControl.SelectedTab = tabPage_BookingOversigt;
+        }
+
+        private void btn_opretBooking_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectedTab = tabPage_OpretBooking;
+        }
+
+        private void btn_opretVare_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectedTab = tabPage_OpretVare;
+        }
+
+        private void btn_OpretKunder_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectedTab = tabPage_OpretKunder;
+        }
+
+        private void btn_OpretLeverandoer_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectedTab = tabPage_OpretLeverandoer;
+        }
+
+        private void btn_Leverandoeroversigt_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectedTab = tabPage_LeverandoerOversigt;
+        }
+
+        private void btn_OpretMedarbejder_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectedTab = tabPage_OpretMedarbejder;
+        }
+
+        private void btn_Rapport_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectedTab = tabPage_Rapport; 
+        }
+
+        private void btn_Indstillinger_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectedTab = tabPage_Indstillinger; 
+        }
+
+        private void X(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
