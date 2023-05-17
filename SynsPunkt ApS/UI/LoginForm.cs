@@ -49,5 +49,14 @@ namespace SynsPunkt_ApS.UI
             }
 
         }
+
+        //Martin: Kun tal kan indtastes i brugernavnfeltet
+        private void tb_username_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

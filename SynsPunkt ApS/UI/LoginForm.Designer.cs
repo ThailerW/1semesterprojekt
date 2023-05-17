@@ -75,6 +75,7 @@
             this.tb_username.Name = "tb_username";
             this.tb_username.Size = new System.Drawing.Size(280, 22);
             this.tb_username.TabIndex = 0;
+            this.tb_username.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_username_KeyPress);
             // 
             // label1
             // 

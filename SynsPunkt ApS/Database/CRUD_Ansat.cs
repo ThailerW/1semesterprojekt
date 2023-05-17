@@ -49,6 +49,11 @@ namespace SynsPunkt_ApS.Database
         //    return fullName;
         //}
 
+        /// <summary>
+        /// Martin: Retunerer en instans af Ansat med den logged ind persons data
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Models.Ansat GetEmployeeData(string id)
         {
             Models.Ansat Employee = null;

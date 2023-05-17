@@ -46,3 +46,15 @@ C:\Users\Gamer\Desktop\Github repositories\SynsPunkt ApS\obj\Debug\SynsPunkt ApS
 C:\Users\Gamer\Desktop\Github repositories\SynsPunkt ApS\obj\Debug\SynsPunkt ApS.csproj.CoreCompileInputs.cache
 C:\Users\Gamer\Desktop\Github repositories\SynsPunkt ApS\obj\Debug\SynsPunkt ApS.exe
 C:\Users\Gamer\Desktop\Github repositories\SynsPunkt ApS\obj\Debug\SynsPunkt ApS.pdb
+C:\Users\Gamer\Desktop\Github Repositories\1. semestersprojekt\SynsPunkt ApS\bin\Debug\SynsPunkt ApS.exe.config
+C:\Users\Gamer\Desktop\Github Repositories\1. semestersprojekt\SynsPunkt ApS\bin\Debug\SynsPunkt ApS.exe
+C:\Users\Gamer\Desktop\Github Repositories\1. semestersprojekt\SynsPunkt ApS\bin\Debug\SynsPunkt ApS.pdb
+C:\Users\Gamer\Desktop\Github Repositories\1. semestersprojekt\SynsPunkt ApS\obj\Debug\SynsPunkt ApS.csproj.AssemblyReference.cache
+C:\Users\Gamer\Desktop\Github Repositories\1. semestersprojekt\SynsPunkt ApS\obj\Debug\SynsPunkt ApS.csproj.SuggestedBindingRedirects.cache
+C:\Users\Gamer\Desktop\Github Repositories\1. semestersprojekt\SynsPunkt ApS\obj\Debug\SynsPunkt_ApS.MainMenu.resources
+C:\Users\Gamer\Desktop\Github Repositories\1. semestersprojekt\SynsPunkt ApS\obj\Debug\SynsPunkt_ApS.Properties.Resources.resources
+C:\Users\Gamer\Desktop\Github Repositories\1. semestersprojekt\SynsPunkt ApS\obj\Debug\SynsPunkt_ApS.UI.LoginForm.resources
+C:\Users\Gamer\Desktop\Github Repositories\1. semestersprojekt\SynsPunkt ApS\obj\Debug\SynsPunkt ApS.csproj.GenerateResource.cache
+C:\Users\Gamer\Desktop\Github Repositories\1. semestersprojekt\SynsPunkt ApS\obj\Debug\SynsPunkt ApS.csproj.CoreCompileInputs.cache
+C:\Users\Gamer\Desktop\Github Repositories\1. semestersprojekt\SynsPunkt ApS\obj\Debug\SynsPunkt ApS.exe
+C:\Users\Gamer\Desktop\Github Repositories\1. semestersprojekt\SynsPunkt ApS\obj\Debug\SynsPunkt ApS.pdb
