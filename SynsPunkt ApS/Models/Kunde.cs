@@ -14,13 +14,13 @@ namespace SynsPunkt_ApS.Models
         public int TelefonNummer { get; set; }
         public string PrivatEmail { get; set; }
         public string Adresse { get; set; }
-        public int KundeNummer { get; set; }
+        public string KundeNummer { get; set; }
         public string KundeInfo { get; set; }
         public List<Models.Ordre> OrdeHistorik { get; set; }
         public List <Models.Booking> BookingHistorik { get; set; }
 
         public Kunde(string fornavn, string efternavn, int telefonNummer, string privatEmail, string adresse, 
-            int kundeNummer, string kundeInfo)
+            string kundeNummer, string kundeInfo)
         {
             Fornavn = fornavn;
             Efternavn = efternavn;
