@@ -52,36 +52,10 @@
             this.tabPage_OpretKunder = new System.Windows.Forms.TabPage();
             this.tabPage_OpretVare = new System.Windows.Forms.TabPage();
             this.tabPage_OpretBooking = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label_OpretBooking = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabPage_LeverandoerOversigt = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label_virksomhedsDetaljer = new System.Windows.Forms.Label();
-            this.label_ListeOverLeverandoerer = new System.Windows.Forms.Label();
-            this.rTB_DetaljerOverVirksomhed = new System.Windows.Forms.RichTextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.tabPage_BookingOversigt = new System.Windows.Forms.TabPage();
-            this.dateTimePicker_Bookinger = new System.Windows.Forms.DateTimePicker();
-            this.label_detaljerForBooking = new System.Windows.Forms.Label();
-            this.label_Bookinger = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.listView_Bookinger = new System.Windows.Forms.ListView();
             this.tabPage_kundeoversigt = new System.Windows.Forms.TabPage();
-            this.label_IndtastTlfNr = new System.Windows.Forms.Label();
-            this.label_kundedetaljer = new System.Windows.Forms.Label();
-            this.label_liste_over_kunder = new System.Windows.Forms.Label();
-            this.rTb_KundeDetaljer = new System.Windows.Forms.RichTextBox();
-            this.textBoxSoegEfterKunde = new System.Windows.Forms.TextBox();
-            this.btn_soegEfterKunde = new System.Windows.Forms.Button();
-            this.listViewKunde = new System.Windows.Forms.ListView();
             this.tabPage_vareoversigt = new System.Windows.Forms.TabPage();
-            this.textBoxSoegEfterVare = new System.Windows.Forms.TextBox();
-            this.btn_SoegEfterVare = new System.Windows.Forms.Button();
-            this.labelKurv = new System.Windows.Forms.Label();
             this.btn_SendFakturaMail = new System.Windows.Forms.Button();
             this.btn_PrintFaktura = new System.Windows.Forms.Button();
             this.btn_FjernFraKurv = new System.Windows.Forms.Button();
@@ -91,12 +65,38 @@
             this.listViewVare = new System.Windows.Forms.ListView();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage_Indstillinger = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btn_ChangePassWord = new System.Windows.Forms.Button();
-            this.tb_newPassword2 = new System.Windows.Forms.TextBox();
-            this.tb_NewPassword1 = new System.Windows.Forms.TextBox();
+            this.labelKurv = new System.Windows.Forms.Label();
+            this.btn_SoegEfterVare = new System.Windows.Forms.Button();
+            this.textBoxSoegEfterVare = new System.Windows.Forms.TextBox();
+            this.label_kundedetaljer = new System.Windows.Forms.Label();
+            this.label_liste_over_kunder = new System.Windows.Forms.Label();
+            this.rTb_KundeDetaljer = new System.Windows.Forms.RichTextBox();
+            this.textBoxSoegEfterKunde = new System.Windows.Forms.TextBox();
+            this.btn_soegEfterKunde = new System.Windows.Forms.Button();
+            this.listViewKunde = new System.Windows.Forms.ListView();
+            this.label_detaljerForBooking = new System.Windows.Forms.Label();
+            this.label_Bookinger = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.listView_Bookinger = new System.Windows.Forms.ListView();
+            this.dateTimePicker_Bookinger = new System.Windows.Forms.DateTimePicker();
+            this.label_virksomhedsDetaljer = new System.Windows.Forms.Label();
+            this.label_ListeOverLeverandoerer = new System.Windows.Forms.Label();
+            this.rTB_DetaljerOverVirksomhed = new System.Windows.Forms.RichTextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.label_IndtastTlfNr = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label_OpretBooking = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tb_OldPassword = new System.Windows.Forms.TextBox();
+            this.tb_NewPassword1 = new System.Windows.Forms.TextBox();
+            this.tb_newPassword2 = new System.Windows.Forms.TextBox();
+            this.btn_ChangePassWord = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbox_UserNameLogo)).BeginInit();
@@ -294,7 +294,7 @@
             this.label_UserName.ForeColor = System.Drawing.Color.White;
             this.label_UserName.Location = new System.Drawing.Point(83, 113);
             this.label_UserName.Name = "label_UserName";
-            this.label_UserName.Size = new System.Drawing.Size(77, 19);
+            this.label_UserName.Size = new System.Drawing.Size(108, 28);
             this.label_UserName.TabIndex = 1;
             this.label_UserName.Text = "User Name";
             this.label_UserName.Click += new System.EventHandler(this.userNameLabel_Click);
@@ -313,20 +313,20 @@
             // tabPage_Rapport
             // 
             this.tabPage_Rapport.BackColor = System.Drawing.Color.White;
-            this.tabPage_Rapport.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Rapport.Location = new System.Drawing.Point(4, 30);
             this.tabPage_Rapport.Name = "tabPage_Rapport";
             this.tabPage_Rapport.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Rapport.Size = new System.Drawing.Size(910, 701);
+            this.tabPage_Rapport.Size = new System.Drawing.Size(910, 693);
             this.tabPage_Rapport.TabIndex = 9;
             this.tabPage_Rapport.Text = "Rapport";
             // 
             // tabPage_OpretMedarbejder
             // 
             this.tabPage_OpretMedarbejder.BackColor = System.Drawing.Color.White;
-            this.tabPage_OpretMedarbejder.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_OpretMedarbejder.Location = new System.Drawing.Point(4, 30);
             this.tabPage_OpretMedarbejder.Name = "tabPage_OpretMedarbejder";
             this.tabPage_OpretMedarbejder.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_OpretMedarbejder.Size = new System.Drawing.Size(910, 701);
+            this.tabPage_OpretMedarbejder.Size = new System.Drawing.Size(910, 693);
             this.tabPage_OpretMedarbejder.TabIndex = 8;
             this.tabPage_OpretMedarbejder.Text = "CRUD M";
             // 
@@ -334,10 +334,10 @@
             // 
             this.tabPage_OpretLeverandoer.BackColor = System.Drawing.Color.White;
             this.tabPage_OpretLeverandoer.Controls.Add(this.button9);
-            this.tabPage_OpretLeverandoer.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_OpretLeverandoer.Location = new System.Drawing.Point(4, 30);
             this.tabPage_OpretLeverandoer.Name = "tabPage_OpretLeverandoer";
             this.tabPage_OpretLeverandoer.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_OpretLeverandoer.Size = new System.Drawing.Size(910, 701);
+            this.tabPage_OpretLeverandoer.Size = new System.Drawing.Size(910, 693);
             this.tabPage_OpretLeverandoer.TabIndex = 7;
             this.tabPage_OpretLeverandoer.Text = "CRUD L";
             this.tabPage_OpretLeverandoer.Click += new System.EventHandler(this.tabPage8_Click);
@@ -357,10 +357,10 @@
             // tabPage_OpretKunder
             // 
             this.tabPage_OpretKunder.BackColor = System.Drawing.Color.White;
-            this.tabPage_OpretKunder.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_OpretKunder.Location = new System.Drawing.Point(4, 30);
             this.tabPage_OpretKunder.Name = "tabPage_OpretKunder";
             this.tabPage_OpretKunder.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_OpretKunder.Size = new System.Drawing.Size(910, 701);
+            this.tabPage_OpretKunder.Size = new System.Drawing.Size(910, 693);
             this.tabPage_OpretKunder.TabIndex = 6;
             this.tabPage_OpretKunder.Text = "CRUD K";
             this.tabPage_OpretKunder.Click += new System.EventHandler(this.tabPage7_Click);
@@ -368,10 +368,10 @@
             // tabPage_OpretVare
             // 
             this.tabPage_OpretVare.BackColor = System.Drawing.Color.White;
-            this.tabPage_OpretVare.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_OpretVare.Location = new System.Drawing.Point(4, 30);
             this.tabPage_OpretVare.Name = "tabPage_OpretVare";
             this.tabPage_OpretVare.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_OpretVare.Size = new System.Drawing.Size(910, 701);
+            this.tabPage_OpretVare.Size = new System.Drawing.Size(910, 693);
             this.tabPage_OpretVare.TabIndex = 5;
             this.tabPage_OpretVare.Text = "CRUD V";
             this.tabPage_OpretVare.Click += new System.EventHandler(this.tabPage6_Click);
@@ -383,45 +383,13 @@
             this.tabPage_OpretBooking.Controls.Add(this.dateTimePicker1);
             this.tabPage_OpretBooking.Controls.Add(this.label_OpretBooking);
             this.tabPage_OpretBooking.Controls.Add(this.textBox2);
-            this.tabPage_OpretBooking.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_OpretBooking.Location = new System.Drawing.Point(4, 30);
             this.tabPage_OpretBooking.Name = "tabPage_OpretBooking";
             this.tabPage_OpretBooking.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_OpretBooking.Size = new System.Drawing.Size(910, 701);
+            this.tabPage_OpretBooking.Size = new System.Drawing.Size(910, 693);
             this.tabPage_OpretBooking.TabIndex = 4;
             this.tabPage_OpretBooking.Text = "CRUD B";
             this.tabPage_OpretBooking.Click += new System.EventHandler(this.tabPage5_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 86);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(90, 13);
-            this.label4.TabIndex = 38;
-            this.label4.Text = "BOOKING START";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(26, 122);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker1.TabIndex = 37;
-            // 
-            // label_OpretBooking
-            // 
-            this.label_OpretBooking.AutoSize = true;
-            this.label_OpretBooking.Location = new System.Drawing.Point(22, 23);
-            this.label_OpretBooking.Name = "label_OpretBooking";
-            this.label_OpretBooking.Size = new System.Drawing.Size(93, 13);
-            this.label_OpretBooking.TabIndex = 36;
-            this.label_OpretBooking.Text = "OPRET BOOKING";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(265, 344);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(384, 22);
-            this.textBox2.TabIndex = 35;
             // 
             // tabPage_LeverandoerOversigt
             // 
@@ -433,76 +401,13 @@
             this.tabPage_LeverandoerOversigt.Controls.Add(this.textBox1);
             this.tabPage_LeverandoerOversigt.Controls.Add(this.button1);
             this.tabPage_LeverandoerOversigt.Controls.Add(this.listView1);
-            this.tabPage_LeverandoerOversigt.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_LeverandoerOversigt.Location = new System.Drawing.Point(4, 30);
             this.tabPage_LeverandoerOversigt.Name = "tabPage_LeverandoerOversigt";
             this.tabPage_LeverandoerOversigt.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_LeverandoerOversigt.Size = new System.Drawing.Size(910, 701);
+            this.tabPage_LeverandoerOversigt.Size = new System.Drawing.Size(910, 693);
             this.tabPage_LeverandoerOversigt.TabIndex = 3;
             this.tabPage_LeverandoerOversigt.Text = "Leverandør";
             this.tabPage_LeverandoerOversigt.Click += new System.EventHandler(this.tabPage4_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 540);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 13);
-            this.label2.TabIndex = 34;
-            this.label2.Text = "INDTAST CVR NR";
-            // 
-            // label_virksomhedsDetaljer
-            // 
-            this.label_virksomhedsDetaljer.AutoSize = true;
-            this.label_virksomhedsDetaljer.Location = new System.Drawing.Point(411, 43);
-            this.label_virksomhedsDetaljer.Name = "label_virksomhedsDetaljer";
-            this.label_virksomhedsDetaljer.Size = new System.Drawing.Size(161, 13);
-            this.label_virksomhedsDetaljer.TabIndex = 33;
-            this.label_virksomhedsDetaljer.Text = "DETALJER OVER VIRKSOMHED";
-            // 
-            // label_ListeOverLeverandoerer
-            // 
-            this.label_ListeOverLeverandoerer.AutoSize = true;
-            this.label_ListeOverLeverandoerer.Location = new System.Drawing.Point(8, 43);
-            this.label_ListeOverLeverandoerer.Name = "label_ListeOverLeverandoerer";
-            this.label_ListeOverLeverandoerer.Size = new System.Drawing.Size(151, 13);
-            this.label_ListeOverLeverandoerer.TabIndex = 32;
-            this.label_ListeOverLeverandoerer.Text = "LISTE OVER LEVERANDØRER";
-            // 
-            // rTB_DetaljerOverVirksomhed
-            // 
-            this.rTB_DetaljerOverVirksomhed.Location = new System.Drawing.Point(415, 80);
-            this.rTB_DetaljerOverVirksomhed.Name = "rTB_DetaljerOverVirksomhed";
-            this.rTB_DetaljerOverVirksomhed.Size = new System.Drawing.Size(488, 432);
-            this.rTB_DetaljerOverVirksomhed.TabIndex = 31;
-            this.rTB_DetaljerOverVirksomhed.Text = "";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(12, 564);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(384, 22);
-            this.textBox1.TabIndex = 30;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.Transparent;
-            this.button1.Location = new System.Drawing.Point(12, 618);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(224, 67);
-            this.button1.TabIndex = 29;
-            this.button1.Text = "Søg efter virksomhed";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // listView1
-            // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 80);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(384, 432);
-            this.listView1.TabIndex = 28;
-            this.listView1.UseCompatibleStateImageBehavior = false;
             // 
             // tabPage_BookingOversigt
             // 
@@ -512,55 +417,13 @@
             this.tabPage_BookingOversigt.Controls.Add(this.label_Bookinger);
             this.tabPage_BookingOversigt.Controls.Add(this.richTextBox1);
             this.tabPage_BookingOversigt.Controls.Add(this.listView_Bookinger);
-            this.tabPage_BookingOversigt.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_BookingOversigt.Location = new System.Drawing.Point(4, 30);
             this.tabPage_BookingOversigt.Name = "tabPage_BookingOversigt";
             this.tabPage_BookingOversigt.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_BookingOversigt.Size = new System.Drawing.Size(910, 701);
+            this.tabPage_BookingOversigt.Size = new System.Drawing.Size(910, 693);
             this.tabPage_BookingOversigt.TabIndex = 2;
             this.tabPage_BookingOversigt.Text = "Booking";
             this.tabPage_BookingOversigt.Click += new System.EventHandler(this.tabPage3_Click);
-            // 
-            // dateTimePicker_Bookinger
-            // 
-            this.dateTimePicker_Bookinger.Location = new System.Drawing.Point(12, 527);
-            this.dateTimePicker_Bookinger.Name = "dateTimePicker_Bookinger";
-            this.dateTimePicker_Bookinger.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker_Bookinger.TabIndex = 34;
-            // 
-            // label_detaljerForBooking
-            // 
-            this.label_detaljerForBooking.AutoSize = true;
-            this.label_detaljerForBooking.Location = new System.Drawing.Point(411, 43);
-            this.label_detaljerForBooking.Name = "label_detaljerForBooking";
-            this.label_detaljerForBooking.Size = new System.Drawing.Size(133, 13);
-            this.label_detaljerForBooking.TabIndex = 33;
-            this.label_detaljerForBooking.Text = "DETALJER FOR BOOKING";
-            // 
-            // label_Bookinger
-            // 
-            this.label_Bookinger.AutoSize = true;
-            this.label_Bookinger.Location = new System.Drawing.Point(8, 43);
-            this.label_Bookinger.Name = "label_Bookinger";
-            this.label_Bookinger.Size = new System.Drawing.Size(69, 13);
-            this.label_Bookinger.TabIndex = 32;
-            this.label_Bookinger.Text = "BOOKINGER";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(415, 80);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(488, 432);
-            this.richTextBox1.TabIndex = 31;
-            this.richTextBox1.Text = "";
-            // 
-            // listView_Bookinger
-            // 
-            this.listView_Bookinger.HideSelection = false;
-            this.listView_Bookinger.Location = new System.Drawing.Point(12, 80);
-            this.listView_Bookinger.Name = "listView_Bookinger";
-            this.listView_Bookinger.Size = new System.Drawing.Size(384, 432);
-            this.listView_Bookinger.TabIndex = 28;
-            this.listView_Bookinger.UseCompatibleStateImageBehavior = false;
             // 
             // tabPage_kundeoversigt
             // 
@@ -572,76 +435,13 @@
             this.tabPage_kundeoversigt.Controls.Add(this.textBoxSoegEfterKunde);
             this.tabPage_kundeoversigt.Controls.Add(this.btn_soegEfterKunde);
             this.tabPage_kundeoversigt.Controls.Add(this.listViewKunde);
-            this.tabPage_kundeoversigt.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_kundeoversigt.Location = new System.Drawing.Point(4, 30);
             this.tabPage_kundeoversigt.Name = "tabPage_kundeoversigt";
             this.tabPage_kundeoversigt.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_kundeoversigt.Size = new System.Drawing.Size(910, 701);
+            this.tabPage_kundeoversigt.Size = new System.Drawing.Size(910, 693);
             this.tabPage_kundeoversigt.TabIndex = 1;
             this.tabPage_kundeoversigt.Text = "Kunde";
             this.tabPage_kundeoversigt.Click += new System.EventHandler(this.tabPage2_Click);
-            // 
-            // label_IndtastTlfNr
-            // 
-            this.label_IndtastTlfNr.AutoSize = true;
-            this.label_IndtastTlfNr.Location = new System.Drawing.Point(6, 501);
-            this.label_IndtastTlfNr.Name = "label_IndtastTlfNr";
-            this.label_IndtastTlfNr.Size = new System.Drawing.Size(88, 13);
-            this.label_IndtastTlfNr.TabIndex = 28;
-            this.label_IndtastTlfNr.Text = "INDTAST TLF.NR";
-            // 
-            // label_kundedetaljer
-            // 
-            this.label_kundedetaljer.AutoSize = true;
-            this.label_kundedetaljer.Location = new System.Drawing.Point(405, 8);
-            this.label_kundedetaljer.Name = "label_kundedetaljer";
-            this.label_kundedetaljer.Size = new System.Drawing.Size(92, 13);
-            this.label_kundedetaljer.TabIndex = 27;
-            this.label_kundedetaljer.Text = "KUNDEDETALJER";
-            // 
-            // label_liste_over_kunder
-            // 
-            this.label_liste_over_kunder.AutoSize = true;
-            this.label_liste_over_kunder.Location = new System.Drawing.Point(2, 8);
-            this.label_liste_over_kunder.Name = "label_liste_over_kunder";
-            this.label_liste_over_kunder.Size = new System.Drawing.Size(111, 13);
-            this.label_liste_over_kunder.TabIndex = 26;
-            this.label_liste_over_kunder.Text = "LISTE OVER KUNDER";
-            // 
-            // rTb_KundeDetaljer
-            // 
-            this.rTb_KundeDetaljer.Location = new System.Drawing.Point(409, 45);
-            this.rTb_KundeDetaljer.Name = "rTb_KundeDetaljer";
-            this.rTb_KundeDetaljer.Size = new System.Drawing.Size(488, 432);
-            this.rTb_KundeDetaljer.TabIndex = 25;
-            this.rTb_KundeDetaljer.Text = "";
-            // 
-            // textBoxSoegEfterKunde
-            // 
-            this.textBoxSoegEfterKunde.Location = new System.Drawing.Point(6, 525);
-            this.textBoxSoegEfterKunde.Name = "textBoxSoegEfterKunde";
-            this.textBoxSoegEfterKunde.Size = new System.Drawing.Size(384, 22);
-            this.textBoxSoegEfterKunde.TabIndex = 24;
-            // 
-            // btn_soegEfterKunde
-            // 
-            this.btn_soegEfterKunde.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btn_soegEfterKunde.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_soegEfterKunde.ForeColor = System.Drawing.Color.Transparent;
-            this.btn_soegEfterKunde.Location = new System.Drawing.Point(6, 579);
-            this.btn_soegEfterKunde.Name = "btn_soegEfterKunde";
-            this.btn_soegEfterKunde.Size = new System.Drawing.Size(224, 67);
-            this.btn_soegEfterKunde.TabIndex = 23;
-            this.btn_soegEfterKunde.Text = "Søg efter kunde";
-            this.btn_soegEfterKunde.UseVisualStyleBackColor = false;
-            // 
-            // listViewKunde
-            // 
-            this.listViewKunde.HideSelection = false;
-            this.listViewKunde.Location = new System.Drawing.Point(6, 45);
-            this.listViewKunde.Name = "listViewKunde";
-            this.listViewKunde.Size = new System.Drawing.Size(384, 432);
-            this.listViewKunde.TabIndex = 22;
-            this.listViewKunde.UseCompatibleStateImageBehavior = false;
             // 
             // tabPage_vareoversigt
             // 
@@ -657,41 +457,13 @@
             this.tabPage_vareoversigt.Controls.Add(this.richTextBoxVare);
             this.tabPage_vareoversigt.Controls.Add(this.listViewVare);
             this.tabPage_vareoversigt.ForeColor = System.Drawing.Color.Black;
-            this.tabPage_vareoversigt.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_vareoversigt.Location = new System.Drawing.Point(4, 30);
             this.tabPage_vareoversigt.Name = "tabPage_vareoversigt";
             this.tabPage_vareoversigt.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_vareoversigt.Size = new System.Drawing.Size(910, 701);
+            this.tabPage_vareoversigt.Size = new System.Drawing.Size(910, 693);
             this.tabPage_vareoversigt.TabIndex = 0;
             this.tabPage_vareoversigt.Text = "Vare";
             this.tabPage_vareoversigt.Click += new System.EventHandler(this.tabPage1_Click);
-            // 
-            // textBoxSoegEfterVare
-            // 
-            this.textBoxSoegEfterVare.Location = new System.Drawing.Point(10, 537);
-            this.textBoxSoegEfterVare.Name = "textBoxSoegEfterVare";
-            this.textBoxSoegEfterVare.Size = new System.Drawing.Size(384, 22);
-            this.textBoxSoegEfterVare.TabIndex = 16;
-            // 
-            // btn_SoegEfterVare
-            // 
-            this.btn_SoegEfterVare.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btn_SoegEfterVare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_SoegEfterVare.ForeColor = System.Drawing.Color.Transparent;
-            this.btn_SoegEfterVare.Location = new System.Drawing.Point(10, 586);
-            this.btn_SoegEfterVare.Name = "btn_SoegEfterVare";
-            this.btn_SoegEfterVare.Size = new System.Drawing.Size(224, 67);
-            this.btn_SoegEfterVare.TabIndex = 15;
-            this.btn_SoegEfterVare.Text = "Søg efter vare";
-            this.btn_SoegEfterVare.UseVisualStyleBackColor = false;
-            // 
-            // labelKurv
-            // 
-            this.labelKurv.AutoSize = true;
-            this.labelKurv.Location = new System.Drawing.Point(409, 3);
-            this.labelKurv.Name = "labelKurv";
-            this.labelKurv.Size = new System.Drawing.Size(35, 13);
-            this.labelKurv.TabIndex = 14;
-            this.labelKurv.Text = "KURV";
             // 
             // btn_SendFakturaMail
             // 
@@ -746,7 +518,7 @@
             this.labelVare.AutoSize = true;
             this.labelVare.Location = new System.Drawing.Point(6, 3);
             this.labelVare.Name = "labelVare";
-            this.labelVare.Size = new System.Drawing.Size(59, 13);
+            this.labelVare.Size = new System.Drawing.Size(84, 21);
             this.labelVare.TabIndex = 10;
             this.labelVare.Text = "VARELISTE";
             // 
@@ -795,31 +567,253 @@
             this.tabPage_Indstillinger.Controls.Add(this.tb_newPassword2);
             this.tabPage_Indstillinger.Controls.Add(this.tb_NewPassword1);
             this.tabPage_Indstillinger.Controls.Add(this.tb_OldPassword);
-            this.tabPage_Indstillinger.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Indstillinger.Location = new System.Drawing.Point(4, 30);
             this.tabPage_Indstillinger.Name = "tabPage_Indstillinger";
             this.tabPage_Indstillinger.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Indstillinger.Size = new System.Drawing.Size(910, 701);
+            this.tabPage_Indstillinger.Size = new System.Drawing.Size(910, 693);
             this.tabPage_Indstillinger.TabIndex = 10;
             this.tabPage_Indstillinger.Text = "Indstillinger";
             this.tabPage_Indstillinger.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // labelKurv
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(519, 138);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "label3";
+            this.labelKurv.AutoSize = true;
+            this.labelKurv.Location = new System.Drawing.Point(409, 3);
+            this.labelKurv.Name = "labelKurv";
+            this.labelKurv.Size = new System.Drawing.Size(50, 21);
+            this.labelKurv.TabIndex = 14;
+            this.labelKurv.Text = "KURV";
             // 
-            // label1
+            // btn_SoegEfterVare
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(291, 138);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "label1";
+            this.btn_SoegEfterVare.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btn_SoegEfterVare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_SoegEfterVare.ForeColor = System.Drawing.Color.Transparent;
+            this.btn_SoegEfterVare.Location = new System.Drawing.Point(10, 586);
+            this.btn_SoegEfterVare.Name = "btn_SoegEfterVare";
+            this.btn_SoegEfterVare.Size = new System.Drawing.Size(224, 67);
+            this.btn_SoegEfterVare.TabIndex = 15;
+            this.btn_SoegEfterVare.Text = "Søg efter vare";
+            this.btn_SoegEfterVare.UseVisualStyleBackColor = false;
+            // 
+            // textBoxSoegEfterVare
+            // 
+            this.textBoxSoegEfterVare.Location = new System.Drawing.Point(10, 537);
+            this.textBoxSoegEfterVare.Name = "textBoxSoegEfterVare";
+            this.textBoxSoegEfterVare.Size = new System.Drawing.Size(384, 29);
+            this.textBoxSoegEfterVare.TabIndex = 16;
+            // 
+            // label_kundedetaljer
+            // 
+            this.label_kundedetaljer.AutoSize = true;
+            this.label_kundedetaljer.Location = new System.Drawing.Point(405, 8);
+            this.label_kundedetaljer.Name = "label_kundedetaljer";
+            this.label_kundedetaljer.Size = new System.Drawing.Size(130, 21);
+            this.label_kundedetaljer.TabIndex = 27;
+            this.label_kundedetaljer.Text = "KUNDEDETALJER";
+            // 
+            // label_liste_over_kunder
+            // 
+            this.label_liste_over_kunder.AutoSize = true;
+            this.label_liste_over_kunder.Location = new System.Drawing.Point(2, 8);
+            this.label_liste_over_kunder.Name = "label_liste_over_kunder";
+            this.label_liste_over_kunder.Size = new System.Drawing.Size(156, 21);
+            this.label_liste_over_kunder.TabIndex = 26;
+            this.label_liste_over_kunder.Text = "LISTE OVER KUNDER";
+            // 
+            // rTb_KundeDetaljer
+            // 
+            this.rTb_KundeDetaljer.Location = new System.Drawing.Point(409, 45);
+            this.rTb_KundeDetaljer.Name = "rTb_KundeDetaljer";
+            this.rTb_KundeDetaljer.Size = new System.Drawing.Size(488, 432);
+            this.rTb_KundeDetaljer.TabIndex = 25;
+            this.rTb_KundeDetaljer.Text = "";
+            // 
+            // textBoxSoegEfterKunde
+            // 
+            this.textBoxSoegEfterKunde.Location = new System.Drawing.Point(6, 525);
+            this.textBoxSoegEfterKunde.Name = "textBoxSoegEfterKunde";
+            this.textBoxSoegEfterKunde.Size = new System.Drawing.Size(384, 29);
+            this.textBoxSoegEfterKunde.TabIndex = 24;
+            // 
+            // btn_soegEfterKunde
+            // 
+            this.btn_soegEfterKunde.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btn_soegEfterKunde.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_soegEfterKunde.ForeColor = System.Drawing.Color.Transparent;
+            this.btn_soegEfterKunde.Location = new System.Drawing.Point(6, 579);
+            this.btn_soegEfterKunde.Name = "btn_soegEfterKunde";
+            this.btn_soegEfterKunde.Size = new System.Drawing.Size(224, 67);
+            this.btn_soegEfterKunde.TabIndex = 23;
+            this.btn_soegEfterKunde.Text = "Søg efter kunde";
+            this.btn_soegEfterKunde.UseVisualStyleBackColor = false;
+            // 
+            // listViewKunde
+            // 
+            this.listViewKunde.HideSelection = false;
+            this.listViewKunde.Location = new System.Drawing.Point(6, 45);
+            this.listViewKunde.Name = "listViewKunde";
+            this.listViewKunde.Size = new System.Drawing.Size(384, 432);
+            this.listViewKunde.TabIndex = 22;
+            this.listViewKunde.UseCompatibleStateImageBehavior = false;
+            // 
+            // label_detaljerForBooking
+            // 
+            this.label_detaljerForBooking.AutoSize = true;
+            this.label_detaljerForBooking.Location = new System.Drawing.Point(411, 43);
+            this.label_detaljerForBooking.Name = "label_detaljerForBooking";
+            this.label_detaljerForBooking.Size = new System.Drawing.Size(186, 21);
+            this.label_detaljerForBooking.TabIndex = 33;
+            this.label_detaljerForBooking.Text = "DETALJER FOR BOOKING";
+            // 
+            // label_Bookinger
+            // 
+            this.label_Bookinger.AutoSize = true;
+            this.label_Bookinger.Location = new System.Drawing.Point(8, 43);
+            this.label_Bookinger.Name = "label_Bookinger";
+            this.label_Bookinger.Size = new System.Drawing.Size(97, 21);
+            this.label_Bookinger.TabIndex = 32;
+            this.label_Bookinger.Text = "BOOKINGER";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(415, 80);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(488, 432);
+            this.richTextBox1.TabIndex = 31;
+            this.richTextBox1.Text = "";
+            // 
+            // listView_Bookinger
+            // 
+            this.listView_Bookinger.HideSelection = false;
+            this.listView_Bookinger.Location = new System.Drawing.Point(12, 80);
+            this.listView_Bookinger.Name = "listView_Bookinger";
+            this.listView_Bookinger.Size = new System.Drawing.Size(384, 432);
+            this.listView_Bookinger.TabIndex = 28;
+            this.listView_Bookinger.UseCompatibleStateImageBehavior = false;
+            // 
+            // dateTimePicker_Bookinger
+            // 
+            this.dateTimePicker_Bookinger.Location = new System.Drawing.Point(12, 527);
+            this.dateTimePicker_Bookinger.Name = "dateTimePicker_Bookinger";
+            this.dateTimePicker_Bookinger.Size = new System.Drawing.Size(200, 29);
+            this.dateTimePicker_Bookinger.TabIndex = 34;
+            // 
+            // label_virksomhedsDetaljer
+            // 
+            this.label_virksomhedsDetaljer.AutoSize = true;
+            this.label_virksomhedsDetaljer.Location = new System.Drawing.Point(411, 43);
+            this.label_virksomhedsDetaljer.Name = "label_virksomhedsDetaljer";
+            this.label_virksomhedsDetaljer.Size = new System.Drawing.Size(225, 21);
+            this.label_virksomhedsDetaljer.TabIndex = 33;
+            this.label_virksomhedsDetaljer.Text = "DETALJER OVER VIRKSOMHED";
+            // 
+            // label_ListeOverLeverandoerer
+            // 
+            this.label_ListeOverLeverandoerer.AutoSize = true;
+            this.label_ListeOverLeverandoerer.Location = new System.Drawing.Point(8, 43);
+            this.label_ListeOverLeverandoerer.Name = "label_ListeOverLeverandoerer";
+            this.label_ListeOverLeverandoerer.Size = new System.Drawing.Size(212, 21);
+            this.label_ListeOverLeverandoerer.TabIndex = 32;
+            this.label_ListeOverLeverandoerer.Text = "LISTE OVER LEVERANDØRER";
+            // 
+            // rTB_DetaljerOverVirksomhed
+            // 
+            this.rTB_DetaljerOverVirksomhed.Location = new System.Drawing.Point(415, 80);
+            this.rTB_DetaljerOverVirksomhed.Name = "rTB_DetaljerOverVirksomhed";
+            this.rTB_DetaljerOverVirksomhed.Size = new System.Drawing.Size(488, 432);
+            this.rTB_DetaljerOverVirksomhed.TabIndex = 31;
+            this.rTB_DetaljerOverVirksomhed.Text = "";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 564);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(384, 29);
+            this.textBox1.TabIndex = 30;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.Transparent;
+            this.button1.Location = new System.Drawing.Point(12, 618);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(224, 67);
+            this.button1.TabIndex = 29;
+            this.button1.Text = "Søg efter virksomhed";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // listView1
+            // 
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(12, 80);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(384, 432);
+            this.listView1.TabIndex = 28;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // label_IndtastTlfNr
+            // 
+            this.label_IndtastTlfNr.AutoSize = true;
+            this.label_IndtastTlfNr.Location = new System.Drawing.Point(6, 501);
+            this.label_IndtastTlfNr.Name = "label_IndtastTlfNr";
+            this.label_IndtastTlfNr.Size = new System.Drawing.Size(123, 21);
+            this.label_IndtastTlfNr.TabIndex = 28;
+            this.label_IndtastTlfNr.Text = "INDTAST TLF.NR";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 540);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(130, 21);
+            this.label2.TabIndex = 34;
+            this.label2.Text = "INDTAST CVR NR";
+            // 
+            // label_OpretBooking
+            // 
+            this.label_OpretBooking.AutoSize = true;
+            this.label_OpretBooking.Location = new System.Drawing.Point(22, 23);
+            this.label_OpretBooking.Name = "label_OpretBooking";
+            this.label_OpretBooking.Size = new System.Drawing.Size(130, 21);
+            this.label_OpretBooking.TabIndex = 36;
+            this.label_OpretBooking.Text = "OPRET BOOKING";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(265, 344);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(384, 29);
+            this.textBox2.TabIndex = 35;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(26, 122);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 29);
+            this.dateTimePicker1.TabIndex = 37;
+            // 
+            // tb_OldPassword
+            // 
+            this.tb_OldPassword.Location = new System.Drawing.Point(82, 192);
+            this.tb_OldPassword.Name = "tb_OldPassword";
+            this.tb_OldPassword.Size = new System.Drawing.Size(100, 29);
+            this.tb_OldPassword.TabIndex = 0;
+            // 
+            // tb_NewPassword1
+            // 
+            this.tb_NewPassword1.Location = new System.Drawing.Point(295, 192);
+            this.tb_NewPassword1.Name = "tb_NewPassword1";
+            this.tb_NewPassword1.Size = new System.Drawing.Size(100, 29);
+            this.tb_NewPassword1.TabIndex = 1;
+            // 
+            // tb_newPassword2
+            // 
+            this.tb_newPassword2.Location = new System.Drawing.Point(523, 192);
+            this.tb_newPassword2.Name = "tb_newPassword2";
+            this.tb_newPassword2.Size = new System.Drawing.Size(100, 29);
+            this.tb_newPassword2.TabIndex = 2;
             // 
             // btn_ChangePassWord
             // 
@@ -829,32 +823,37 @@
             this.btn_ChangePassWord.TabIndex = 3;
             this.btn_ChangePassWord.Text = "button2";
             this.btn_ChangePassWord.UseVisualStyleBackColor = true;
-            this.btn_ChangePassWord.Click += new System.EventHandler(this.btn_ChangePassWord_Click);
             // 
-            // tb_newPassword2
+            // label1
             // 
-            this.tb_newPassword2.Location = new System.Drawing.Point(523, 192);
-            this.tb_newPassword2.Name = "tb_newPassword2";
-            this.tb_newPassword2.Size = new System.Drawing.Size(100, 22);
-            this.tb_newPassword2.TabIndex = 2;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(291, 138);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 21);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "label1";
             // 
-            // tb_NewPassword1
+            // label3
             // 
-            this.tb_NewPassword1.Location = new System.Drawing.Point(295, 192);
-            this.tb_NewPassword1.Name = "tb_NewPassword1";
-            this.tb_NewPassword1.Size = new System.Drawing.Size(100, 22);
-            this.tb_NewPassword1.TabIndex = 1;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(519, 138);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 21);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "label3";
             // 
-            // tb_OldPassword
+            // label4
             // 
-            this.tb_OldPassword.Location = new System.Drawing.Point(82, 192);
-            this.tb_OldPassword.Name = "tb_OldPassword";
-            this.tb_OldPassword.Size = new System.Drawing.Size(100, 22);
-            this.tb_OldPassword.TabIndex = 0;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(22, 86);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(126, 21);
+            this.label4.TabIndex = 38;
+            this.label4.Text = "BOOKING START";
             // 
             // MainMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1200, 727);
