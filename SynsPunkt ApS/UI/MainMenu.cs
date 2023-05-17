@@ -66,11 +66,6 @@ namespace SynsPunkt_ApS
 
         }
 
-        private void tabPage5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void tabPage6_Click(object sender, EventArgs e)
         {
 
