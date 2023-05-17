@@ -32,7 +32,6 @@ namespace SynsPunkt_ApS.UI
         {
             if (Services.UserLogIn.GetUserLogin(tb_username.Text, tb_password.Text))
             {
-                Ansat_Services.GetUserID(tb_username.Text);
                 this.Hide();
             };
         }

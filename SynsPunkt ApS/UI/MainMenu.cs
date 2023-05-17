@@ -14,9 +14,9 @@ namespace SynsPunkt_ApS
     public partial class MainMenu : Form
     {
         string userID;
-        public MainMenu()
+        public MainMenu(string userID)
         {
-            userID = Ansat_Services.GetUserID();
+            this.userID = userID;
             InitializeComponent();
         }
 

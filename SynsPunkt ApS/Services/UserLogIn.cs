@@ -23,7 +23,7 @@ namespace SynsPunkt_ApS.Services
 
             if (validUser)
             {
-                MainMenu mainMenu = new MainMenu();
+                MainMenu mainMenu = new MainMenu(username);
                 mainMenu.Show();
                 MessageBox.Show("Login success!");
                 return true;

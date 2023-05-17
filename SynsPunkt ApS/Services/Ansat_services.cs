@@ -8,13 +8,13 @@ namespace SynsPunkt_ApS.Services
 {
     public class Ansat_Services
     {
-        static string userID;
+        static int userID;
         public static void SetUserID(string UserID)
         {
-            userID = UserID;
+            userID = int.Parse(UserID);
         }
 
-        public static string GetUserID()
+        public static int GetUserID()
         {
             return userID;
         }
