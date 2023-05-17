@@ -15,13 +15,12 @@ namespace SynsPunkt_ApS.UI
     {
         public LoginForm()
         {
-            this.KeyPreview = true;
             InitializeComponent();
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         /// <summary>
@@ -37,16 +36,10 @@ namespace SynsPunkt_ApS.UI
             };
         }
 
-        private void LoginForm_KeyDown(object sender, KeyEventArgs e)
+        public string GetUserID()
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (Services.UserLogIn.GetUserLogin(tb_username.Text, tb_password.Text))
-                {
-                    this.Hide();
-                };
-            }
-
+            string username = tb_username.Text;
+            return username;
         }
     }
 }
