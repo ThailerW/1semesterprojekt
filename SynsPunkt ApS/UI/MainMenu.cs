@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SynsPunkt_ApS.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +13,10 @@ namespace SynsPunkt_ApS
 {
     public partial class MainMenu : Form
     {
+        string userID;
         public MainMenu()
         {
+            userID = Ansat_Services.GetUserID();
             InitializeComponent();
         }
 

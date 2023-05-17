@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SynsPunkt_ApS.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -31,8 +32,15 @@ namespace SynsPunkt_ApS.UI
         {
             if (Services.UserLogIn.GetUserLogin(tb_username.Text, tb_password.Text))
             {
+                Ansat_Services.GetUserID(tb_username.Text);
                 this.Hide();
             };
+        }
+
+        public string GetUserID()
+        {
+            string username = tb_username.Text;
+            return username;
         }
     }
 }
