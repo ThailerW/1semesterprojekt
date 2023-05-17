@@ -155,5 +155,15 @@ namespace SynsPunkt_ApS
         {
             Application.Exit();
         }
+
+        private void btn_ChangePassWord_Click(object sender, EventArgs e)
+        {
+            Services.ChangePassword changePass = new Services.ChangePassword();
+            bool changedPass = changePass.ChangeUserPassword("5", tb_OldPassword.Text, tb_NewPassword1.Text, tb_newPassword2.Text);
+            if (changedPass)
+            {
+                MessageBox.Show("Adgangskode ændret!", "SUCCESS!", MessageBoxButtons.OK);
+            }
+        }
     }
 }

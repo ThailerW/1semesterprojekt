@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SynsPunkt_ApS.Database
 {
@@ -21,6 +22,23 @@ namespace SynsPunkt_ApS.Database
 
             string query = "UPDATE SP_Ansat SET password = '" + newPassword + "' WHERE AnsatID = '" + userID + "'";
             SqlCommand cmd = connection.CreateCommand();
+            cmd.Connection = connection;
+
+            try
+            {
+                cmd.CommandText = query;
+
+                connection.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "OOPS!", MessageBoxButtons.OK);
+            }
+            finally
+            {
+                connection.Close();
+            }
 
         }
     }
