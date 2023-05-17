@@ -12,7 +12,7 @@ namespace SynsPunkt_ApS.Services
     {
         /// <summary>
         /// Theis: Checker om brugerens indtastede oplysninger er tilsvarende med data i databasen.
-        /// Martin: Tilføjet return type
+        /// Martin: Tilføjet Ansat instans som tilføjes som parameter til MainMenu Constructor
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
@@ -23,7 +23,9 @@ namespace SynsPunkt_ApS.Services
 
             if (validUser)
             {
-                MainMenu mainMenu = new MainMenu(username);
+                Database.CRUD_Ansat CRUDAnsat = new Database.CRUD_Ansat();
+                Models.Ansat loggedInEmployee = CRUDAnsat.GetEmployeeData(username);
+                MainMenu mainMenu = new MainMenu(loggedInEmployee);
                 mainMenu.Show();
                 MessageBox.Show("Login success!");
                 return true;

@@ -13,11 +13,13 @@ namespace SynsPunkt_ApS
 {
     public partial class MainMenu : Form
     {
-        string userID;
-        public MainMenu(string userID)
+       
+        public Models.Ansat LoggedInEmployee;
+        public MainMenu(Models.Ansat loggedInEmployee)
         {
-            this.userID = userID;
+            
             InitializeComponent();
+            LoggedInEmployee = loggedInEmployee;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -157,7 +159,7 @@ namespace SynsPunkt_ApS
         private void btn_ChangePassWord_Click(object sender, EventArgs e)
         {
             Services.ChangePassword changePass = new Services.ChangePassword();
-            bool changedPass = changePass.ChangeUserPassword(userID, tb_OldPassword.Text, tb_NewPassword1.Text, tb_newPassword2.Text);
+            bool changedPass = changePass.ChangeUserPassword(LoggedInEmployee.MedarbejderNummer.ToString(), tb_OldPassword.Text, tb_NewPassword1.Text, tb_newPassword2.Text);
             if (changedPass)
             {
                 MessageBox.Show("Adgangskode ændret!", "SUCCESS!", MessageBoxButtons.OK);

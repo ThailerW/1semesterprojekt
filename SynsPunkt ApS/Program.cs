@@ -17,6 +17,7 @@ namespace SynsPunkt_ApS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //Ny loginform som vælges til at være den form der skal oprettes når programmet kører
             LoginForm loginForm = new LoginForm();
             Application.Run(loginForm);
         }

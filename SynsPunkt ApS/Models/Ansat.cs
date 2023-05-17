@@ -16,11 +16,12 @@ namespace SynsPunkt_ApS.Models
         public int MedarbejderNummer { get; set; }
         public string Adgangskode { get; set; }
         public string Afdeling { get; set; }
-        public Models.Rolle Rolle { get; set; }
+        public int Rolle { get; set; }
         public string ArbejdsMail { get; set; }
+        public int postNr { get; set; }
 
         public Ansat(string fornavn, string efternavn, int telefonNummer, string privatEmail, string adresse, 
-            int medarbejderNummer, string adgangskode, string afdeling, Models.Rolle rolle, string arbejdsMail)
+            int medarbejderNummer, string adgangskode, string afdeling, int rolle, string arbejdsMail)
         {
             Fornavn = fornavn;
             Efternavn = efternavn;

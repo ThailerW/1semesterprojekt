@@ -27,8 +27,6 @@ namespace SynsPunkt_ApS.UI
         /// <summary>
         /// Martin: Hvis GetUserLogin returnere true(gør den på successfuld login), så gemmes LoginForm
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btn_login_Click(object sender, EventArgs e)
         {
             if (Services.UserLogIn.GetUserLogin(tb_username.Text, tb_password.Text))
@@ -37,6 +35,9 @@ namespace SynsPunkt_ApS.UI
             };
         }
 
+        /// <summary>
+        /// Martin: Gør det muligt at logge ind med ENTER-tasten
+        /// </summary>
         private void LoginForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
