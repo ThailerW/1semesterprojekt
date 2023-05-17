@@ -150,5 +150,10 @@ namespace SynsPunkt_ApS
         {
             Application.Exit();
         }
+
+        private void btn_ChangePassWord_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
