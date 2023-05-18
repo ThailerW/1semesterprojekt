@@ -11,16 +11,18 @@ namespace SynsPunkt_ApS.Models
         public int VareNummer { get; set; }
         public string VareBeskrivelse { get; set; }
         public string VareNavn { get; set; }
-        public string VareGruppe { get; set; }
         public decimal Styrke { get; set; }
         public string Farve { get; set; }
+        public int LagerMængde { get; set; }
+        public string LevCVR { get; set; }
 
-        public Vare(int vareNummer, string vareBeskrivelse, string vareNavn, string varegruppe)
+        public Vare(int vareNummer, string vareBeskrivelse, int lagermængde, string varenavn, decimal styrke, string levcvr)
         {
             VareNummer = vareNummer;
             VareBeskrivelse = vareBeskrivelse;
-            VareNavn = vareNavn;
-            VareGruppe = varegruppe;
+            LagerMængde = lagermængde;
+            Styrke = styrke;
+            LevCVR = levcvr;
         }
     }
 }

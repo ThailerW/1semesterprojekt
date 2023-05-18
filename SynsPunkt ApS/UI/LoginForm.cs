@@ -58,5 +58,6 @@ namespace SynsPunkt_ApS.UI
                 e.Handled = true;
             }
         }
+
     }
 }

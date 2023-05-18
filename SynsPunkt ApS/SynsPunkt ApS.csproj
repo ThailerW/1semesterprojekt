@@ -60,6 +60,7 @@
     <Compile Include="Services\ChangePassword.cs" />
     <Compile Include="Services\KundeÆndring.cs" />
     <Compile Include="Services\UserLogIn.cs" />
+    <Compile Include="Services\VareService.cs" />
     <Compile Include="UI\MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
