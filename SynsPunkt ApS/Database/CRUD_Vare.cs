@@ -16,7 +16,7 @@ namespace SynsPunkt_ApS.Database
         string connectionString = Database.ConnectionString.GetConnectionString();
 
         /// <summary>
-        /// Opretter en ny vare med alt tildelt info
+        /// Martin: Opretter en ny vare med alt tildelt info
         /// </summary>
         /// <param name="vareBeskrivelse"></param>
         /// <param name="lagerMængde"></param>
