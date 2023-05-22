@@ -96,7 +96,7 @@ namespace SynsPunkt_ApS
 
         private void btn_Vareoversigt_Click_1(object sender, EventArgs e)
         {
-            tabControl.SelectedTab = tabPage_vareoversigt;
+            tabControl.SelectedTab = tabPage_productOverview;
         }
 
         private void btn_Kundeoversigt_Click(object sender, EventArgs e)
@@ -109,34 +109,9 @@ namespace SynsPunkt_ApS
             tabControl.SelectedTab = tabPage_BookingOversigt;
         }
 
-        private void btn_opretBooking_Click(object sender, EventArgs e)
-        {
-            tabControl.SelectedTab = tabPage_OpretBooking;
-        }
-
-        private void btn_opretVare_Click(object sender, EventArgs e)
-        {
-            tabControl.SelectedTab = tabPage_OpretVare;
-        }
-
-        private void btn_OpretKunder_Click(object sender, EventArgs e)
-        {
-            tabControl.SelectedTab = tabPage_OpretKunder;
-        }
-
-        private void btn_OpretLeverandoer_Click(object sender, EventArgs e)
-        {
-            tabControl.SelectedTab = tabPage_OpretLeverandoer;
-        }
-
         private void btn_Leverandoeroversigt_Click(object sender, EventArgs e)
         {
             tabControl.SelectedTab = tabPage_LeverandoerOversigt;
-        }
-
-        private void btn_OpretMedarbejder_Click(object sender, EventArgs e)
-        {
-            tabControl.SelectedTab = tabPage_OpretMedarbejder;
         }
 
         private void btn_Rapport_Click(object sender, EventArgs e)
@@ -162,6 +137,11 @@ namespace SynsPunkt_ApS
             {
                 MessageBox.Show("Adgangskode ændret!", "SUCCESS!", MessageBoxButtons.OK);
             }
+        }
+
+        private void btn_Medarbejder_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectedTab = tabPage_Medarbejder;
         }
     }
 }
