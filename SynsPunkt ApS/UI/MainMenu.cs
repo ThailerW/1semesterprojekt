@@ -96,7 +96,7 @@ namespace SynsPunkt_ApS
 
         private void btn_Vareoversigt_Click_1(object sender, EventArgs e)
         {
-            tabControl.SelectedTab = tabPage_productOverview;
+            tabControl.SelectedTab = tabPage_basket;
         }
 
         private void btn_Kundeoversigt_Click(object sender, EventArgs e)
@@ -142,6 +142,178 @@ namespace SynsPunkt_ApS
         private void btn_Medarbejder_Click(object sender, EventArgs e)
         {
             tabControl.SelectedTab = tabPage_Medarbejder;
+        }
+
+        private void btn_addToBasket_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
+
+        private void btn_RemoveFromBasket_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_SendInvoiceMail_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_PrintInvoice_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView_basket_list_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_SearchProduct_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView_customers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_searchPhoneNumber_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+       
+
+        private void btn_createCustomer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_updateCustomer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_deleteCustomer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView_Bookings_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker_Bookings_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_clearDate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_createBooking_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_updateBooking_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_deleteBooking_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView_suppliers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_supplierID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_searchSupplierID_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView_employees_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_searchEmployee_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+       
+        private void btn_CreateEmployee_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_UpdateEmployee_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_deleteEmployee_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_GenerateReport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_sendReportMail_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_printReport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_listOfSuppliers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_searchForProduct_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
+
+        private void btn_createProduct_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_updateProduct_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_deleteProduct_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
