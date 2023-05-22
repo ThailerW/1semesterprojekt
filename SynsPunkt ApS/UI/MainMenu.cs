@@ -13,10 +13,10 @@ namespace SynsPunkt_ApS
 {
     public partial class MainMenu : Form
     {
-        string userID;
-        public MainMenu(string userID)
+        public Models.Ansat LoggedInEmployee;
+        public MainMenu(Models.Ansat loggedInEmployee)
         {
-            this.userID = userID;
+            LoggedInEmployee = loggedInEmployee;
             InitializeComponent();
         }
 
@@ -30,9 +30,9 @@ namespace SynsPunkt_ApS
 
         }
 
-           
 
-        
+
+
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
@@ -43,7 +43,7 @@ namespace SynsPunkt_ApS
 
         }
 
-      
+
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -116,12 +116,12 @@ namespace SynsPunkt_ApS
 
         private void btn_Rapport_Click(object sender, EventArgs e)
         {
-            tabControl.SelectedTab = tabPage_Rapport; 
+            tabControl.SelectedTab = tabPage_Rapport;
         }
 
         private void btn_Indstillinger_Click(object sender, EventArgs e)
         {
-            tabControl.SelectedTab = tabPage_Indstillinger; 
+            tabControl.SelectedTab = tabPage_Indstillinger;
         }
 
         private void X(object sender, EventArgs e)
@@ -132,7 +132,7 @@ namespace SynsPunkt_ApS
         private void btn_ChangePassWord_Click(object sender, EventArgs e)
         {
             Services.ChangePassword changePass = new Services.ChangePassword();
-            bool changedPass = changePass.ChangeUserPassword(userID, tb_OldPassword.Text, tb_NewPassword1.Text, tb_newPassword2.Text);
+            bool changedPass = changePass.ChangeUserPassword(LoggedInEmployee.MedarbejderNummer.ToString(), tb_OldPassword.Text, tb_NewPassword1.Text, tb_newPassword2.Text);
             if (changedPass)
             {
                 MessageBox.Show("Adgangskode ændret!", "SUCCESS!", MessageBoxButtons.OK);
