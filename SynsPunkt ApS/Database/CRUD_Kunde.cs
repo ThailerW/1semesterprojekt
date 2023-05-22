@@ -87,7 +87,8 @@ namespace SynsPunkt_ApS.Database
                                 reader["PrivatEmail"].ToString(),
                                 reader["Adresse"].ToString(),
                                 reader["KundeNummer"].ToString(),
-                                reader["KundeInfo"].ToString()
+                                reader["KundeInfo"].ToString(),
+                                Convert.ToInt32(reader["postNr"])
                             );
 
                             MessageBox.Show("Kundens oplysninger:\n" +
@@ -96,7 +97,9 @@ namespace SynsPunkt_ApS.Database
                                             "Efternavn: " + kunde.Efternavn + "\n" +
                                             "Email: " + kunde.PrivatEmail + "\n" +
                                             "Telefonnummer: " + kunde.TelefonNummer + "\n" +
-                                            "Adresse: " + kunde.Adresse);
+                                            "Adresse: " + kunde.Adresse + "\n" +
+                                            "PostNr: " + kunde.PostNr);
+
                         }
                     }
                     else
@@ -129,6 +132,7 @@ namespace SynsPunkt_ApS.Database
                     command.Parameters.AddWithValue("@TelefonNummer", opdateretKunde.KundeNummer);
                     command.Parameters.AddWithValue("@Adresse", opdateretKunde.Adresse);
                     command.Parameters.AddWithValue("@KundeInfo", opdateretKunde.KundeInfo.ToString());
+                    command.Parameters.AddWithValue("PostNr", opdateretKunde.KundeInfo);
 
                     command.ExecuteNonQuery();
                 }
