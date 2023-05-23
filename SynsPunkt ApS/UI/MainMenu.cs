@@ -31,9 +31,6 @@ namespace SynsPunkt_ApS
 
         }
 
-
-
-
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
@@ -43,7 +40,6 @@ namespace SynsPunkt_ApS
         {
 
         }
-
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -384,5 +380,11 @@ namespace SynsPunkt_ApS
                 }
             }
         }
+
+        private void GetAllAnsatte()
+        {
+
+        }
+
     }
 }
