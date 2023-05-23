@@ -303,17 +303,62 @@ namespace SynsPunkt_ApS
 
         private void btn_createProduct_Click(object sender, EventArgs e)
         {
+            Services.VareService vareService = new VareService();
+            bool quantityValid = int.TryParse(tb_quantity.Text, out int quantity);
+            bool strengthValid = decimal.TryParse(tb_strengt.Text, out decimal strength);
 
+            if (quantityValid && strengthValid)
+            {
+                vareService.CreateVare(rtb_productdescription.Text, quantity, tb_productName.Text, strength, tb_supplierCVR.Text);
+                MessageBox.Show(tb_productName.Text + " blev tilføjet til databasen!", "SUCCESS!", MessageBoxButtons.OK);
+            }
+            else
+            {
+                MessageBox.Show("Et eller flere inputs er ugyldige!", "OOPS!", MessageBoxButtons.OK);
+            }
         }
 
         private void btn_updateProduct_Click(object sender, EventArgs e)
         {
+            Services.VareService vareService = new VareService();
+            bool quantityValid = int.TryParse(tb_quantity.Text, out int quantity);
+            bool strengthValid = decimal.TryParse(tb_strengt.Text, out decimal strength);
 
+            if (quantityValid && strengthValid)
+            {
+                vareService.UpdateVare(tb_productID.Text, rtb_productdescription.Text, quantity, tb_productName.Text, strength, tb_supplierCVR.Text);
+                MessageBox.Show(tb_productName.Text + " blev opdateret i databasen!", "SUCCESS!", MessageBoxButtons.OK);
+            }
+            else
+            {
+                MessageBox.Show("Et eller flere inputs er ugyldige!", "OOPS!", MessageBoxButtons.OK);
+            }
         }
 
         private void btn_deleteProduct_Click(object sender, EventArgs e)
         {
+            Services.VareService vareService = new VareService();
+            if (tb_productID != null)
+            {
+                DialogResult dialogResult = MessageBox.Show("Er du sikker på at du vil slette " + tb_productName.Text + "?",
+                    "ADVARSEL!", MessageBoxButtons.YesNoCancel);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    vareService.DeleteVare(tb_productID.Text);
+                    MessageBox.Show(tb_productName.Text + " blev slettet fra databasen!", "SUCCESS!", MessageBoxButtons.OK);
 
+                    tb_productID.Text = null;
+                    tb_productName.Text = null;
+                    tb_strengt.Text = null;
+                    tb_supplierCVR.Text = null;
+                    tb_quantity.Text = null;
+                    rtb_productdescription.Text = null;
+                }
+                else
+                {
+                    MessageBox.Show("Sletning afbrudt!", "SUCCESS!", MessageBoxButtons.OK);
+                }
+            }
         }
     }
 }

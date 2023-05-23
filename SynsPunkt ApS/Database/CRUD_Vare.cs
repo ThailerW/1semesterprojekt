@@ -156,7 +156,7 @@ namespace SynsPunkt_ApS.Database
         }
 
         /// <summary>
-        /// Get all vare from database and return as a list of models.vare
+        /// Henter alle vare fra databasen og returnere en liste af models.vare
         /// </summary>
         /// <returns></returns>
         public List<Models.Vare> GetAllVare()
