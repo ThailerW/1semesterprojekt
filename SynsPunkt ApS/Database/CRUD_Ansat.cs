@@ -11,6 +11,9 @@ namespace SynsPunkt_ApS.Database
 {
     public class CRUD_Ansat
     {
+
+        SqlConnection conn = new SqlConnection(Database.ConnectionString.GetConnectionString());
+
         /// <summary>
         /// Martin: Opretter en Ansat i databasen
         /// </summary>
@@ -27,7 +30,6 @@ namespace SynsPunkt_ApS.Database
         public void CreateAnsat(string fornavn, string efternavn, int telefonNummer, string privatMail, string adresse,
         string adgangskode, string afdeling, int rolle, string arbejdsMail, int postNr)
         {
-            SqlConnection conn = new SqlConnection(Database.ConnectionString.GetConnectionString());
             try
             {
                 string query = "INSERT INTO SP_Ansat " +
@@ -58,7 +60,7 @@ namespace SynsPunkt_ApS.Database
             }
 
         }
-        
+
         /// <summary>
         /// Martin: Opdater en Ansats attributter
         /// </summary>
@@ -76,7 +78,6 @@ namespace SynsPunkt_ApS.Database
         public void UpdateAnsat(int medarbejderNummer, string fornavn, string efternavn, int telefonNummer, string privatMail, string adresse,
         string adgangskode, string afdeling, int rolle, string arbejdsMail, int postNr)
         {
-            SqlConnection conn = new SqlConnection(Database.ConnectionString.GetConnectionString());
 
             try
             {
@@ -115,14 +116,13 @@ namespace SynsPunkt_ApS.Database
                 MessageBox.Show("Fejl ved opdatering af Ansat" + ex.Message, "FEJL", MessageBoxButtons.OK);
             }
             finally
-            { 
-                conn.Close(); 
+            {
+                conn.Close();
             }
         }
 
         public void DeleteAnsat(int medarbejderNummer)
         {
-            SqlConnection conn = new SqlConnection(Database.ConnectionString.GetConnectionString());
             try
             {
                 string query = "DELETE FROM SP_Ansat WHERE AnsatID = @medarbejdernummer";
@@ -146,14 +146,13 @@ namespace SynsPunkt_ApS.Database
 
 
         /// <summary>
-        /// Martin: Retunerer en instans af Ansat med den logged ind persons data
+        /// Martin: Retunerer en instans af Ansat med data baseret på ID (Bruges til at gemme den logged-inds persons data i mainmenu)
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Models.Ansat ReadAnsat(string id)
+        public Models.Ansat GetAnsatByID(string id)
         {
             Models.Ansat Employee = null;
-            SqlConnection conn = new SqlConnection(Database.ConnectionString.GetConnectionString());
 
             try
             {
@@ -182,13 +181,57 @@ namespace SynsPunkt_ApS.Database
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Fejl ved læsning af Ansat" + ex.Message, "FEJL",MessageBoxButtons.OK);
+                MessageBox.Show("Fejl ved læsning af Ansat" + ex.Message, "FEJL", MessageBoxButtons.OK);
             }
-            finally 
+            finally
             {
-                conn.Close(); 
+                conn.Close();
             }
             return Employee;
+        }
+
+        public List<Models.Ansat> SearchAnsatByName(string name)
+        {
+            List<Models.Ansat> searchResults = new List<Models.Ansat>();
+
+            try
+            {
+                string query = "SELECT * FROM SP_Ansat WHERE CONCAT (forNavn, ' ', efterNavn) LIKE @name";
+                SqlCommand command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@name", name);
+                conn.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int medarbejderNummer = reader.GetInt32(0);
+                    string afdeling = reader.GetInt32(1).ToString();
+                    string arbejdsEmail = reader.GetString(2);
+                    string forNavn = reader.GetString(3);
+                    string efterNavn = reader.GetString(4);
+                    int tlf = reader.GetInt32(5);
+                    string adresse = reader.GetString(6);
+                    int postNummer = reader.GetInt32(7);
+                    int rolleID = reader.GetInt32(8);
+                    string password = reader.GetString(9);
+                    string privatMail = reader.GetString(10);
+
+                    Models.Ansat Employee = new Models.Ansat(forNavn, efterNavn, tlf, privatMail, adresse, medarbejderNummer, password, afdeling, rolleID, arbejdsEmail, postNummer);
+                
+                    searchResults.Add(Employee);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fejl ved søgning af Ansat" + ex.Message, "FEJL", MessageBoxButtons.OK);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+
+            return searchResults;
         }
         //public string GetNameAndRights(int AnsatID, out int rolleID)
         //{

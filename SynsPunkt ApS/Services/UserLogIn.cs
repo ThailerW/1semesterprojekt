@@ -23,8 +23,8 @@ namespace SynsPunkt_ApS.Services
 
             if (validUser)
             {
-                Database.CRUD_Ansat CRUDAnsat = new Database.CRUD_Ansat();
-                Models.Ansat loggedInEmployee = CRUDAnsat.ReadAnsat(username);
+                Services.Ansat_Services ansatService = new Services.Ansat_Services();
+                Models.Ansat loggedInEmployee = ansatService.GetAnsatByID(username);
                 MainMenu mainMenu = new MainMenu(loggedInEmployee);
                 mainMenu.Show();
                 MessageBox.Show("Login success!");
