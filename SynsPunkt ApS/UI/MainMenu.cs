@@ -384,5 +384,25 @@ namespace SynsPunkt_ApS
 
         }
 
+        private void GetAllKunder()
+        {
+
+        }
+
+        private void GetAllVare()
+        {
+
+        }
+
+        private void GetAllBookings()
+        {
+
+        }
+
+        private void GetAllLeverandører()
+        {
+
+        }
+
     }
 }
