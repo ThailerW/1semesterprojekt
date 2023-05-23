@@ -1,4 +1,5 @@
-﻿using SynsPunkt_ApS.Services;
+﻿using SynsPunkt_ApS.Models;
+using SynsPunkt_ApS.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -190,17 +191,40 @@ namespace SynsPunkt_ApS
 
         private void btn_createCustomer_Click(object sender, EventArgs e)
         {
+            // Opret en kunde med opdaterede oplysninger baseret på værdierne i tekstboksene
+            Kunde opdateretKunde = new Kunde
+            {
+                Fornavn = tb_CustomerFirstName.Text,
+                Efternavn = tb_customerLastName.Text,
+                TelefonNummer = Convert.ToInt32(tb_customerPhoneNumber.Text),
+                PrivatEmail = tb_customerEmail.Text,
+                Adresse = tb_customerAdress.Text,
+                KundeNummer = tb_customerID.Text,
+                KundeInfo = tb_customerInfo.Text,
+                PostNr = Convert.ToInt32(tb_postNr.Text)
+            };
 
         }
 
         private void btn_updateCustomer_Click(object sender, EventArgs e)
         {
-
+            // Opret en kunde med opdaterede oplysninger baseret på værdierne i tekstboksene
+            Kunde opdateretKunde = new Kunde
+            {
+                Fornavn = tb_CustomerFirstName.Text,
+                Efternavn = tb_customerLastName.Text,
+                TelefonNummer = Convert.ToInt32(tb_customerPhoneNumber.Text),
+                PrivatEmail = tb_customerEmail.Text,
+                Adresse = tb_customerAdress.Text,
+                KundeNummer = tb_customerID.Text,
+                KundeInfo = tb_customerInfo.Text,
+                PostNr = Convert.ToInt32(tb_postNr.Text)
+            };
         }
 
         private void btn_deleteCustomer_Click(object sender, EventArgs e)
         {
-
+            /// mangler
         }
 
         private void listView_Bookings_SelectedIndexChanged(object sender, EventArgs e)
