@@ -137,6 +137,8 @@
             this.label_Bookings = new System.Windows.Forms.Label();
             this.listView_Bookings = new System.Windows.Forms.ListView();
             this.tabPage_kundeoversigt = new System.Windows.Forms.TabPage();
+            this.tb_customerPostNr = new System.Windows.Forms.TextBox();
+            this.lb_customerPostNr = new System.Windows.Forms.Label();
             this.btn_updateCustomer = new System.Windows.Forms.Button();
             this.btn_deleteCustomer = new System.Windows.Forms.Button();
             this.label_customerAdress = new System.Windows.Forms.Label();
@@ -193,8 +195,7 @@
             this.label_productSupplierList = new System.Windows.Forms.Label();
             this.tb_searchForProduct = new System.Windows.Forms.TextBox();
             this.listView1_listOfSuppliers = new System.Windows.Forms.ListView();
-            this.lb_customerPostNr = new System.Windows.Forms.Label();
-            this.tb_customerPostNr = new System.Windows.Forms.TextBox();
+            this.lb_varesearch = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbox_UserNameLogo)).BeginInit();
@@ -1333,6 +1334,22 @@
             this.tabPage_kundeoversigt.Text = "Kunde";
             this.tabPage_kundeoversigt.Click += new System.EventHandler(this.tabPage2_Click);
             // 
+            // tb_customerPostNr
+            // 
+            this.tb_customerPostNr.Location = new System.Drawing.Point(530, 257);
+            this.tb_customerPostNr.Name = "tb_customerPostNr";
+            this.tb_customerPostNr.Size = new System.Drawing.Size(371, 22);
+            this.tb_customerPostNr.TabIndex = 43;
+            // 
+            // lb_customerPostNr
+            // 
+            this.lb_customerPostNr.AutoSize = true;
+            this.lb_customerPostNr.Location = new System.Drawing.Point(410, 260);
+            this.lb_customerPostNr.Name = "lb_customerPostNr";
+            this.lb_customerPostNr.Size = new System.Drawing.Size(41, 13);
+            this.lb_customerPostNr.TabIndex = 42;
+            this.lb_customerPostNr.Text = "PostNr";
+            // 
             // btn_updateCustomer
             // 
             this.btn_updateCustomer.BackColor = System.Drawing.Color.DarkSlateGray;
@@ -1706,6 +1723,7 @@
             // 
             // tabPage_Products
             // 
+            this.tabPage_Products.Controls.Add(this.lb_varesearch);
             this.tabPage_Products.Controls.Add(this.tb_supplierCVR);
             this.tabPage_Products.Controls.Add(this.rtb_productdescription);
             this.tabPage_Products.Controls.Add(this.btn_updateProduct);
@@ -1896,21 +1914,14 @@
             this.listView1_listOfSuppliers.UseCompatibleStateImageBehavior = false;
             this.listView1_listOfSuppliers.SelectedIndexChanged += new System.EventHandler(this.listView1_listOfSuppliers_SelectedIndexChanged);
             // 
-            // lb_customerPostNr
+            // lb_varesearch
             // 
-            this.lb_customerPostNr.AutoSize = true;
-            this.lb_customerPostNr.Location = new System.Drawing.Point(410, 260);
-            this.lb_customerPostNr.Name = "lb_customerPostNr";
-            this.lb_customerPostNr.Size = new System.Drawing.Size(41, 13);
-            this.lb_customerPostNr.TabIndex = 42;
-            this.lb_customerPostNr.Text = "PostNr";
-            // 
-            // tb_customerPostNr
-            // 
-            this.tb_customerPostNr.Location = new System.Drawing.Point(530, 257);
-            this.tb_customerPostNr.Name = "tb_customerPostNr";
-            this.tb_customerPostNr.Size = new System.Drawing.Size(371, 22);
-            this.tb_customerPostNr.TabIndex = 43;
+            this.lb_varesearch.AutoSize = true;
+            this.lb_varesearch.Location = new System.Drawing.Point(13, 527);
+            this.lb_varesearch.Name = "lb_varesearch";
+            this.lb_varesearch.Size = new System.Drawing.Size(81, 13);
+            this.lb_varesearch.TabIndex = 82;
+            this.lb_varesearch.Text = "Søg efter vare:";
             // 
             // MainMenu
             // 
@@ -2120,6 +2131,7 @@
         private System.Windows.Forms.RichTextBox rtb_productdescription;
         private System.Windows.Forms.TextBox tb_customerPostNr;
         private System.Windows.Forms.Label lb_customerPostNr;
+        private System.Windows.Forms.Label lb_varesearch;
     }
 }
 

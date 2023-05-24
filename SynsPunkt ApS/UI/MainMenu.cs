@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -193,39 +194,52 @@ namespace SynsPunkt_ApS
 
         private void btn_createCustomer_Click(object sender, EventArgs e)
         {
-            //// Opret en kunde med opdaterede oplysninger baseret på værdierne i tekstboksene
-            //Kunde opdateretKunde = new Kunde
-            //{
-            //    Fornavn = tb_CustomerFirstName.Text,
-            //    Efternavn = tb_customerLastName.Text,
-            //    TelefonNummer = Convert.ToInt32(tb_customerPhoneNumber.Text),
-            //    PrivatEmail = tb_customerEmail.Text,
-            //    Adresse = tb_customerAdress.Text,
-            //    KundeNummer = tb_customerID.Text,
-            //    KundeInfo = tb_customerInfo.Text,
-            //    PostNr = Convert.ToInt32(tb_postNr.Text)
-            //};
+
+            try
+            {
+                Services.Kunde_Services kundeServices = new Kunde_Services();
+                // Kald metoder på kundeServices eller udfør handlinger på kunder her
+                MessageBox.Show("Kunden blev opdateret");
+            }
+            catch (Exception ex)
+            {
+                // Håndter undtagelsen her, f.eks. vis en fejlmeddelelse
+                MessageBox.Show("Der opstod en fejl under opdatering af kunden: " + ex.Message);
+            }
+
+
         }
 
         private void btn_updateCustomer_Click(object sender, EventArgs e)
         {
-            //// Opret en kunde med opdaterede oplysninger baseret på værdierne i tekstboksene
-            //Kunde opdateretKunde = new Kunde
-            //{
-            //    Fornavn = tb_CustomerFirstName.Text,
-            //    Efternavn = tb_customerLastName.Text,
-            //    TelefonNummer = Convert.ToInt32(tb_customerPhoneNumber.Text),
-            //    PrivatEmail = tb_customerEmail.Text,
-            //    Adresse = tb_customerAdress.Text,
-            //    KundeNummer = tb_customerID.Text,
-            //    KundeInfo = tb_customerInfo.Text,
-            //    PostNr = Convert.ToInt32(tb_postNr.Text)
-            //};
+            try
+            {
+                Services.Kunde_Services kundeServices = new Kunde_Services();
+                // Kald metoder på kundeServices eller udfør handlinger på kunder her
+                MessageBox.Show("Kunden blev slettet");
+            }
+            catch (Exception ex)
+            {
+                // Håndter undtagelsen her, f.eks. vis en fejlmeddelelse
+                MessageBox.Show("Der opstod en fejl under sletning af kunden: " + ex.Message);
+            }
+
         }
 
         private void btn_deleteCustomer_Click(object sender, EventArgs e)
         {
-            /// mangler
+            try
+            {
+                Services.Kunde_Services kundeServices = new Kunde_Services();
+                // Kald metoder på kundeServices eller udfør handlinger på kunder her
+                MessageBox.Show("Kunden blev slettet");
+            }
+            catch (Exception ex)
+            {
+                // Håndter undtagelsen her, f.eks. vis en fejlmeddelelse
+                MessageBox.Show("Der opstod en fejl under sletning af kunden: " + ex.Message);
+            }
+
         }
 
         private void listView_Bookings_SelectedIndexChanged(object sender, EventArgs e)
@@ -236,6 +250,25 @@ namespace SynsPunkt_ApS
         private void dateTimePicker_Bookings_ValueChanged(object sender, EventArgs e)
         {
 
+            /*DateTime selectedDate = dateTimePicker_Bookings.Value.Date;
+
+            // Få fat i bookingerne for den valgte dato (antaget at du har en metode til at hente bookinger baseret på dato)
+            List<Booking> bookinger = GetBookingsPerDate(selectedDate);
+
+            // Rens listen først
+            listView_Bookings.Items.Clear();
+
+            // Tilføj bookingerne til listview'en
+            foreach (Booking booking in bookinger)
+            {
+                ListViewItem item = new ListViewItem(booking.BookingId.ToString());
+                item.SubItems.Add(booking.LokationId.ToString());
+                item.SubItems.Add(booking.Tidspunkt.ToString());
+                item.SubItems.Add(booking.BookingType);
+                item.SubItems.Add(booking.KundeId.ToString());
+
+                listView_Bookings.Items.Add(item);
+            }*/
         }
 
         private void btn_clearDate_Click(object sender, EventArgs e)
@@ -245,7 +278,35 @@ namespace SynsPunkt_ApS
 
         private void btn_createBooking_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Hent bookingværdier fra UI
+                int lokationId = int.Parse(tb_locationID.Text);
+                DateTime tidspunkt = DateTime.ParseExact(tb_bookingTime.Text, "HH:mm", CultureInfo.InvariantCulture);
+                DateTime dato = DateTime.Parse(dateTimePicker_bookingInterval.Text);
+                string bookingType = tb_bookingDescription.Text;
+                int kundeId = int.Parse(tb_customerBooking.Text);
 
+                // Opret en ny booking med de indtastede værdier
+                Booking newBooking = new Booking(lokationId, tidspunkt, dato, bookingType, kundeId);
+
+
+                BookingService bookingService = new BookingService();
+
+                // Kald CreateBooking-metoden i BookingService for at oprette bookingen
+                bookingService.CreateBooking(newBooking);
+
+
+                MessageBox.Show("Booking oprettet!");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Forkert indtastningsformat! Kontroller de indtastede værdier og prøv igen.", "Fejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Der opstod en fejl under oprettelsen af bookingen: " + ex.Message, "Fejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btn_updateBooking_Click(object sender, EventArgs e)
@@ -275,27 +336,179 @@ namespace SynsPunkt_ApS
 
         private void listView_employees_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (listView_employees.SelectedItems.Count > 0)
+            {
+                Services.Ansat_Services ansatService = new Ansat_Services();
 
+
+                string selectedEmployeeID = listView_employees.SelectedItems[0].SubItems[0].Text;
+
+                Models.Ansat selectedEmployee = ansatService.GetAnsatByID(selectedEmployeeID);
+
+                //Textbox tekst opdateres:
+                tb_employeeId.Text = selectedEmployee.EmployeeID.ToString();
+                tb_employeeFirstName.Text = selectedEmployee.FirstName;
+                tb_employeeLastName.Text = selectedEmployee.LastName;
+                tb_employeePhoneNo.Text = selectedEmployee.TelephoneNumber.ToString();
+                tb_employeeEmail.Text = selectedEmployee.PrivateMail;
+                tb_employeeAdress.Text = selectedEmployee.Adress;
+                tb_employeeZip.Text = selectedEmployee.ZipCode.ToString();
+                tb_employeeBU.Text = ansatService.GetDepartmentName(Convert.ToInt32(selectedEmployee.DepartmentID));
+                tb_employeeRole.Text = ansatService.GetRoleName(Convert.ToInt32(selectedEmployee.RoleID));
+                tb_employeeWorkMail.Text = selectedEmployee.WorkMail;
+                tb_employeePassword.Text = selectedEmployee.Password;
+
+            }
         }
 
         private void tb_searchEmployee_TextChanged(object sender, EventArgs e)
         {
-
+            listView_employees.Items.Clear();
+            Services.Ansat_Services ansatService = new Services.Ansat_Services();
+            if (tb_searchEmployee.Text == string.Empty)
+            {
+                GetAllAnsatte();
+            }
+            else
+            {
+                List<Models.Ansat> allAnsat = ansatService.SearchAnsatByName(tb_searchEmployee.Text);
+                foreach (var ansat in allAnsat)
+                {
+                    ListViewItem ansatItem = new ListViewItem(ansat.EmployeeID.ToString());
+                    ansatItem.SubItems.Add(ansat.FirstName);
+                    ansatItem.SubItems.Add(ansat.LastName);
+                    listView_employees.Items.Add(ansatItem);
+                }
+            }
         }
 
 
+        /// <summary>
+        /// Martin: Opretter en ny ansat i systemet. Tjekker for om alle nødvendige 
+        /// textbox ikke er tomme. Ved successfuld oprettelse gøres alle textboxe tomme.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_CreateEmployee_Click(object sender, EventArgs e)
         {
+            Services.Ansat_Services ansatService = new Services.Ansat_Services();
 
+            foreach (TextBox textBox in tabPage_Medarbejder.Controls.OfType<TextBox>())
+            {
+                if (textBox != tb_searchEmployee && textBox != tb_employeeId && textBox.Text == string.Empty)
+                {
+                    MessageBox.Show("Udfyld alle oplysninger for at oprette en ny kunde", "Hvad fanden laver du?????", MessageBoxButtons.OK);
+
+                    return;
+                }
+            }
+            string firstName = tb_employeeFirstName.Text;
+            string lastName = tb_employeeLastName.Text;
+            int phoneNumber = Convert.ToInt32(tb_employeePhoneNo.Text);
+            string privateMail = tb_employeeEmail.Text;
+            string adress = tb_employeeAdress.Text;
+            int zipCode = Convert.ToInt32(tb_employeeZip.Text);
+            string department = tb_employeeBU.Text;
+            string role = tb_employeeRole.Text;
+            string workMail = tb_employeeWorkMail.Text;
+            string password = tb_employeePassword.Text;
+
+
+            ansatService.CreateAnsat(firstName, lastName, phoneNumber, privateMail, adress, password, department, role, workMail, zipCode);
+
+            MessageBox.Show(firstName + " " + lastName + " arbejder nu hos " + department, "Ansat oprettet", MessageBoxButtons.OK);
+
+
+            foreach (TextBox textBox in tabPage_Medarbejder.Controls.OfType<TextBox>())
+            {
+                if (textBox != tb_searchEmployee && textBox != tb_employeeId && textBox.Text == string.Empty)
+                {
+                    textBox.Text = string.Empty; ;
+                }
+            }
+
+            if (tb_searchEmployee.Text != string.Empty)
+            {
+                GetAllAnsatte();
+            }
+            else
+            {
+                tb_searchEmployee_TextChanged(tb_searchEmployee, new EventArgs());
+            }
         }
 
         private void btn_UpdateEmployee_Click(object sender, EventArgs e)
         {
+            private void btn_UpdateEmployee_Click(object sender, EventArgs e)
+            {
+                Services.Ansat_Services ansatServices = new Services.Ansat_Services();
 
+                int employeeID = Convert.ToInt32(tb_employeeId.Text);
+                string firstName = tb_employeeFirstName.Text;
+                string lastName = tb_employeeLastName.Text;
+                int phoneNumber = Convert.ToInt32(tb_employeePhoneNo.Text);
+                string privateMail = tb_employeeEmail.Text;
+                string adress = tb_employeeAdress.Text;
+                int zipCode = Convert.ToInt32(tb_employeeZip.Text);
+                string department = tb_employeeBU.Text;
+                string role = tb_employeeRole.Text;
+                string workMail = tb_employeeWorkMail.Text;
+                string password = tb_employeePassword.Text;
+
+                ansatServices.UpdateAnsat(employeeID, firstName, lastName, phoneNumber, privateMail,
+                    adress, password, department, role, workMail, zipCode);
+
+                //Opdaterer oplysningerne på listview
+                if (tb_searchEmployee.Text == string.Empty)
+                {
+                    GetAllAnsatte();
+                }
+                else
+                {
+                    tb_searchEmployee_TextChanged(tb_searchEmployee, new EventArgs());
+                }
+
+                //bekræftelse på opdatering
+                MessageBox.Show("Ansat Opdateret!", "Success", MessageBoxButtons.OK);
+            }
         }
 
         private void btn_deleteEmployee_Click(object sender, EventArgs e)
         {
+            Services.Ansat_Services ansatServices = new Services.Ansat_Services();
+            if (string.IsNullOrEmpty(tb_employeeId.Text))
+            {
+                MessageBox.Show("Vælg en ansat som du vil sende til The Shadow Realm", "Du fyret", MessageBoxButtons.OK);
+                return;
+            }
+
+            DialogResult result = MessageBox.Show("Er du sikker på du vil gøre denne person arbejdsløs?", "XD", MessageBoxButtons.YesNoCancel);
+
+            if (result == DialogResult.Yes)
+            {
+                string fullName = tb_employeeFirstName.Text + " " + tb_employeeLastName.Text;
+
+                MessageBox.Show(fullName + " blev sendt til The Shadow Realm", "Ses fætter", MessageBoxButtons.OK);
+
+                ansatServices.DeleteAnsat(Convert.ToInt32(tb_employeeId.Text));
+
+                if (tb_searchEmployee.Text != string.Empty)
+                {
+                    GetAllAnsatte();
+                }
+                else
+                {
+                    tb_searchEmployee_TextChanged(tb_searchEmployee, new EventArgs());
+                }
+                foreach (TextBox textBox in tabPage_Medarbejder.Controls.OfType<TextBox>())
+                {
+                    if (textBox != tb_searchEmployee && textBox.Text != string.Empty)
+                    {
+                        textBox.Text = string.Empty;
+                    }
+                }
+
+            }
 
         }
 
