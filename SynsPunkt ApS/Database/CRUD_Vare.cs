@@ -55,12 +55,20 @@ namespace SynsPunkt_ApS.Database
         /// </summary>
         /// <param name="vareID"></param>
         /// <returns></returns>
-        public Models.Vare ReadVare(string vareID)
+        public Models.Vare ReadVare(string id, out string id2, out string vareBeskrivelse, out string lagerMængde, out string vareNavn,
+            out string styrke, out string levCVR)
         {
+            id2 = "";
+            vareBeskrivelse = "";
+            lagerMængde = "";
+            vareNavn = "";
+            styrke = "";
+            levCVR = "";
+
             Models.Vare vare = new Models.Vare(0, "", 0, "", 0, "");
             SqlConnection connection = new SqlConnection(connectionString);
 
-            string query = "SELECT FROM SP_Vare WHERE vareID = '" + vareID + "'";
+            string query = "SELECT * FROM SP_Vare WHERE vareID = '" + id + "'";
 
             SqlCommand command = new SqlCommand(query, connection);
             SqlDataReader reader = null;
@@ -78,6 +86,13 @@ namespace SynsPunkt_ApS.Database
                     vare = new Models.Vare(Convert.ToInt32(reader["vareID"]), reader["vareBeskrivelse"].ToString(),
                        Convert.ToInt32(reader["lagerMængde"]), reader["vareNavn"].ToString(), Convert.ToDecimal(reader["styrke"]),
                        reader["leverandørCVR"].ToString());
+
+                    id2 = vare.VareNummer.ToString();
+                    vareBeskrivelse = vare.VareBeskrivelse;
+                    lagerMængde = vare.LagerMængde.ToString();
+                    vareNavn = vare.VareNavn;
+                    styrke = vare.Styrke.ToString();
+                    levCVR = vare.LevCVR.ToString();
                 }
             }
             catch (Exception ex)
@@ -109,8 +124,8 @@ namespace SynsPunkt_ApS.Database
 
             try
             {
-                command.CommandText = "UPDATE SP_Vare SET vareBeskrivelse = '" + vareBeskrivelse + "', lagerMænde = " + lagerMængde +
-                    ", vareNavn = '" + vareNavn + "', styrke = " + styrke + ", leverandørCVR = '" + levCVR + "' " +
+                command.CommandText = "UPDATE SP_Vare SET vareBeskrivelse = '" + vareBeskrivelse + "', lagerMængde = " + lagerMængde +
+                    ", vareNavn = '" + vareNavn + "', styrke = " + styrke + ", leverandørCVR = " + levCVR + " " +
                     "WHERE vareID = " + vareID + ";";
 
 
@@ -180,8 +195,12 @@ namespace SynsPunkt_ApS.Database
                 while (reader.Read())
                 {
                     //Creating new instance of class:
-                    Models.Vare vare = new Models.Vare(Convert.ToInt32(reader["vareID"]), reader["vareBeskrivelse"].ToString(),
-                       Convert.ToInt32(reader["lagerMængde"]), reader["vareNavn"].ToString(), Convert.ToDecimal(reader["styrke"]),
+                    Models.Vare vare = new Models.Vare(
+                       Convert.ToInt32(reader["vareID"]), 
+                       reader["vareBeskrivelse"].ToString(),
+                       Convert.ToInt32(reader["lagerMængde"]),
+                       reader["vareNavn"].ToString(),
+                       Convert.ToDecimal(reader["styrke"]),
                        reader["leverandørCVR"].ToString());
 
                     vareList.Add(vare);
