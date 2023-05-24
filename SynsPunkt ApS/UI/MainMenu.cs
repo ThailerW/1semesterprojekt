@@ -673,5 +673,26 @@ namespace SynsPunkt_ApS
 
         }
 
+        private List<string> originalLeverandør = new List<string>();
+        private List<string> originalVare = new List<string>();
+
+        /// <summary>
+        /// Theis:
+        /// Tilføjer alle originale vare til seperat klasse, der bruges til at nulstille søgefunktionen.
+        /// </summary>
+        private void SetOriginalVare()
+        {
+
+        }
+
+        /// <summary>
+        /// Theis:
+        /// Tilføjer alle originale leverandører til seperat klasse, der bruges til at nulstille søgefunktionen.
+        /// </summary>
+        private void SetOriginalLeverandør()
+        {
+
+        }
+
     }
 }
