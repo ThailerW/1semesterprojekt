@@ -285,9 +285,10 @@ namespace SynsPunkt_ApS
         }
 
         private void btn_createBooking_Click(object sender, EventArgs e)
-        {
+        {/*
             try
             {
+                
                 // Hent bookingværdier fra UI
                 int lokationId = int.Parse(tb_locationID.Text);
                 DateTime tidspunkt = DateTime.ParseExact(tb_bookingTime.Text, "HH:mm", CultureInfo.InvariantCulture);
@@ -315,6 +316,8 @@ namespace SynsPunkt_ApS
             {
                 MessageBox.Show("Der opstod en fejl under oprettelsen af bookingen: " + ex.Message, "Fejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            */
+
         }
 
         private void btn_updateBooking_Click(object sender, EventArgs e)
@@ -545,7 +548,7 @@ namespace SynsPunkt_ApS
                 var item = selectedItem.SubItems[0].Text;
 
                 vareService.ReadVare(item, out string id2, out string vareBeskrivelse, out string lagerMængde, out string vareNavn,
-                                     out string styrke, out string levCVR);
+                                     out string styrke, out string levCVR, out string pris);
 
                 tb_productID.Text = id2;
                 rtb_productdescription.Text = vareBeskrivelse;
@@ -553,28 +556,29 @@ namespace SynsPunkt_ApS
                 tb_productName.Text = vareNavn;
                 tb_strengt.Text = styrke;
                 tb_supplierCVR.Text = levCVR;
+                tb_productPrice.Text = pris;
             }
         }
 
         private void tb_searchForProduct_TextChanged(object sender, EventArgs e)
         {
-            /*  if (tb_searchForProduct.Text.Length == 0)
-              {
-                  GetAllVare();
-              }
-              else
-              {
-                  string searchText = tb_searchForProduct.Text.ToLower();
-                  listView1_listOfSuppliers.Items.Clear();
-                  foreach (var vare in originalVare)
-                  {
-                      if (vare.ToString().ToLower().Contains(searchText))
-                      {
-                          listView1_listOfSuppliers.Items.Add(vare);
-                      }
-                  }
-              }
-            */
+            listView1_listOfSuppliers.Items.Clear();
+            Services.VareService vareService = new Services.VareService();
+            if (tb_searchForProduct.Text == string.Empty)
+            {
+                GetAllVare();
+            }
+            else
+            {
+                List<Models.Vare> allVare = vareService.SearchVareByName(tb_searchForProduct.Text);
+                foreach (var vare in allVare)
+                {
+                    ListViewItem vareItem = new ListViewItem(vare.VareNummer.ToString());
+                    vareItem.SubItems.Add(vare.VareNavn);
+                    vareItem.SubItems.Add(vare.LagerMængde.ToString());
+                    listView1_listOfSuppliers.Items.Add(vareItem);
+                }
+            }
         }
 
         private void btn_createProduct_Click(object sender, EventArgs e)
@@ -582,10 +586,11 @@ namespace SynsPunkt_ApS
             Services.VareService vareService = new VareService();
             bool quantityValid = int.TryParse(tb_quantity.Text, out int quantity);
             bool strengthValid = decimal.TryParse(tb_strengt.Text, out decimal strength);
+            bool priceValid = decimal.TryParse(tb_productPrice.Text, out decimal price);
 
-            if (quantityValid && strengthValid)
+            if (quantityValid && strengthValid && priceValid)
             {
-                vareService.CreateVare(rtb_productdescription.Text, quantity, tb_productName.Text, strength, tb_supplierCVR.Text);
+                vareService.CreateVare(rtb_productdescription.Text, quantity, tb_productName.Text, strength, tb_supplierCVR.Text, price);
                 MessageBox.Show(tb_productName.Text + " blev tilføjet til databasen!", "SUCCESS!", MessageBoxButtons.OK);
                 GetAllVare();
             }
@@ -600,10 +605,11 @@ namespace SynsPunkt_ApS
             Services.VareService vareService = new VareService();
             bool quantityValid = int.TryParse(tb_quantity.Text, out int quantity);
             bool strengthValid = decimal.TryParse(tb_strengt.Text, out decimal strength);
+            bool priceValid = decimal.TryParse(tb_productPrice.Text, out decimal price);
 
-            if (quantityValid && strengthValid)
+            if (quantityValid && strengthValid && priceValid)
             {
-                vareService.UpdateVare(tb_productID.Text, rtb_productdescription.Text, quantity, tb_productName.Text, strength, tb_supplierCVR.Text);
+                vareService.UpdateVare(tb_productID.Text, rtb_productdescription.Text, quantity, tb_productName.Text, strength, tb_supplierCVR.Text, price);
                 MessageBox.Show(tb_productName.Text + " blev opdateret i databasen!", "SUCCESS!", MessageBoxButtons.OK);
             }
             else
@@ -672,27 +678,5 @@ namespace SynsPunkt_ApS
         {
 
         }
-
-        private List<string> originalLeverandør = new List<string>();
-        private List<string> originalVare = new List<string>();
-
-        /// <summary>
-        /// Theis:
-        /// Tilføjer alle originale vare til seperat klasse, der bruges til at nulstille søgefunktionen.
-        /// </summary>
-        private void SetOriginalVare()
-        {
-
-        }
-
-        /// <summary>
-        /// Theis:
-        /// Tilføjer alle originale leverandører til seperat klasse, der bruges til at nulstille søgefunktionen.
-        /// </summary>
-        private void SetOriginalLeverandør()
-        {
-
-        }
-
     }
 }

@@ -23,7 +23,7 @@ namespace SynsPunkt_ApS.Database
         /// <param name="vareNavn"></param>
         /// <param name="styrke"></param>
         /// <param name="levCVR"></param>
-        public void CreateVare(string vareBeskrivelse, int lagerMængde, string vareNavn, decimal styrke, string levCVR)
+        public void CreateVare(string vareBeskrivelse, int lagerMængde, string vareNavn, decimal styrke, string levCVR, decimal pris)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand();
@@ -31,9 +31,9 @@ namespace SynsPunkt_ApS.Database
 
             try
             {
-                command.CommandText = "INSERT INTO SP_Vare (vareBeskrivelse, lagerMængde, vareNavn, styrke, leverandørCVR) " +
+                command.CommandText = "INSERT INTO SP_Vare (vareBeskrivelse, lagerMængde, vareNavn, styrke, leverandørCVR, varePris) " +
                                       "VALUES ('" + vareBeskrivelse + "', " + lagerMængde + ", '" + vareNavn + "', "
-                                      + styrke + ",'" + levCVR + "')";
+                                      + styrke + ",'" + levCVR + "', " + pris + ")";
 
 
                 connection.Open();
@@ -56,7 +56,7 @@ namespace SynsPunkt_ApS.Database
         /// <param name="vareID"></param>
         /// <returns></returns>
         public Models.Vare ReadVare(string id, out string id2, out string vareBeskrivelse, out string lagerMængde, out string vareNavn,
-            out string styrke, out string levCVR)
+            out string styrke, out string levCVR, out string pris)
         {
             id2 = "";
             vareBeskrivelse = "";
@@ -64,8 +64,9 @@ namespace SynsPunkt_ApS.Database
             vareNavn = "";
             styrke = "";
             levCVR = "";
+            pris = "";
 
-            Models.Vare vare = new Models.Vare(0, "", 0, "", 0, "");
+            Models.Vare vare = new Models.Vare(0, "", 0, "", 0, "", 0);
             SqlConnection connection = new SqlConnection(connectionString);
 
             string query = "SELECT * FROM SP_Vare WHERE vareID = '" + id + "'";
@@ -85,7 +86,7 @@ namespace SynsPunkt_ApS.Database
                     //Filling created instance with the selected ID's data.
                     vare = new Models.Vare(Convert.ToInt32(reader["vareID"]), reader["vareBeskrivelse"].ToString(),
                        Convert.ToInt32(reader["lagerMængde"]), reader["vareNavn"].ToString(), Convert.ToDecimal(reader["styrke"]),
-                       reader["leverandørCVR"].ToString());
+                       reader["leverandørCVR"].ToString(), Convert.ToDecimal(reader["varePris"]));
 
                     id2 = vare.VareNummer.ToString();
                     vareBeskrivelse = vare.VareBeskrivelse;
@@ -93,6 +94,7 @@ namespace SynsPunkt_ApS.Database
                     vareNavn = vare.VareNavn;
                     styrke = vare.Styrke.ToString();
                     levCVR = vare.LevCVR.ToString();
+                    pris = vare.Pris.ToString();
                 }
             }
             catch (Exception ex)
@@ -116,7 +118,7 @@ namespace SynsPunkt_ApS.Database
         /// <param name="vareNavn"></param>
         /// <param name="styrke"></param>
         /// <param name="levCVR"></param>
-        public void UpdateVare(string vareID, string vareBeskrivelse, int lagerMængde, string vareNavn, decimal styrke, string levCVR)
+        public void UpdateVare(string vareID, string vareBeskrivelse, int lagerMængde, string vareNavn, decimal styrke, string levCVR, decimal pris)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand();
@@ -125,7 +127,7 @@ namespace SynsPunkt_ApS.Database
             try
             {
                 command.CommandText = "UPDATE SP_Vare SET vareBeskrivelse = '" + vareBeskrivelse + "', lagerMængde = " + lagerMængde +
-                    ", vareNavn = '" + vareNavn + "', styrke = " + styrke + ", leverandørCVR = " + levCVR + " " +
+                    ", vareNavn = '" + vareNavn + "', styrke = " + styrke + ", leverandørCVR = " + levCVR + ", varePris = " + pris + " " +
                     "WHERE vareID = " + vareID + ";";
 
 
@@ -201,7 +203,8 @@ namespace SynsPunkt_ApS.Database
                        Convert.ToInt32(reader["lagerMængde"]),
                        reader["vareNavn"].ToString(),
                        Convert.ToDecimal(reader["styrke"]),
-                       reader["leverandørCVR"].ToString());
+                       reader["leverandørCVR"].ToString(),
+                       Convert.ToDecimal(reader["varePris"]));
 
                     vareList.Add(vare);
                 }
@@ -219,6 +222,48 @@ namespace SynsPunkt_ApS.Database
                 connection.Close();
             }
             return vareList;
+        }
+
+        public List<Models.Vare> SearchVareByName(string name)
+        {
+            List<Models.Vare> searchResults = new List<Models.Vare>();
+
+
+            string query = "SELECT * FROM SP_Vare WHERE vareNavn LIKE '%' + @name + '%'";
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@name", name);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            try
+            {
+                while (reader.Read())
+                {
+                    int vareID = Convert.ToInt32(reader["VareID"]);
+                    string vareBeskrivelse = reader["vareBeskrivelse"].ToString();
+                    int lagerMængde = Convert.ToInt32(reader["lagerMængde"]);
+                    string vareNavn = reader["vareNavn"].ToString();
+                    decimal styrke = Convert.ToDecimal(reader["styrke"]);
+                    string levCVR = reader["leverandørCVR"].ToString();
+                    decimal varePris = Convert.ToDecimal(reader["varePris"]);
+
+
+                    Models.Vare Vare = new Models.Vare(vareID, vareBeskrivelse, lagerMængde, vareNavn, styrke, levCVR, varePris);
+
+                    searchResults.Add(Vare);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fejl ved søgning af Vare. " + ex.Message, "FEJL", MessageBoxButtons.OK);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return searchResults;
         }
     }
 }

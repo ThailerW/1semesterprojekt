@@ -166,6 +166,8 @@
             this.tb_NewPassword1 = new System.Windows.Forms.TextBox();
             this.tb_OldPassword = new System.Windows.Forms.TextBox();
             this.tabPage_Products = new System.Windows.Forms.TabPage();
+            this.tb_productPrice = new System.Windows.Forms.TextBox();
+            this.label_price = new System.Windows.Forms.Label();
             this.lb_varesearch = new System.Windows.Forms.Label();
             this.tb_supplierCVR = new System.Windows.Forms.TextBox();
             this.rtb_productdescription = new System.Windows.Forms.RichTextBox();
@@ -185,8 +187,9 @@
             this.label_productSupplierList = new System.Windows.Forms.Label();
             this.tb_searchForProduct = new System.Windows.Forms.TextBox();
             this.listView1_listOfSuppliers = new System.Windows.Forms.ListView();
-            this.tb_price = new System.Windows.Forms.TextBox();
-            this.label_price = new System.Windows.Forms.Label();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbox_UserNameLogo)).BeginInit();
@@ -1612,7 +1615,7 @@
             // 
             // tabPage_Products
             // 
-            this.tabPage_Products.Controls.Add(this.tb_price);
+            this.tabPage_Products.Controls.Add(this.tb_productPrice);
             this.tabPage_Products.Controls.Add(this.label_price);
             this.tabPage_Products.Controls.Add(this.lb_varesearch);
             this.tabPage_Products.Controls.Add(this.tb_supplierCVR);
@@ -1640,6 +1643,22 @@
             this.tabPage_Products.TabIndex = 11;
             this.tabPage_Products.Text = "Produkter";
             this.tabPage_Products.UseVisualStyleBackColor = true;
+            // 
+            // tb_productPrice
+            // 
+            this.tb_productPrice.Location = new System.Drawing.Point(531, 104);
+            this.tb_productPrice.Name = "tb_productPrice";
+            this.tb_productPrice.Size = new System.Drawing.Size(371, 22);
+            this.tb_productPrice.TabIndex = 84;
+            // 
+            // label_price
+            // 
+            this.label_price.AutoSize = true;
+            this.label_price.Location = new System.Drawing.Point(395, 106);
+            this.label_price.Name = "label_price";
+            this.label_price.Size = new System.Drawing.Size(25, 13);
+            this.label_price.TabIndex = 83;
+            this.label_price.Text = "Pris";
             // 
             // lb_varesearch
             // 
@@ -1806,29 +1825,34 @@
             // 
             // listView1_listOfSuppliers
             // 
+            this.listView1_listOfSuppliers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.listView1_listOfSuppliers.FullRowSelect = true;
             this.listView1_listOfSuppliers.HideSelection = false;
             this.listView1_listOfSuppliers.Location = new System.Drawing.Point(13, 62);
             this.listView1_listOfSuppliers.Name = "listView1_listOfSuppliers";
             this.listView1_listOfSuppliers.Size = new System.Drawing.Size(376, 432);
             this.listView1_listOfSuppliers.TabIndex = 61;
             this.listView1_listOfSuppliers.UseCompatibleStateImageBehavior = false;
+            this.listView1_listOfSuppliers.View = System.Windows.Forms.View.Details;
             this.listView1_listOfSuppliers.SelectedIndexChanged += new System.EventHandler(this.listView1_listOfSuppliers_SelectedIndexChanged);
             // 
-            // tb_price
+            // columnHeader1
             // 
-            this.tb_price.Location = new System.Drawing.Point(531, 104);
-            this.tb_price.Name = "tb_price";
-            this.tb_price.Size = new System.Drawing.Size(371, 22);
-            this.tb_price.TabIndex = 84;
+            this.columnHeader1.Text = "VareNummer";
+            this.columnHeader1.Width = 102;
             // 
-            // label_price
+            // columnHeader2
             // 
-            this.label_price.AutoSize = true;
-            this.label_price.Location = new System.Drawing.Point(395, 106);
-            this.label_price.Name = "label_price";
-            this.label_price.Size = new System.Drawing.Size(25, 13);
-            this.label_price.TabIndex = 83;
-            this.label_price.Text = "Pris";
+            this.columnHeader2.Text = "VareNavn";
+            this.columnHeader2.Width = 147;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "LagerMængde";
+            this.columnHeader3.Width = 133;
             // 
             // MainMenu
             // 
@@ -2028,8 +2052,11 @@
         private System.Windows.Forms.Label lb_customerPostNr;
         private System.Windows.Forms.Label lb_varesearch;
         private System.Windows.Forms.Label lb_gammel;
-        private System.Windows.Forms.TextBox tb_price;
+        private System.Windows.Forms.TextBox tb_productPrice;
         private System.Windows.Forms.Label label_price;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }
 
