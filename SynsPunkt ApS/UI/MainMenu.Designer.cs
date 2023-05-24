@@ -137,8 +137,6 @@
             this.label_Bookings = new System.Windows.Forms.Label();
             this.listView_Bookings = new System.Windows.Forms.ListView();
             this.tabPage_kundeoversigt = new System.Windows.Forms.TabPage();
-            this.tb_customerPostNr = new System.Windows.Forms.TextBox();
-            this.lb_customerPostNr = new System.Windows.Forms.Label();
             this.btn_updateCustomer = new System.Windows.Forms.Button();
             this.btn_deleteCustomer = new System.Windows.Forms.Button();
             this.label_customerAdress = new System.Windows.Forms.Label();
@@ -195,9 +193,8 @@
             this.label_productSupplierList = new System.Windows.Forms.Label();
             this.tb_searchForProduct = new System.Windows.Forms.TextBox();
             this.listView1_listOfSuppliers = new System.Windows.Forms.ListView();
-            this.column_ansat_ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.column_ansat_firstName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.column_ansat_lastName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lb_customerPostNr = new System.Windows.Forms.Label();
+            this.tb_customerPostNr = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbox_UserNameLogo)).BeginInit();
@@ -642,7 +639,6 @@
             // 
             this.tb_employeePassword.Location = new System.Drawing.Point(533, 435);
             this.tb_employeePassword.Name = "tb_employeePassword";
-            this.tb_employeePassword.PasswordChar = '*';
             this.tb_employeePassword.Size = new System.Drawing.Size(371, 22);
             this.tb_employeePassword.TabIndex = 70;
             // 
@@ -874,21 +870,12 @@
             // 
             // listView_employees
             // 
-            this.listView_employees.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.listView_employees.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.column_ansat_ID,
-            this.column_ansat_firstName,
-            this.column_ansat_lastName});
-            this.listView_employees.Font = new System.Drawing.Font("Ebrima", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView_employees.FullRowSelect = true;
-            this.listView_employees.GridLines = true;
             this.listView_employees.HideSelection = false;
             this.listView_employees.Location = new System.Drawing.Point(10, 76);
             this.listView_employees.Name = "listView_employees";
             this.listView_employees.Size = new System.Drawing.Size(384, 432);
             this.listView_employees.TabIndex = 42;
             this.listView_employees.UseCompatibleStateImageBehavior = false;
-            this.listView_employees.View = System.Windows.Forms.View.Details;
             this.listView_employees.SelectedIndexChanged += new System.EventHandler(this.listView_employees_SelectedIndexChanged);
             // 
             // tabPage_LeverandoerOversigt
@@ -1345,22 +1332,6 @@
             this.tabPage_kundeoversigt.TabIndex = 1;
             this.tabPage_kundeoversigt.Text = "Kunde";
             this.tabPage_kundeoversigt.Click += new System.EventHandler(this.tabPage2_Click);
-            // 
-            // tb_customerPostNr
-            // 
-            this.tb_customerPostNr.Location = new System.Drawing.Point(530, 257);
-            this.tb_customerPostNr.Name = "tb_customerPostNr";
-            this.tb_customerPostNr.Size = new System.Drawing.Size(371, 22);
-            this.tb_customerPostNr.TabIndex = 43;
-            // 
-            // lb_customerPostNr
-            // 
-            this.lb_customerPostNr.AutoSize = true;
-            this.lb_customerPostNr.Location = new System.Drawing.Point(410, 260);
-            this.lb_customerPostNr.Name = "lb_customerPostNr";
-            this.lb_customerPostNr.Size = new System.Drawing.Size(41, 13);
-            this.lb_customerPostNr.TabIndex = 42;
-            this.lb_customerPostNr.Text = "PostNr";
             // 
             // btn_updateCustomer
             // 
@@ -1925,20 +1896,21 @@
             this.listView1_listOfSuppliers.UseCompatibleStateImageBehavior = false;
             this.listView1_listOfSuppliers.SelectedIndexChanged += new System.EventHandler(this.listView1_listOfSuppliers_SelectedIndexChanged);
             // 
-            // column_ansat_ID
+            // lb_customerPostNr
             // 
-            this.column_ansat_ID.Text = "Medarbejdernummer";
-            this.column_ansat_ID.Width = 121;
+            this.lb_customerPostNr.AutoSize = true;
+            this.lb_customerPostNr.Location = new System.Drawing.Point(410, 260);
+            this.lb_customerPostNr.Name = "lb_customerPostNr";
+            this.lb_customerPostNr.Size = new System.Drawing.Size(41, 13);
+            this.lb_customerPostNr.TabIndex = 42;
+            this.lb_customerPostNr.Text = "PostNr";
             // 
-            // column_ansat_firstName
+            // tb_customerPostNr
             // 
-            this.column_ansat_firstName.Text = "Fornavn";
-            this.column_ansat_firstName.Width = 124;
-            // 
-            // column_ansat_lastName
-            // 
-            this.column_ansat_lastName.Text = "Efternavn";
-            this.column_ansat_lastName.Width = 133;
+            this.tb_customerPostNr.Location = new System.Drawing.Point(530, 257);
+            this.tb_customerPostNr.Name = "tb_customerPostNr";
+            this.tb_customerPostNr.Size = new System.Drawing.Size(371, 22);
+            this.tb_customerPostNr.TabIndex = 43;
             // 
             // MainMenu
             // 
@@ -2148,9 +2120,6 @@
         private System.Windows.Forms.RichTextBox rtb_productdescription;
         private System.Windows.Forms.TextBox tb_customerPostNr;
         private System.Windows.Forms.Label lb_customerPostNr;
-        private System.Windows.Forms.ColumnHeader column_ansat_ID;
-        private System.Windows.Forms.ColumnHeader column_ansat_firstName;
-        private System.Windows.Forms.ColumnHeader column_ansat_lastName;
     }
 }
 

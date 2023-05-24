@@ -17,45 +17,42 @@ namespace SynsPunkt_ApS.Database
         /// <summary>
         /// Martin: Opretter en Ansat i databasen
         /// </summary>
-        /// <param name="firstName"></param>
-        /// <param name="lastName"></param>
-        /// <param name="telephoneNumber"></param>
-        /// <param name="privateMail"></param>
-        /// <param name="adress"></param>
-        /// <param name="password"></param>
-        /// <param name="department"></param>
-        /// <param name="roleID"></param>
-        /// <param name="workMail"></param>
-        /// <param name="zipCode"></param>
-        public void CreateAnsat(string firstName, string lastName, int telephoneNumber, string privateMail, string adress,
-        string password, string department, string roleID, string workMail, int zipCode)
+        /// <param name="fornavn"></param>
+        /// <param name="efternavn"></param>
+        /// <param name="telefonNummer"></param>
+        /// <param name="privatMail"></param>
+        /// <param name="adresse"></param>
+        /// <param name="adgangskode"></param>
+        /// <param name="afdeling"></param>
+        /// <param name="rolle"></param>
+        /// <param name="arbejdsMail"></param>
+        /// <param name="postNr"></param>
+        public void CreateAnsat(string fornavn, string efternavn, int telefonNummer, string privatMail, string adresse,
+        string adgangskode, string afdeling, int rolle, string arbejdsMail, int postNr)
         {
             try
             {
                 string query = "INSERT INTO SP_Ansat " +
-                    "VALUES ((SELECT LokationID FROM SP_Optiker WHERE byNavn = @afdeling), " +
-                    "@arbejdsMail, @fornavn, @efternavn, @telefonNummer, @adresse, @postNr, " +
-                    "(SELECT rolleID FROM SP_Rolle WHERE rolleNavn = @rolle), " +
-                    "@password, @privatMail)";
+                    "VALUES (@afdeling, @arbejdsMail, @fornavn, @efternavn, @telefonNummer, @adresse, @postNr, @rolle, @password, @privatMail)";
                 SqlCommand command = new SqlCommand(query, conn);
 
-                command.Parameters.AddWithValue("@afdeling", department);
-                command.Parameters.AddWithValue("@arbejdsMail", workMail);
-                command.Parameters.AddWithValue("@fornavn", firstName);
-                command.Parameters.AddWithValue("@efternavn", lastName);
-                command.Parameters.AddWithValue("@telefonNummer", telephoneNumber);
-                command.Parameters.AddWithValue("@adresse", adress);
-                command.Parameters.AddWithValue("@postNr", zipCode);
-                command.Parameters.AddWithValue("@rolle", roleID);
-                command.Parameters.AddWithValue("@password", password);
-                command.Parameters.AddWithValue("@privatMail", privateMail);
+                command.Parameters.AddWithValue("@afdeling", afdeling);
+                command.Parameters.AddWithValue("@arbejdsMail", arbejdsMail);
+                command.Parameters.AddWithValue("@fornavn", fornavn);
+                command.Parameters.AddWithValue("@efternavn", efternavn);
+                command.Parameters.AddWithValue("@telefonNummer", telefonNummer);
+                command.Parameters.AddWithValue("@adresse", adresse);
+                command.Parameters.AddWithValue("@postNr", postNr);
+                command.Parameters.AddWithValue("@rolle", rolle);
+                command.Parameters.AddWithValue("@password", adgangskode);
+                command.Parameters.AddWithValue("@privatMail", privatMail);
 
                 conn.Open();
                 SqlDataReader reader = command.ExecuteReader();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Fejl ved oprettelse af Ansat. " + ex.Message, "FEJL", MessageBoxButtons.OK);
+                MessageBox.Show("Fejl ved oprettelse af Ansat" + ex.Message, "FEJL", MessageBoxButtons.OK);
             }
             finally
             {
@@ -67,57 +64,56 @@ namespace SynsPunkt_ApS.Database
         /// <summary>
         /// Martin: Opdater en Ansats attributter
         /// </summary>
-        /// <param name="employeeID"></param>
-        /// <param name="firstName"></param>
-        /// <param name="lastName"></param>
-        /// <param name="telephoneNumber"></param>
-        /// <param name="privateMail"></param>
-        /// <param name="adress"></param>
-        /// <param name="password"></param>
-        /// <param name="department"></param>
-        /// <param name="roleID"></param>
-        /// <param name="workMail"></param>
-        /// <param name="zipCode"></param>
-        public void UpdateAnsat(int employeeID, string firstName, string lastName, int telephoneNumber, string privateMail, string adress,
-        string password, string department, string roleID, string workMail, int zipCode)
+        /// <param name="medarbejderNummer"></param>
+        /// <param name="fornavn"></param>
+        /// <param name="efternavn"></param>
+        /// <param name="telefonNummer"></param>
+        /// <param name="privatMail"></param>
+        /// <param name="adresse"></param>
+        /// <param name="adgangskode"></param>
+        /// <param name="afdeling"></param>
+        /// <param name="rolle"></param>
+        /// <param name="arbejdsMail"></param>
+        /// <param name="postNr"></param>
+        public void UpdateAnsat(int medarbejderNummer, string fornavn, string efternavn, int telefonNummer, string privatMail, string adresse,
+        string adgangskode, string afdeling, int rolle, string arbejdsMail, int postNr)
         {
 
             try
             {
                 string query = "UPDATE SP_Ansat " +
                     "SET " +
-                    "LokationID = (SELECT LokationID From SP_Optiker WHERE byNavn = @departmentID), " +
-                    "arbejdsMail = @arbejdsMail, " +
+                    "arbejdsMail = @arbejdsEmail, " +
                     "forNavn = @fornavn, " +
                     "efterNavn = @efternavn," +
                     "telefonNummer = @telefonNummer, " +
                     "adresse = @adresse, " +
                     "postNr = @postNr, " +
-                    "rolleID = (SELECT rolleID From SP_Rolle WHERE rolleNavn = @rolle), " +
+                    "rolle = @rolle" +
                     "password = @password, " +
-                    "privatMail = @privatMail " +
+                    "privatMail = @privatMail" +
                     "WHERE AnsatID = @medarbejderNummer";
 
                 SqlCommand command = new SqlCommand(query, conn);
 
-                command.Parameters.AddWithValue("@departmentID", department);
-                command.Parameters.AddWithValue("@arbejdsMail", workMail);
-                command.Parameters.AddWithValue("@fornavn", firstName);
-                command.Parameters.AddWithValue("@efternavn", lastName);
-                command.Parameters.AddWithValue("@telefonNummer", telephoneNumber);
-                command.Parameters.AddWithValue("@adresse", adress);
-                command.Parameters.AddWithValue("@postNr", zipCode);
-                command.Parameters.AddWithValue("@rolle", roleID);
-                command.Parameters.AddWithValue("@password", password);
-                command.Parameters.AddWithValue("@privatMail", privateMail);
-                command.Parameters.AddWithValue("@medarbejderNummer", employeeID);
+                command.Parameters.AddWithValue("@medarbejderNummer", medarbejderNummer);
+                command.Parameters.AddWithValue("@afdeling", afdeling);
+                command.Parameters.AddWithValue("@arbejdsMail", arbejdsMail);
+                command.Parameters.AddWithValue("@fornavn", fornavn);
+                command.Parameters.AddWithValue("@efternavn", efternavn);
+                command.Parameters.AddWithValue("@telefonNummer", telefonNummer);
+                command.Parameters.AddWithValue("@adresse", adresse);
+                command.Parameters.AddWithValue("@postNr", postNr);
+                command.Parameters.AddWithValue("@rolle", rolle);
+                command.Parameters.AddWithValue("@password", adgangskode);
+                command.Parameters.AddWithValue("@privatMail", privatMail);
 
                 conn.Open();
                 SqlDataReader reader = command.ExecuteReader();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Fejl ved opdatering af Ansat. " + ex.Message, "FEJL", MessageBoxButtons.OK);
+                MessageBox.Show("Fejl ved opdatering af Ansat" + ex.Message, "FEJL", MessageBoxButtons.OK);
             }
             finally
             {
@@ -125,14 +121,14 @@ namespace SynsPunkt_ApS.Database
             }
         }
 
-        public void DeleteAnsat(int employeeID)
+        public void DeleteAnsat(int medarbejderNummer)
         {
             try
             {
                 string query = "DELETE FROM SP_Ansat WHERE AnsatID = @medarbejdernummer";
                 SqlCommand command = new SqlCommand(query, conn);
 
-                command.Parameters.AddWithValue("@medarbejderNummer", employeeID);
+                command.Parameters.AddWithValue("@medarbejderNummer", medarbejderNummer);
 
                 conn.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -152,9 +148,9 @@ namespace SynsPunkt_ApS.Database
         /// <summary>
         /// Martin: Retunerer en instans af Ansat med data baseret på ID (Bruges til at gemme den logged-inds persons data i mainmenu)
         /// </summary>
-        /// <param name="employeeID"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        public Models.Ansat GetAnsatByID(string employeeID)
+        public Models.Ansat GetAnsatByID(string id)
         {
             Models.Ansat Employee = null;
 
@@ -162,30 +158,30 @@ namespace SynsPunkt_ApS.Database
             {
                 string query = "SELECT TOP 1 * FROM SP_Ansat WHERE AnsatID = @id";
                 SqlCommand command = new SqlCommand(query, conn);
-                command.Parameters.AddWithValue("@id", employeeID);
+                command.Parameters.AddWithValue("@id", id);
                 conn.Open();
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    int medarbejderNummer = Convert.ToInt32(reader["AnsatID"]);
-                    string afdeling = reader["LokationID"].ToString();
-                    string arbejdsEmail = reader["arbejdsMail"].ToString();
-                    string forNavn = reader["forNavn"].ToString();
-                    string efterNavn = reader["efterNavn"].ToString();
-                    int tlf = Convert.ToInt32(reader["telefonNummer"]);
-                    string adresse = reader["adresse"].ToString();
-                    int postNummer = Convert.ToInt32(reader["postNr"]);
-                    int rolleID = Convert.ToInt32(reader["rolleID"]);
-                    string password = reader["password"].ToString();
-                    string privatMail = reader["privatMail"].ToString();
+                    int medarbejderNummer = reader.GetInt32(0);
+                    string afdeling = reader.GetInt32(1).ToString();
+                    string arbejdsEmail = reader.GetString(2);
+                    string forNavn = reader.GetString(3);
+                    string efterNavn = reader.GetString(4);
+                    int tlf = reader.GetInt32(5);
+                    string adresse = reader.GetString(6);
+                    int postNummer = reader.GetInt32(7);
+                    int rolleID = reader.GetInt32(8);
+                    string password = reader.GetString(9);
+                    string privatMail = reader.GetString(10);
 
                     Employee = new Models.Ansat(forNavn, efterNavn, tlf, privatMail, adresse, medarbejderNummer, password, afdeling, rolleID, arbejdsEmail, postNummer);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Fejl ved læsning af Ansat. " + ex.Message, "FEJL", MessageBoxButtons.OK);
+                MessageBox.Show("Fejl ved læsning af Ansat" + ex.Message, "FEJL", MessageBoxButtons.OK);
             }
             finally
             {
@@ -200,7 +196,7 @@ namespace SynsPunkt_ApS.Database
 
             try
             {
-                string query = "SELECT * FROM SP_Ansat WHERE CONCAT (forNavn, ' ', efterNavn) LIKE '%' + @name + '%'";
+                string query = "SELECT * FROM SP_Ansat WHERE CONCAT (forNavn, ' ', efterNavn) LIKE @name";
                 SqlCommand command = new SqlCommand(query, conn);
                 command.Parameters.AddWithValue("@name", name);
                 conn.Open();
@@ -208,122 +204,35 @@ namespace SynsPunkt_ApS.Database
 
                 while (reader.Read())
                 {
-                    int medarbejderNummer = Convert.ToInt32(reader["AnsatID"]);
-                    string afdeling = reader["LokationID"].ToString();
-                    string arbejdsEmail = reader["arbejdsMail"].ToString();
-                    string forNavn = reader["forNavn"].ToString();
-                    string efterNavn = reader["efterNavn"].ToString();
-                    int tlf = Convert.ToInt32(reader["telefonNummer"]);
-                    string adresse = reader["adresse"].ToString();
-                    int postNummer = Convert.ToInt32(reader["postNr"]);
-                    int rolleID = Convert.ToInt32(reader["rolleID"]);
-                    string password = reader["password"].ToString();
-                    string privatMail = reader["privatMail"].ToString();
+                    int medarbejderNummer = reader.GetInt32(0);
+                    string afdeling = reader.GetInt32(1).ToString();
+                    string arbejdsEmail = reader.GetString(2);
+                    string forNavn = reader.GetString(3);
+                    string efterNavn = reader.GetString(4);
+                    int tlf = reader.GetInt32(5);
+                    string adresse = reader.GetString(6);
+                    int postNummer = reader.GetInt32(7);
+                    int rolleID = reader.GetInt32(8);
+                    string password = reader.GetString(9);
+                    string privatMail = reader.GetString(10);
 
                     Models.Ansat Employee = new Models.Ansat(forNavn, efterNavn, tlf, privatMail, adresse, medarbejderNummer, password, afdeling, rolleID, arbejdsEmail, postNummer);
-
+                
                     searchResults.Add(Employee);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Fejl ved søgning af Ansat. " + ex.Message, "FEJL", MessageBoxButtons.OK);
+                MessageBox.Show("Fejl ved søgning af Ansat" + ex.Message, "FEJL", MessageBoxButtons.OK);
             }
             finally
             {
                 conn.Close();
             }
+
 
             return searchResults;
         }
-
-
-        public List<Models.Ansat> GetAllAnsat()
-        {
-            List<Models.Ansat> allAnsat = new List<Models.Ansat>();
-
-            try
-            {
-                string query = "SELECT * FROM SP_Ansat";
-                SqlCommand command = new SqlCommand(query, conn);
-                conn.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    int medarbejderNummer = Convert.ToInt32(reader["AnsatID"]);
-                    string afdeling = reader["LokationID"].ToString();
-                    string arbejdsEmail = reader["arbejdsMail"].ToString();
-                    string forNavn = reader["forNavn"].ToString();
-                    string efterNavn = reader["efterNavn"].ToString();
-                    int tlf = Convert.ToInt32(reader["telefonNummer"]);
-                    string adresse = reader["adresse"].ToString();
-                    int postNummer = Convert.ToInt32(reader["postNr"]);
-                    int rolleID = Convert.ToInt32(reader["rolleID"]);
-                    string password = reader["password"].ToString();
-                    string privatMail = reader["privatMail"].ToString();
-
-                    Models.Ansat Employee = new Models.Ansat(forNavn, efterNavn, tlf, privatMail, adresse, medarbejderNummer, password, afdeling, rolleID, arbejdsEmail, postNummer);
-
-                    allAnsat.Add(Employee);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fejl ved at få alle ansatte. " + ex.Message, "FEJL", MessageBoxButtons.OK);
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return allAnsat;
-        }
-
-        public string GetDepartmentName(int departmentID)
-        {
-            string departmentName = null;
-            try
-            {
-            string query = "SELECT byNavn From SP_Optiker WHERE LokationID = @departmentID";
-            SqlCommand command = new SqlCommand(query, conn);
-            command.Parameters.AddWithValue("@departmentID", departmentID);
-
-            conn.Open();
-            departmentName = command.ExecuteScalar().ToString();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fejl ved hentning af afdelingsnavn. ", "FEJL", MessageBoxButtons.OK);
-            }
-            finally
-            { 
-                conn.Close(); 
-            }
-            return departmentName;
-        }
-        public string GetRoleName(int roleID)
-        {
-            string roleName = null;
-            try
-            {
-                string query = "SELECT rolleNavn From SP_Rolle WHERE rolleID = @roleID";
-                SqlCommand command = new SqlCommand(query, conn);
-                command.Parameters.AddWithValue("@roleID", roleID);
-
-                conn.Open();
-                roleName = command.ExecuteScalar().ToString();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fejl ved hentning af rollenavn. ", "FEJL", MessageBoxButtons.OK);
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return roleName;
-        }
-
         //public string GetNameAndRights(int AnsatID, out int rolleID)
         //{
         //    SqlConnection conn = new SqlConnection(Database.ConnectionString.GetConnectionString());
@@ -341,19 +250,5 @@ namespace SynsPunkt_ApS.Database
 
         //    return fullName;
         //}
-
-
-        //int medarbejderNummer = reader.GetInt32(0);
-        //string afdeling = reader.GetInt32(1).ToString();
-        //string arbejdsEmail = reader.GetString(2);
-        //string forNavn = reader.GetString(3);
-        //string efterNavn = reader.GetString(4);
-        //int tlf = reader.GetInt32(5);
-        //string adresse = reader.GetString(6);
-        //int postNummer = reader.GetInt32(7);
-        //int rolleID = reader.GetInt32(8);
-        //string password = reader.GetString(9);
-        //string privatMail = reader.GetString(10);
-
     }
 }
