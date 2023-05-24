@@ -21,6 +21,7 @@ namespace SynsPunkt_ApS.Models
             VareNummer = vareNummer;
             VareBeskrivelse = vareBeskrivelse;
             LagerMængde = lagermængde;
+            VareNavn = varenavn;
             Styrke = styrke;
             LevCVR = levcvr;
         }
