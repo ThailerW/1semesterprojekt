@@ -137,7 +137,7 @@ namespace SynsPunkt_ApS
         private void btn_ChangePassWord_Click(object sender, EventArgs e)
         {
             Services.ChangePassword changePass = new Services.ChangePassword();
-            bool changedPass = changePass.ChangeUserPassword(LoggedInEmployee.MedarbejderNummer.ToString(), tb_OldPassword.Text, tb_NewPassword1.Text, tb_newPassword2.Text);
+            bool changedPass = changePass.ChangeUserPassword(LoggedInEmployee.EmployeeID.ToString(), tb_OldPassword.Text, tb_NewPassword1.Text, tb_newPassword2.Text);
             if (changedPass)
             {
                 MessageBox.Show("Adgangskode ændret!", "SUCCESS!", MessageBoxButtons.OK);
@@ -439,38 +439,38 @@ namespace SynsPunkt_ApS
 
         private void btn_UpdateEmployee_Click(object sender, EventArgs e)
         {
-            private void btn_UpdateEmployee_Click(object sender, EventArgs e)
+
+
+            Services.Ansat_Services ansatServices = new Services.Ansat_Services();
+
+            int employeeID = Convert.ToInt32(tb_employeeId.Text);
+            string firstName = tb_employeeFirstName.Text;
+            string lastName = tb_employeeLastName.Text;
+            int phoneNumber = Convert.ToInt32(tb_employeePhoneNo.Text);
+            string privateMail = tb_employeeEmail.Text;
+            string adress = tb_employeeAdress.Text;
+            int zipCode = Convert.ToInt32(tb_employeeZip.Text);
+            string department = tb_employeeBU.Text;
+            string role = tb_employeeRole.Text;
+            string workMail = tb_employeeWorkMail.Text;
+            string password = tb_employeePassword.Text;
+
+            ansatServices.UpdateAnsat(employeeID, firstName, lastName, phoneNumber, privateMail,
+                adress, password, department, role, workMail, zipCode);
+
+            //Opdaterer oplysningerne på listview
+            if (tb_searchEmployee.Text == string.Empty)
             {
-                Services.Ansat_Services ansatServices = new Services.Ansat_Services();
-
-                int employeeID = Convert.ToInt32(tb_employeeId.Text);
-                string firstName = tb_employeeFirstName.Text;
-                string lastName = tb_employeeLastName.Text;
-                int phoneNumber = Convert.ToInt32(tb_employeePhoneNo.Text);
-                string privateMail = tb_employeeEmail.Text;
-                string adress = tb_employeeAdress.Text;
-                int zipCode = Convert.ToInt32(tb_employeeZip.Text);
-                string department = tb_employeeBU.Text;
-                string role = tb_employeeRole.Text;
-                string workMail = tb_employeeWorkMail.Text;
-                string password = tb_employeePassword.Text;
-
-                ansatServices.UpdateAnsat(employeeID, firstName, lastName, phoneNumber, privateMail,
-                    adress, password, department, role, workMail, zipCode);
-
-                //Opdaterer oplysningerne på listview
-                if (tb_searchEmployee.Text == string.Empty)
-                {
-                    GetAllAnsatte();
-                }
-                else
-                {
-                    tb_searchEmployee_TextChanged(tb_searchEmployee, new EventArgs());
-                }
-
-                //bekræftelse på opdatering
-                MessageBox.Show("Ansat Opdateret!", "Success", MessageBoxButtons.OK);
+                GetAllAnsatte();
             }
+            else
+            {
+                tb_searchEmployee_TextChanged(tb_searchEmployee, new EventArgs());
+            }
+
+            //bekræftelse på opdatering
+            MessageBox.Show("Ansat Opdateret!", "Success", MessageBoxButtons.OK);
+
         }
 
         private void btn_deleteEmployee_Click(object sender, EventArgs e)

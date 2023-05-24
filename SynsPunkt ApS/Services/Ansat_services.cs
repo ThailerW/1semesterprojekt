@@ -16,14 +16,14 @@ namespace SynsPunkt_ApS.Services
         }
 
         public void CreateAnsat(string fornavn, string efternavn, int telefonNummer, string privatMail, string adresse,
-        string adgangskode, string afdeling, int rolle, string arbejdsMail, int postNr)
+        string adgangskode, string afdeling, string rolle, string arbejdsMail, int postNr)
         {
             crudAnsat.CreateAnsat(fornavn, efternavn, telefonNummer, privatMail, adresse, adgangskode, afdeling, rolle, arbejdsMail, postNr);
 
         }
 
         public void UpdateAnsat(int medarbejderNummer, string fornavn, string efternavn, int telefonNummer, string privatMail, string adresse,
-        string adgangskode, string afdeling, int rolle, string arbejdsMail, int postNr)
+        string adgangskode, string afdeling, string rolle, string arbejdsMail, int postNr)
         {
             crudAnsat.UpdateAnsat(medarbejderNummer, fornavn, efternavn, telefonNummer, privatMail, adresse,
                                   adgangskode, afdeling, rolle, arbejdsMail, postNr);
@@ -47,5 +47,24 @@ namespace SynsPunkt_ApS.Services
             return searchResults;
         }
 
+        public List<Models.Ansat> GetAllAnsat()
+        {
+            List<Models.Ansat> allAnsat = crudAnsat.GetAllAnsat();
+
+            return allAnsat;
+        }
+
+        public string GetDepartmentName(int departmentID)
+        {
+            string departmentName = crudAnsat.GetDepartmentName(departmentID);
+
+            return departmentName;
+        }
+        public string GetRoleName(int roleID)
+        {
+            string roleName = crudAnsat.GetRoleName(roleID);
+
+            return roleName;
+        }
     }
 }
