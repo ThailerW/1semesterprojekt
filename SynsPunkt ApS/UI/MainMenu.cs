@@ -401,7 +401,7 @@ namespace SynsPunkt_ApS
         {
             Services.Ansat_Services ansatService = new Services.Ansat_Services();
 
-            foreach (TextBox textBox in tabPage_Medarbejder.Controls.OfType<TextBox>())
+            foreach (System.Windows.Forms.TextBox textBox in tabPage_Medarbejder.Controls.OfType<System.Windows.Forms.TextBox>())
             {
                 if (textBox != tb_searchEmployee && textBox != tb_employeeId && textBox.Text == string.Empty)
                 {
@@ -427,7 +427,7 @@ namespace SynsPunkt_ApS
             MessageBox.Show(firstName + " " + lastName + " arbejder nu hos " + department, "Ansat oprettet", MessageBoxButtons.OK);
 
 
-            foreach (TextBox textBox in tabPage_Medarbejder.Controls.OfType<TextBox>())
+            foreach (System.Windows.Forms.TextBox textBox in tabPage_Medarbejder.Controls.OfType<System.Windows.Forms.TextBox>())
             {
                 if (textBox != tb_searchEmployee && textBox != tb_employeeId && textBox.Text == string.Empty)
                 {
@@ -508,7 +508,7 @@ namespace SynsPunkt_ApS
                 {
                     tb_searchEmployee_TextChanged(tb_searchEmployee, new EventArgs());
                 }
-                foreach (TextBox textBox in tabPage_Medarbejder.Controls.OfType<TextBox>())
+                foreach (System.Windows.Forms.TextBox textBox in tabPage_Medarbejder.Controls.OfType<System.Windows.Forms.TextBox>())
                 {
                     if (textBox != tb_searchEmployee && textBox.Text != string.Empty)
                     {
