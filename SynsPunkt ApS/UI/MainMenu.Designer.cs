@@ -158,6 +158,7 @@
             this.listView_basket_list = new System.Windows.Forms.ListView();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage_Indstillinger = new System.Windows.Forms.TabPage();
+            this.lb_gammel = new System.Windows.Forms.Label();
             this.lb_ny2 = new System.Windows.Forms.Label();
             this.lb_ny1 = new System.Windows.Forms.Label();
             this.btn_ChangePassWord = new System.Windows.Forms.Button();
@@ -184,7 +185,8 @@
             this.label_productSupplierList = new System.Windows.Forms.Label();
             this.tb_searchForProduct = new System.Windows.Forms.TextBox();
             this.listView1_listOfSuppliers = new System.Windows.Forms.ListView();
-            this.lb_gammel = new System.Windows.Forms.Label();
+            this.tb_price = new System.Windows.Forms.TextBox();
+            this.label_price = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbox_UserNameLogo)).BeginInit();
@@ -1550,6 +1552,15 @@
             this.tabPage_Indstillinger.Text = "Indstillinger";
             this.tabPage_Indstillinger.UseVisualStyleBackColor = true;
             // 
+            // lb_gammel
+            // 
+            this.lb_gammel.AutoSize = true;
+            this.lb_gammel.Location = new System.Drawing.Point(64, 38);
+            this.lb_gammel.Name = "lb_gammel";
+            this.lb_gammel.Size = new System.Drawing.Size(160, 13);
+            this.lb_gammel.TabIndex = 6;
+            this.lb_gammel.Text = "indtast gammel adgangskode";
+            // 
             // lb_ny2
             // 
             this.lb_ny2.AutoSize = true;
@@ -1601,6 +1612,8 @@
             // 
             // tabPage_Products
             // 
+            this.tabPage_Products.Controls.Add(this.tb_price);
+            this.tabPage_Products.Controls.Add(this.label_price);
             this.tabPage_Products.Controls.Add(this.lb_varesearch);
             this.tabPage_Products.Controls.Add(this.tb_supplierCVR);
             this.tabPage_Products.Controls.Add(this.rtb_productdescription);
@@ -1801,14 +1814,21 @@
             this.listView1_listOfSuppliers.UseCompatibleStateImageBehavior = false;
             this.listView1_listOfSuppliers.SelectedIndexChanged += new System.EventHandler(this.listView1_listOfSuppliers_SelectedIndexChanged);
             // 
-            // lb_gammel
+            // tb_price
             // 
-            this.lb_gammel.AutoSize = true;
-            this.lb_gammel.Location = new System.Drawing.Point(64, 38);
-            this.lb_gammel.Name = "lb_gammel";
-            this.lb_gammel.Size = new System.Drawing.Size(160, 13);
-            this.lb_gammel.TabIndex = 6;
-            this.lb_gammel.Text = "indtast gammel adgangskode";
+            this.tb_price.Location = new System.Drawing.Point(531, 104);
+            this.tb_price.Name = "tb_price";
+            this.tb_price.Size = new System.Drawing.Size(371, 22);
+            this.tb_price.TabIndex = 84;
+            // 
+            // label_price
+            // 
+            this.label_price.AutoSize = true;
+            this.label_price.Location = new System.Drawing.Point(395, 106);
+            this.label_price.Name = "label_price";
+            this.label_price.Size = new System.Drawing.Size(25, 13);
+            this.label_price.TabIndex = 83;
+            this.label_price.Text = "Pris";
             // 
             // MainMenu
             // 
@@ -2008,6 +2028,8 @@
         private System.Windows.Forms.Label lb_customerPostNr;
         private System.Windows.Forms.Label lb_varesearch;
         private System.Windows.Forms.Label lb_gammel;
+        private System.Windows.Forms.TextBox tb_price;
+        private System.Windows.Forms.Label label_price;
     }
 }
 
