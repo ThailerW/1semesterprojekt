@@ -48,18 +48,6 @@
             this.label_reportPickStartDate = new System.Windows.Forms.Label();
             this.dateTimePicker_reportStartTime = new System.Windows.Forms.DateTimePicker();
             this.label_reportDateInterval = new System.Windows.Forms.Label();
-            this.label_priceInterval = new System.Windows.Forms.Label();
-            this.tb_reportMaxPrice = new System.Windows.Forms.TextBox();
-            this.tb_reportMinPrice = new System.Windows.Forms.TextBox();
-            this.label_reportMaxPrice = new System.Windows.Forms.Label();
-            this.label_minPrice = new System.Windows.Forms.Label();
-            this.label_reportCustomer = new System.Windows.Forms.Label();
-            this.comboBox_reportCustomer = new System.Windows.Forms.ComboBox();
-            this.label_reportProductGroup = new System.Windows.Forms.Label();
-            this.comboBox_reportProductGroup = new System.Windows.Forms.ComboBox();
-            this.label_reportProduct = new System.Windows.Forms.Label();
-            this.label_ReportCrit = new System.Windows.Forms.Label();
-            this.comboBox_reportProduct = new System.Windows.Forms.ComboBox();
             this.label_report = new System.Windows.Forms.Label();
             this.btn_sendReportMail = new System.Windows.Forms.Button();
             this.btn_printReport = new System.Windows.Forms.Button();
@@ -170,13 +158,14 @@
             this.listView_basket_list = new System.Windows.Forms.ListView();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage_Indstillinger = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lb_ny2 = new System.Windows.Forms.Label();
+            this.lb_ny1 = new System.Windows.Forms.Label();
             this.btn_ChangePassWord = new System.Windows.Forms.Button();
             this.tb_newPassword2 = new System.Windows.Forms.TextBox();
             this.tb_NewPassword1 = new System.Windows.Forms.TextBox();
             this.tb_OldPassword = new System.Windows.Forms.TextBox();
             this.tabPage_Products = new System.Windows.Forms.TabPage();
+            this.lb_varesearch = new System.Windows.Forms.Label();
             this.tb_supplierCVR = new System.Windows.Forms.TextBox();
             this.rtb_productdescription = new System.Windows.Forms.RichTextBox();
             this.btn_updateProduct = new System.Windows.Forms.Button();
@@ -195,7 +184,7 @@
             this.label_productSupplierList = new System.Windows.Forms.Label();
             this.tb_searchForProduct = new System.Windows.Forms.TextBox();
             this.listView1_listOfSuppliers = new System.Windows.Forms.ListView();
-            this.lb_varesearch = new System.Windows.Forms.Label();
+            this.lb_gammel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbox_UserNameLogo)).BeginInit();
@@ -367,18 +356,6 @@
             this.tabPage_Rapport.Controls.Add(this.label_reportPickStartDate);
             this.tabPage_Rapport.Controls.Add(this.dateTimePicker_reportStartTime);
             this.tabPage_Rapport.Controls.Add(this.label_reportDateInterval);
-            this.tabPage_Rapport.Controls.Add(this.label_priceInterval);
-            this.tabPage_Rapport.Controls.Add(this.tb_reportMaxPrice);
-            this.tabPage_Rapport.Controls.Add(this.tb_reportMinPrice);
-            this.tabPage_Rapport.Controls.Add(this.label_reportMaxPrice);
-            this.tabPage_Rapport.Controls.Add(this.label_minPrice);
-            this.tabPage_Rapport.Controls.Add(this.label_reportCustomer);
-            this.tabPage_Rapport.Controls.Add(this.comboBox_reportCustomer);
-            this.tabPage_Rapport.Controls.Add(this.label_reportProductGroup);
-            this.tabPage_Rapport.Controls.Add(this.comboBox_reportProductGroup);
-            this.tabPage_Rapport.Controls.Add(this.label_reportProduct);
-            this.tabPage_Rapport.Controls.Add(this.label_ReportCrit);
-            this.tabPage_Rapport.Controls.Add(this.comboBox_reportProduct);
             this.tabPage_Rapport.Controls.Add(this.label_report);
             this.tabPage_Rapport.Controls.Add(this.btn_sendReportMail);
             this.tabPage_Rapport.Controls.Add(this.btn_printReport);
@@ -395,7 +372,7 @@
             this.btn_GenerateReport.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btn_GenerateReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_GenerateReport.ForeColor = System.Drawing.Color.Transparent;
-            this.btn_GenerateReport.Location = new System.Drawing.Point(10, 512);
+            this.btn_GenerateReport.Location = new System.Drawing.Point(105, 600);
             this.btn_GenerateReport.Name = "btn_GenerateReport";
             this.btn_GenerateReport.Size = new System.Drawing.Size(374, 67);
             this.btn_GenerateReport.TabIndex = 59;
@@ -406,7 +383,7 @@
             // label_reportPickEndDate
             // 
             this.label_reportPickEndDate.AutoSize = true;
-            this.label_reportPickEndDate.Location = new System.Drawing.Point(6, 461);
+            this.label_reportPickEndDate.Location = new System.Drawing.Point(101, 551);
             this.label_reportPickEndDate.Name = "label_reportPickEndDate";
             this.label_reportPickEndDate.Size = new System.Drawing.Size(59, 13);
             this.label_reportPickEndDate.TabIndex = 58;
@@ -414,7 +391,7 @@
             // 
             // dateTimePicker_reportEndTime
             // 
-            this.dateTimePicker_reportEndTime.Location = new System.Drawing.Point(148, 455);
+            this.dateTimePicker_reportEndTime.Location = new System.Drawing.Point(243, 545);
             this.dateTimePicker_reportEndTime.Name = "dateTimePicker_reportEndTime";
             this.dateTimePicker_reportEndTime.Size = new System.Drawing.Size(236, 22);
             this.dateTimePicker_reportEndTime.TabIndex = 57;
@@ -422,7 +399,7 @@
             // label_reportPickStartDate
             // 
             this.label_reportPickStartDate.AutoSize = true;
-            this.label_reportPickStartDate.Location = new System.Drawing.Point(6, 424);
+            this.label_reportPickStartDate.Location = new System.Drawing.Point(101, 514);
             this.label_reportPickStartDate.Name = "label_reportPickStartDate";
             this.label_reportPickStartDate.Size = new System.Drawing.Size(59, 13);
             this.label_reportPickStartDate.TabIndex = 56;
@@ -430,7 +407,7 @@
             // 
             // dateTimePicker_reportStartTime
             // 
-            this.dateTimePicker_reportStartTime.Location = new System.Drawing.Point(148, 418);
+            this.dateTimePicker_reportStartTime.Location = new System.Drawing.Point(243, 508);
             this.dateTimePicker_reportStartTime.Name = "dateTimePicker_reportStartTime";
             this.dateTimePicker_reportStartTime.Size = new System.Drawing.Size(236, 22);
             this.dateTimePicker_reportStartTime.TabIndex = 55;
@@ -438,119 +415,19 @@
             // label_reportDateInterval
             // 
             this.label_reportDateInterval.AutoSize = true;
-            this.label_reportDateInterval.Location = new System.Drawing.Point(6, 387);
+            this.label_reportDateInterval.Location = new System.Drawing.Point(101, 477);
             this.label_reportDateInterval.Name = "label_reportDateInterval";
             this.label_reportDateInterval.Size = new System.Drawing.Size(70, 13);
             this.label_reportDateInterval.TabIndex = 54;
             this.label_reportDateInterval.Text = "Datointerval";
             // 
-            // label_priceInterval
-            // 
-            this.label_priceInterval.AutoSize = true;
-            this.label_priceInterval.Location = new System.Drawing.Point(6, 232);
-            this.label_priceInterval.Name = "label_priceInterval";
-            this.label_priceInterval.Size = new System.Drawing.Size(63, 13);
-            this.label_priceInterval.TabIndex = 53;
-            this.label_priceInterval.Text = "Prisinterval";
-            // 
-            // tb_reportMaxPrice
-            // 
-            this.tb_reportMaxPrice.Location = new System.Drawing.Point(148, 305);
-            this.tb_reportMaxPrice.Name = "tb_reportMaxPrice";
-            this.tb_reportMaxPrice.Size = new System.Drawing.Size(236, 22);
-            this.tb_reportMaxPrice.TabIndex = 52;
-            // 
-            // tb_reportMinPrice
-            // 
-            this.tb_reportMinPrice.Location = new System.Drawing.Point(148, 266);
-            this.tb_reportMinPrice.Name = "tb_reportMinPrice";
-            this.tb_reportMinPrice.Size = new System.Drawing.Size(236, 22);
-            this.tb_reportMinPrice.TabIndex = 51;
-            // 
-            // label_reportMaxPrice
-            // 
-            this.label_reportMaxPrice.AutoSize = true;
-            this.label_reportMaxPrice.Location = new System.Drawing.Point(6, 304);
-            this.label_reportMaxPrice.Name = "label_reportMaxPrice";
-            this.label_reportMaxPrice.Size = new System.Drawing.Size(81, 13);
-            this.label_reportMaxPrice.TabIndex = 28;
-            this.label_reportMaxPrice.Text = "Maksimumpris";
-            // 
-            // label_minPrice
-            // 
-            this.label_minPrice.AutoSize = true;
-            this.label_minPrice.Location = new System.Drawing.Point(6, 269);
-            this.label_minPrice.Name = "label_minPrice";
-            this.label_minPrice.Size = new System.Drawing.Size(74, 13);
-            this.label_minPrice.TabIndex = 27;
-            this.label_minPrice.Text = "Minimumpris";
-            // 
-            // label_reportCustomer
-            // 
-            this.label_reportCustomer.AutoSize = true;
-            this.label_reportCustomer.Location = new System.Drawing.Point(6, 156);
-            this.label_reportCustomer.Name = "label_reportCustomer";
-            this.label_reportCustomer.Size = new System.Drawing.Size(29, 13);
-            this.label_reportCustomer.TabIndex = 25;
-            this.label_reportCustomer.Text = "Vare";
-            // 
-            // comboBox_reportCustomer
-            // 
-            this.comboBox_reportCustomer.FormattingEnabled = true;
-            this.comboBox_reportCustomer.Location = new System.Drawing.Point(106, 157);
-            this.comboBox_reportCustomer.Name = "comboBox_reportCustomer";
-            this.comboBox_reportCustomer.Size = new System.Drawing.Size(278, 21);
-            this.comboBox_reportCustomer.TabIndex = 24;
-            // 
-            // label_reportProductGroup
-            // 
-            this.label_reportProductGroup.AutoSize = true;
-            this.label_reportProductGroup.Location = new System.Drawing.Point(6, 104);
-            this.label_reportProductGroup.Name = "label_reportProductGroup";
-            this.label_reportProductGroup.Size = new System.Drawing.Size(67, 13);
-            this.label_reportProductGroup.TabIndex = 23;
-            this.label_reportProductGroup.Text = "Varegruppe";
-            // 
-            // comboBox_reportProductGroup
-            // 
-            this.comboBox_reportProductGroup.FormattingEnabled = true;
-            this.comboBox_reportProductGroup.Location = new System.Drawing.Point(106, 105);
-            this.comboBox_reportProductGroup.Name = "comboBox_reportProductGroup";
-            this.comboBox_reportProductGroup.Size = new System.Drawing.Size(278, 21);
-            this.comboBox_reportProductGroup.TabIndex = 22;
-            // 
-            // label_reportProduct
-            // 
-            this.label_reportProduct.AutoSize = true;
-            this.label_reportProduct.Location = new System.Drawing.Point(6, 53);
-            this.label_reportProduct.Name = "label_reportProduct";
-            this.label_reportProduct.Size = new System.Drawing.Size(29, 13);
-            this.label_reportProduct.TabIndex = 21;
-            this.label_reportProduct.Text = "Vare";
-            // 
-            // label_ReportCrit
-            // 
-            this.label_ReportCrit.AutoSize = true;
-            this.label_ReportCrit.Location = new System.Drawing.Point(20, 16);
-            this.label_ReportCrit.Name = "label_ReportCrit";
-            this.label_ReportCrit.Size = new System.Drawing.Size(106, 13);
-            this.label_ReportCrit.TabIndex = 20;
-            this.label_ReportCrit.Text = "RAPPORTKRITERIER";
-            // 
-            // comboBox_reportProduct
-            // 
-            this.comboBox_reportProduct.FormattingEnabled = true;
-            this.comboBox_reportProduct.Location = new System.Drawing.Point(106, 54);
-            this.comboBox_reportProduct.Name = "comboBox_reportProduct";
-            this.comboBox_reportProduct.Size = new System.Drawing.Size(278, 21);
-            this.comboBox_reportProduct.TabIndex = 19;
-            // 
             // label_report
             // 
             this.label_report.AutoSize = true;
-            this.label_report.Location = new System.Drawing.Point(399, 16);
+            this.label_report.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_report.Location = new System.Drawing.Point(384, 4);
             this.label_report.Name = "label_report";
-            this.label_report.Size = new System.Drawing.Size(55, 13);
+            this.label_report.Size = new System.Drawing.Size(95, 28);
             this.label_report.TabIndex = 18;
             this.label_report.Text = "RAPPORT";
             // 
@@ -582,9 +459,9 @@
             // 
             // richTextBox_report
             // 
-            this.richTextBox_report.Location = new System.Drawing.Point(403, 53);
+            this.richTextBox_report.Location = new System.Drawing.Point(23, 38);
             this.richTextBox_report.Name = "richTextBox_report";
-            this.richTextBox_report.Size = new System.Drawing.Size(488, 432);
+            this.richTextBox_report.Size = new System.Drawing.Size(868, 432);
             this.richTextBox_report.TabIndex = 15;
             this.richTextBox_report.Text = "";
             // 
@@ -1658,8 +1535,9 @@
             // 
             // tabPage_Indstillinger
             // 
-            this.tabPage_Indstillinger.Controls.Add(this.label3);
-            this.tabPage_Indstillinger.Controls.Add(this.label1);
+            this.tabPage_Indstillinger.Controls.Add(this.lb_gammel);
+            this.tabPage_Indstillinger.Controls.Add(this.lb_ny2);
+            this.tabPage_Indstillinger.Controls.Add(this.lb_ny1);
             this.tabPage_Indstillinger.Controls.Add(this.btn_ChangePassWord);
             this.tabPage_Indstillinger.Controls.Add(this.tb_newPassword2);
             this.tabPage_Indstillinger.Controls.Add(this.tb_NewPassword1);
@@ -1672,51 +1550,51 @@
             this.tabPage_Indstillinger.Text = "Indstillinger";
             this.tabPage_Indstillinger.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // lb_ny2
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(519, 138);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "label3";
+            this.lb_ny2.AutoSize = true;
+            this.lb_ny2.Location = new System.Drawing.Point(64, 202);
+            this.lb_ny2.Name = "lb_ny2";
+            this.lb_ny2.Size = new System.Drawing.Size(74, 13);
+            this.lb_ny2.TabIndex = 5;
+            this.lb_ny2.Text = "indst ny igen";
             // 
-            // label1
+            // lb_ny1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(291, 138);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "label1";
+            this.lb_ny1.AutoSize = true;
+            this.lb_ny1.Location = new System.Drawing.Point(64, 122);
+            this.lb_ny1.Name = "lb_ny1";
+            this.lb_ny1.Size = new System.Drawing.Size(58, 13);
+            this.lb_ny1.TabIndex = 4;
+            this.lb_ny1.Text = "indtast ny";
             // 
             // btn_ChangePassWord
             // 
-            this.btn_ChangePassWord.Location = new System.Drawing.Point(82, 41);
+            this.btn_ChangePassWord.Location = new System.Drawing.Point(67, 272);
             this.btn_ChangePassWord.Name = "btn_ChangePassWord";
-            this.btn_ChangePassWord.Size = new System.Drawing.Size(96, 53);
+            this.btn_ChangePassWord.Size = new System.Drawing.Size(96, 34);
             this.btn_ChangePassWord.TabIndex = 3;
-            this.btn_ChangePassWord.Text = "button2";
+            this.btn_ChangePassWord.Text = "ændre adgangskode";
             this.btn_ChangePassWord.UseVisualStyleBackColor = true;
             this.btn_ChangePassWord.Click += new System.EventHandler(this.btn_ChangePassWord_Click);
             // 
             // tb_newPassword2
             // 
-            this.tb_newPassword2.Location = new System.Drawing.Point(523, 192);
+            this.tb_newPassword2.Location = new System.Drawing.Point(67, 218);
             this.tb_newPassword2.Name = "tb_newPassword2";
             this.tb_newPassword2.Size = new System.Drawing.Size(100, 22);
             this.tb_newPassword2.TabIndex = 2;
             // 
             // tb_NewPassword1
             // 
-            this.tb_NewPassword1.Location = new System.Drawing.Point(295, 192);
+            this.tb_NewPassword1.Location = new System.Drawing.Point(67, 138);
             this.tb_NewPassword1.Name = "tb_NewPassword1";
             this.tb_NewPassword1.Size = new System.Drawing.Size(100, 22);
             this.tb_NewPassword1.TabIndex = 1;
             // 
             // tb_OldPassword
             // 
-            this.tb_OldPassword.Location = new System.Drawing.Point(82, 192);
+            this.tb_OldPassword.Location = new System.Drawing.Point(67, 54);
             this.tb_OldPassword.Name = "tb_OldPassword";
             this.tb_OldPassword.Size = new System.Drawing.Size(100, 22);
             this.tb_OldPassword.TabIndex = 0;
@@ -1749,6 +1627,15 @@
             this.tabPage_Products.TabIndex = 11;
             this.tabPage_Products.Text = "Produkter";
             this.tabPage_Products.UseVisualStyleBackColor = true;
+            // 
+            // lb_varesearch
+            // 
+            this.lb_varesearch.AutoSize = true;
+            this.lb_varesearch.Location = new System.Drawing.Point(13, 527);
+            this.lb_varesearch.Name = "lb_varesearch";
+            this.lb_varesearch.Size = new System.Drawing.Size(81, 13);
+            this.lb_varesearch.TabIndex = 82;
+            this.lb_varesearch.Text = "Søg efter vare:";
             // 
             // tb_supplierCVR
             // 
@@ -1914,14 +1801,14 @@
             this.listView1_listOfSuppliers.UseCompatibleStateImageBehavior = false;
             this.listView1_listOfSuppliers.SelectedIndexChanged += new System.EventHandler(this.listView1_listOfSuppliers_SelectedIndexChanged);
             // 
-            // lb_varesearch
+            // lb_gammel
             // 
-            this.lb_varesearch.AutoSize = true;
-            this.lb_varesearch.Location = new System.Drawing.Point(13, 527);
-            this.lb_varesearch.Name = "lb_varesearch";
-            this.lb_varesearch.Size = new System.Drawing.Size(81, 13);
-            this.lb_varesearch.TabIndex = 82;
-            this.lb_varesearch.Text = "Søg efter vare:";
+            this.lb_gammel.AutoSize = true;
+            this.lb_gammel.Location = new System.Drawing.Point(64, 38);
+            this.lb_gammel.Name = "lb_gammel";
+            this.lb_gammel.Size = new System.Drawing.Size(160, 13);
+            this.lb_gammel.TabIndex = 6;
+            this.lb_gammel.Text = "indtast gammel adgangskode";
             // 
             // MainMenu
             // 
@@ -2005,8 +1892,8 @@
         private System.Windows.Forms.Label label_Bookings;
         private System.Windows.Forms.ListView listView_Bookings;
         private System.Windows.Forms.Label label_SearchPhoneNumber;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lb_ny2;
+        private System.Windows.Forms.Label lb_ny1;
         private System.Windows.Forms.Button btn_ChangePassWord;
         private System.Windows.Forms.TextBox tb_newPassword2;
         private System.Windows.Forms.TextBox tb_NewPassword1;
@@ -2061,18 +1948,6 @@
         private System.Windows.Forms.Label label_reportPickStartDate;
         private System.Windows.Forms.DateTimePicker dateTimePicker_reportStartTime;
         private System.Windows.Forms.Label label_reportDateInterval;
-        private System.Windows.Forms.Label label_priceInterval;
-        private System.Windows.Forms.TextBox tb_reportMaxPrice;
-        private System.Windows.Forms.TextBox tb_reportMinPrice;
-        private System.Windows.Forms.Label label_reportMaxPrice;
-        private System.Windows.Forms.Label label_minPrice;
-        private System.Windows.Forms.Label label_reportCustomer;
-        private System.Windows.Forms.ComboBox comboBox_reportCustomer;
-        private System.Windows.Forms.Label label_reportProductGroup;
-        private System.Windows.Forms.ComboBox comboBox_reportProductGroup;
-        private System.Windows.Forms.Label label_reportProduct;
-        private System.Windows.Forms.Label label_ReportCrit;
-        private System.Windows.Forms.ComboBox comboBox_reportProduct;
         private System.Windows.Forms.Label label_report;
         private System.Windows.Forms.Button btn_sendReportMail;
         private System.Windows.Forms.Button btn_printReport;
@@ -2132,6 +2007,7 @@
         private System.Windows.Forms.TextBox tb_customerPostNr;
         private System.Windows.Forms.Label lb_customerPostNr;
         private System.Windows.Forms.Label lb_varesearch;
+        private System.Windows.Forms.Label lb_gammel;
     }
 }
 
