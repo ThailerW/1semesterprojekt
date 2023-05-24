@@ -11,7 +11,7 @@ namespace SynsPunkt_ApS.Database
 {
     public class CRUD_Kunde
     {
-        public void CreateKunde()
+        public void CreateKunde(Kunde kunde)
         {
             // Logik
         }
@@ -19,11 +19,11 @@ namespace SynsPunkt_ApS.Database
         {
             // Logik
         }
-        public void UpdateKunde()
+        public void UpdateKunde(Kunde kunde)
         {
             // Logik
         }
-        public void DeleteKunde()
+        public void DeleteKunde(string kundeNummer)
         {
             // Logik
         }
@@ -33,7 +33,8 @@ namespace SynsPunkt_ApS.Database
         /// Opretter en ny kunde i databasen.
         /// </summary>
         /// <param name="nyKunde">Den nye kunde, der skal oprettes.</param>
-        public void OpretKunde(Kunde nyKunde)
+        public void OpretKunde(string fornavn, string efternavn, int telefonNummer, string privatEmail, string adresse,
+            string kundeNummer, string kundeInfo, int postNr, Kunde nyKunde)
         {
             string query = "INSERT INTO Kunder (Fornavn, Efternavn, TelefonNummer, PrivatEmail, Adresse, KundeNummer, KundeInfo) " +
                            "VALUES (@Fornavn, @Efternavn, @TelefonNummer, @PrivatEmail, @Adresse, @KundeNummer, @KundeInfo)";
@@ -55,16 +56,17 @@ namespace SynsPunkt_ApS.Database
                 }
             }
 
-            MessageBox.Show("Kunde oprettet succesfuldt!");
+            MessageBox.Show("Kunden blev oprettet");
         }
 
         /// <summary>
         /// Henter en kunde fra databasen baseret på KundeInfo-id.
         /// </summary>
         /// <param name="KundeInfo">Id'et på den ønskede kunde.</param>
-        public void HentKundeMedInfo(int KundeInfo)
+        public Kunde HentKundeMedInfo(int KundeInfo)
         {
             string query = "SELECT * FROM Kunder WHERE Id = @KundeInfo";
+            Kunde kunde = null;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -79,7 +81,7 @@ namespace SynsPunkt_ApS.Database
                     {
                         while (reader.Read())
                         {
-                            Kunde kunde = new Kunde
+                            kunde = new Kunde
                             (
                                 reader["Fornavn"].ToString(),
                                 reader["Efternavn"].ToString(),
@@ -90,27 +92,17 @@ namespace SynsPunkt_ApS.Database
                                 reader["KundeInfo"].ToString(),
                                 Convert.ToInt32(reader["postNr"])
                             );
-
-                            MessageBox.Show("Kundens oplysninger:\n" +
-                                            "ID: " + kunde.KundeInfo + "\n" +
-                                            "Fornavn: " + kunde.Fornavn + "\n" +
-                                            "Efternavn: " + kunde.Efternavn + "\n" +
-                                            "Email: " + kunde.PrivatEmail + "\n" +
-                                            "Telefonnummer: " + kunde.TelefonNummer + "\n" +
-                                            "Adresse: " + kunde.Adresse + "\n" +
-                                            "PostNr: " + kunde.PostNr);
-
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Kunden blev ikke fundet.");
                     }
 
                     reader.Close();
                 }
             }
+
+            return kunde;
         }
+
+
 
         /// <summary>
         /// Opdaterer en kunde i databasen.
@@ -138,7 +130,7 @@ namespace SynsPunkt_ApS.Database
                 }
             }
 
-            MessageBox.Show("Kunde opdateret succesfuldt!");
+            MessageBox.Show("Kunde blev opdateret!");
         }
 
         /// <summary>
@@ -160,7 +152,7 @@ namespace SynsPunkt_ApS.Database
                 }
             }
 
-            MessageBox.Show("Kunde slettet succesfuldt!");
+            MessageBox.Show("Kunde blev slettet");
         }
 
         /// <summary>
@@ -177,6 +169,46 @@ namespace SynsPunkt_ApS.Database
                     command.ExecuteNonQuery();
                 }
             }
+        }
+
+        public List<Kunde> FindKundeInfo(string kundeNavn)
+        {
+            string query = "SELECT * FROM Kunder WHERE Navn LIKE @KundeNavn";
+            List<Kunde> kundeListe = new List<Kunde>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@KundeNavn", "%" + kundeNavn + "%");
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            Kunde kunde = new Kunde(
+                                reader["Fornavn"].ToString(),
+                                reader["Efternavn"].ToString(),
+                                Convert.ToInt32(reader["TelefonNummer"]),
+                                reader["PrivatEmail"].ToString(),
+                                reader["Adresse"].ToString(),
+                                reader["KundeNummer"].ToString(),
+                                reader["KundeInfo"].ToString(),
+                                Convert.ToInt32(reader["PostNr"])
+                            );
+
+                            kundeListe.Add(kunde);
+                        }
+                    }
+
+                    reader.Close();
+                }
+            }
+
+            return kundeListe;
         }
     }
 }
