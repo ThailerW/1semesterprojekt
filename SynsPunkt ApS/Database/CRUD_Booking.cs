@@ -11,10 +11,10 @@ namespace SynsPunkt_ApS.Database
 {
     public class CRUD_Booking
     {
-        
+
         private string connectionString = "Data Source=mssql15.unoeuro.com;Initial Catalog=oversaftigt_dk_db_test;User ID=oversaftigt_dk;Password=prfHFR9546nEtyb2xDmc";
 
-        public void CreateBooking(Booking nyBooking)
+        public void CreateBooking(Booking newBooking)
         {
             string query = "INSERT INTO Booking (BookingID, LokationID, tidspunkt, dato, bookingType, KundeID) " +
                            "VALUES (@BookingID, @LokationID, @tidspunkt, @dato, @bookingType, @KundeID)";
@@ -24,12 +24,12 @@ namespace SynsPunkt_ApS.Database
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@BookingID", nyBooking.BookingID);
-                    command.Parameters.AddWithValue("@LokationID", nyBooking.LokationID);
-                    command.Parameters.AddWithValue("@tidpunkt", nyBooking.Tidspunkt);
-                    command.Parameters.AddWithValue("@dato", nyBooking.Dato);
-                    command.Parameters.AddWithValue("@bookinType", nyBooking.BookingType);
-                    command.Parameters.AddWithValue("@KundeID", nyBooking.KundeID);
+                    //command.Parameters.AddWithValue("@BookingID", newBooking.BookingID);
+                    command.Parameters.AddWithValue("@LokationID", newBooking.LokationID);
+                    command.Parameters.AddWithValue("@tidpunkt", newBooking.Tidspunkt);
+                    command.Parameters.AddWithValue("@dato", newBooking.Dato);
+                    command.Parameters.AddWithValue("@bookinType", newBooking.BookingType);
+                    command.Parameters.AddWithValue("@KundeID", newBooking.KundeID);
                     command.ExecuteNonQuery();
 
                     try
@@ -49,8 +49,9 @@ namespace SynsPunkt_ApS.Database
         }
 
 
-        public void GetBookingsPerDate(DateTime dato, ListView listView)
+        public List<Booking> GetBookingsPerDate(DateTime dato)
         {
+            List<Booking> bookings = new List<Booking>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = "SELECT * FROM Booking WHERE dato = @dato";
@@ -60,16 +61,13 @@ namespace SynsPunkt_ApS.Database
                 try
                 {
                     connection.Open();
-
                     SqlDataReader reader = command.ExecuteReader();
-
-                    listView.Items.Clear();
 
                     while (reader.Read())
                     {
                         Booking booking = new Booking
                         (
-                            (int)reader["bookingID"],
+                            //(int)reader["bookingID"],
                             (int)reader["lokationID"],
                             (DateTime)reader["tidspunkt"],
                             (DateTime)reader["dato"],
@@ -77,14 +75,7 @@ namespace SynsPunkt_ApS.Database
                             (int)reader["kundeid"]
                         );
 
-                        ListViewItem item = new ListViewItem(booking.BookingID.ToString());
-                        item.SubItems.Add(booking.LokationID.ToString());
-                        item.SubItems.Add(booking.Tidspunkt.ToString());
-                        item.SubItems.Add(booking.Dato.ToString());
-                        item.SubItems.Add(booking.BookingType);
-                        item.SubItems.Add(booking.KundeID.ToString());
-
-                        listView.Items.Add(item);
+                        bookings.Add(booking);
                     }
 
                     reader.Close();
@@ -94,9 +85,12 @@ namespace SynsPunkt_ApS.Database
                     MessageBox.Show("Fejl ved hentning af bookinger: " + ex.Message);
                 }
             }
+
+            return bookings;
         }
-       
-        public void UpdateBooking (Booking updatedBooking)
+
+
+        public void UpdateBooking(Booking updatedBooking)
         {
             string query = "UPDATE Booking SET tidspunkt = @tidspunkt, dato = @dato, kundeid = @kundeid, bookingType = @bookingType" +
                            "VALUES (@tidspunkt, @dato, @kundeid, @bookingType)";
@@ -137,6 +131,6 @@ namespace SynsPunkt_ApS.Database
             MessageBox.Show("Bookingen er slettet!");
         }
 
-        
+
     }
 }
