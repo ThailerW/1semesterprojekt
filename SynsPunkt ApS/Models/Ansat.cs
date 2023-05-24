@@ -8,31 +8,32 @@ namespace SynsPunkt_ApS.Models
 {
     public class Ansat
     {
-        public string Fornavn { get; set; }
-        public string Efternavn { get; set; }
-        public int TelefonNummer { get; set; }
-        public string PrivatMail { get; set; }
-        public string Adresse { get; set; }
-        public int MedarbejderNummer { get; set; }
-        public string Adgangskode { get; set; }
-        public string Afdeling { get; set; }
-        public int Rolle { get; set; }
-        public string ArbejdsMail { get; set; }
-        public int PostNr { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int TelephoneNumber { get; set; }
+        public string PrivateMail { get; set; }
+        public string Adress { get; set; }
+        public int EmployeeID { get; set; }
+        public string Password { get; set; }
+        public string DepartmentID { get; set; }
+        public int RoleID { get; set; }
+        public string WorkMail { get; set; }
+        public int ZipCode { get; set; }
 
-        public Ansat(string fornavn, string efternavn, int telefonNummer, string privatEmail, string adresse, 
-            int medarbejderNummer, string adgangskode, string afdeling, int rolle, string arbejdsMail, int postNr)
+        public Ansat(string firstName, string lastName, int telephoneNumber, string privateMail, string adress, 
+            int employeeID, string password, string departmentID, int roleID, string workMail, int zipCode)
         {
-            Fornavn = fornavn;
-            Efternavn = efternavn;
-            TelefonNummer = telefonNummer;
-            PrivatMail = privatEmail;
-            Adresse = adresse;
-            MedarbejderNummer = medarbejderNummer;
-            Adgangskode = adgangskode;
-            Afdeling = afdeling;
-            Rolle = rolle;
-            ArbejdsMail = arbejdsMail;
+            FirstName = firstName;
+            LastName = lastName;
+            TelephoneNumber = telephoneNumber;
+            PrivateMail = privateMail;
+            Adress = adress;
+            EmployeeID = employeeID;
+            Password = password;
+            DepartmentID = departmentID;
+            RoleID = roleID;
+            WorkMail = workMail;
+            ZipCode = zipCode;
         }
     }
 }
