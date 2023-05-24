@@ -131,7 +131,15 @@ namespace SynsPunkt_ApS
 
         private void X(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult dialogResult = MessageBox.Show("Er du sikker på at du vil lukke programmet?", "ADVARSEL!", MessageBoxButtons.YesNoCancel);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                MessageBox.Show("Log ud forsøg afbrudt!");
+            }
         }
 
         private void btn_ChangePassWord_Click(object sender, EventArgs e)
