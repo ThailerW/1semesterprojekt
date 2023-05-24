@@ -6,9 +6,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SynsPunkt_ApS
 {
@@ -23,7 +26,11 @@ namespace SynsPunkt_ApS
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            GetAllVare();
+            GetAllAnsatte();
+            GetAllBookings();
+            GetAllKunder();
+            GetAllLeverandører();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -146,7 +153,7 @@ namespace SynsPunkt_ApS
 
         }
 
-        
+
 
         private void btn_RemoveFromBasket_Click(object sender, EventArgs e)
         {
@@ -183,7 +190,7 @@ namespace SynsPunkt_ApS
 
         }
 
-       
+
         private void btn_createCustomer_Click(object sender, EventArgs e)
         {
             //// Opret en kunde med opdaterede oplysninger baseret på værdierne i tekstboksene
@@ -215,7 +222,7 @@ namespace SynsPunkt_ApS
             //    PostNr = Convert.ToInt32(tb_postNr.Text)
             //};
         }
-        
+
         private void btn_deleteCustomer_Click(object sender, EventArgs e)
         {
             /// mangler
@@ -276,7 +283,7 @@ namespace SynsPunkt_ApS
 
         }
 
-       
+
         private void btn_CreateEmployee_Click(object sender, EventArgs e)
         {
 
@@ -309,15 +316,45 @@ namespace SynsPunkt_ApS
 
         private void listView1_listOfSuppliers_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Services.VareService vareService = new VareService();
 
+            if (listView1_listOfSuppliers.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = listView1_listOfSuppliers.SelectedItems[0];
+                var item = selectedItem.SubItems[0].Text;
+
+                vareService.ReadVare(item, out string id2, out string vareBeskrivelse, out string lagerMængde, out string vareNavn,
+                                     out string styrke, out string levCVR);
+
+                tb_productID.Text = id2;
+                rtb_productdescription.Text = vareBeskrivelse;
+                tb_quantity.Text = lagerMængde;
+                tb_productName.Text = vareNavn;
+                tb_strengt.Text = styrke;
+                tb_supplierCVR.Text = levCVR;
+            }
         }
 
         private void tb_searchForProduct_TextChanged(object sender, EventArgs e)
         {
-
+            /*  if (tb_searchForProduct.Text.Length == 0)
+              {
+                  GetAllVare();
+              }
+              else
+              {
+                  string searchText = tb_searchForProduct.Text.ToLower();
+                  listView1_listOfSuppliers.Items.Clear();
+                  foreach (var vare in originalVare)
+                  {
+                      if (vare.ToString().ToLower().Contains(searchText))
+                      {
+                          listView1_listOfSuppliers.Items.Add(vare);
+                      }
+                  }
+              }
+            */
         }
-
-        
 
         private void btn_createProduct_Click(object sender, EventArgs e)
         {
@@ -329,6 +366,7 @@ namespace SynsPunkt_ApS
             {
                 vareService.CreateVare(rtb_productdescription.Text, quantity, tb_productName.Text, strength, tb_supplierCVR.Text);
                 MessageBox.Show(tb_productName.Text + " blev tilføjet til databasen!", "SUCCESS!", MessageBoxButtons.OK);
+                GetAllVare();
             }
             else
             {
@@ -371,6 +409,7 @@ namespace SynsPunkt_ApS
                     tb_supplierCVR.Text = null;
                     tb_quantity.Text = null;
                     rtb_productdescription.Text = null;
+                    GetAllVare();
                 }
                 else
                 {
@@ -391,7 +430,16 @@ namespace SynsPunkt_ApS
 
         private void GetAllVare()
         {
-
+            listView1_listOfSuppliers.Items.Clear();
+            Services.VareService vareservice = new VareService();
+            var vareList = vareservice.GetAllVare();
+            foreach (var vare in vareList)
+            {
+                ListViewItem vareItem = new ListViewItem(vare.VareNummer.ToString());
+                vareItem.SubItems.Add(vare.VareNavn);
+                vareItem.SubItems.Add(vare.LagerMængde.ToString());
+                listView1_listOfSuppliers.Items.Add(vareItem);
+            }
         }
 
         private void GetAllBookings()

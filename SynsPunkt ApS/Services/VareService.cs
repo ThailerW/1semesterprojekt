@@ -14,27 +14,29 @@ namespace SynsPunkt_ApS.Services
             crudVare.CreateVare(vareBeskrivelse, lagerMængde, vareNavn, styrke, levCVR);
         }
 
-        /*public void ReadVare(string vareID, out string displayID, out string vareBeskrivelse, out int lagerMængde, 
-            out string vareNavn, out decimal styrke, out string levCVR)
+        public void ReadVare(string id, out string id2, out string vareBeskrivelse, out string lagerMængde, out string vareNavn,
+            out string styrke, out string levCVR)
         {
             Database.CRUD_Vare crudVare = new Database.CRUD_Vare();
+            crudVare.ReadVare(id, out id2, out vareBeskrivelse, out lagerMængde, out vareNavn, out styrke, out levCVR);
         }
-        */
 
         public void UpdateVare(string vareID, string vareBeskrivelse, int lagerMængde, string vareNavn, decimal styrke, string levCVR)
         {
             Database.CRUD_Vare crudVare = new Database.CRUD_Vare();
+            crudVare.UpdateVare(vareID, vareBeskrivelse, lagerMængde, vareNavn, styrke, levCVR);
         }
 
         public void DeleteVare(string vareID)
         {
             Database.CRUD_Vare crudVare = new Database.CRUD_Vare();
+            crudVare.DeleteVare(vareID);
         }
 
         public List<Models.Vare> GetAllVare()
         {
             Database.CRUD_Vare crudVare = new Database.CRUD_Vare();
-            List<Models.Vare> AlleVare = new List<Models.Vare>();
+            var AlleVare = crudVare.GetAllVare();
             return AlleVare;
         }
     }
