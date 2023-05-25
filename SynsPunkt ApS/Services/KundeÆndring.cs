@@ -13,29 +13,34 @@ using System.Windows.Forms;
 namespace SynsPunkt_ApS.Services
 {
     public class Kunde_Services
-{
-    private CRUD_Kunde kundeCRUD;
-
-    public Kunde_Services()
     {
-        kundeCRUD = new CRUD_Kunde();
-    }
+        private CRUD_Kunde kundeCRUD;
 
-    public void CreateKunde(string fornavn, string efternavn, int telefonnummer, string privatemail, string adresse, string kunenummer, string kundeinfo, int postnr)
-    {
-        Kunde kunde = new Kunde(fornavn, efternavn, telefonnummer, privatemail, adresse, kunenummer, kundeinfo, postnr);
-        kundeCRUD.CreateKunde(kunde);
-    }
+        public Kunde_Services()
+        {
+            kundeCRUD = new CRUD_Kunde();
+        }
 
-    public void UpdateKunde(string fornavn, string efternavn, int telefonnummer, string privatemail, string adresse, string kunenummer, string kundeinfo, int postnr)
-    {
-        Kunde kunde = new Kunde(fornavn, efternavn, telefonnummer, privatemail, adresse, kunenummer, kundeinfo, postnr);
-        kundeCRUD.UpdateKunde(kunde);
-    }
+        public void CreateKunde(string fornavn, string efternavn, int telefonnummer, string privatemail, string adresse, string kunenummer, string kundeinfo, int postnr)
+        {
+            Kunde kunde = new Kunde(fornavn, efternavn, telefonnummer, privatemail, adresse, kunenummer, kundeinfo, postnr);
+            kundeCRUD.CreateKunde(kunde);
+        }
 
-    public void DeleteKunde(string kundeNummer)
-    {
-        kundeCRUD.DeleteKunde(kundeNummer);
+        public void UpdateKunde(string fornavn, string efternavn, int telefonnummer, string privatemail, string adresse, string kunenummer, string kundeinfo, int postnr)
+        {
+            Kunde kunde = new Kunde(fornavn, efternavn, telefonnummer, privatemail, adresse, kunenummer, kundeinfo, postnr);
+            kundeCRUD.UpdateKunde(kunde);
+        }
+
+        public void DeleteKunde(string kundeNummer)
+        {
+            kundeCRUD.DeleteKunde(kundeNummer);
+        }
+
+        public bool CheckIfCustomerExists(int kundeID)
+        {
+            return kundeCRUD.CheckIfCustomerExists(kundeID);
+        }
     }
-}
 }

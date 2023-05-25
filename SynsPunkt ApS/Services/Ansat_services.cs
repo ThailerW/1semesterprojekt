@@ -8,11 +8,11 @@ namespace SynsPunkt_ApS.Services
 {
     public class Ansat_Services
     {
-        private Database.CRUD_Ansat crudAnsat;
+        private Database.CRUD_Ansat crudAnsat = new Database.CRUD_Ansat();
 
         public Ansat_Services()
         {
-            crudAnsat = new Database.CRUD_Ansat();
+
         }
 
         public void CreateAnsat(string fornavn, string efternavn, int telefonNummer, string privatMail, string adresse,

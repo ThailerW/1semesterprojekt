@@ -19,8 +19,13 @@ namespace SynsPunkt_ApS
     public partial class MainMenu : Form
     {
         public Models.Ansat LoggedInEmployee;
+        public List<Models.VareLinje> currentLineItems = new List<VareLinje>();
+        public List<Models.Vare> allProducts;
+        Services.VareService vareservice = new VareService();
+
         public MainMenu(Models.Ansat loggedInEmployee)
         {
+            allProducts = vareservice.GetAllVare();
             LoggedInEmployee = loggedInEmployee;
             InitializeComponent();
         }
@@ -32,6 +37,7 @@ namespace SynsPunkt_ApS
             GetAllBookings();
             GetAllKunder();
             GetAllLeverandører();
+            GetAllVareInBasketTab();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -159,18 +165,120 @@ namespace SynsPunkt_ApS
 
         private void btn_addToBasket_Click(object sender, EventArgs e)
         {
+            if (listView_product_list_buytab.SelectedItems.Count <= 0)
+            {
+                MessageBox.Show("Vælg en vare fra varelisten du vil tilføje til din kurv", "Hovsa", MessageBoxButtons.OK);
+                return;
+            }
+            int vareID = Convert.ToInt32(listView_product_list_buytab.SelectedItems[0].SubItems[0].Text);
+            Models.Vare chosenProduct = allProducts.FirstOrDefault(v => v.VareNummer == vareID);
+            Models.VareLinje lineItemForChosenProduct = currentLineItems.FirstOrDefault(x => x.Vare == chosenProduct);
+
+            //Tjekker om der er mindst 1 af varen på lager
+            if (Convert.ToInt32(listView_product_list_buytab.SelectedItems[0].SubItems[4].Text) <= 0)
+            {
+                MessageBox.Show("Hovsa, der er ikke flere tilbage af denne vare på lageret. Surt show", "Beklager", MessageBoxButtons.OK);
+                return;
+            }
+
+            if (currentLineItems.Any(x => x.Vare == chosenProduct))
+            {
+                //Tjekker for at man ikke kan købe flere af en vare end hvad der er på lager
+                if (lineItemForChosenProduct.Mængde == chosenProduct.LagerMængde)
+                {
+                    MessageBox.Show("Vil du købe flere af denne vare end vi har på lager din bøllebob?", "-3 i matematik", MessageBoxButtons.OK);
+                    return;
+                }
+                lineItemForChosenProduct.Mængde += 1;
+                UpdateBasketListView();
+                return;
+            }
+            //Hvis alt er ok, tilføjes en ny varelinje til kurven
+            Models.VareLinje varelinje = new VareLinje(chosenProduct, 1, chosenProduct.Pris);
+            currentLineItems.Add(varelinje);
+            UpdateBasketListView();
 
         }
 
+        private void UpdateBasketListView()
+        {
+            listView_basket_list.Items.Clear();
+            foreach (var lineItem in currentLineItems)
+            {
+                ListViewItem lineItemItem = new ListViewItem(lineItem.Vare.VareNummer.ToString());
+                lineItemItem.SubItems.Add(lineItem.Vare.VareNavn);
+                lineItemItem.SubItems.Add(lineItem.totalPris.ToString());
+                lineItemItem.SubItems.Add(lineItem.Mængde.ToString());
+                listView_basket_list.Items.Add(lineItemItem);
+            }
 
+        }
 
         private void btn_RemoveFromBasket_Click(object sender, EventArgs e)
         {
+            if (listView_basket_list.SelectedItems.Count <= 0)
+            {
+                MessageBox.Show("Vælg en vare fra kurven du vil fjerne", "Hovsa", MessageBoxButtons.OK);
+                return;
+            }
+            int vareID = Convert.ToInt32(listView_basket_list.SelectedItems[0].SubItems[0].Text);
+            Models.Vare chosenProduct = allProducts.FirstOrDefault(v => v.VareNummer == vareID);
+            Models.VareLinje lineItemForChosenProduct = currentLineItems.FirstOrDefault(x => x.Vare == chosenProduct);
+
+            currentLineItems.Remove(lineItemForChosenProduct);
+            UpdateBasketListView();
 
         }
 
         private void btn_SendInvoiceMail_Click(object sender, EventArgs e)
         {
+            int orderID = 0;
+            Services.Kunde_Services kundeService = new Kunde_Services();
+            Services.Varelinje_service varelinjeService = new Varelinje_service();
+            Services.Ordre_service ordreService = new Ordre_service();
+            Services.VareService vareService = new VareService();
+            string MessageBoxText = string.Empty;
+            if (currentLineItems.Count() == 0)
+            {
+                MessageBoxText += "Tilføj vare til kurven.";
+            }
+
+            if (tb_customerToBuy.Text == string.Empty)
+            {
+                MessageBoxText += Environment.NewLine + "Indtast kundeID.";
+            }
+            else if (!kundeService.CheckIfCustomerExists(Convert.ToInt32(tb_customerToBuy.Text)))
+            {
+                MessageBoxText += Environment.NewLine + "Ugyldigt kundeID.";
+            }
+
+            if (MessageBoxText != string.Empty)
+            {
+                MessageBox.Show(MessageBoxText);
+            }
+            else
+            {
+                int kundeID = Convert.ToInt32(tb_customerToBuy.Text);
+                DateTime orderDate = DateTime.Now.Date;
+                double totalPrice = 0;
+                foreach (var lineItem in currentLineItems)
+                {
+                    totalPrice += Convert.ToDouble(lineItem.totalPris);
+                }
+                orderID = ordreService.CreateOrder(kundeID,orderDate,totalPrice);
+
+                foreach (var lineItem in currentLineItems)
+                {
+                    varelinjeService.CreateVarelinje(lineItem.Vare.VareNummer, orderID, lineItem.Mængde);
+                    int itemsLeft = lineItem.Vare.LagerMængde - lineItem.Mængde;
+                    vareService.UpdateVare(lineItem.Vare.VareNummer.ToString(), lineItem.Vare.VareBeskrivelse, 
+                                            itemsLeft,lineItem.Vare.VareNavn,lineItem.Vare.Styrke,lineItem.Vare.LevCVR,lineItem.Vare.Pris);
+                }
+                GetAllVareInBasketTab();
+                UpdateBasketListView();
+                MessageBox.Show("Salg færdig");
+                currentLineItems.Clear();
+            }
 
         }
 
@@ -186,7 +294,26 @@ namespace SynsPunkt_ApS
 
         private void tb_SearchProduct_TextChanged(object sender, EventArgs e)
         {
+            listView_product_list_buytab.Items.Clear();
+            Services.VareService vareService = new Services.VareService();
+            if (tb_SearchProduct.Text == string.Empty)
+            {
+                GetAllVareInBasketTab();
+            }
+            else
+            {
+                List<Models.Vare> allVare = vareService.SearchVareByName(tb_SearchProduct.Text);
+                foreach (var vare in allVare)
+                {
+                    ListViewItem vareItem = new ListViewItem(vare.VareNummer.ToString());
+                    vareItem.SubItems.Add(vare.VareNavn);
+                    vareItem.SubItems.Add(vare.Styrke.ToString());
+                    vareItem.SubItems.Add(vare.Pris.ToString());
+                    vareItem.SubItems.Add(vare.LagerMængde.ToString());
+                    listView_product_list_buytab.Items.Add(vareItem);
+                }
 
+            }
         }
 
         private void listView_customers_SelectedIndexChanged(object sender, EventArgs e)
@@ -647,7 +774,15 @@ namespace SynsPunkt_ApS
 
         private void GetAllAnsatte()
         {
-
+            Services.Ansat_Services ansatService = new Services.Ansat_Services();
+            List<Models.Ansat> allAnsat = ansatService.GetAllAnsat();
+            foreach (var ansat in allAnsat)
+            {
+                ListViewItem ansatItem = new ListViewItem(ansat.EmployeeID.ToString());
+                ansatItem.SubItems.Add(ansat.FirstName);
+                ansatItem.SubItems.Add(ansat.LastName);
+                listView_employees.Items.Add(ansatItem);
+            }
         }
 
         private void GetAllKunder()
@@ -676,6 +811,24 @@ namespace SynsPunkt_ApS
 
         private void GetAllLeverandører()
         {
+
+        }
+
+        private void GetAllVareInBasketTab()
+        {
+
+            listView_product_list_buytab.Items.Clear();
+            Services.VareService vareservice = new VareService();
+            var vareList = vareservice.GetAllVare();
+            foreach (var vare in vareList)
+            {
+                ListViewItem vareItem = new ListViewItem(vare.VareNummer.ToString());
+                vareItem.SubItems.Add(vare.VareNavn);
+                vareItem.SubItems.Add(vare.Styrke.ToString());
+                vareItem.SubItems.Add(vare.Pris.ToString());
+                vareItem.SubItems.Add(vare.LagerMængde.ToString());
+                listView_product_list_buytab.Items.Add(vareItem);
+            }
 
         }
     }

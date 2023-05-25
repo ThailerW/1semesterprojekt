@@ -82,6 +82,9 @@
             this.label_listOfEmployees = new System.Windows.Forms.Label();
             this.tb_searchEmployee = new System.Windows.Forms.TextBox();
             this.listView_employees = new System.Windows.Forms.ListView();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage_LeverandoerOversigt = new System.Windows.Forms.TabPage();
             this.label_supplierAccountNo = new System.Windows.Forms.Label();
             this.tb_supplierAccountNo = new System.Windows.Forms.TextBox();
@@ -147,6 +150,13 @@
             this.tb_searchPhoneNumber = new System.Windows.Forms.TextBox();
             this.listView_customers = new System.Windows.Forms.ListView();
             this.tabPage_basket = new System.Windows.Forms.TabPage();
+            this.listView_basket_list = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tb_SearchProduct = new System.Windows.Forms.TextBox();
             this.label_basket = new System.Windows.Forms.Label();
             this.btn_SendInvoiceMail = new System.Windows.Forms.Button();
@@ -154,8 +164,12 @@
             this.btn_RemoveFromBasket = new System.Windows.Forms.Button();
             this.btn_addToBasket = new System.Windows.Forms.Button();
             this.label_basket_list = new System.Windows.Forms.Label();
-            this.rTb_basketdetails = new System.Windows.Forms.RichTextBox();
-            this.listView_basket_list = new System.Windows.Forms.ListView();
+            this.listView_product_list_buytab = new System.Windows.Forms.ListView();
+            this.vareID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.vareNavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.styrke = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.varePris = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lagerMængde = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage_Indstillinger = new System.Windows.Forms.TabPage();
             this.lb_gammel = new System.Windows.Forms.Label();
@@ -190,6 +204,9 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lb_vareSearch2 = new System.Windows.Forms.Label();
+            this.lb_customerToBuy = new System.Windows.Forms.Label();
+            this.tb_customerToBuy = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbox_UserNameLogo)).BeginInit();
@@ -753,13 +770,35 @@
             // 
             // listView_employees
             // 
+            this.listView_employees.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader6,
+            this.columnHeader11,
+            this.columnHeader12});
+            this.listView_employees.FullRowSelect = true;
+            this.listView_employees.GridLines = true;
             this.listView_employees.HideSelection = false;
             this.listView_employees.Location = new System.Drawing.Point(10, 76);
             this.listView_employees.Name = "listView_employees";
             this.listView_employees.Size = new System.Drawing.Size(384, 432);
             this.listView_employees.TabIndex = 42;
             this.listView_employees.UseCompatibleStateImageBehavior = false;
+            this.listView_employees.View = System.Windows.Forms.View.Details;
             this.listView_employees.SelectedIndexChanged += new System.EventHandler(this.listView_employees_SelectedIndexChanged);
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Medarbejdernummer";
+            this.columnHeader6.Width = 122;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Fornavn";
+            this.columnHeader11.Width = 124;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "Efternavn";
+            this.columnHeader12.Width = 116;
             // 
             // tabPage_LeverandoerOversigt
             // 
@@ -1407,6 +1446,10 @@
             // tabPage_basket
             // 
             this.tabPage_basket.BackColor = System.Drawing.Color.White;
+            this.tabPage_basket.Controls.Add(this.lb_customerToBuy);
+            this.tabPage_basket.Controls.Add(this.tb_customerToBuy);
+            this.tabPage_basket.Controls.Add(this.lb_vareSearch2);
+            this.tabPage_basket.Controls.Add(this.listView_basket_list);
             this.tabPage_basket.Controls.Add(this.tb_SearchProduct);
             this.tabPage_basket.Controls.Add(this.label_basket);
             this.tabPage_basket.Controls.Add(this.btn_SendInvoiceMail);
@@ -1414,8 +1457,7 @@
             this.tabPage_basket.Controls.Add(this.btn_RemoveFromBasket);
             this.tabPage_basket.Controls.Add(this.btn_addToBasket);
             this.tabPage_basket.Controls.Add(this.label_basket_list);
-            this.tabPage_basket.Controls.Add(this.rTb_basketdetails);
-            this.tabPage_basket.Controls.Add(this.listView_basket_list);
+            this.tabPage_basket.Controls.Add(this.listView_product_list_buytab);
             this.tabPage_basket.ForeColor = System.Drawing.Color.Black;
             this.tabPage_basket.Location = new System.Drawing.Point(4, 22);
             this.tabPage_basket.Name = "tabPage_basket";
@@ -1425,9 +1467,55 @@
             this.tabPage_basket.Text = "Kurv";
             this.tabPage_basket.Click += new System.EventHandler(this.tabPage1_Click);
             // 
+            // listView_basket_list
+            // 
+            this.listView_basket_list.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10});
+            this.listView_basket_list.FullRowSelect = true;
+            this.listView_basket_list.GridLines = true;
+            this.listView_basket_list.HideSelection = false;
+            this.listView_basket_list.Location = new System.Drawing.Point(412, 40);
+            this.listView_basket_list.Name = "listView_basket_list";
+            this.listView_basket_list.Size = new System.Drawing.Size(478, 432);
+            this.listView_basket_list.TabIndex = 17;
+            this.listView_basket_list.UseCompatibleStateImageBehavior = false;
+            this.listView_basket_list.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "ID";
+            this.columnHeader4.Width = 56;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Varenavn";
+            this.columnHeader5.Width = 159;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Pris (kr.)";
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Antal";
+            this.columnHeader8.Width = 75;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Fjern";
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Tilføj";
+            // 
             // tb_SearchProduct
             // 
-            this.tb_SearchProduct.Location = new System.Drawing.Point(10, 537);
+            this.tb_SearchProduct.Location = new System.Drawing.Point(10, 499);
             this.tb_SearchProduct.Name = "tb_SearchProduct";
             this.tb_SearchProduct.Size = new System.Drawing.Size(384, 22);
             this.tb_SearchProduct.TabIndex = 16;
@@ -1451,7 +1539,7 @@
             this.btn_SendInvoiceMail.Name = "btn_SendInvoiceMail";
             this.btn_SendInvoiceMail.Size = new System.Drawing.Size(224, 67);
             this.btn_SendInvoiceMail.TabIndex = 13;
-            this.btn_SendInvoiceMail.Text = "Send faktura på mail";
+            this.btn_SendInvoiceMail.Text = "Færdiggør køb og send faktura på mail";
             this.btn_SendInvoiceMail.UseVisualStyleBackColor = false;
             this.btn_SendInvoiceMail.Click += new System.EventHandler(this.btn_SendInvoiceMail_Click);
             // 
@@ -1503,23 +1591,47 @@
             this.label_basket_list.TabIndex = 10;
             this.label_basket_list.Text = "VARELISTE";
             // 
-            // rTb_basketdetails
+            // listView_product_list_buytab
             // 
-            this.rTb_basketdetails.Location = new System.Drawing.Point(413, 40);
-            this.rTb_basketdetails.Name = "rTb_basketdetails";
-            this.rTb_basketdetails.Size = new System.Drawing.Size(488, 432);
-            this.rTb_basketdetails.TabIndex = 9;
-            this.rTb_basketdetails.Text = "";
+            this.listView_product_list_buytab.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.vareID,
+            this.vareNavn,
+            this.styrke,
+            this.varePris,
+            this.lagerMængde});
+            this.listView_product_list_buytab.FullRowSelect = true;
+            this.listView_product_list_buytab.GridLines = true;
+            this.listView_product_list_buytab.HideSelection = false;
+            this.listView_product_list_buytab.Location = new System.Drawing.Point(10, 40);
+            this.listView_product_list_buytab.Name = "listView_product_list_buytab";
+            this.listView_product_list_buytab.Size = new System.Drawing.Size(384, 432);
+            this.listView_product_list_buytab.TabIndex = 8;
+            this.listView_product_list_buytab.UseCompatibleStateImageBehavior = false;
+            this.listView_product_list_buytab.View = System.Windows.Forms.View.Details;
+            this.listView_product_list_buytab.SelectedIndexChanged += new System.EventHandler(this.listView_basket_list_SelectedIndexChanged);
             // 
-            // listView_basket_list
+            // vareID
             // 
-            this.listView_basket_list.HideSelection = false;
-            this.listView_basket_list.Location = new System.Drawing.Point(10, 40);
-            this.listView_basket_list.Name = "listView_basket_list";
-            this.listView_basket_list.Size = new System.Drawing.Size(384, 432);
-            this.listView_basket_list.TabIndex = 8;
-            this.listView_basket_list.UseCompatibleStateImageBehavior = false;
-            this.listView_basket_list.SelectedIndexChanged += new System.EventHandler(this.listView_basket_list_SelectedIndexChanged);
+            this.vareID.Text = "ID";
+            this.vareID.Width = 56;
+            // 
+            // vareNavn
+            // 
+            this.vareNavn.Text = "Varenavn";
+            this.vareNavn.Width = 117;
+            // 
+            // styrke
+            // 
+            this.styrke.Text = "Styrke";
+            // 
+            // varePris
+            // 
+            this.varePris.Text = "Pris";
+            // 
+            // lagerMængde
+            // 
+            this.lagerMængde.Text = "Lagermængde";
+            this.lagerMængde.Width = 84;
             // 
             // tabControl
             // 
@@ -1854,6 +1966,31 @@
             this.columnHeader3.Text = "LagerMængde";
             this.columnHeader3.Width = 133;
             // 
+            // lb_vareSearch2
+            // 
+            this.lb_vareSearch2.AutoSize = true;
+            this.lb_vareSearch2.Location = new System.Drawing.Point(7, 479);
+            this.lb_vareSearch2.Name = "lb_vareSearch2";
+            this.lb_vareSearch2.Size = new System.Drawing.Size(81, 13);
+            this.lb_vareSearch2.TabIndex = 83;
+            this.lb_vareSearch2.Text = "Søg efter vare:";
+            // 
+            // lb_customerToBuy
+            // 
+            this.lb_customerToBuy.AutoSize = true;
+            this.lb_customerToBuy.Location = new System.Drawing.Point(7, 566);
+            this.lb_customerToBuy.Name = "lb_customerToBuy";
+            this.lb_customerToBuy.Size = new System.Drawing.Size(182, 13);
+            this.lb_customerToBuy.TabIndex = 85;
+            this.lb_customerToBuy.Text = "KundeID på kunde som skal købe:";
+            // 
+            // tb_customerToBuy
+            // 
+            this.tb_customerToBuy.Location = new System.Drawing.Point(10, 586);
+            this.tb_customerToBuy.Name = "tb_customerToBuy";
+            this.tb_customerToBuy.Size = new System.Drawing.Size(384, 22);
+            this.tb_customerToBuy.TabIndex = 84;
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1917,8 +2054,7 @@
         private System.Windows.Forms.Button btn_RemoveFromBasket;
         private System.Windows.Forms.Button btn_addToBasket;
         private System.Windows.Forms.Label label_basket_list;
-        private System.Windows.Forms.RichTextBox rTb_basketdetails;
-        private System.Windows.Forms.ListView listView_basket_list;
+        private System.Windows.Forms.ListView listView_product_list_buytab;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.Button btn_Leverandoeroversigt;
         private System.Windows.Forms.TabPage tabPage_Indstillinger;
@@ -2057,6 +2193,24 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader vareID;
+        private System.Windows.Forms.ColumnHeader vareNavn;
+        private System.Windows.Forms.ColumnHeader styrke;
+        private System.Windows.Forms.ColumnHeader varePris;
+        private System.Windows.Forms.ColumnHeader lagerMængde;
+        private System.Windows.Forms.ListView listView_basket_list;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.Label lb_vareSearch2;
+        private System.Windows.Forms.Label lb_customerToBuy;
+        private System.Windows.Forms.TextBox tb_customerToBuy;
     }
 }
 

@@ -1,5 +1,6 @@
 ﻿using SynsPunkt_ApS.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -209,6 +210,26 @@ namespace SynsPunkt_ApS.Database
             }
 
             return kundeListe;
+        }
+
+        public bool CheckIfCustomerExists(int kundeID)
+        {
+            bool customerExists = false;
+            string query = "SELECT COUNT(*) FROM SP_Kunde WHERE KundeID = @kundeID";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@kundeID", kundeID);
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        customerExists = true;
+                    }
+                }
+            }
+            return customerExists;
         }
     }
 }

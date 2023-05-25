@@ -49,45 +49,45 @@ namespace SynsPunkt_ApS.Database
         }
 
 
-        public List<Booking> GetBookingsPerDate(DateTime dato)
-        {
-            List<Booking> bookings = new List<Booking>();
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = "SELECT * FROM Booking WHERE dato = @dato";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@dato", dato);
+        //public List<Booking> GetBookingsPerDate(DateTime dato)
+        //{
+        //    List<Booking> bookings = new List<Booking>();
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        string query = "SELECT * FROM Booking WHERE dato = @dato";
+        //        SqlCommand command = new SqlCommand(query, connection);
+        //        command.Parameters.AddWithValue("@dato", dato);
 
-                try
-                {
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
+        //        try
+        //        {
+        //            connection.Open();
+        //            SqlDataReader reader = command.ExecuteReader();
 
-                    while (reader.Read())
-                    {
-                        Booking booking = new Booking
-                        (
-                            //(int)reader["bookingID"],
-                            (int)reader["lokationID"],
-                            (DateTime)reader["tidspunkt"],
-                            (DateTime)reader["dato"],
-                            (string)reader["bookingtype"],
-                            (int)reader["kundeid"]
-                        );
+        //            while (reader.Read())
+        //            {
+        //                Booking booking = new Booking
+        //                (
+        //                    //(int)reader["bookingID"],
+        //                    (int)reader["lokationID"],
+        //                    (DateTime)reader["tidspunkt"],
+        //                    (DateTime)reader["dato"],
+        //                    (string)reader["bookingtype"],
+        //                    (int)reader["kundeid"]
+        //                );
 
-                        bookings.Add(booking);
-                    }
+        //                bookings.Add(booking);
+        //            }
 
-                    reader.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Fejl ved hentning af bookinger: " + ex.Message);
-                }
-            }
+        //            reader.Close();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show("Fejl ved hentning af bookinger: " + ex.Message);
+        //        }
+        //    }
 
-            return bookings;
-        }
+        //    return bookings;
+        //}
 
 
         public void UpdateBooking(Booking updatedBooking)
