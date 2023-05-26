@@ -601,12 +601,45 @@ namespace SynsPunkt_ApS
 
         private void listView_suppliers_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Services.LeverandørService levService = new LeverandørService();
 
+            if (listView_suppliers.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = listView_suppliers.SelectedItems[0];
+                var item = selectedItem.SubItems[0].Text;
+
+                levService.ReadLeverandør(item, out string id2, out string navn, out string adresse, out string postNr, out string email,
+                    out string info, out string tlf);
+
+                tb_supplierIdLine.Text = id2;
+                tb_supplierName.Text = navn;
+                tb_supplierAdress.Text = adresse;
+                tb_levpostnr.Text = postNr;
+                tb_supplierPhone.Text = tlf;
+                tb_supplierEmail.Text = email;
+                rtb_faktuInfo.Text = info;
+            }
         }
 
         private void tb_supplierID_TextChanged(object sender, EventArgs e)
         {
-
+            listView_suppliers.Items.Clear();
+            Services.LeverandørService levService = new LeverandørService();
+            if (tb_supplierID.Text == string.Empty)
+            {
+                GetAllLeverandører();
+            }
+            else
+            {
+                List<Models.Leverandør> allLeverandør = levService.SearchLeverandørByName(tb_supplierID.Text);
+                foreach (var lev in allLeverandør)
+                {
+                    ListViewItem levItem = new ListViewItem(lev.CVRnummer.ToString());
+                    levItem.SubItems.Add(lev.LeverandørNavn);
+                    levItem.SubItems.Add(lev.Email);
+                    listView_suppliers.Items.Add(levItem);
+                }
+            }
         }
 
         private void btn_searchSupplierID_Click(object sender, EventArgs e)
@@ -880,6 +913,7 @@ namespace SynsPunkt_ApS
             {
                 vareService.UpdateVare(tb_productID.Text, rtb_productdescription.Text, quantity, tb_productName.Text, strength, tb_supplierCVR.Text, price);
                 MessageBox.Show(tb_productName.Text + " blev opdateret i databasen!", "SUCCESS!", MessageBoxButtons.OK);
+                GetAllVare();
             }
             else
             {
@@ -964,7 +998,16 @@ namespace SynsPunkt_ApS
 
         private void GetAllLeverandører()
         {
-
+            listView_suppliers.Items.Clear();
+            Services.LeverandørService levService = new LeverandørService();
+            var levList = levService.GetAllLeverandør();
+            foreach (var leverandør in levList)
+            {
+                ListViewItem levItem = new ListViewItem(leverandør.CVRnummer.ToString());
+                levItem.SubItems.Add(leverandør.LeverandørNavn);
+                levItem.SubItems.Add(leverandør.Email);
+                listView_suppliers.Items.Add(levItem);
+            }
         }
 
         private void GetAllVareInBasketTab()
@@ -987,17 +1030,73 @@ namespace SynsPunkt_ApS
 
         private void btn_createSupplier_Click(object sender, EventArgs e)
         {
+            Services.LeverandørService levService = new LeverandørService();
+            bool phoneNumValid = int.TryParse(tb_supplierPhone.Text, out int tlf);
+            bool zipValid = int.TryParse(tb_levpostnr.Text, out int zip);
 
+            if (phoneNumValid && zipValid)
+            {
+                levService.CreateLeverandør(tb_supplierName.Text, tb_supplierAdress.Text, zip, tb_supplierEmail.Text, 
+                    tb_supplierBankName.Text + " " + tb_supplierRegNo.Text + " " + tb_supplierAccountNo.Text, tlf);
+
+                MessageBox.Show(tb_supplierName.Text + " blev tilføjet til databasen!", "SUCCESS!", MessageBoxButtons.OK);
+                GetAllLeverandører();
+            }
+            else
+            {
+                MessageBox.Show("Et eller flere inputs er ugyldige!", "OOPS!", MessageBoxButtons.OK);
+            }
         }
 
         private void btn_updateSupplier_Click(object sender, EventArgs e)
         {
+            Services.LeverandørService levService = new LeverandørService();
+            bool phoneNumValid = int.TryParse(tb_supplierPhone.Text, out int tlf);
+            bool zipValid = int.TryParse(tb_levpostnr.Text, out int zip);
 
+            if (phoneNumValid && zipValid)
+            {
+                levService.UpdateLeverandør(tb_supplierIdLine.Text, tb_supplierName.Text, tb_supplierAdress.Text, zip, tb_supplierEmail.Text,
+                    tb_supplierBankName.Text + " " + tb_supplierRegNo.Text + " " + tb_supplierAccountNo.Text, tlf);
+
+                MessageBox.Show(tb_supplierName.Text + " blev opdateret i databasen!", "SUCCESS!", MessageBoxButtons.OK);
+                GetAllLeverandører();
+            }
+            else
+            {
+                MessageBox.Show("Et eller flere inputs er ugyldige!", "OOPS!", MessageBoxButtons.OK);
+            }
         }
 
         private void btn_deleteSupplier_Click(object sender, EventArgs e)
         {
+            Services.LeverandørService levService = new LeverandørService();
+            if (tb_supplierIdLine != null)
+            {
+                DialogResult dialogResult = MessageBox.Show("Er du sikker på at du vil slette " + tb_supplierName.Text + "?",
+                    "ADVARSEL!", MessageBoxButtons.YesNoCancel);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    levService.DeleteLeverandør(tb_supplierIdLine.Text);
+                    MessageBox.Show(tb_supplierName.Text + " blev slettet fra databasen!", "SUCCESS!", MessageBoxButtons.OK);
 
+                    tb_supplierIdLine.Text = null;
+                    tb_supplierName.Text = null;
+                    tb_supplierAdress.Text = null;
+                    tb_levpostnr.Text = null;
+                    tb_supplierPhone.Text = null;
+                    tb_supplierEmail.Text = null;
+                    tb_supplierBankName.Text = null;
+                    tb_supplierRegNo.Text = null;
+                    tb_supplierAccountNo.Text = null;
+                    rtb_faktuInfo.Text = null;
+                    GetAllLeverandører();
+                }
+                else
+                {
+                    MessageBox.Show("Sletning afbrudt!", "SUCCESS!", MessageBoxButtons.OK);
+                }
+            }
         }
     }
 }

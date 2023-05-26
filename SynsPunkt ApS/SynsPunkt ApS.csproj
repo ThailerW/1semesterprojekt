@@ -62,6 +62,7 @@
     <Compile Include="Services\Booking_service.cs" />
     <Compile Include="Services\ChangePassword.cs" />
     <Compile Include="Services\Kunde_service.cs" />
+    <Compile Include="Services\LeverandørService.cs" />
     <Compile Include="Services\Ordre_service.cs" />
     <Compile Include="Services\UserLogIn.cs" />
     <Compile Include="Services\Varelinje_service.cs" />

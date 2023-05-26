@@ -17,19 +17,17 @@ namespace SynsPunkt_ApS.Models
         public string BankNavn { get; set; }
         public int Registeringsnummer { get; set; }
         public int KontoNummer { get; set; }
+        public string FaktureringsOplysninger { get; set; }
 
-        public Leverandør(int cVRnummer, string leverandørNavn, string adresse, int postNummer, int telefonNummer, 
-            string email, string bankNavn, int registeringsnummer, int kontoNummer)
-        {
-            CVRnummer = cVRnummer;
-            LeverandørNavn = leverandørNavn;
-            Adresse = adresse;
-            PostNummer = postNummer;
-            TelefonNummer = telefonNummer;
-            Email = email;
-            BankNavn = bankNavn;
-            Registeringsnummer = registeringsnummer;
-            KontoNummer = kontoNummer;
+        public Leverandør(int cVRnummer, string leverandørNavn, string adresse, int postNr, string email, string faktureringsoplysninger, int telefonNummer)        {
+            this.CVRnummer = cVRnummer;
+            this.LeverandørNavn = leverandørNavn;
+            this.Adresse = adresse;
+            this.PostNummer = postNr;
+            this.Email = email;
+            this.FaktureringsOplysninger = faktureringsoplysninger;
+            this.TelefonNummer = telefonNummer;
         }
+
     }
 }
