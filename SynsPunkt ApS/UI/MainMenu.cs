@@ -831,5 +831,20 @@ namespace SynsPunkt_ApS
             }
 
         }
+
+        private void btn_createSupplier_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_updateSupplier_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_deleteSupplier_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
