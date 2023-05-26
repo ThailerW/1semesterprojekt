@@ -14,22 +14,6 @@ namespace SynsPunkt_ApS.Database
     {
         SqlConnection conn = new SqlConnection(Database.ConnectionString.GetConnectionString());
 
-        public void CreateKunde(Kunde kunde)
-        {
-            // Logik
-        }
-        public void ReadKunde()
-        {
-            // Logik
-        }
-        public void UpdateKunde(Kunde kunde)
-        {
-            // Logik
-        }
-        public void DeleteKunde(string kundeNummer)
-        {
-            // Logik
-        }
         private string connectionString = "Data Source=mssql15.unoeuro.com;Initial Catalog=oversaftigt_dk_db_test;User ID=oversaftigt_dk;Password=prfHFR9546nEtyb2xDmc";
 
         /// <summary>
@@ -118,7 +102,7 @@ namespace SynsPunkt_ApS.Database
 
             try
             {
-                string query = "UPDATE SP_Kunde SET LokationID = (SELECT LokationID FROM SP_Optiker WHERE byNavn = @Lokation), Mail = @Mail, Fornavn = @Fornavn, Efternavn = @Efternavn, TelefonNummer = @TelefonNummer, Adresse = @Adresse, PostNr = @PostNr WHERE KundeID = @KundeId";
+                string query = "UPDATE SP_Kunde SET LokationID = (SELECT LokationID FROM SP_Optiker WHERE byNavn = @Lokation), Mail = @Mail, Fornavn = @Fornavn, Efternavn = @Efternavn, TelefonNummer = @TelefonNummer, Adresse = @Adresse, PostNr = @PostNr WHERE KundeID = @KundeID";
                 SqlCommand command = new SqlCommand(query, conn);
                 command.Parameters.AddWithValue("@Lokation", lokationId);
                 command.Parameters.AddWithValue("@Mail", Mail);
@@ -153,7 +137,7 @@ namespace SynsPunkt_ApS.Database
             {
                 string query = "DELETE FROM SP_Kunde WHERE KundeID = @KundeID";
                 SqlCommand command = new SqlCommand(query, conn);
-                command.Parameters.AddWithValue("KundeNummer", KundeID);
+                command.Parameters.AddWithValue("@KundeID", KundeID);
                 conn.Open();
                 SqlDataReader reader = command.ExecuteReader();
             }

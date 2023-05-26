@@ -351,6 +351,7 @@ namespace SynsPunkt_ApS
         {
             Services.Kunde_Services kundeService = new Services.Kunde_Services();
 
+
             // Opret en ny kunde med dataene fra tekstboksene
             string forNavn = tb_CustomerFirstName.Text;
             string efterNavn = tb_customerLastName.Text;
@@ -359,6 +360,7 @@ namespace SynsPunkt_ApS
             string adresse = tb_customerAdress.Text;
             int postNr;
             string lokationId = tb_CustomerLokation.Text;
+
 
             if (!int.TryParse(tb_customerPhoneNumber.Text, out telefonNummer))
             {
@@ -371,6 +373,9 @@ namespace SynsPunkt_ApS
                 MessageBox.Show("Invalid postnr value. Please enter a valid integer.");
                 return;
             }
+
+            kundeService.CreateKunde(lokationId, Mail, forNavn,efterNavn,telefonNummer, adresse, postNr);
+
         }
 
         private void ClearTextBoxes()
@@ -421,7 +426,7 @@ namespace SynsPunkt_ApS
             Services.Kunde_Services kunde_Services = new Services.Kunde_Services();
             if (string.IsNullOrEmpty(tb_customerID.Text))
             {
-                MessageBox.Show("Vil du sltte denne kunde", "Kunde slettet", MessageBoxButtons.OK);
+                MessageBox.Show("Vil du slette denne kunde", "Kunde slettet", MessageBoxButtons.OK);
                 return;
             }
 
@@ -431,9 +436,9 @@ namespace SynsPunkt_ApS
             {
                 string fullname = tb_customerID.Text + " " + tb_customerLastName.Text;
 
-                MessageBox.Show(fullname + "blev stettet", "Kunden blev slettet", MessageBoxButtons.OK);
+                MessageBox.Show(fullname + "blev slettet", "Kunden blev slettet", MessageBoxButtons.OK);
 
-                kunde_Services.DeleteKunde(tb_customerID.Text);
+                kunde_Services.DeleteKunde(int.Parse(tb_customerID.Text));
 
                 if (tb_customerID.Text != string.Empty)
                 {
@@ -924,6 +929,17 @@ namespace SynsPunkt_ApS
 
         private void GetAllKunder()
         {
+            listView_customers.Items.Clear();
+            Services.Kunde_Services kunde_Services = new Services.Kunde_Services();
+            var kundeList = kunde_Services.GetCustomers();
+            foreach(var kunde in kundeList)
+            {
+                ListViewItem kundeItem = new ListViewItem(kunde.KundeId.ToString());
+                kundeItem.SubItems.Add(kunde.Fornavn);
+                kundeItem.SubItems.Add(kunde.Efternavn);
+                listView_customers.Items.Add(kundeItem);
+
+            }
 
         }
 

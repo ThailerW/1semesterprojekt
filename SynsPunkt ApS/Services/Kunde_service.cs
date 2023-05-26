@@ -33,7 +33,7 @@ namespace SynsPunkt_ApS.Services
             crudKunde.UpdateKunde(lokationId, Mail, forNavn, efterNavn, telefonNummer, adresse, postNr);
         }
 
-        public void DeleteKunde(string KundeID)
+        public void DeleteKunde(int KundeID)
         {
             // Slet en kunde
             crudKunde.DeleteKunde(KundeID);
