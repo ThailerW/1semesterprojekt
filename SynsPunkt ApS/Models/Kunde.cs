@@ -12,25 +12,22 @@ namespace SynsPunkt_ApS.Models
         public string Fornavn { get; set; }
         public string Efternavn { get; set; }
         public int TelefonNummer { get; set; }
-        public string PrivatEmail { get; set; }
+        public string Mail { get; set; }
         public string Adresse { get; set; }
-        public string KundeNummer { get; set; }
-        public string KundeInfo { get; set; }
+        public string KundeId { get; set; }
         public int PostNr { get; set; }
-        public List<Models.Ordre> OrdeHistorik { get; set; }
-        public List <Models.Booking> BookingHistorik { get; set; }
+        public string LokationId { get; set; }
 
-        public Kunde(string fornavn, string efternavn, int telefonNummer, string privatEmail, string adresse, 
-            string kundeNummer, string kundeInfo, int postNr)
+        public Kunde(string fornavn, string efternavn, int telefonNummer, string mail, string adresse, string kundeId, int postNr, string lokationId)
         {
             Fornavn = fornavn;
             Efternavn = efternavn;
             TelefonNummer = telefonNummer;
-            PrivatEmail = privatEmail;
+            Mail = mail;
             Adresse = adresse;
-            KundeNummer = kundeNummer;
-            KundeInfo = kundeInfo;
+            KundeId = kundeId;
             PostNr = postNr;
+            LokationId = lokationId;
         }
     }
 }

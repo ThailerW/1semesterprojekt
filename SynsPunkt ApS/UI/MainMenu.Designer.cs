@@ -110,12 +110,14 @@
             this.tb_supplierID = new System.Windows.Forms.TextBox();
             this.listView_suppliers = new System.Windows.Forms.ListView();
             this.tabPage_BookingOversigt = new System.Windows.Forms.TabPage();
+            this.lb_customerID = new System.Windows.Forms.Label();
+            this.tb_locationID = new System.Windows.Forms.TextBox();
+            this.cb_timePicker = new System.Windows.Forms.ComboBox();
             this.label_bookingdescription = new System.Windows.Forms.Label();
             this.tb_bookingDescription = new System.Windows.Forms.TextBox();
             this.label_customerBooking = new System.Windows.Forms.Label();
             this.tb_customerBooking = new System.Windows.Forms.TextBox();
             this.label_bookingTime = new System.Windows.Forms.Label();
-            this.tb_bookingTime = new System.Windows.Forms.TextBox();
             this.label_bookingDate = new System.Windows.Forms.Label();
             this.dateTimePicker_bookingInterval = new System.Windows.Forms.DateTimePicker();
             this.btn_clearDate = new System.Windows.Forms.Button();
@@ -207,6 +209,8 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tb_CustomerLokation = new System.Windows.Forms.TextBox();
+            this.lb_customerLocation = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbox_UserNameLogo)).BeginInit();
@@ -1041,12 +1045,14 @@
             // tabPage_BookingOversigt
             // 
             this.tabPage_BookingOversigt.BackColor = System.Drawing.Color.White;
+            this.tabPage_BookingOversigt.Controls.Add(this.lb_customerID);
+            this.tabPage_BookingOversigt.Controls.Add(this.tb_locationID);
+            this.tabPage_BookingOversigt.Controls.Add(this.cb_timePicker);
             this.tabPage_BookingOversigt.Controls.Add(this.label_bookingdescription);
             this.tabPage_BookingOversigt.Controls.Add(this.tb_bookingDescription);
             this.tabPage_BookingOversigt.Controls.Add(this.label_customerBooking);
             this.tabPage_BookingOversigt.Controls.Add(this.tb_customerBooking);
             this.tabPage_BookingOversigt.Controls.Add(this.label_bookingTime);
-            this.tabPage_BookingOversigt.Controls.Add(this.tb_bookingTime);
             this.tabPage_BookingOversigt.Controls.Add(this.label_bookingDate);
             this.tabPage_BookingOversigt.Controls.Add(this.dateTimePicker_bookingInterval);
             this.tabPage_BookingOversigt.Controls.Add(this.btn_clearDate);
@@ -1066,6 +1072,35 @@
             this.tabPage_BookingOversigt.Text = "Booking";
             this.tabPage_BookingOversigt.Click += new System.EventHandler(this.tabPage3_Click);
             // 
+            // lb_customerID
+            // 
+            this.lb_customerID.AutoSize = true;
+            this.lb_customerID.Location = new System.Drawing.Point(408, 274);
+            this.lb_customerID.Name = "lb_customerID";
+            this.lb_customerID.Size = new System.Drawing.Size(52, 13);
+            this.lb_customerID.TabIndex = 58;
+            this.lb_customerID.Text = "Lokation";
+            // 
+            // tb_locationID
+            // 
+            this.tb_locationID.Location = new System.Drawing.Point(530, 266);
+            this.tb_locationID.Name = "tb_locationID";
+            this.tb_locationID.Size = new System.Drawing.Size(371, 22);
+            this.tb_locationID.TabIndex = 57;
+            this.tb_locationID.Text = "7";
+            // 
+            // cb_timePicker
+            // 
+            this.cb_timePicker.FormattingEnabled = true;
+            this.cb_timePicker.Items.AddRange(new object[] {
+            "08:00",
+            "09:00"});
+            this.cb_timePicker.Location = new System.Drawing.Point(530, 125);
+            this.cb_timePicker.Name = "cb_timePicker";
+            this.cb_timePicker.Size = new System.Drawing.Size(371, 21);
+            this.cb_timePicker.TabIndex = 56;
+            this.cb_timePicker.Text = "08:00";
+            // 
             // label_bookingdescription
             // 
             this.label_bookingdescription.AutoSize = true;
@@ -1081,6 +1116,7 @@
             this.tb_bookingDescription.Name = "tb_bookingDescription";
             this.tb_bookingDescription.Size = new System.Drawing.Size(371, 22);
             this.tb_bookingDescription.TabIndex = 54;
+            this.tb_bookingDescription.Text = "hej";
             // 
             // label_customerBooking
             // 
@@ -1097,6 +1133,7 @@
             this.tb_customerBooking.Name = "tb_customerBooking";
             this.tb_customerBooking.Size = new System.Drawing.Size(371, 22);
             this.tb_customerBooking.TabIndex = 52;
+            this.tb_customerBooking.Text = "1";
             // 
             // label_bookingTime
             // 
@@ -1106,13 +1143,6 @@
             this.label_bookingTime.Size = new System.Drawing.Size(59, 13);
             this.label_bookingTime.TabIndex = 51;
             this.label_bookingTime.Text = "Tidspunkt";
-            // 
-            // tb_bookingTime
-            // 
-            this.tb_bookingTime.Location = new System.Drawing.Point(530, 130);
-            this.tb_bookingTime.Name = "tb_bookingTime";
-            this.tb_bookingTime.Size = new System.Drawing.Size(371, 22);
-            this.tb_bookingTime.TabIndex = 50;
             // 
             // label_bookingDate
             // 
@@ -1229,6 +1259,8 @@
             // tabPage_kundeoversigt
             // 
             this.tabPage_kundeoversigt.BackColor = System.Drawing.Color.White;
+            this.tabPage_kundeoversigt.Controls.Add(this.tb_CustomerLokation);
+            this.tabPage_kundeoversigt.Controls.Add(this.lb_customerLocation);
             this.tabPage_kundeoversigt.Controls.Add(this.tb_customerPostNr);
             this.tabPage_kundeoversigt.Controls.Add(this.lb_customerPostNr);
             this.tabPage_kundeoversigt.Controls.Add(this.btn_updateCustomer);
@@ -1279,7 +1311,7 @@
             this.btn_updateCustomer.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btn_updateCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_updateCustomer.ForeColor = System.Drawing.Color.Transparent;
-            this.btn_updateCustomer.Location = new System.Drawing.Point(594, 303);
+            this.btn_updateCustomer.Location = new System.Drawing.Point(594, 338);
             this.btn_updateCustomer.Name = "btn_updateCustomer";
             this.btn_updateCustomer.Size = new System.Drawing.Size(133, 67);
             this.btn_updateCustomer.TabIndex = 41;
@@ -1292,7 +1324,7 @@
             this.btn_deleteCustomer.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btn_deleteCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_deleteCustomer.ForeColor = System.Drawing.Color.Transparent;
-            this.btn_deleteCustomer.Location = new System.Drawing.Point(768, 303);
+            this.btn_deleteCustomer.Location = new System.Drawing.Point(768, 338);
             this.btn_deleteCustomer.Name = "btn_deleteCustomer";
             this.btn_deleteCustomer.Size = new System.Drawing.Size(133, 67);
             this.btn_deleteCustomer.TabIndex = 40;
@@ -1369,7 +1401,7 @@
             this.btn_createCustomer.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btn_createCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_createCustomer.ForeColor = System.Drawing.Color.Transparent;
-            this.btn_createCustomer.Location = new System.Drawing.Point(412, 303);
+            this.btn_createCustomer.Location = new System.Drawing.Point(412, 338);
             this.btn_createCustomer.Name = "btn_createCustomer";
             this.btn_createCustomer.Size = new System.Drawing.Size(133, 67);
             this.btn_createCustomer.TabIndex = 31;
@@ -1994,6 +2026,22 @@
             this.columnHeader3.Text = "LagerMængde";
             this.columnHeader3.Width = 133;
             // 
+            // tb_CustomerLokation
+            // 
+            this.tb_CustomerLokation.Location = new System.Drawing.Point(530, 292);
+            this.tb_CustomerLokation.Name = "tb_CustomerLokation";
+            this.tb_CustomerLokation.Size = new System.Drawing.Size(371, 22);
+            this.tb_CustomerLokation.TabIndex = 45;
+            // 
+            // lb_customerLocation
+            // 
+            this.lb_customerLocation.AutoSize = true;
+            this.lb_customerLocation.Location = new System.Drawing.Point(410, 295);
+            this.lb_customerLocation.Name = "lb_customerLocation";
+            this.lb_customerLocation.Size = new System.Drawing.Size(52, 13);
+            this.lb_customerLocation.TabIndex = 44;
+            this.lb_customerLocation.Text = "Lokation";
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2122,7 +2170,6 @@
         private System.Windows.Forms.Label label_customerBooking;
         private System.Windows.Forms.TextBox tb_customerBooking;
         private System.Windows.Forms.Label label_bookingTime;
-        private System.Windows.Forms.TextBox tb_bookingTime;
         private System.Windows.Forms.Label label_bookingDate;
         private System.Windows.Forms.DateTimePicker dateTimePicker_bookingInterval;
         private System.Windows.Forms.Button btn_GenerateReport;
@@ -2214,6 +2261,11 @@
         private System.Windows.Forms.Label lb_vareSearch2;
         private System.Windows.Forms.Label lb_customerToBuy;
         private System.Windows.Forms.TextBox tb_customerToBuy;
+        private System.Windows.Forms.ComboBox cb_timePicker;
+        private System.Windows.Forms.Label lb_customerID;
+        private System.Windows.Forms.TextBox tb_locationID;
+        private System.Windows.Forms.TextBox tb_CustomerLokation;
+        private System.Windows.Forms.Label lb_customerLocation;
     }
 }
 

@@ -10,15 +10,15 @@ namespace SynsPunkt_ApS.Models
     {
         public int BookingID { get; set; }
         public int LokationID { get; set; }
-        public DateTime Tidspunkt { get; set; }
+        public string Tidspunkt { get; set; }
         public DateTime Dato { get; set; }
         public string BookingType { get; set; }
         public int KundeID { get; set; }
 
-        public Booking(int bookingID, int lokationID, DateTime dato, DateTime tidspunkt, string bookingType, int kundeID)
+        public Booking(int lokationid, DateTime dato, string tidspunkt, string bookingType, int kundeID)
         {
-            BookingID = bookingID;
-            LokationID = lokationID;
+
+            LokationID = lokationid;
             Dato = dato;
             Tidspunkt = tidspunkt;
             BookingType = bookingType;

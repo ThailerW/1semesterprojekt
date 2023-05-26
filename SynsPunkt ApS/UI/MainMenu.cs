@@ -265,14 +265,14 @@ namespace SynsPunkt_ApS
                 {
                     totalPrice += Convert.ToDouble(lineItem.totalPris);
                 }
-                orderID = ordreService.CreateOrder(kundeID,orderDate,totalPrice);
+                orderID = ordreService.CreateOrder(kundeID, orderDate, totalPrice);
 
                 foreach (var lineItem in currentLineItems)
                 {
                     varelinjeService.CreateVarelinje(lineItem.Vare.VareNummer, orderID, lineItem.Mængde);
                     int itemsLeft = lineItem.Vare.LagerMængde - lineItem.Mængde;
-                    vareService.UpdateVare(lineItem.Vare.VareNummer.ToString(), lineItem.Vare.VareBeskrivelse, 
-                                            itemsLeft,lineItem.Vare.VareNavn,lineItem.Vare.Styrke,lineItem.Vare.LevCVR,lineItem.Vare.Pris);
+                    vareService.UpdateVare(lineItem.Vare.VareNummer.ToString(), lineItem.Vare.VareBeskrivelse,
+                                            itemsLeft, lineItem.Vare.VareNavn, lineItem.Vare.Styrke, lineItem.Vare.LevCVR, lineItem.Vare.Pris);
                 }
                 GetAllVareInBasketTab();
                 UpdateBasketListView();
@@ -318,7 +318,27 @@ namespace SynsPunkt_ApS
 
         private void listView_customers_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Tjek om en kunde er valgt i ListView
+            if (listView_customers.SelectedItems.Count > 0)
+            {
 
+                Services.Kunde_Services kundeServices = new Kunde_Services();
+
+                string selectedKundeID = listView_customers.SelectedItems[0].SubItems[0].Text;
+
+                Models.Kunde selectedKunde = kundeServices.GetKunde(Convert.ToInt32(selectedKundeID));
+
+                ListViewItem selectedItem = listView_customers.SelectedItems[0];
+
+                // Opdater tekstbokse med de valgte kundens oplysninger
+                tb_customerID.Text = selectedKunde.KundeId;
+                tb_CustomerFirstName.Text = selectedKunde.Fornavn;
+                tb_customerLastName.Text = selectedKunde.Efternavn;
+                tb_customerPhoneNumber.Text = selectedKunde.TelefonNummer.ToString();
+                tb_customerEmail.Text = selectedKunde.Mail;
+                tb_customerAdress.Text = selectedKunde.Adresse;
+                tb_customerPostNr.Text = selectedKunde.PostNr.ToString();
+            }
         }
 
         private void tb_searchPhoneNumber_TextChanged(object sender, EventArgs e)
@@ -329,52 +349,139 @@ namespace SynsPunkt_ApS
 
         private void btn_createCustomer_Click(object sender, EventArgs e)
         {
+            Services.Kunde_Services kundeService = new Services.Kunde_Services();
 
-            try
+            // Opret en ny kunde med dataene fra tekstboksene
+            string forNavn = tb_CustomerFirstName.Text;
+            string efterNavn = tb_customerLastName.Text;
+            int telefonNummer;
+            string Mail = tb_customerEmail.Text;
+            string adresse = tb_customerAdress.Text;
+            int postNr;
+            string lokationId = tb_CustomerLokation.Text;
+
+            if (!int.TryParse(tb_customerPhoneNumber.Text, out telefonNummer))
             {
-                Services.Kunde_Services kundeServices = new Kunde_Services();
-                // Kald metoder på kundeServices eller udfør handlinger på kunder her
-                MessageBox.Show("Kunden blev opdateret");
+                MessageBox.Show("Invalid telefonnummer value. Please enter a valid integer.");
+                return;
             }
-            catch (Exception ex)
+
+            if (!int.TryParse(tb_customerPostNr.Text, out postNr))
             {
-                // Håndter undtagelsen her, f.eks. vis en fejlmeddelelse
-                MessageBox.Show("Der opstod en fejl under opdatering af kunden: " + ex.Message);
+                MessageBox.Show("Invalid postnr value. Please enter a valid integer.");
+                return;
             }
+        }
 
-
+        private void ClearTextBoxes()
+        {
+            tb_CustomerFirstName.Text = "";
+            tb_customerLastName.Text = "";
+            tb_customerPhoneNumber.Text = "";
+            tb_customerEmail.Text = "";
+            tb_customerAdress.Text = "";
+            tb_customerID.Text = "";
+            tb_customerPostNr.Text = "";
         }
 
         private void btn_updateCustomer_Click(object sender, EventArgs e)
         {
-            try
+            Services.Kunde_Services kundeServices = new Services.Kunde_Services();
+
+            string forNavn = tb_CustomerFirstName.Text;
+            string efterNavn = tb_customerLastName.Text;
+            string telefonNummerText = tb_customerPhoneNumber.Text;
+            string Mail = tb_customerEmail.Text;
+            string adresse = tb_customerAdress.Text;
+            string postNrText = tb_customerPostNr.Text;
+            string lokationId = tb_CustomerLokation.Text;
+
+            int telefonNummer; // Declare telefonNummer as an int variable
+            if (!int.TryParse(telefonNummerText, out telefonNummer))
             {
-                Services.Kunde_Services kundeServices = new Kunde_Services();
-                // Kald metoder på kundeServices eller udfør handlinger på kunder her
-                MessageBox.Show("Kunden blev slettet");
-            }
-            catch (Exception ex)
-            {
-                // Håndter undtagelsen her, f.eks. vis en fejlmeddelelse
-                MessageBox.Show("Der opstod en fejl under sletning af kunden: " + ex.Message);
+                MessageBox.Show("Ugyldig telefonnummer værdi. Indtast venligst et gyldigt heltal.");
+                return;
             }
 
+            int postNr; // Declare postNr as an int variable
+            if (!int.TryParse(postNrText, out postNr))
+            {
+                MessageBox.Show("Ugyldig postnr værdi. Indtast venligst et gyldigt heltal.");
+                return;
+            }
+
+            kundeServices.UpdateKunde(lokationId, Mail, forNavn, efterNavn, telefonNummer, adresse, postNr);
+
+            MessageBox.Show("Kunden blev opdateret");
         }
+
 
         private void btn_deleteCustomer_Click(object sender, EventArgs e)
         {
-            try
+            Services.Kunde_Services kunde_Services = new Services.Kunde_Services();
+            if (string.IsNullOrEmpty(tb_customerID.Text))
             {
-                Services.Kunde_Services kundeServices = new Kunde_Services();
-                // Kald metoder på kundeServices eller udfør handlinger på kunder her
-                MessageBox.Show("Kunden blev slettet");
-            }
-            catch (Exception ex)
-            {
-                // Håndter undtagelsen her, f.eks. vis en fejlmeddelelse
-                MessageBox.Show("Der opstod en fejl under sletning af kunden: " + ex.Message);
+                MessageBox.Show("Vil du sltte denne kunde", "Kunde slettet", MessageBoxButtons.OK);
+                return;
             }
 
+            DialogResult result = MessageBox.Show("Er du sikker du vil slette kunden", "Ja", MessageBoxButtons.YesNoCancel);
+
+            if (result == DialogResult.Yes)
+            {
+                string fullname = tb_customerID.Text + " " + tb_customerLastName.Text;
+
+                MessageBox.Show(fullname + "blev stettet", "Kunden blev slettet", MessageBoxButtons.OK);
+
+                kunde_Services.DeleteKunde(tb_customerID.Text);
+
+                if (tb_customerID.Text != string.Empty)
+                {
+                    GetAllKunder();
+                }
+                else
+                {
+                    tb_searchPhoneNumber_TextChanged(tb_searchPhoneNumber, new EventArgs());
+
+                }
+                foreach (System.Windows.Forms.TextBox textBox in tabPage_kundeoversigt.Controls.OfType<System.Windows.Forms.TextBox>())
+                {
+                    if (textBox != tb_searchPhoneNumber && textBox.Text != string.Empty)
+                    {
+                        textBox.Text = string.Empty;
+                    }
+                }
+            }
+        }
+
+
+        private void UpdateCustomerListView()
+        {
+            Kunde_Services kundeServices = new Kunde_Services();
+
+
+            // Hent opdaterede kundedata fra databasen eller en anden datakilde
+            List<Kunde> customers = kundeServices.GetCustomers();
+
+            // Tilføj kunder som elementer i ListView
+            foreach (Kunde customer in customers)
+            {
+                ListViewItem item = new ListViewItem(customer.KundeId.ToString());
+                item.SubItems.Add(customer.Fornavn);
+                item.SubItems.Add(customer.Efternavn);
+
+                item.SubItems.Add(customer.TelefonNummer.ToString());
+
+                item.SubItems.Add(customer.Mail);
+                item.SubItems.Add(customer.Adresse);
+
+                ListViewItem.ListViewSubItem postNrSubItem = new ListViewItem.ListViewSubItem(item, customer.PostNr.ToString());
+                item.SubItems.Add(postNrSubItem);
+
+                listView_customers.Items.Add(item);
+
+
+            }
         }
 
         private void listView_Bookings_SelectedIndexChanged(object sender, EventArgs e)
@@ -412,48 +519,78 @@ namespace SynsPunkt_ApS
         }
 
         private void btn_createBooking_Click(object sender, EventArgs e)
-        {/*
-            try
+        {
+            bool lokationIDValid = int.TryParse(tb_locationID.Text, out int lokationID); ;
+            //DateTime tidspunkt = DateTime.ParseExact(cb_timePicker.Text, "HH:mm:ss", CultureInfo.InvariantCulture);
+            string tidspunkt = cb_timePicker.Text;
+            tidspunkt = tidspunkt += ":00";
+            DateTime dato = dateTimePicker_bookingInterval.Value;
+            string bookingType = tb_bookingDescription.Text;
+            bool kundeIDValid = int.TryParse(tb_customerBooking.Text, out int kundeID);
+
+            if (lokationIDValid && kundeIDValid)
             {
-                
-                // Hent bookingværdier fra UI
-                int lokationId = int.Parse(tb_locationID.Text);
-                DateTime tidspunkt = DateTime.ParseExact(tb_bookingTime.Text, "HH:mm", CultureInfo.InvariantCulture);
-                DateTime dato = DateTime.Parse(dateTimePicker_bookingInterval.Text);
-                string bookingType = tb_bookingDescription.Text;
-                int kundeId = int.Parse(tb_customerBooking.Text);
+                BookingService bookingServices = new BookingService();
 
-                // Opret en ny booking med de indtastede værdier
-                Booking newBooking = new Booking(lokationId, tidspunkt, dato, bookingType, kundeId);
+                Booking newBooking = new Booking(lokationID, dato, tidspunkt, bookingType, kundeID);
 
+                bookingServices.CreateBooking(newBooking);
 
-                BookingService bookingService = new BookingService();
-
-                // Kald CreateBooking-metoden i BookingService for at oprette bookingen
-                bookingService.CreateBooking(newBooking);
-
-
-                MessageBox.Show("Booking oprettet!");
+                MessageBox.Show($"Booking oprettet!");
             }
-            catch (FormatException)
+            else
             {
-                MessageBox.Show("Forkert indtastningsformat! Kontroller de indtastede værdier og prøv igen.", "Fejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Et eller flere inputs er ugyldige!");
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Der opstod en fejl under oprettelsen af bookingen: " + ex.Message, "Fejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            */
-
         }
 
         private void btn_updateBooking_Click(object sender, EventArgs e)
         {
+            Services.BookingService bookingService = new BookingService();
+            bool lokationIDValid = int.TryParse(tb_locationID.Text, out int lokationID);
+            string tidspunkt = cb_timePicker.Text;
+            tidspunkt = tidspunkt += ":00";
+            DateTime dato = dateTimePicker_bookingInterval.Value;
+            string bookingType = tb_bookingDescription.Text;
+            bool kundeIDValid = int.TryParse(tb_customerBooking.Text, out int kundeID);
+
+            if (lokationIDValid && kundeIDValid)
+            {
+                BookingService bookingServicevar = new BookingService();
+                Booking updatedBooking = new Booking(lokationID, dato, tidspunkt, bookingType, kundeID);
+                bookingServicevar.UpdateBooking(updatedBooking);
+                MessageBox.Show($"Booking ændret!");
+            }
+            else
+            {
+                MessageBox.Show("Et eller flere inputs er ugyldige!");
+            }
 
         }
 
         private void btn_deleteBooking_Click(object sender, EventArgs e)
         {
+
+            Services.BookingService bookingService = new BookingService();
+            int bookingId = Convert.ToInt32(tb_bookingID.Text);
+
+            DialogResult dialogResult = MessageBox.Show("Er du sikker på, at du vil slette bookingen med ID: " + bookingId + "?", "ADVARSEL!", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                bookingService.DeleteBooking(bookingId);
+                MessageBox.Show("Bookingen med ID: " + bookingId + " blev slettet fra databasen!", "SUCCESS!", MessageBoxButtons.OK);
+
+                tb_bookingID.Text = string.Empty;
+                tb_locationID.Text = string.Empty;
+                cb_timePicker.Text = string.Empty;
+                dateTimePicker_bookingInterval.Value = DateTime.Now;
+                tb_bookingDescription.Text = string.Empty;
+                tb_customerBooking.Text = string.Empty;
+            }
+            else
+            {
+                MessageBox.Show("Sletning afbrudt!", "SUCCESS!", MessageBoxButtons.OK);
+            }
 
         }
 

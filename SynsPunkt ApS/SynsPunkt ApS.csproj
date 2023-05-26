@@ -58,10 +58,10 @@
     <Compile Include="Database\CRUD_Varelinje.cs" />
     <Compile Include="Models\Permissions.cs" />
     <Compile Include="Models\Rolle.cs" />
-    <Compile Include="Services\Ansat_services.cs" />
+    <Compile Include="Services\Ansat_service.cs" />
     <Compile Include="Services\Booking_service.cs" />
     <Compile Include="Services\ChangePassword.cs" />
-    <Compile Include="Services\KundeÆndring.cs" />
+    <Compile Include="Services\Kunde_service.cs" />
     <Compile Include="Services\Ordre_service.cs" />
     <Compile Include="Services\UserLogIn.cs" />
     <Compile Include="Services\Varelinje_service.cs" />

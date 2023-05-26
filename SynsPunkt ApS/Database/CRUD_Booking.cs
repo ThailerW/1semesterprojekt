@@ -16,15 +16,19 @@ namespace SynsPunkt_ApS.Database
 
         public void CreateBooking(Booking newBooking)
         {
-            string query = "INSERT INTO Booking (BookingID, LokationID, tidspunkt, dato, bookingType, KundeID) " +
-                           "VALUES (@BookingID, @LokationID, @tidspunkt, @dato, @bookingType, @KundeID)";
+
+            string query = "DECLARE @tidspunkt time, @bookingType varchar(60);" +
+                            "SET @tidspunkt = CONVERT(time, '" + newBooking.Tidspunkt + "');" +
+                            "SET @bookingType = '" + newBooking.BookingType + "'; " +
+                            "INSERT INTO SP_Booking (LokationID, tidspunkt, dato, bookingType, KundeID) " +
+                           "VALUES (@LokationID, @tidspunkt, @dato, @bookingType, @KundeID)";
+
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    //command.Parameters.AddWithValue("@BookingID", newBooking.BookingID);
                     command.Parameters.AddWithValue("@LokationID", newBooking.LokationID);
                     command.Parameters.AddWithValue("@tidpunkt", newBooking.Tidspunkt);
                     command.Parameters.AddWithValue("@dato", newBooking.Dato);
@@ -37,80 +41,100 @@ namespace SynsPunkt_ApS.Database
                         connection.Open();
                         command.ExecuteNonQuery();
                         MessageBox.Show("Booking oprettet");
+                        connection.Close();
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show("Fejl under oprettelse: " + ex.Message);
                     }
+                    finally
+                    {
+                        connection.Close();
+                    }
                 }
             }
-
-            MessageBox.Show("Booking oprettet!");
         }
 
 
-        //public List<Booking> GetBookingsPerDate(DateTime dato)
-        //{
-        //    List<Booking> bookings = new List<Booking>();
-        //    using (SqlConnection connection = new SqlConnection(connectionString))
-        //    {
-        //        string query = "SELECT * FROM Booking WHERE dato = @dato";
-        //        SqlCommand command = new SqlCommand(query, connection);
-        //        command.Parameters.AddWithValue("@dato", dato);
+        public List<Booking> GetBookingsPerDate(DateTime dato)
+        {
+            List<Booking> bookings = new List<Booking>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM Booking WHERE dato = @dato";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@dato", dato);
 
-        //        try
-        //        {
-        //            connection.Open();
-        //            SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
 
-        //            while (reader.Read())
-        //            {
-        //                Booking booking = new Booking
-        //                (
-        //                    //(int)reader["bookingID"],
-        //                    (int)reader["lokationID"],
-        //                    (DateTime)reader["tidspunkt"],
-        //                    (DateTime)reader["dato"],
-        //                    (string)reader["bookingtype"],
-        //                    (int)reader["kundeid"]
-        //                );
+                    while (reader.Read())
+                    {
+                        Booking booking = new Booking
+                        (
 
-        //                bookings.Add(booking);
-        //            }
+                            (int)reader["lokationID"],
+                            (DateTime)reader["dato"],
+                            (string)reader["tidspunkt"],
+                            (string)reader["bookingtype"],
+                            (int)reader["kundeid"]
+                        );
 
-        //            reader.Close();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show("Fejl ved hentning af bookinger: " + ex.Message);
-        //        }
-        //    }
+                        bookings.Add(booking);
+                    }
 
-        //    return bookings;
-        //}
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fejl ved hentning af bookinger: " + ex.Message);
+                }
+            }
+
+            return bookings;
+        }
 
 
         public void UpdateBooking(Booking updatedBooking)
         {
-            string query = "UPDATE Booking SET tidspunkt = @tidspunkt, dato = @dato, kundeid = @kundeid, bookingType = @bookingType" +
-                           "VALUES (@tidspunkt, @dato, @kundeid, @bookingType)";
+
+            string query = "UPDATE SP_Booking SET lokationID = @lokationID, tidspunkt = @tidspunkt, dato = @dato, bookingType = @bookingType WHERE BookingID = @bookingID";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@BookingID", updatedBooking.BookingID);
                     command.Parameters.AddWithValue("@LokationID", updatedBooking.LokationID);
-                    command.Parameters.AddWithValue("@tidpunkt", updatedBooking.Tidspunkt);
+                    command.Parameters.AddWithValue("@tidspunkt", updatedBooking.Tidspunkt);
                     command.Parameters.AddWithValue("@dato", updatedBooking.Dato);
-                    command.Parameters.AddWithValue("@bookinType", updatedBooking.BookingType);
-                    command.Parameters.AddWithValue("@KundeID", updatedBooking.KundeID);
-                    command.ExecuteNonQuery();
+                    command.Parameters.AddWithValue("@bookingType", updatedBooking.BookingType);
+                    command.Parameters.AddWithValue("@bookingID", updatedBooking.BookingID);
+
+                    try
+                    {
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Booking opdateret");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ingen ændringer blev foretaget");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Fejl under opdatering: " + ex.Message);
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
                 }
             }
-
-            MessageBox.Show("Booking opdateret!");
         }
 
         public void DeleteBooking(int bookingId)
@@ -130,6 +154,8 @@ namespace SynsPunkt_ApS.Database
 
             MessageBox.Show("Bookingen er slettet!");
         }
+
+
 
 
     }
