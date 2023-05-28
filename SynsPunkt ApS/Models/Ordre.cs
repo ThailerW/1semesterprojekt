@@ -8,19 +8,18 @@ namespace SynsPunkt_ApS.Models
 {
     public class Ordre
     {
-        public int OrdreNummer { get; set; }
-        public DateTime Tidspunkt { get; set; }
-        public DateTime Dato { get; set; }
-        public double SamletPris { get; set; }
-        public List<Models.VareLinje> SamletVare { get; set; }
+        public int orderID { get; set; }
+        public int customerID { get; set; }
+        public DateTime orderDate { get; set; }
+        public double totalPrice { get; set; }
+        //public List<Models.VareLinje> SamletVare { get; set; }
 
-        public Ordre(int ordreNummer, DateTime tidspunkt, DateTime dato, double samletPris, List<VareLinje> samletVare)
+        public Ordre(int orderID,int customerID ,DateTime orderDate, double totalPrice)
         {
-            OrdreNummer = ordreNummer;
-            Tidspunkt = tidspunkt;
-            Dato = dato;
-            SamletPris = samletPris;
-            SamletVare = samletVare;
+            this.customerID = customerID;
+            this.orderID = orderID;
+            this.orderDate = orderDate;
+            this.totalPrice = totalPrice;
         }
     }
 }

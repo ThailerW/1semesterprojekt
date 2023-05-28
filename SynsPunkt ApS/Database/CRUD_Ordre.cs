@@ -17,7 +17,7 @@ namespace SynsPunkt_ApS.Database
             int orderID = 0;
             try
             {
-                string query = "INSERT INTO SP_Ordre (KundeID, ordreDato, totalpris) " +
+                string query = "INSERT INTO SP_Ordre2 (KundeID, ordreDato, totalpris) " +
                 "OUTPUT INSERTED.OrdreID " +
                 "VALUES (@kundeID, @datetime, @totalPrice)";
                 SqlCommand command = new SqlCommand(query, conn);
@@ -38,6 +38,39 @@ namespace SynsPunkt_ApS.Database
                 conn.Close();
             }
             return orderID;
+        }
+
+        public List<Models.Ordre> GetAllOrders()
+        {
+            List<Models.Ordre> allOrders = new List<Models.Ordre>();
+
+            try
+            {
+                string query = "SELECT * FROM SP_Ordre2";
+                SqlCommand command = new SqlCommand(query, conn);
+                conn.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int orderID = Convert.ToInt32(reader["OrdreID"]);
+                    int customerID = Convert.ToInt32(reader["KundeID"]);
+                    DateTime orderDate = Convert.ToDateTime(reader["ordreDato"]);
+                    double totalPris = Convert.ToDouble(reader["totalPris"]);
+
+                    Models.Ordre order = new Models.Ordre(orderID,customerID, orderDate, totalPris);
+                    allOrders.Add(order);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fejl ved at få alle ordre. " + ex.Message, "FEJL", MessageBoxButtons.OK);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return allOrders;
         }
     }
 }
