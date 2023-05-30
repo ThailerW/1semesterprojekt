@@ -42,6 +42,12 @@
             this.label_UserName = new System.Windows.Forms.Label();
             this.pbox_UserNameLogo = new System.Windows.Forms.PictureBox();
             this.tabPage_Rapport = new System.Windows.Forms.TabPage();
+            this.listView_report = new System.Windows.Forms.ListView();
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btn_GenerateReport = new System.Windows.Forms.Button();
             this.label_reportPickEndDate = new System.Windows.Forms.Label();
             this.dateTimePicker_reportEndTime = new System.Windows.Forms.DateTimePicker();
@@ -51,7 +57,6 @@
             this.label_report = new System.Windows.Forms.Label();
             this.btn_sendReportMail = new System.Windows.Forms.Button();
             this.btn_printReport = new System.Windows.Forms.Button();
-            this.richTextBox_report = new System.Windows.Forms.RichTextBox();
             this.tabPage_Medarbejder = new System.Windows.Forms.TabPage();
             this.label_employeePassword = new System.Windows.Forms.Label();
             this.tb_employeePassword = new System.Windows.Forms.TextBox();
@@ -86,6 +91,10 @@
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage_LeverandoerOversigt = new System.Windows.Forms.TabPage();
+            this.lb_faktu = new System.Windows.Forms.Label();
+            this.rtb_faktuInfo = new System.Windows.Forms.RichTextBox();
+            this.lb_postnr = new System.Windows.Forms.Label();
+            this.tb_levpostnr = new System.Windows.Forms.TextBox();
             this.label_supplierAccountNo = new System.Windows.Forms.Label();
             this.tb_supplierAccountNo = new System.Windows.Forms.TextBox();
             this.label_supplierRegNo = new System.Windows.Forms.Label();
@@ -109,6 +118,9 @@
             this.label_listOfSuppliers = new System.Windows.Forms.Label();
             this.tb_supplierID = new System.Windows.Forms.TextBox();
             this.listView_suppliers = new System.Windows.Forms.ListView();
+            this.levcvr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.mail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage_BookingOversigt = new System.Windows.Forms.TabPage();
             this.lb_customerID = new System.Windows.Forms.Label();
             this.tb_locationID = new System.Windows.Forms.TextBox();
@@ -214,13 +226,6 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lb_postnr = new System.Windows.Forms.Label();
-            this.tb_levpostnr = new System.Windows.Forms.TextBox();
-            this.levcvr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.mail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.rtb_faktuInfo = new System.Windows.Forms.RichTextBox();
-            this.lb_faktu = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbox_UserNameLogo)).BeginInit();
@@ -386,6 +391,7 @@
             // tabPage_Rapport
             // 
             this.tabPage_Rapport.BackColor = System.Drawing.Color.White;
+            this.tabPage_Rapport.Controls.Add(this.listView_report);
             this.tabPage_Rapport.Controls.Add(this.btn_GenerateReport);
             this.tabPage_Rapport.Controls.Add(this.label_reportPickEndDate);
             this.tabPage_Rapport.Controls.Add(this.dateTimePicker_reportEndTime);
@@ -395,13 +401,54 @@
             this.tabPage_Rapport.Controls.Add(this.label_report);
             this.tabPage_Rapport.Controls.Add(this.btn_sendReportMail);
             this.tabPage_Rapport.Controls.Add(this.btn_printReport);
-            this.tabPage_Rapport.Controls.Add(this.richTextBox_report);
             this.tabPage_Rapport.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Rapport.Name = "tabPage_Rapport";
             this.tabPage_Rapport.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage_Rapport.Size = new System.Drawing.Size(910, 701);
             this.tabPage_Rapport.TabIndex = 9;
             this.tabPage_Rapport.Text = "Rapport";
+            // 
+            // listView_report
+            // 
+            this.listView_report.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader13,
+            this.columnHeader14,
+            this.columnHeader15,
+            this.columnHeader16,
+            this.columnHeader17});
+            this.listView_report.GridLines = true;
+            this.listView_report.HideSelection = false;
+            this.listView_report.Location = new System.Drawing.Point(23, 46);
+            this.listView_report.Name = "listView_report";
+            this.listView_report.Size = new System.Drawing.Size(868, 411);
+            this.listView_report.TabIndex = 60;
+            this.listView_report.UseCompatibleStateImageBehavior = false;
+            this.listView_report.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "OrderID";
+            this.columnHeader13.Width = 62;
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "KundeID";
+            this.columnHeader14.Width = 62;
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "Kundenavn";
+            this.columnHeader15.Width = 406;
+            // 
+            // columnHeader16
+            // 
+            this.columnHeader16.Text = "Orderdato";
+            this.columnHeader16.Width = 201;
+            // 
+            // columnHeader17
+            // 
+            this.columnHeader17.Text = "Total pris for ordren";
+            this.columnHeader17.Width = 130;
             // 
             // btn_GenerateReport
             // 
@@ -427,10 +474,12 @@
             // 
             // dateTimePicker_reportEndTime
             // 
+            this.dateTimePicker_reportEndTime.Checked = false;
             this.dateTimePicker_reportEndTime.Location = new System.Drawing.Point(243, 545);
             this.dateTimePicker_reportEndTime.Name = "dateTimePicker_reportEndTime";
             this.dateTimePicker_reportEndTime.Size = new System.Drawing.Size(236, 22);
             this.dateTimePicker_reportEndTime.TabIndex = 57;
+            this.dateTimePicker_reportEndTime.ValueChanged += new System.EventHandler(this.dateTimePicker_reportEndTime_ValueChanged);
             // 
             // label_reportPickStartDate
             // 
@@ -443,10 +492,12 @@
             // 
             // dateTimePicker_reportStartTime
             // 
+            this.dateTimePicker_reportStartTime.Checked = false;
             this.dateTimePicker_reportStartTime.Location = new System.Drawing.Point(243, 508);
             this.dateTimePicker_reportStartTime.Name = "dateTimePicker_reportStartTime";
             this.dateTimePicker_reportStartTime.Size = new System.Drawing.Size(236, 22);
             this.dateTimePicker_reportStartTime.TabIndex = 55;
+            this.dateTimePicker_reportStartTime.ValueChanged += new System.EventHandler(this.dateTimePicker_reportStartTime_ValueChanged);
             // 
             // label_reportDateInterval
             // 
@@ -492,14 +543,6 @@
             this.btn_printReport.Text = "Print rapport";
             this.btn_printReport.UseVisualStyleBackColor = false;
             this.btn_printReport.Click += new System.EventHandler(this.btn_printReport_Click);
-            // 
-            // richTextBox_report
-            // 
-            this.richTextBox_report.Location = new System.Drawing.Point(23, 38);
-            this.richTextBox_report.Name = "richTextBox_report";
-            this.richTextBox_report.Size = new System.Drawing.Size(868, 432);
-            this.richTextBox_report.TabIndex = 15;
-            this.richTextBox_report.Text = "";
             // 
             // tabPage_Medarbejder
             // 
@@ -852,6 +895,40 @@
             this.tabPage_LeverandoerOversigt.Text = "Leverandør";
             this.tabPage_LeverandoerOversigt.Click += new System.EventHandler(this.tabPage4_Click);
             // 
+            // lb_faktu
+            // 
+            this.lb_faktu.AutoSize = true;
+            this.lb_faktu.Location = new System.Drawing.Point(590, 500);
+            this.lb_faktu.Name = "lb_faktu";
+            this.lb_faktu.Size = new System.Drawing.Size(133, 13);
+            this.lb_faktu.TabIndex = 64;
+            this.lb_faktu.Text = "Faktureringsoplysninger";
+            // 
+            // rtb_faktuInfo
+            // 
+            this.rtb_faktuInfo.Location = new System.Drawing.Point(411, 516);
+            this.rtb_faktuInfo.Name = "rtb_faktuInfo";
+            this.rtb_faktuInfo.ReadOnly = true;
+            this.rtb_faktuInfo.Size = new System.Drawing.Size(489, 151);
+            this.rtb_faktuInfo.TabIndex = 63;
+            this.rtb_faktuInfo.Text = "";
+            // 
+            // lb_postnr
+            // 
+            this.lb_postnr.AutoSize = true;
+            this.lb_postnr.Location = new System.Drawing.Point(394, 184);
+            this.lb_postnr.Name = "lb_postnr";
+            this.lb_postnr.Size = new System.Drawing.Size(41, 13);
+            this.lb_postnr.TabIndex = 62;
+            this.lb_postnr.Text = "PostNr";
+            // 
+            // tb_levpostnr
+            // 
+            this.tb_levpostnr.Location = new System.Drawing.Point(530, 181);
+            this.tb_levpostnr.Name = "tb_levpostnr";
+            this.tb_levpostnr.Size = new System.Drawing.Size(371, 22);
+            this.tb_levpostnr.TabIndex = 61;
+            // 
             // label_supplierAccountNo
             // 
             this.label_supplierAccountNo.AutoSize = true;
@@ -1061,6 +1138,21 @@
             this.listView_suppliers.UseCompatibleStateImageBehavior = false;
             this.listView_suppliers.View = System.Windows.Forms.View.Details;
             this.listView_suppliers.SelectedIndexChanged += new System.EventHandler(this.listView_suppliers_SelectedIndexChanged);
+            // 
+            // levcvr
+            // 
+            this.levcvr.Text = "CVR-Nummer";
+            this.levcvr.Width = 104;
+            // 
+            // name
+            // 
+            this.name.Text = "Leverandørnavn";
+            this.name.Width = 142;
+            // 
+            // mail
+            // 
+            this.mail.Text = "Email";
+            this.mail.Width = 180;
             // 
             // tabPage_BookingOversigt
             // 
@@ -2084,55 +2176,6 @@
             this.columnHeader3.Text = "LagerMængde";
             this.columnHeader3.Width = 133;
             // 
-            // lb_postnr
-            // 
-            this.lb_postnr.AutoSize = true;
-            this.lb_postnr.Location = new System.Drawing.Point(394, 184);
-            this.lb_postnr.Name = "lb_postnr";
-            this.lb_postnr.Size = new System.Drawing.Size(41, 13);
-            this.lb_postnr.TabIndex = 62;
-            this.lb_postnr.Text = "PostNr";
-            // 
-            // tb_levpostnr
-            // 
-            this.tb_levpostnr.Location = new System.Drawing.Point(530, 181);
-            this.tb_levpostnr.Name = "tb_levpostnr";
-            this.tb_levpostnr.Size = new System.Drawing.Size(371, 22);
-            this.tb_levpostnr.TabIndex = 61;
-            // 
-            // levcvr
-            // 
-            this.levcvr.Text = "CVR-Nummer";
-            this.levcvr.Width = 104;
-            // 
-            // name
-            // 
-            this.name.Text = "Leverandørnavn";
-            this.name.Width = 142;
-            // 
-            // mail
-            // 
-            this.mail.Text = "Email";
-            this.mail.Width = 180;
-            // 
-            // rtb_faktuInfo
-            // 
-            this.rtb_faktuInfo.Location = new System.Drawing.Point(411, 516);
-            this.rtb_faktuInfo.Name = "rtb_faktuInfo";
-            this.rtb_faktuInfo.ReadOnly = true;
-            this.rtb_faktuInfo.Size = new System.Drawing.Size(489, 151);
-            this.rtb_faktuInfo.TabIndex = 63;
-            this.rtb_faktuInfo.Text = "";
-            // 
-            // lb_faktu
-            // 
-            this.lb_faktu.AutoSize = true;
-            this.lb_faktu.Location = new System.Drawing.Point(590, 500);
-            this.lb_faktu.Name = "lb_faktu";
-            this.lb_faktu.Size = new System.Drawing.Size(133, 13);
-            this.lb_faktu.TabIndex = 64;
-            this.lb_faktu.Text = "Faktureringsoplysninger";
-            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2272,7 +2315,6 @@
         private System.Windows.Forms.Label label_report;
         private System.Windows.Forms.Button btn_sendReportMail;
         private System.Windows.Forms.Button btn_printReport;
-        private System.Windows.Forms.RichTextBox richTextBox_report;
         private System.Windows.Forms.Button btn_UpdateEmployee;
         private System.Windows.Forms.Button btn_deleteEmployee;
         private System.Windows.Forms.Label label_employeeAdress;
@@ -2367,6 +2409,12 @@
         private System.Windows.Forms.ColumnHeader mail;
         private System.Windows.Forms.Label lb_faktu;
         private System.Windows.Forms.RichTextBox rtb_faktuInfo;
+        private System.Windows.Forms.ListView listView_report;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.ColumnHeader columnHeader15;
+        private System.Windows.Forms.ColumnHeader columnHeader16;
+        private System.Windows.Forms.ColumnHeader columnHeader17;
     }
 }
 

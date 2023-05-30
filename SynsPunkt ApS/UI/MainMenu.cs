@@ -21,10 +21,14 @@ namespace SynsPunkt_ApS
         public Models.Ansat LoggedInEmployee;
         public List<Models.VareLinje> currentLineItems = new List<VareLinje>();
         public List<Models.Vare> allProducts;
+        public List<Models.Ordre> allOrders;
+        public List<Models.Ordre> ordersWithinDateInterval;
         Services.VareService vareservice = new VareService();
+        Services.Ordre_service ordreService = new Ordre_service();
 
         public MainMenu(Models.Ansat loggedInEmployee)
         {
+            allOrders = ordreService.GetAllOrders();
             allProducts = vareservice.GetAllVare();
             LoggedInEmployee = loggedInEmployee;
             InitializeComponent();
@@ -38,6 +42,7 @@ namespace SynsPunkt_ApS
             GetAllKunder();
             GetAllLeverandører();
             GetAllVareInBasketTab();
+            GetAllOrdersWithinDateInterval();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -165,6 +170,7 @@ namespace SynsPunkt_ApS
 
         private void btn_addToBasket_Click(object sender, EventArgs e)
         {
+            //Tjekker om en vare er valgt
             if (listView_product_list_buytab.SelectedItems.Count <= 0)
             {
                 MessageBox.Show("Vælg en vare fra varelisten du vil tilføje til din kurv", "Hovsa", MessageBoxButtons.OK);
@@ -197,7 +203,6 @@ namespace SynsPunkt_ApS
             Models.VareLinje varelinje = new VareLinje(chosenProduct, 1, chosenProduct.Pris);
             currentLineItems.Add(varelinje);
             UpdateBasketListView();
-
         }
 
         private void UpdateBasketListView()
@@ -207,7 +212,7 @@ namespace SynsPunkt_ApS
             {
                 ListViewItem lineItemItem = new ListViewItem(lineItem.Vare.VareNummer.ToString());
                 lineItemItem.SubItems.Add(lineItem.Vare.VareNavn);
-                lineItemItem.SubItems.Add(lineItem.totalPris.ToString());
+                lineItemItem.SubItems.Add(lineItem.totalPris.ToString("N0"));
                 lineItemItem.SubItems.Add(lineItem.Mængde.ToString());
                 listView_basket_list.Items.Add(lineItemItem);
             }
@@ -232,7 +237,6 @@ namespace SynsPunkt_ApS
 
         private void btn_SendInvoiceMail_Click(object sender, EventArgs e)
         {
-            int orderID = 0;
             Services.Kunde_Services kundeService = new Kunde_Services();
             Services.Varelinje_service varelinjeService = new Varelinje_service();
             Services.Ordre_service ordreService = new Ordre_service();
@@ -252,36 +256,39 @@ namespace SynsPunkt_ApS
                 MessageBoxText += Environment.NewLine + "Ugyldigt kundeID.";
             }
 
-            if (MessageBoxText != string.Empty)
+            if (!string.IsNullOrEmpty(MessageBoxText))
             {
                 MessageBox.Show(MessageBoxText);
             }
             else
             {
                 int kundeID = Convert.ToInt32(tb_customerToBuy.Text);
-                DateTime orderDate = DateTime.Now.Date;
+                DateTime orderDate = DateTime.Now;
                 double totalPrice = 0;
                 foreach (var lineItem in currentLineItems)
                 {
                     totalPrice += Convert.ToDouble(lineItem.totalPris);
                 }
-                orderID = ordreService.CreateOrder(kundeID, orderDate, totalPrice);
+                int orderID = ordreService.CreateOrder(kundeID, orderDate, totalPrice);
 
                 foreach (var lineItem in currentLineItems)
                 {
                     varelinjeService.CreateVarelinje(lineItem.Vare.VareNummer, orderID, lineItem.Mængde);
-                    int itemsLeft = lineItem.Vare.LagerMængde - lineItem.Mængde;
+                    lineItem.Vare.LagerMængde -= lineItem.Mængde;
                     vareService.UpdateVare(lineItem.Vare.VareNummer.ToString(), lineItem.Vare.VareBeskrivelse,
-                                            itemsLeft, lineItem.Vare.VareNavn, lineItem.Vare.Styrke, lineItem.Vare.LevCVR, lineItem.Vare.Pris);
+                                            lineItem.Vare.LagerMængde, lineItem.Vare.VareNavn, lineItem.Vare.Styrke, lineItem.Vare.LevCVR, lineItem.Vare.Pris);
                 }
                 GetAllVareInBasketTab();
-                UpdateBasketListView();
-                MessageBox.Show("Salg færdig");
+                MessageBoxText += "Salg udført! " + Environment.NewLine + "OrderID: " + orderID + Environment.NewLine + "KundeID: " + kundeID;
+                MessageBox.Show(MessageBoxText);
                 currentLineItems.Clear();
+                UpdateBasketListView();
+                allOrders = ordreService.GetAllOrders();
+                GetAllOrdersWithinDateInterval();
+                tb_customerToBuy.Text = string.Empty;
             }
 
         }
-
         private void btn_PrintInvoice_Click(object sender, EventArgs e)
         {
 
@@ -374,7 +381,7 @@ namespace SynsPunkt_ApS
                 return;
             }
 
-            kundeService.CreateKunde(lokationId, Mail, forNavn,efterNavn,telefonNummer, adresse, postNr);
+            kundeService.CreateKunde(lokationId, Mail, forNavn, efterNavn, telefonNummer, adresse, postNr);
 
         }
 
@@ -827,8 +834,57 @@ namespace SynsPunkt_ApS
 
         private void btn_GenerateReport_Click(object sender, EventArgs e)
         {
+            Services.Kunde_Services kundeService = new Services.Kunde_Services();
+            DateTime startDate = dateTimePicker_reportStartTime.Value.Date;
+            DateTime endDate = dateTimePicker_reportEndTime.Value.Date;
 
+            // Får datetime uden tiden
+            string startDateCorrectFormat = startDate.ToString("yyyy-MM-dd");
+            string endDateCorrectFormat = endDate.ToString("yyyy-MM-dd");
+
+            if (ordersWithinDateInterval.Count <= 0)
+            {
+                MessageBox.Show("Nice, så du prøver på at lave en rapport over ingen ordre??" + Environment.NewLine +
+                                "Lidt ligesom du ikke lavede dine rapporter i skolen!?", "Nice business, 0 salg, sælg firma til ELON MUSK nu)", MessageBoxButtons.OK);
+                return;
+            }
+
+            double totalPriceForAllOrdersInReport = 0;
+            var reportoutput = "SYNSPUNKT APS KØBSRAPPORT I TIDSINTERVALLET:     " + startDateCorrectFormat + "  -  " + endDateCorrectFormat + Environment.NewLine + Environment.NewLine;
+
+            
+            string orderIDHeader = "OrderID".PadRight(10);
+            string customerIDHeader = "KundeID".PadRight(12);
+            string customerNameHeader = "KundeNavn".PadRight(40);
+            string orderDateHeader = "OrderDato".PadRight(25);
+            string totalPriceHeader = "Total pris for ordren";
+
+            reportoutput += orderIDHeader + customerIDHeader + customerNameHeader + orderDateHeader + totalPriceHeader + Environment.NewLine;
+            reportoutput += "-------------------------------------------------------------------------------------------------------------" + Environment.NewLine;
+
+            foreach (var order in ordersWithinDateInterval)
+            {
+                Models.Kunde customer = kundeService.GetKunde(order.customerID);
+
+                string orderID = order.orderID.ToString().PadRight(10);
+                string customerID = order.customerID.ToString().PadRight(12);
+                string customerName = (customer.Fornavn + " " + customer.Efternavn).PadRight(40);
+                string orderDate = order.orderDate.ToString().PadRight(25);
+                string totalPrice = order.totalPrice.ToString("C2");
+
+                reportoutput += orderID + customerID + customerName + orderDate + totalPrice + Environment.NewLine;
+
+                totalPriceForAllOrdersInReport += order.totalPrice;
+            }
+            reportoutput += "-------------------------------------------------------------------------------------------------------------" + Environment.NewLine;
+            reportoutput += "Antal Ordrer: " + ordersWithinDateInterval.Count + Environment.NewLine;
+            reportoutput += "Samlet salgspris for alle ordrer: " + totalPriceForAllOrdersInReport.ToString("C2");
+            System.IO.File.WriteAllText("Salgsrapport (" + startDateCorrectFormat + ") - (" + endDateCorrectFormat + ").txt", reportoutput);
+
+            MessageBox.Show("Rapporten blev udskrevet som tekstfil");
         }
+
+
 
         private void btn_sendReportMail_Click(object sender, EventArgs e)
         {
@@ -895,6 +951,7 @@ namespace SynsPunkt_ApS
                 vareService.CreateVare(rtb_productdescription.Text, quantity, tb_productName.Text, strength, tb_supplierCVR.Text, price);
                 MessageBox.Show(tb_productName.Text + " blev tilføjet til databasen!", "SUCCESS!", MessageBoxButtons.OK);
                 GetAllVare();
+                GetAllVareInBasketTab();
             }
             else
             {
@@ -914,6 +971,7 @@ namespace SynsPunkt_ApS
                 vareService.UpdateVare(tb_productID.Text, rtb_productdescription.Text, quantity, tb_productName.Text, strength, tb_supplierCVR.Text, price);
                 MessageBox.Show(tb_productName.Text + " blev opdateret i databasen!", "SUCCESS!", MessageBoxButtons.OK);
                 GetAllVare();
+                GetAllVareInBasketTab();
             }
             else
             {
@@ -940,11 +998,36 @@ namespace SynsPunkt_ApS
                     tb_quantity.Text = null;
                     rtb_productdescription.Text = null;
                     GetAllVare();
+                    GetAllVareInBasketTab();
                 }
                 else
                 {
                     MessageBox.Show("Sletning afbrudt!", "SUCCESS!", MessageBoxButtons.OK);
                 }
+            }
+        }
+
+        private void GetAllOrdersWithinDateInterval()
+        {
+            ordersWithinDateInterval = allOrders.Where
+                (order => (order.orderDate.Date >= dateTimePicker_reportStartTime.Value && order.orderDate.Date <= dateTimePicker_reportEndTime.Value)
+                || (order.orderDate.Date == dateTimePicker_reportStartTime.Value.Date && order.orderDate.Date == dateTimePicker_reportEndTime.Value.Date)).ToList();
+
+            listView_report.Items.Clear();
+            Services.Kunde_Services kundeService = new Services.Kunde_Services();
+            Services.Ordre_service orderService = new Ordre_service();
+
+
+            foreach (var order in ordersWithinDateInterval)
+            {
+                Models.Kunde customerWithThisOrder = kundeService.GetKunde(order.customerID);
+
+                ListViewItem orderItem = new ListViewItem(order.orderID.ToString());
+                orderItem.SubItems.Add(order.customerID.ToString());
+                orderItem.SubItems.Add(customerWithThisOrder.Fornavn + " " + customerWithThisOrder.Efternavn);
+                orderItem.SubItems.Add(order.orderDate.ToString());
+                orderItem.SubItems.Add(order.totalPrice.ToString("N0"));
+                listView_report.Items.Add(orderItem);
             }
         }
 
@@ -966,7 +1049,7 @@ namespace SynsPunkt_ApS
             listView_customers.Items.Clear();
             Services.Kunde_Services kunde_Services = new Services.Kunde_Services();
             var kundeList = kunde_Services.GetCustomers();
-            foreach(var kunde in kundeList)
+            foreach (var kunde in kundeList)
             {
                 ListViewItem kundeItem = new ListViewItem(kunde.KundeId.ToString());
                 kundeItem.SubItems.Add(kunde.Fornavn);
@@ -994,6 +1077,26 @@ namespace SynsPunkt_ApS
         private void GetAllBookings()
         {
 
+        }
+
+        private void GetAllOrders()
+        {
+            //listView_report.Items.Clear();
+            //Services.Kunde_Services kundeService = new Services.Kunde_Services();
+            //Services.Ordre_service orderService = new Ordre_service();
+            //var orderList = orderService.GetAllOrders();
+
+            //foreach (var order in orderList  )
+            //{
+            //    Models.Kunde customerWithThisOrder =  kundeService.GetKunde(order.customerID);
+
+            //    ListViewItem orderItem = new ListViewItem(order.orderID.ToString());
+            //    orderItem.SubItems.Add(order.customerID.ToString());
+            //    orderItem.SubItems.Add(customerWithThisOrder.Fornavn + " " + customerWithThisOrder.Efternavn);
+            //    orderItem.SubItems.Add(order.orderDate.ToString());
+            //    orderItem.SubItems.Add(order.totalPrice.ToString());
+            //    listView_report.Items.Add(orderItem);
+            //}
         }
 
         private void GetAllLeverandører()
@@ -1036,7 +1139,7 @@ namespace SynsPunkt_ApS
 
             if (phoneNumValid && zipValid)
             {
-                levService.CreateLeverandør(tb_supplierName.Text, tb_supplierAdress.Text, zip, tb_supplierEmail.Text, 
+                levService.CreateLeverandør(tb_supplierName.Text, tb_supplierAdress.Text, zip, tb_supplierEmail.Text,
                     tb_supplierBankName.Text + " " + tb_supplierRegNo.Text + " " + tb_supplierAccountNo.Text, tlf);
 
                 MessageBox.Show(tb_supplierName.Text + " blev tilføjet til databasen!", "SUCCESS!", MessageBoxButtons.OK);
@@ -1097,6 +1200,16 @@ namespace SynsPunkt_ApS
                     MessageBox.Show("Sletning afbrudt!", "SUCCESS!", MessageBoxButtons.OK);
                 }
             }
+        }
+
+        private void dateTimePicker_reportStartTime_ValueChanged(object sender, EventArgs e)
+        {
+            GetAllOrdersWithinDateInterval();
+        }
+
+        private void dateTimePicker_reportEndTime_ValueChanged(object sender, EventArgs e)
+        {
+            GetAllOrdersWithinDateInterval();
         }
     }
 }
