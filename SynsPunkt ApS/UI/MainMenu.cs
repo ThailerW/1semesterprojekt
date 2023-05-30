@@ -43,6 +43,18 @@ namespace SynsPunkt_ApS
             GetAllLeverandører();
             GetAllVareInBasketTab();
             GetAllOrdersWithinDateInterval();
+
+            if (LoggedInEmployee.RoleID == 7)
+            {
+                btn_Leverandoeroversigt.Enabled = false;
+                btn_crudvare.Enabled = false;
+                btn_Medarbejder.Enabled = false;
+                btn_Rapport.Enabled = false;
+            }
+            else if (LoggedInEmployee.RoleID == 8)
+            {
+                btn_Leverandoeroversigt.Enabled = false;
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -1238,6 +1250,11 @@ namespace SynsPunkt_ApS
             {
                 e.Handled = true;
             }
+        }
+
+        private void btn_crudvare_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectedTab = tabPage_Products;
         }
     }
 }

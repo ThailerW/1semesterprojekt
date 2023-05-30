@@ -226,6 +226,7 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btn_crudvare = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbox_UserNameLogo)).BeginInit();
@@ -243,6 +244,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.panel1.Controls.Add(this.btn_crudvare);
             this.panel1.Controls.Add(this.btn_Indstillinger);
             this.panel1.Controls.Add(this.btn_Bookingoversigt);
             this.panel1.Controls.Add(this.btn_Leverandoeroversigt);
@@ -262,7 +264,7 @@
             // 
             this.btn_Indstillinger.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Indstillinger.ForeColor = System.Drawing.Color.White;
-            this.btn_Indstillinger.Location = new System.Drawing.Point(3, 498);
+            this.btn_Indstillinger.Location = new System.Drawing.Point(3, 546);
             this.btn_Indstillinger.Name = "btn_Indstillinger";
             this.btn_Indstillinger.Size = new System.Drawing.Size(280, 40);
             this.btn_Indstillinger.TabIndex = 5;
@@ -315,7 +317,7 @@
             this.btn_Vareoversigt.Name = "btn_Vareoversigt";
             this.btn_Vareoversigt.Size = new System.Drawing.Size(280, 40);
             this.btn_Vareoversigt.TabIndex = 1;
-            this.btn_Vareoversigt.Text = "Vareoversigt";
+            this.btn_Vareoversigt.Text = "Kurv";
             this.btn_Vareoversigt.UseVisualStyleBackColor = true;
             this.btn_Vareoversigt.Click += new System.EventHandler(this.btn_Vareoversigt_Click_1);
             // 
@@ -323,7 +325,7 @@
             // 
             this.btn_Rapport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Rapport.ForeColor = System.Drawing.Color.White;
-            this.btn_Rapport.Location = new System.Drawing.Point(1, 452);
+            this.btn_Rapport.Location = new System.Drawing.Point(1, 500);
             this.btn_Rapport.Name = "btn_Rapport";
             this.btn_Rapport.Size = new System.Drawing.Size(280, 40);
             this.btn_Rapport.TabIndex = 1;
@@ -335,7 +337,7 @@
             // 
             this.btn_Medarbejder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Medarbejder.ForeColor = System.Drawing.Color.White;
-            this.btn_Medarbejder.Location = new System.Drawing.Point(1, 406);
+            this.btn_Medarbejder.Location = new System.Drawing.Point(0, 454);
             this.btn_Medarbejder.Name = "btn_Medarbejder";
             this.btn_Medarbejder.Size = new System.Drawing.Size(280, 40);
             this.btn_Medarbejder.TabIndex = 1;
@@ -1863,7 +1865,7 @@
             this.tabControl.Controls.Add(this.tabPage_Rapport);
             this.tabControl.Controls.Add(this.tabPage_Indstillinger);
             this.tabControl.Controls.Add(this.tabPage_Products);
-            this.tabControl.Location = new System.Drawing.Point(283, 0);
+            this.tabControl.Location = new System.Drawing.Point(283, -22);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(918, 727);
@@ -2189,6 +2191,18 @@
             this.columnHeader3.Text = "LagerMængde";
             this.columnHeader3.Width = 133;
             // 
+            // btn_crudvare
+            // 
+            this.btn_crudvare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_crudvare.ForeColor = System.Drawing.Color.White;
+            this.btn_crudvare.Location = new System.Drawing.Point(0, 406);
+            this.btn_crudvare.Name = "btn_crudvare";
+            this.btn_crudvare.Size = new System.Drawing.Size(280, 40);
+            this.btn_crudvare.TabIndex = 6;
+            this.btn_crudvare.Text = "Vareoversigt";
+            this.btn_crudvare.UseVisualStyleBackColor = true;
+            this.btn_crudvare.Click += new System.EventHandler(this.btn_crudvare_Click);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2428,6 +2442,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader15;
         private System.Windows.Forms.ColumnHeader columnHeader16;
         private System.Windows.Forms.ColumnHeader columnHeader17;
+        private System.Windows.Forms.Button btn_crudvare;
     }
 }
 
