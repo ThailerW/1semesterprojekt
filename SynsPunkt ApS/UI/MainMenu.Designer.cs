@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_crudvare = new System.Windows.Forms.Button();
             this.btn_Indstillinger = new System.Windows.Forms.Button();
             this.btn_Bookingoversigt = new System.Windows.Forms.Button();
             this.btn_Leverandoeroversigt = new System.Windows.Forms.Button();
@@ -226,7 +227,6 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btn_crudvare = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbox_UserNameLogo)).BeginInit();
@@ -259,6 +259,18 @@
             this.panel1.Size = new System.Drawing.Size(280, 727);
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // btn_crudvare
+            // 
+            this.btn_crudvare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_crudvare.ForeColor = System.Drawing.Color.White;
+            this.btn_crudvare.Location = new System.Drawing.Point(0, 406);
+            this.btn_crudvare.Name = "btn_crudvare";
+            this.btn_crudvare.Size = new System.Drawing.Size(280, 40);
+            this.btn_crudvare.TabIndex = 6;
+            this.btn_crudvare.Text = "Vareoversigt";
+            this.btn_crudvare.UseVisualStyleBackColor = true;
+            this.btn_crudvare.Click += new System.EventHandler(this.btn_crudvare_Click);
             // 
             // btn_Indstillinger
             // 
@@ -372,7 +384,7 @@
             this.label_UserName.AutoSize = true;
             this.label_UserName.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_UserName.ForeColor = System.Drawing.Color.White;
-            this.label_UserName.Location = new System.Drawing.Point(83, 113);
+            this.label_UserName.Location = new System.Drawing.Point(97, 113);
             this.label_UserName.Name = "label_UserName";
             this.label_UserName.Size = new System.Drawing.Size(77, 19);
             this.label_UserName.TabIndex = 1;
@@ -2190,18 +2202,6 @@
             // 
             this.columnHeader3.Text = "LagerMængde";
             this.columnHeader3.Width = 133;
-            // 
-            // btn_crudvare
-            // 
-            this.btn_crudvare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_crudvare.ForeColor = System.Drawing.Color.White;
-            this.btn_crudvare.Location = new System.Drawing.Point(0, 406);
-            this.btn_crudvare.Name = "btn_crudvare";
-            this.btn_crudvare.Size = new System.Drawing.Size(280, 40);
-            this.btn_crudvare.TabIndex = 6;
-            this.btn_crudvare.Text = "Vareoversigt";
-            this.btn_crudvare.UseVisualStyleBackColor = true;
-            this.btn_crudvare.Click += new System.EventHandler(this.btn_crudvare_Click);
             // 
             // MainMenu
             // 

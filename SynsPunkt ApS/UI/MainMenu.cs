@@ -53,8 +53,11 @@ namespace SynsPunkt_ApS
             }
             else if (LoggedInEmployee.RoleID == 8)
             {
+                btn_Medarbejder.Enabled = false;
                 btn_Leverandoeroversigt.Enabled = false;
             }
+
+            label_UserName.Text = LoggedInEmployee.FirstName + " " + LoggedInEmployee.LastName;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
