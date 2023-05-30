@@ -27,11 +27,13 @@ namespace SynsPunkt_ApS.Services
             crudKunde.CreateKunde(lokationId, Mail, forNavn, efterNavn, telefonNummer, adresse, postNr);
         }
 
-        public void UpdateKunde(string lokationId, string Mail, string forNavn, string efterNavn, int telefonNummer, string adresse, int postNr)
+        public void UpdateKunde(string lokationId, int KundeID, string Mail, string forNavn, string efterNavn, int telefonNummer, string adresse, int postNr)
         {
-            // Opdater en eksisterende kunde
-            crudKunde.UpdateKunde(lokationId, Mail, forNavn, efterNavn, telefonNummer, adresse, postNr);
+            crudKunde.UpdateKunde(lokationId, KundeID, Mail, forNavn, efterNavn, telefonNummer, adresse, postNr);
+
         }
+
+
 
         public void DeleteKunde(int KundeID)
         {
@@ -49,7 +51,7 @@ namespace SynsPunkt_ApS.Services
 
         public Kunde GetKunde(int KundeID)
         {
-            // Hent en specifik kunde
+            Database.CRUD_Kunde crudKunde = new Database.CRUD_Kunde();
             return crudKunde.HentKunde(KundeID);
         }
 

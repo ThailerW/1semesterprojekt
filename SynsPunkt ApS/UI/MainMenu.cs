@@ -350,7 +350,27 @@ namespace SynsPunkt_ApS
 
         private void tb_searchPhoneNumber_TextChanged(object sender, EventArgs e)
         {
+            listView_customers.SelectedItems.Clear();
+            Services.Kunde_Services kundeServices = new Services.Kunde_Services();
+            listView_customers.Items.Clear(); // Fjerner eksisterende elementer i listView_customers
 
+            if (tb_searchPhoneNumber.Text == string.Empty)
+            {
+                GetAllKunder();
+            }
+            else
+            {
+                if (int.TryParse(tb_searchPhoneNumber.Text, out int kundeID))
+                {
+                    Models.Kunde kunde = kundeServices.GetKunde(kundeID);
+                    if (kunde != null)
+                    {
+                        ListViewItem listViewItem = new ListViewItem(kunde.TelefonNummer.ToString());
+                        listViewItem.SubItems.Add(kunde.KundeId.ToString());
+                        listView_customers.Items.Add(listViewItem);
+                    }
+                }
+            }
         }
 
 
@@ -358,30 +378,49 @@ namespace SynsPunkt_ApS
         {
             Services.Kunde_Services kundeService = new Services.Kunde_Services();
 
-
             // Opret en ny kunde med dataene fra tekstboksene
+            string lokationId = tb_CustomerLokation.Text;
+            string Mail = tb_customerEmail.Text;
             string forNavn = tb_CustomerFirstName.Text;
             string efterNavn = tb_customerLastName.Text;
             int telefonNummer;
-            string Mail = tb_customerEmail.Text;
             string adresse = tb_customerAdress.Text;
             int postNr;
-            string lokationId = tb_CustomerLokation.Text;
-
 
             if (!int.TryParse(tb_customerPhoneNumber.Text, out telefonNummer))
             {
-                MessageBox.Show("Invalid telefonnummer value. Please enter a valid integer.");
+                MessageBox.Show("Ugyldig telefonnummer-værdi. Indtast venligst et gyldigt heltal.");
                 return;
             }
 
             if (!int.TryParse(tb_customerPostNr.Text, out postNr))
             {
-                MessageBox.Show("Invalid postnr value. Please enter a valid integer.");
+                MessageBox.Show("Ugyldig postnr-værdi. Indtast venligst et gyldigt heltal.");
                 return;
             }
 
             kundeService.CreateKunde(lokationId, Mail, forNavn, efterNavn, telefonNummer, adresse, postNr);
+
+            MessageBox.Show("Kunde oprettet med succes!");
+
+            foreach (System.Windows.Forms.TextBox textBox in tabPage_kundeoversigt.Controls.OfType<System.Windows.Forms.TextBox>())
+            {
+                if (textBox.Text != tb_customerPhoneNumber.Text && textBox.Text == string.Empty)
+                {
+                    textBox.Text = string.Empty;
+                }
+            }
+
+            // Nulstil tekstboksene
+            tb_CustomerLokation.Text = "";
+            tb_customerEmail.Text = "";
+            tb_CustomerFirstName.Text = "";
+            tb_customerLastName.Text = "";
+            tb_customerPhoneNumber.Text = "";
+            tb_customerAdress.Text = "";
+            tb_customerPostNr.Text = "";
+
+            UpdateCustomerListView();
 
         }
 
@@ -400,69 +439,52 @@ namespace SynsPunkt_ApS
         {
             Services.Kunde_Services kundeServices = new Services.Kunde_Services();
 
+            int KundeID = Convert.ToInt32(tb_customerID.Text);
             string forNavn = tb_CustomerFirstName.Text;
             string efterNavn = tb_customerLastName.Text;
-            string telefonNummerText = tb_customerPhoneNumber.Text;
+            int telefonNummer = Convert.ToInt32(tb_customerPhoneNumber.Text);
             string Mail = tb_customerEmail.Text;
             string adresse = tb_customerAdress.Text;
-            string postNrText = tb_customerPostNr.Text;
-            string lokationId = tb_CustomerLokation.Text;
+            int postNr = Convert.ToInt32(tb_customerPostNr.Text);
+            string lokationId = lb_customerLocation.Text;
 
-            int telefonNummer; // Declare telefonNummer as an int variable
-            if (!int.TryParse(telefonNummerText, out telefonNummer))
+            kundeServices.UpdateKunde(lokationId, KundeID, Mail, forNavn, efterNavn, telefonNummer, adresse, postNr);
+
+            if (tb_searchPhoneNumber.Text == string.Empty)
             {
-                MessageBox.Show("Ugyldig telefonnummer værdi. Indtast venligst et gyldigt heltal.");
-                return;
+                GetAllKunder();
+            }
+            else
+            {
+                tb_searchPhoneNumber_TextChanged(tb_searchPhoneNumber, new EventArgs());
             }
 
-            int postNr; // Declare postNr as an int variable
-            if (!int.TryParse(postNrText, out postNr))
-            {
-                MessageBox.Show("Ugyldig postnr værdi. Indtast venligst et gyldigt heltal.");
-                return;
-            }
-
-            kundeServices.UpdateKunde(lokationId, Mail, forNavn, efterNavn, telefonNummer, adresse, postNr);
-
-            MessageBox.Show("Kunden blev opdateret");
+            MessageBox.Show("Kunde blev Opdateret", "Det virkede", MessageBoxButtons.OK);
         }
-
 
         private void btn_deleteCustomer_Click(object sender, EventArgs e)
         {
-            Services.Kunde_Services kunde_Services = new Services.Kunde_Services();
+            Services.Kunde_Services kundeServices = new Services.Kunde_Services();
+
             if (string.IsNullOrEmpty(tb_customerID.Text))
             {
-                MessageBox.Show("Vil du slette denne kunde", "Kunde slettet", MessageBoxButtons.OK);
+                MessageBox.Show("Vælg venligst en kunde at slette.", "Ingen kunde valgt", MessageBoxButtons.OK);
                 return;
             }
 
-            DialogResult result = MessageBox.Show("Er du sikker du vil slette kunden", "Ja", MessageBoxButtons.YesNoCancel);
+            DialogResult result = MessageBox.Show("Er du sikker på, at du vil slette kunden?", "Bekræft sletning", MessageBoxButtons.YesNoCancel);
 
             if (result == DialogResult.Yes)
             {
                 string fullname = tb_customerID.Text + " " + tb_customerLastName.Text;
 
-                MessageBox.Show(fullname + "blev slettet", "Kunden blev slettet", MessageBoxButtons.OK);
+                MessageBox.Show(fullname + " blev slettet.", "Kunden blev slettet", MessageBoxButtons.OK);
 
-                kunde_Services.DeleteKunde(int.Parse(tb_customerID.Text));
+                kundeServices.DeleteKunde(int.Parse(tb_customerID.Text));
 
-                if (tb_customerID.Text != string.Empty)
-                {
-                    GetAllKunder();
-                }
-                else
-                {
-                    tb_searchPhoneNumber_TextChanged(tb_searchPhoneNumber, new EventArgs());
+                ClearTextBoxes();
 
-                }
-                foreach (System.Windows.Forms.TextBox textBox in tabPage_kundeoversigt.Controls.OfType<System.Windows.Forms.TextBox>())
-                {
-                    if (textBox != tb_searchPhoneNumber && textBox.Text != string.Empty)
-                    {
-                        textBox.Text = string.Empty;
-                    }
-                }
+                UpdateCustomerListView();
             }
         }
 
@@ -471,6 +493,8 @@ namespace SynsPunkt_ApS
         {
             Kunde_Services kundeServices = new Kunde_Services();
 
+            // Ryd alle eksisterende elementer i listView_customers
+            listView_customers.Items.Clear();
 
             // Hent opdaterede kundedata fra databasen eller en anden datakilde
             List<Kunde> customers = kundeServices.GetCustomers();
@@ -481,9 +505,7 @@ namespace SynsPunkt_ApS
                 ListViewItem item = new ListViewItem(customer.KundeId.ToString());
                 item.SubItems.Add(customer.Fornavn);
                 item.SubItems.Add(customer.Efternavn);
-
                 item.SubItems.Add(customer.TelefonNummer.ToString());
-
                 item.SubItems.Add(customer.Mail);
                 item.SubItems.Add(customer.Adresse);
 
@@ -491,8 +513,6 @@ namespace SynsPunkt_ApS
                 item.SubItems.Add(postNrSubItem);
 
                 listView_customers.Items.Add(item);
-
-
             }
         }
 
@@ -852,7 +872,7 @@ namespace SynsPunkt_ApS
             double totalPriceForAllOrdersInReport = 0;
             var reportoutput = "SYNSPUNKT APS KØBSRAPPORT I TIDSINTERVALLET:     " + startDateCorrectFormat + "  -  " + endDateCorrectFormat + Environment.NewLine + Environment.NewLine;
 
-            
+
             string orderIDHeader = "OrderID".PadRight(10);
             string customerIDHeader = "KundeID".PadRight(12);
             string customerNameHeader = "KundeNavn".PadRight(40);
@@ -1210,6 +1230,14 @@ namespace SynsPunkt_ApS
         private void dateTimePicker_reportEndTime_ValueChanged(object sender, EventArgs e)
         {
             GetAllOrdersWithinDateInterval();
+        }
+
+        private void textBox_OnlyNumbersKeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

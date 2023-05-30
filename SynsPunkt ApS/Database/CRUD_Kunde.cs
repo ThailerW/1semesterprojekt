@@ -32,7 +32,7 @@ namespace SynsPunkt_ApS.Database
                 command.Parameters.AddWithValue("@Lokation", lokationId);
                 command.Parameters.AddWithValue("@Fornavn", forNavn);
                 command.Parameters.AddWithValue("@Efternavn", efterNavn);
-                command.Parameters.AddWithValue("@TelefonNummer", telefonNummer);
+                command.Parameters.AddWithValue("@TelefonNummer", telefonNummer.ToString()); // Convert to string
                 command.Parameters.AddWithValue("@Mail", Mail);
                 command.Parameters.AddWithValue("@Adresse", adresse);
                 command.Parameters.AddWithValue("@PostNr", postNr);
@@ -48,7 +48,6 @@ namespace SynsPunkt_ApS.Database
             {
                 conn.Close();
             }
-
         }
 
 
@@ -85,6 +84,7 @@ namespace SynsPunkt_ApS.Database
                         }
                     }
                 }
+                conn.Close();
             }
 
             return kunde;
@@ -95,28 +95,42 @@ namespace SynsPunkt_ApS.Database
         /// <summary>
         /// Opdaterer en kunde i databasen.
         /// </summary>
-        /// <param name="opdateretKunde">Den opdaterede kundeoplysninger.</param>
-        public void UpdateKunde(string lokationId, string Mail, string forNavn, string efterNavn, int telefonNummer, string adresse, int postNr)
+        public void UpdateKunde(string lokationId, int KundeID, string Mail, string forNavn, string efterNavn, int telefonNummer, string adresse, int postNr)
         {
-
-
             try
             {
-                string query = "UPDATE SP_Kunde SET LokationID = (SELECT LokationID FROM SP_Optiker WHERE byNavn = @Lokation), Mail = @Mail, Fornavn = @Fornavn, Efternavn = @Efternavn, TelefonNummer = @TelefonNummer, Adresse = @Adresse, PostNr = @PostNr WHERE KundeID = @KundeID";
+                string query = "UPDATE SP_Kunde SET LokationID = (SELECT LokationID FROM SP_Optiker WHERE byNavn = @LokationID), Mail = @Mail, Fornavn = @Fornavn, Efternavn = @Efternavn, TelefonNummer = @TelefonNummer, Adresse = @Adresse, PostNr = @PostNr WHERE KundeID = @KundeID";
+
                 SqlCommand command = new SqlCommand(query, conn);
-                command.Parameters.AddWithValue("@Lokation", lokationId);
+                command.Parameters.AddWithValue("@LokationID", lokationId);
                 command.Parameters.AddWithValue("@Mail", Mail);
                 command.Parameters.AddWithValue("@Fornavn", forNavn);
                 command.Parameters.AddWithValue("@Efternavn", efterNavn);
                 command.Parameters.AddWithValue("@TelefonNummer", telefonNummer);
                 command.Parameters.AddWithValue("@Adresse", adresse);
                 command.Parameters.AddWithValue("@PostNr", postNr);
+                command.Parameters.AddWithValue("@KundeID", KundeID);
+
+                // Konverter lokationId til en integer
+                int lokationIdInt;
+                if (int.TryParse(lokationId, out lokationIdInt))
+                {
+                    command.Parameters.AddWithValue("@LokationID", lokationIdInt);
+                }
+                else
+                {
+                    // Håndter fejl, hvis konverteringen mislykkes
+                    // Du kan vise en fejlbesked eller foretage andre handlinger her
+                }
+
+
+
                 conn.Open();
                 SqlDataReader reader = command.ExecuteReader();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Fejl ved opdatereting af kunde." + ex.Message, "FEJL", MessageBoxButtons.OK);
+                MessageBox.Show("Fejl ved opdatering af kunde: " + ex.Message, "FEJL", MessageBoxButtons.OK);
             }
             finally
             {

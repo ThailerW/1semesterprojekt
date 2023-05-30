@@ -662,6 +662,7 @@
             this.tb_employeeZip.Name = "tb_employeeZip";
             this.tb_employeeZip.Size = new System.Drawing.Size(371, 22);
             this.tb_employeeZip.TabIndex = 62;
+            this.tb_employeeZip.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
             // btn_UpdateEmployee
             // 
@@ -736,6 +737,7 @@
             this.tb_employeePhoneNo.Name = "tb_employeePhoneNo";
             this.tb_employeePhoneNo.Size = new System.Drawing.Size(371, 22);
             this.tb_employeePhoneNo.TabIndex = 54;
+            this.tb_employeePhoneNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
             // label_employeeLastName
             // 
@@ -928,6 +930,7 @@
             this.tb_levpostnr.Name = "tb_levpostnr";
             this.tb_levpostnr.Size = new System.Drawing.Size(371, 22);
             this.tb_levpostnr.TabIndex = 61;
+            this.tb_levpostnr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
             // label_supplierAccountNo
             // 
@@ -1034,6 +1037,7 @@
             this.tb_supplierPhone.Name = "tb_supplierPhone";
             this.tb_supplierPhone.Size = new System.Drawing.Size(371, 22);
             this.tb_supplierPhone.TabIndex = 49;
+            this.tb_supplierPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
             // label_supplierAdress
             // 
@@ -1122,6 +1126,7 @@
             this.tb_supplierID.Size = new System.Drawing.Size(384, 22);
             this.tb_supplierID.TabIndex = 30;
             this.tb_supplierID.TextChanged += new System.EventHandler(this.tb_supplierID_TextChanged);
+            this.tb_supplierID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
             // listView_suppliers
             // 
@@ -1200,6 +1205,7 @@
             this.tb_locationID.Size = new System.Drawing.Size(371, 22);
             this.tb_locationID.TabIndex = 57;
             this.tb_locationID.Text = "7";
+            this.tb_locationID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
             // cb_timePicker
             // 
@@ -1246,6 +1252,7 @@
             this.tb_customerBooking.Size = new System.Drawing.Size(371, 22);
             this.tb_customerBooking.TabIndex = 52;
             this.tb_customerBooking.Text = "1";
+            this.tb_customerBooking.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
             // label_bookingTime
             // 
@@ -1425,6 +1432,7 @@
             this.tb_customerPostNr.Name = "tb_customerPostNr";
             this.tb_customerPostNr.Size = new System.Drawing.Size(371, 22);
             this.tb_customerPostNr.TabIndex = 43;
+            this.tb_customerPostNr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
             // lb_customerPostNr
             // 
@@ -1508,6 +1516,7 @@
             this.tb_customerPhoneNumber.Name = "tb_customerPhoneNumber";
             this.tb_customerPhoneNumber.Size = new System.Drawing.Size(371, 22);
             this.tb_customerPhoneNumber.TabIndex = 34;
+            this.tb_customerPhoneNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
             // label_lastName
             // 
@@ -1667,6 +1676,7 @@
             this.tb_customerToBuy.Name = "tb_customerToBuy";
             this.tb_customerToBuy.Size = new System.Drawing.Size(384, 22);
             this.tb_customerToBuy.TabIndex = 84;
+            this.tb_customerToBuy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
             // lb_vareSearch2
             // 
@@ -1972,6 +1982,7 @@
             this.tb_productPrice.Name = "tb_productPrice";
             this.tb_productPrice.Size = new System.Drawing.Size(371, 22);
             this.tb_productPrice.TabIndex = 84;
+            this.tb_productPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
             // label_price
             // 
@@ -2047,6 +2058,7 @@
             this.tb_strengt.Name = "tb_strengt";
             this.tb_strengt.Size = new System.Drawing.Size(371, 22);
             this.tb_strengt.TabIndex = 76;
+            this.tb_strengt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
             // label_strength
             // 
@@ -2079,6 +2091,7 @@
             this.tb_quantity.Name = "tb_quantity";
             this.tb_quantity.Size = new System.Drawing.Size(371, 22);
             this.tb_quantity.TabIndex = 72;
+            this.tb_quantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
             // label_quantity
             // 
