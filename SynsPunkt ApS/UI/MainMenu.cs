@@ -885,7 +885,7 @@ namespace SynsPunkt_ApS
             }
 
             double totalPriceForAllOrdersInReport = 0;
-            var reportoutput = "SYNSPUNKT APS KØBSRAPPORT I TIDSINTERVALLET:     " + startDateCorrectFormat + "  -  " + endDateCorrectFormat + Environment.NewLine + Environment.NewLine;
+            var saleReport = "SYNSPUNKT APS KØBSRAPPORT I TIDSINTERVALLET:     " + startDateCorrectFormat + "  -  " + endDateCorrectFormat + Environment.NewLine + Environment.NewLine;
 
 
             string orderIDHeader = "OrderID".PadRight(10);
@@ -894,8 +894,8 @@ namespace SynsPunkt_ApS
             string orderDateHeader = "OrderDato".PadRight(25);
             string totalPriceHeader = "Total pris for ordren";
 
-            reportoutput += orderIDHeader + customerIDHeader + customerNameHeader + orderDateHeader + totalPriceHeader + Environment.NewLine;
-            reportoutput += "-------------------------------------------------------------------------------------------------------------" + Environment.NewLine;
+            saleReport += orderIDHeader + customerIDHeader + customerNameHeader + orderDateHeader + totalPriceHeader + Environment.NewLine;
+            saleReport += "-------------------------------------------------------------------------------------------------------------" + Environment.NewLine;
 
             foreach (var order in ordersWithinDateInterval)
             {
@@ -907,14 +907,14 @@ namespace SynsPunkt_ApS
                 string orderDate = order.orderDate.ToString().PadRight(25);
                 string totalPrice = order.totalPrice.ToString("C2");
 
-                reportoutput += orderID + customerID + customerName + orderDate + totalPrice + Environment.NewLine;
+                saleReport += orderID + customerID + customerName + orderDate + totalPrice + Environment.NewLine;
 
                 totalPriceForAllOrdersInReport += order.totalPrice;
             }
-            reportoutput += "-------------------------------------------------------------------------------------------------------------" + Environment.NewLine;
-            reportoutput += "Antal Ordrer: " + ordersWithinDateInterval.Count + Environment.NewLine;
-            reportoutput += "Samlet salgspris for alle ordrer: " + totalPriceForAllOrdersInReport.ToString("C2");
-            System.IO.File.WriteAllText("Salgsrapport (" + startDateCorrectFormat + ") - (" + endDateCorrectFormat + ").txt", reportoutput);
+            saleReport += "-------------------------------------------------------------------------------------------------------------" + Environment.NewLine;
+            saleReport += "Antal Ordrer: " + ordersWithinDateInterval.Count + Environment.NewLine;
+            saleReport += "Samlet salgspris for alle ordrer: " + totalPriceForAllOrdersInReport.ToString("C2");
+            System.IO.File.WriteAllText("Salgsrapport (" + startDateCorrectFormat + ") - (" + endDateCorrectFormat + ").txt", saleReport);
 
             MessageBox.Show("Rapporten blev udskrevet som tekstfil");
         }
@@ -974,6 +974,37 @@ namespace SynsPunkt_ApS
             }
         }
 
+        private void btn_printproductreport_Click(object sender, EventArgs e)
+        {
+            StringBuilder productReport = new StringBuilder();
+
+            string productIDHeader = "VareID".PadRight(10);
+            string productNameHeader = "Varenavn".PadRight(40);
+            string productStockQuantityHeader = "Lagermængde".PadRight(20);
+            string productPriceHeader = "Pris".PadRight(15);
+            string productSupplierIDHeader = "LeverandørCVR".PadRight(15);
+
+            productReport.AppendLine("Komplet Vareraport for SYNSPUNKT APS   " + DateTime.Now.Date.ToString().Substring(0,10));
+            productReport.AppendLine();
+            productReport.AppendLine(productIDHeader + productNameHeader + productStockQuantityHeader + productPriceHeader + productSupplierIDHeader);
+            productReport.Append("----------------------------------------------------------------------------------------------------");
+
+            foreach (var product in allProducts)
+            {
+                productReport.AppendLine();
+                productReport.Append(product.VareNummer.ToString().PadRight(10));
+                productReport.Append(product.VareNavn.PadRight(40));
+                productReport.Append(product.LagerMængde.ToString().PadRight(20));
+                productReport.Append(product.Pris.ToString("N0").PadRight(15));
+                productReport.Append(product.LevCVR.ToString().PadRight(15));
+            }
+            productReport.AppendLine();
+            productReport.AppendLine("----------------------------------------------------------------------------------------------------");
+
+            System.IO.File.WriteAllText("Vareraport "+ DateTime.Now.Date.ToString().Substring(0,10) +".txt", productReport.ToString());
+
+            MessageBox.Show("Varerapporten blev udskrevet som tekstfil","Success");
+        }
         private void btn_createProduct_Click(object sender, EventArgs e)
         {
             Services.VareService vareService = new VareService();
@@ -1259,5 +1290,7 @@ namespace SynsPunkt_ApS
         {
             tabControl.SelectedTab = tabPage_Products;
         }
+
+
     }
 }

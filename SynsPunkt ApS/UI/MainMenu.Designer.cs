@@ -227,6 +227,7 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btn_printproductreport = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbox_UserNameLogo)).BeginInit();
@@ -1877,7 +1878,7 @@
             this.tabControl.Controls.Add(this.tabPage_Rapport);
             this.tabControl.Controls.Add(this.tabPage_Indstillinger);
             this.tabControl.Controls.Add(this.tabPage_Products);
-            this.tabControl.Location = new System.Drawing.Point(283, -22);
+            this.tabControl.Location = new System.Drawing.Point(283, 1);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(918, 727);
@@ -1961,6 +1962,7 @@
             // 
             // tabPage_Products
             // 
+            this.tabPage_Products.Controls.Add(this.btn_printproductreport);
             this.tabPage_Products.Controls.Add(this.tb_productPrice);
             this.tabPage_Products.Controls.Add(this.label_price);
             this.tabPage_Products.Controls.Add(this.lb_varesearch);
@@ -2203,6 +2205,19 @@
             this.columnHeader3.Text = "LagerMængde";
             this.columnHeader3.Width = 133;
             // 
+            // btn_printproductreport
+            // 
+            this.btn_printproductreport.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btn_printproductreport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_printproductreport.ForeColor = System.Drawing.Color.Transparent;
+            this.btn_printproductreport.Location = new System.Drawing.Point(768, 527);
+            this.btn_printproductreport.Name = "btn_printproductreport";
+            this.btn_printproductreport.Size = new System.Drawing.Size(133, 67);
+            this.btn_printproductreport.TabIndex = 85;
+            this.btn_printproductreport.Text = "Print raport over alle varer";
+            this.btn_printproductreport.UseVisualStyleBackColor = false;
+            this.btn_printproductreport.Click += new System.EventHandler(this.btn_printproductreport_Click);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2443,6 +2458,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader16;
         private System.Windows.Forms.ColumnHeader columnHeader17;
         private System.Windows.Forms.Button btn_crudvare;
+        private System.Windows.Forms.Button btn_printproductreport;
     }
 }
 
