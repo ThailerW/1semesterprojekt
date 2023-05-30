@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynsPunkt ApS", "SynsPunkt ApS\SynsPunkt ApS.csproj", "{219FEE0C-4D3E-4393-8C61-55768EC2027A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynsPunkt ChatBot", "SynsPunkt ChatBot\SynsPunkt ChatBot.csproj", "{F12423C6-A62E-4BF0-8815-5BCC37B7CF40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{219FEE0C-4D3E-4393-8C61-55768EC2027A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{219FEE0C-4D3E-4393-8C61-55768EC2027A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{219FEE0C-4D3E-4393-8C61-55768EC2027A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F12423C6-A62E-4BF0-8815-5BCC37B7CF40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F12423C6-A62E-4BF0-8815-5BCC37B7CF40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F12423C6-A62E-4BF0-8815-5BCC37B7CF40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F12423C6-A62E-4BF0-8815-5BCC37B7CF40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
