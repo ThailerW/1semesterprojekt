@@ -1140,6 +1140,9 @@ namespace SynsPunkt_ApS
             }
         }
 
+        /// <summary>
+        /// Martin: Displays the orders based on chosen start and end date intervals
+        /// </summary>
         private void GetAndDisplayAllOrdersWithinDateInterval()
         {
             ordersWithinDateInterval = allOrders.Where
