@@ -384,12 +384,17 @@ namespace SynsPunkt_ApS
             }
         }
 
+        /// <summary>
+        /// Minh: Håndterer begivenheden når en kunde er valgt i ListView.
+        /// Opdaterer tekstboksene med de valgte kundens oplysninger.
+        /// </summary>
+        /// <param name="sender">Objektet, der udløste begivenheden.</param>
+        /// <param name="e">Argumenter for begivenheden.</param>
         private void listView_customers_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Tjek om en kunde er valgt i ListView
             if (listView_customers.SelectedItems.Count > 0)
             {
-
                 Services.Customer_service customerService = new Customer_service();
 
                 string selectedCustomerID = listView_customers.SelectedItems[0].SubItems[0].Text;
@@ -409,6 +414,12 @@ namespace SynsPunkt_ApS
             }
         }
 
+        /// <summary>
+        /// Minh:Håndterer begivenheden når teksten ændres i tb_searchPhoneNumber.
+        /// Opdaterer ListView med kunder baseret på det indtastede telefonnummer.
+        /// </summary>
+        /// <param name="sender">Objektet, der udløste begivenheden.</param>
+        /// <param name="e">Argumenter for begivenheden.</param>
         private void tb_searchPhoneNumber_TextChanged(object sender, EventArgs e)
         {
             listView_customers.SelectedItems.Clear();
@@ -435,6 +446,12 @@ namespace SynsPunkt_ApS
         }
 
 
+        /// <summary>
+        /// Minh: Håndterer begivenheden når knappen btn_createCustomer klikkes.
+        /// Opretter en ny kunde baseret på indtastede oplysninger i tekstboksene.
+        /// </summary>
+        /// <param name="sender">Objektet, der udløste begivenheden.</param>
+        /// <param name="e">Argumenter for begivenheden.</param>
         private void btn_createCustomer_Click(object sender, EventArgs e)
         {
             Services.Customer_service customerService = new Services.Customer_service();
@@ -482,9 +499,11 @@ namespace SynsPunkt_ApS
             tb_customerPostNr.Text = "";
 
             UpdateCustomerListView();
-
         }
 
+        /// <summary>
+        /// Minh: Nulstiller indholdet af tekstboksene til tomme strenge.
+        /// </summary>
         private void ClearTextBoxes()
         {
             tb_CustomerFirstName.Text = "";
@@ -496,10 +515,14 @@ namespace SynsPunkt_ApS
             tb_customerPostNr.Text = "";
         }
 
+        /// <summary>
+        /// Minh: Håndterer klikhændelsen for opdateringsknappen for en kunde.
+        /// </summary>
         private void btn_updateCustomer_Click(object sender, EventArgs e)
         {
             Services.Customer_service customerService = new Services.Customer_service();
 
+            // Indsamler dataene fra tekstboksene
             int customerID = Convert.ToInt32(tb_customerID.Text);
             string firstName = tb_CustomerFirstName.Text;
             string lastName = tb_customerLastName.Text;
@@ -509,8 +532,10 @@ namespace SynsPunkt_ApS
             int zipCode = Convert.ToInt32(tb_customerPostNr.Text);
             string locationId = lb_customerLocation.Text;
 
+            // Opdaterer kunden i databasen
             customerService.UpdateCustomer(locationId, customerID, mail, firstName, lastName, phoneNumber, adress, zipCode);
 
+            // Opdaterer visningen af kunder baseret på søgning
             if (tb_searchPhoneNumber.Text == string.Empty)
             {
                 GetAndDisplayAllCustomer();
@@ -523,16 +548,21 @@ namespace SynsPunkt_ApS
             MessageBox.Show("Kunde blev Opdateret", "Det virkede", MessageBoxButtons.OK);
         }
 
+        /// <summary>
+        /// Minh: Håndterer klikhændelsen for sletningsknappen for en kunde.
+        /// </summary>
         private void btn_deleteCustomer_Click(object sender, EventArgs e)
         {
             Services.Customer_service kundeServices = new Services.Customer_service();
 
+            // Tjekker om der er valgt en kunde
             if (string.IsNullOrEmpty(tb_customerID.Text))
             {
                 MessageBox.Show("Vælg venligst en kunde at slette.", "Ingen kunde valgt", MessageBoxButtons.OK);
                 return;
             }
 
+            // Spørger brugeren om bekræftelse på sletning
             DialogResult result = MessageBox.Show("Er du sikker på, at du vil slette kunden?", "Bekræft sletning", MessageBoxButtons.YesNoCancel);
 
             if (result == DialogResult.Yes)
@@ -541,15 +571,21 @@ namespace SynsPunkt_ApS
 
                 MessageBox.Show(fullname + " blev slettet.", "Kunden blev slettet", MessageBoxButtons.OK);
 
+                // Sletter kunden fra databasen
                 kundeServices.DeleteCustomer(int.Parse(tb_customerID.Text));
 
+                // Rydder tekstboksene
                 ClearTextBoxes();
 
+                // Opdaterer visningen af kunder
                 UpdateCustomerListView();
             }
         }
 
 
+        /// <summary>
+        /// Minh: Opdaterer visningen af kunder i ListView ved at hente opdaterede kundedata og tilføje dem som elementer i ListView.
+        /// </summary>
         private void UpdateCustomerListView()
         {
             Customer_service kundeServices = new Customer_service();

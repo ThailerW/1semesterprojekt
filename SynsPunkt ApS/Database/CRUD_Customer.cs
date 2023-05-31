@@ -17,9 +17,15 @@ namespace SynsPunkt_ApS.Database
         private string connectionString = "Data Source=mssql15.unoeuro.com;Initial Catalog=oversaftigt_dk_db_test;User ID=oversaftigt_dk;Password=prfHFR9546nEtyb2xDmc";
 
         /// <summary>
-        /// Opretter en ny kunde i databasen.
+        /// Minh: Opretter en ny kunde i databasen.
         /// </summary>
-        /// <param name="nyKunde">Den nye kunde, der skal oprettes.</param>
+        /// <param name="locationId">Stedets ID for kunden.</param>
+        /// <param name="Mail">Kundens e-mailadresse.</param>
+        /// <param name="firstName">Kundens fornavn.</param>
+        /// <param name="lastName">Kundens efternavn.</param>
+        /// <param name="phoneNumber">Kundens telefonnummer.</param>
+        /// <param name="adress">Kundens adresse.</param>
+        /// <param name="zipCode">Kundens postnummer.</param>
         public void CreateCustomer(string locationId, string Mail, string firstName, string lastName, int phoneNumber, string adress, int zipCode)
         {
             try
@@ -32,7 +38,7 @@ namespace SynsPunkt_ApS.Database
                 command.Parameters.AddWithValue("@Lokation", locationId);
                 command.Parameters.AddWithValue("@Fornavn", firstName);
                 command.Parameters.AddWithValue("@Efternavn", lastName);
-                command.Parameters.AddWithValue("@TelefonNummer", phoneNumber.ToString()); // Convert to string
+                command.Parameters.AddWithValue("@TelefonNummer", phoneNumber.ToString()); // Konverter til en streng
                 command.Parameters.AddWithValue("@Mail", Mail);
                 command.Parameters.AddWithValue("@Adresse", adress);
                 command.Parameters.AddWithValue("@PostNr", zipCode);
@@ -52,9 +58,9 @@ namespace SynsPunkt_ApS.Database
 
 
         /// <summary>
-        /// Henter en kunde fra databasen baseret på KundeInfo-id.
+        /// Minh: Henter en kunde fra databasen baseret på KundeInfo-id.
         /// </summary>
-        /// <param name="KundeInfo">Id'et på den ønskede kunde.</param>
+        /// <param name="customerID">Id'et på den ønskede kunde.</param>
         public Customer GetCustomer(int customerID)
         {
             string query = "SELECT * FROM SP_Kunde WHERE KundeID = @KundeID";
@@ -93,8 +99,16 @@ namespace SynsPunkt_ApS.Database
 
 
         /// <summary>
-        /// Opdaterer en kunde i databasen.
+        /// Minh: Opdaterer en kunde i databasen.
         /// </summary>
+        /// <param name="locationID">Id'et på den ønskede lokation.</param>
+        /// <param name="customerID">Id'et på den ønskede kunde.</param>
+        /// <param name="Mail">Den nye mailadresse for kunden.</param>
+        /// <param name="firstName">Det nye fornavn for kunden.</param>
+        /// <param name="lastName">Det nye efternavn for kunden.</param>
+        /// <param name="phoneNumber">Det nye telefonnummer for kunden.</param>
+        /// <param name="adress">Den nye adresse for kunden.</param>
+        /// <param name="zipCode">Det nye postnummer for kunden.</param>
         public void UpdateCustomer(string locationID, int customerID, string Mail, string firstName, string lastName, int phoneNumber, string adress, int zipCode)
         {
             try
@@ -123,8 +137,6 @@ namespace SynsPunkt_ApS.Database
                     // Du kan vise en fejlbesked eller foretage andre handlinger her
                 }
 
-
-
                 conn.Open();
                 SqlDataReader reader = command.ExecuteReader();
             }
@@ -141,7 +153,7 @@ namespace SynsPunkt_ApS.Database
 
 
         /// <summary>
-        /// Sletter en kunde fra databasen baseret på Id.
+        /// Minh: Sletter en kunde fra databasen baseret på Id.
         /// </summary>
         /// <param name="id">Id'et på kunden, der skal slettes.</param>
 
@@ -167,7 +179,7 @@ namespace SynsPunkt_ApS.Database
 
 
         /// <summary>
-        /// Udfører en generel databaseforespørgsel.
+        /// Minh: Udfører en generel databaseforespørgsel.
         /// </summary>
         /// <param name="query">SQL-forespørgslen, der skal udføres.</param>
         private void ExecuteQuery(string query)
