@@ -8,7 +8,7 @@ namespace SynsPunkt_ApS.Models
 {
     public class Rolle
     {
-        public string Rollenavn { get; set; }
-        public Models.Permissions Rettigheder { get; set; }
+        public string roleName { get; set; }
+        public Models.Permissions permissions { get; set; }
     }
 }

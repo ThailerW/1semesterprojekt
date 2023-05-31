@@ -11,19 +11,19 @@ using System.Xml.Linq;
 
 namespace SynsPunkt_ApS.Database
 {
-    public class CRUD_Vare
+    public class CRUD_Product
     {
         string connectionString = Database.ConnectionString.GetConnectionString();
 
         /// <summary>
         /// Martin: Opretter en ny vare med alt tildelt info
         /// </summary>
-        /// <param name="vareBeskrivelse"></param>
-        /// <param name="lagerMængde"></param>
-        /// <param name="vareNavn"></param>
-        /// <param name="styrke"></param>
+        /// <param name="productDescription"></param>
+        /// <param name="stockQuantity"></param>
+        /// <param name="productName"></param>
+        /// <param name="lensStrength"></param>
         /// <param name="levCVR"></param>
-        public void CreateVare(string vareBeskrivelse, int lagerMængde, string vareNavn, decimal styrke, string levCVR, decimal pris)
+        public void CreateProduct(string productDescription, int stockQuantity, string productName, decimal lensStrength, string levCVR, decimal price)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand();
@@ -32,8 +32,8 @@ namespace SynsPunkt_ApS.Database
             try
             {
                 command.CommandText = "INSERT INTO SP_Vare (vareBeskrivelse, lagerMængde, vareNavn, styrke, leverandørCVR, varePris) " +
-                                      "VALUES ('" + vareBeskrivelse + "', " + lagerMængde + ", '" + vareNavn + "', "
-                                      + styrke + ",'" + levCVR + "', " + pris + ")";
+                                      "VALUES ('" + productDescription + "', " + stockQuantity + ", '" + productName + "', "
+                                      + lensStrength + ",'" + levCVR + "', " + price + ")";
 
 
                 connection.Open();
@@ -55,18 +55,18 @@ namespace SynsPunkt_ApS.Database
         /// </summary>
         /// <param name="vareID"></param>
         /// <returns></returns>
-        public Models.Product ReadVare(string id, out string id2, out string vareBeskrivelse, out string lagerMængde, out string vareNavn,
-            out string styrke, out string levCVR, out string pris)
+        public Models.Product ReadProduct(string id, out string id2, out string productDescription, out string stockQuantity, out string productName,
+            out string lensStrength, out string levCVR, out string price)
         {
             id2 = "";
-            vareBeskrivelse = "";
-            lagerMængde = "";
-            vareNavn = "";
-            styrke = "";
+            productDescription = "";
+            stockQuantity = "";
+            productName = "";
+            lensStrength = "";
             levCVR = "";
-            pris = "";
+            price = "";
 
-            Models.Product vare = new Models.Product(0, "", 0, "", 0, "", 0);
+            Models.Product product = new Models.Product(0, "", 0, "", 0, "", 0);
             SqlConnection connection = new SqlConnection(connectionString);
 
             string query = "SELECT * FROM SP_Vare WHERE vareID = '" + id + "'";
@@ -84,17 +84,17 @@ namespace SynsPunkt_ApS.Database
                 while (reader.Read())
                 {
                     //Filling created instance with the selected ID's data.
-                    vare = new Models.Product(Convert.ToInt32(reader["vareID"]), reader["vareBeskrivelse"].ToString(),
+                    product = new Models.Product(Convert.ToInt32(reader["vareID"]), reader["vareBeskrivelse"].ToString(),
                        Convert.ToInt32(reader["lagerMængde"]), reader["vareNavn"].ToString(), Convert.ToDecimal(reader["styrke"]),
                        reader["leverandørCVR"].ToString(), Convert.ToDecimal(reader["varePris"]));
 
-                    id2 = vare.productNumber.ToString();
-                    vareBeskrivelse = vare.productDescription;
-                    lagerMængde = vare.stockQuantity.ToString();
-                    vareNavn = vare.productName;
-                    styrke = vare.lensStrength.ToString();
-                    levCVR = vare.levCVR.ToString();
-                    pris = vare.price.ToString();
+                    id2 = product.productNumber.ToString();
+                    productDescription = product.productDescription;
+                    stockQuantity = product.stockQuantity.ToString();
+                    productName = product.productName;
+                    lensStrength = product.lensStrength.ToString();
+                    levCVR = product.levCVR.ToString();
+                    price = product.price.ToString();
                 }
             }
             catch (Exception ex)
@@ -106,19 +106,19 @@ namespace SynsPunkt_ApS.Database
                 command.Dispose();
                 connection.Close();
             }
-            return vare;
+            return product;
         }
 
         /// <summary>
         /// Opdatere en vare med valgt VareID med ny anvgivet data.
         /// </summary>
-        /// <param name="vareID"></param>
-        /// <param name="vareBeskrivelse"></param>
-        /// <param name="lagerMængde"></param>
-        /// <param name="vareNavn"></param>
-        /// <param name="styrke"></param>
+        /// <param name="productID"></param>
+        /// <param name="prodcutDescription"></param>
+        /// <param name="stockQuantity"></param>
+        /// <param name="productName"></param>
+        /// <param name="lensStrength"></param>
         /// <param name="levCVR"></param>
-        public void UpdateVare(string vareID, string vareBeskrivelse, int lagerMængde, string vareNavn, decimal styrke, string levCVR, decimal pris)
+        public void UpdateProduct(string productID, string prodcutDescription, int stockQuantity, string productName, decimal lensStrength, string levCVR, decimal pris)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand();
@@ -126,9 +126,9 @@ namespace SynsPunkt_ApS.Database
 
             try
             {
-                command.CommandText = "UPDATE SP_Vare SET vareBeskrivelse = '" + vareBeskrivelse + "', lagerMængde = " + lagerMængde +
-                    ", vareNavn = '" + vareNavn + "', styrke = " + styrke + ", leverandørCVR = " + levCVR + ", varePris = " + pris + " " +
-                    "WHERE vareID = " + vareID + ";";
+                command.CommandText = "UPDATE SP_Vare SET vareBeskrivelse = '" + prodcutDescription + "', lagerMængde = " + stockQuantity +
+                    ", vareNavn = '" + productName + "', styrke = " + lensStrength + ", leverandørCVR = " + levCVR + ", varePris = " + pris + " " +
+                    "WHERE vareID = " + productID + ";";
 
 
                 connection.Open();
@@ -148,15 +148,15 @@ namespace SynsPunkt_ApS.Database
         /// <summary>
         /// Sletter valgt vare med inputted ID
         /// </summary>
-        /// <param name="vareID"></param>
-        public void DeleteVare(string vareID)
+        /// <param name="productID"></param>
+        public void DeleteProduct(string productID)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
             try
             {
-                command.CommandText = "DELETE FROM SP_Vare WHERE vareID = '" + vareID + "'";
+                command.CommandText = "DELETE FROM SP_Vare WHERE vareID = '" + productID + "'";
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -176,9 +176,9 @@ namespace SynsPunkt_ApS.Database
         /// Henter alle vare fra databasen og returnere en liste af models.vare
         /// </summary>
         /// <returns></returns>
-        public List<Models.Product> GetAllVare()
+        public List<Models.Product> GetAllProducts()
         {
-            List<Models.Product> vareList = new List<Models.Product>();
+            List<Models.Product> productList = new List<Models.Product>();
 
             SqlConnection connection = new SqlConnection(connectionString);
 
@@ -197,7 +197,7 @@ namespace SynsPunkt_ApS.Database
                 while (reader.Read())
                 {
                     //Creating new instance of class:
-                    Models.Product vare = new Models.Product(
+                    Models.Product product = new Models.Product(
                        Convert.ToInt32(reader["vareID"]),
                        reader["vareBeskrivelse"].ToString(),
                        Convert.ToInt32(reader["lagerMængde"]),
@@ -206,7 +206,7 @@ namespace SynsPunkt_ApS.Database
                        reader["leverandørCVR"].ToString(),
                        Convert.ToDecimal(reader["varePris"]));
 
-                    vareList.Add(vare);
+                    productList.Add(product);
                 }
             }
             catch (Exception ex)
@@ -221,10 +221,10 @@ namespace SynsPunkt_ApS.Database
                 }
                 connection.Close();
             }
-            return vareList;
+            return productList;
         }
 
-        public List<Models.Product> SearchVareByName(string name)
+        public List<Models.Product> SearchProductByName(string name)
         {
             List<Models.Product> searchResults = new List<Models.Product>();
 
@@ -240,16 +240,16 @@ namespace SynsPunkt_ApS.Database
             {
                 while (reader.Read())
                 {
-                    int vareID = Convert.ToInt32(reader["VareID"]);
-                    string vareBeskrivelse = reader["vareBeskrivelse"].ToString();
-                    int lagerMængde = Convert.ToInt32(reader["lagerMængde"]);
-                    string vareNavn = reader["vareNavn"].ToString();
-                    decimal styrke = Convert.ToDecimal(reader["styrke"]);
+                    int productID = Convert.ToInt32(reader["VareID"]);
+                    string productDescription = reader["vareBeskrivelse"].ToString();
+                    int stockQuantity = Convert.ToInt32(reader["lagerMængde"]);
+                    string productName = reader["vareNavn"].ToString();
+                    decimal lensStrength = Convert.ToDecimal(reader["styrke"]);
                     string levCVR = reader["leverandørCVR"].ToString();
-                    decimal varePris = Convert.ToDecimal(reader["varePris"]);
+                    decimal productPrice = Convert.ToDecimal(reader["varePris"]);
 
 
-                    Models.Product Vare = new Models.Product(vareID, vareBeskrivelse, lagerMængde, vareNavn, styrke, levCVR, varePris);
+                    Models.Product Vare = new Models.Product(productID, productDescription, stockQuantity, productName, lensStrength, levCVR, productPrice);
 
                     searchResults.Add(Vare);
                 }

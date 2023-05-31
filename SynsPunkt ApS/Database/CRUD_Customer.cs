@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace SynsPunkt_ApS.Database
 {
-    public class CRUD_Kunde
+    public class CRUD_Customer
     {
         SqlConnection conn = new SqlConnection(Database.ConnectionString.GetConnectionString());
 
@@ -20,7 +20,7 @@ namespace SynsPunkt_ApS.Database
         /// Opretter en ny kunde i databasen.
         /// </summary>
         /// <param name="nyKunde">Den nye kunde, der skal oprettes.</param>
-        public void CreateKunde(string lokationId, string Mail, string forNavn, string efterNavn, int telefonNummer, string adresse, int postNr)
+        public void CreateCustomer(string locationId, string Mail, string firstName, string lastName, int phoneNumber, string adress, int zipCode)
         {
             try
             {
@@ -29,13 +29,13 @@ namespace SynsPunkt_ApS.Database
                 "VALUES ((SELECT LokationID FROM SP_Optiker WHERE byNavn = @Lokation), @Mail, @Fornavn, @Efternavn, @TelefonNummer, @Adresse, @PostNr)";
 
                 SqlCommand command = new SqlCommand(query, conn);
-                command.Parameters.AddWithValue("@Lokation", lokationId);
-                command.Parameters.AddWithValue("@Fornavn", forNavn);
-                command.Parameters.AddWithValue("@Efternavn", efterNavn);
-                command.Parameters.AddWithValue("@TelefonNummer", telefonNummer.ToString()); // Convert to string
+                command.Parameters.AddWithValue("@Lokation", locationId);
+                command.Parameters.AddWithValue("@Fornavn", firstName);
+                command.Parameters.AddWithValue("@Efternavn", lastName);
+                command.Parameters.AddWithValue("@TelefonNummer", phoneNumber.ToString()); // Convert to string
                 command.Parameters.AddWithValue("@Mail", Mail);
-                command.Parameters.AddWithValue("@Adresse", adresse);
-                command.Parameters.AddWithValue("@PostNr", postNr);
+                command.Parameters.AddWithValue("@Adresse", adress);
+                command.Parameters.AddWithValue("@PostNr", zipCode);
 
                 conn.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -55,23 +55,23 @@ namespace SynsPunkt_ApS.Database
         /// Henter en kunde fra databasen baseret på KundeInfo-id.
         /// </summary>
         /// <param name="KundeInfo">Id'et på den ønskede kunde.</param>
-        public Customer HentKunde(int KundeID)
+        public Customer GetCustomer(int customerID)
         {
             string query = "SELECT * FROM SP_Kunde WHERE KundeID = @KundeID";
-            Customer kunde = null;
+            Customer customer = null;
 
             SqlCommand command = new SqlCommand(query, conn);
             {
                 conn.Open();
 
                 {
-                    command.Parameters.AddWithValue("@KundeId", KundeID);
+                    command.Parameters.AddWithValue("@KundeId", customerID);
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            kunde = new Customer(
+                            customer = new Customer(
                                 reader["Fornavn"].ToString(),
                                 reader["Efternavn"].ToString(),
                                 Convert.ToInt32(reader["TelefonNummer"]),
@@ -87,7 +87,7 @@ namespace SynsPunkt_ApS.Database
                 conn.Close();
             }
 
-            return kunde;
+            return customer;
         }
 
 
@@ -95,25 +95,25 @@ namespace SynsPunkt_ApS.Database
         /// <summary>
         /// Opdaterer en kunde i databasen.
         /// </summary>
-        public void UpdateKunde(string lokationId, int KundeID, string Mail, string forNavn, string efterNavn, int telefonNummer, string adresse, int postNr)
+        public void UpdateCustomer(string locationID, int customerID, string Mail, string firstName, string lastName, int phoneNumber, string adress, int zipCode)
         {
             try
             {
                 string query = "UPDATE SP_Kunde SET LokationID = (SELECT LokationID FROM SP_Optiker WHERE byNavn = @LokationID), Mail = @Mail, Fornavn = @Fornavn, Efternavn = @Efternavn, TelefonNummer = @TelefonNummer, Adresse = @Adresse, PostNr = @PostNr WHERE KundeID = @KundeID";
 
                 SqlCommand command = new SqlCommand(query, conn);
-                command.Parameters.AddWithValue("@LokationID", lokationId);
+                command.Parameters.AddWithValue("@LokationID", locationID);
                 command.Parameters.AddWithValue("@Mail", Mail);
-                command.Parameters.AddWithValue("@Fornavn", forNavn);
-                command.Parameters.AddWithValue("@Efternavn", efterNavn);
-                command.Parameters.AddWithValue("@TelefonNummer", telefonNummer);
-                command.Parameters.AddWithValue("@Adresse", adresse);
-                command.Parameters.AddWithValue("@PostNr", postNr);
-                command.Parameters.AddWithValue("@KundeID", KundeID);
+                command.Parameters.AddWithValue("@Fornavn", firstName);
+                command.Parameters.AddWithValue("@Efternavn", lastName);
+                command.Parameters.AddWithValue("@TelefonNummer", phoneNumber);
+                command.Parameters.AddWithValue("@Adresse", adress);
+                command.Parameters.AddWithValue("@PostNr", zipCode);
+                command.Parameters.AddWithValue("@KundeID", customerID);
 
                 // Konverter lokationId til en integer
                 int lokationIdInt;
-                if (int.TryParse(lokationId, out lokationIdInt))
+                if (int.TryParse(locationID, out lokationIdInt))
                 {
                     command.Parameters.AddWithValue("@LokationID", lokationIdInt);
                 }
@@ -145,13 +145,13 @@ namespace SynsPunkt_ApS.Database
         /// </summary>
         /// <param name="id">Id'et på kunden, der skal slettes.</param>
 
-        public void DeleteKunde(int KundeID)
+        public void DeleteCustomer(int customerID)
         {
             try
             {
                 string query = "DELETE FROM SP_Kunde WHERE KundeID = @KundeID";
                 SqlCommand command = new SqlCommand(query, conn);
-                command.Parameters.AddWithValue("@KundeID", KundeID);
+                command.Parameters.AddWithValue("@KundeID", customerID);
                 conn.Open();
                 SqlDataReader reader = command.ExecuteReader();
             }
@@ -181,17 +181,17 @@ namespace SynsPunkt_ApS.Database
             }
         }
 
-        public List<Customer> FindKundeInfo(string kundeNavn)
+        public List<Customer> FindCustomerInfo(string customerName)
         {
             string query = "SELECT * FROM Kunder WHERE Navn LIKE @KundeNavn";
-            List<Customer> kundeListe = new List<Customer>();
+            List<Customer> customerList = new List<Customer>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@KundeNavn", "%" + kundeNavn + "%");
+                    command.Parameters.AddWithValue("@KundeNavn", "%" + customerName + "%");
 
                     SqlDataReader reader = command.ExecuteReader();
 
@@ -199,7 +199,7 @@ namespace SynsPunkt_ApS.Database
                     {
                         while (reader.Read())
                         {
-                            Customer kunde = new Customer(
+                            Customer customer = new Customer(
                                 reader["Fornavn"].ToString(),
                                 reader["Efternavn"].ToString(),
                                 Convert.ToInt32(reader["TelefonNummer"]),
@@ -210,7 +210,7 @@ namespace SynsPunkt_ApS.Database
                                 reader["LokationID"].ToString()
                             );
 
-                            kundeListe.Add(kunde);
+                            customerList.Add(customer);
                         }
                     }
 
@@ -218,7 +218,7 @@ namespace SynsPunkt_ApS.Database
                 }
             }
 
-            return kundeListe;
+            return customerList;
         }
 
         public List<Customer> GetCustomers()
@@ -261,6 +261,11 @@ namespace SynsPunkt_ApS.Database
             return customers;
         }
 
+        /// <summary>
+        /// Martin: Checks if a customer exists in the database based on the ID
+        /// </summary>
+        /// <param name="kundeID"></param>
+        /// <returns></returns>
         public bool CheckIfCustomerExists(int kundeID)
         {
             bool customerExists = false;

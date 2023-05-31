@@ -9,10 +9,18 @@ using System.Windows.Forms;
 
 namespace SynsPunkt_ApS.Database
 {
-    internal class CRUD_Ordre
+    internal class CRUD_Order
     {
         SqlConnection conn = new SqlConnection(Database.ConnectionString.GetConnectionString());
-        public int CreateOrdre(int kundeID, DateTime orderDate, double totalPrice)
+
+        /// <summary>
+        /// Martin: Creates an order in the database, then returns the ID of the Order 
+        /// </summary>
+        /// <param name="customerID"></param>
+        /// <param name="orderDate"></param>
+        /// <param name="totalPrice"></param>
+        /// <returns></returns>
+        public int CreateOrder(int customerID, DateTime orderDate, double totalPrice)
         {
             int orderID = 0;
             try
@@ -22,7 +30,7 @@ namespace SynsPunkt_ApS.Database
                 "VALUES (@kundeID, @datetime, @totalPrice)";
                 SqlCommand command = new SqlCommand(query, conn);
 
-                command.Parameters.AddWithValue("@kundeID", kundeID);
+                command.Parameters.AddWithValue("@kundeID", customerID);
                 command.Parameters.AddWithValue("@datetime", orderDate);
                 command.Parameters.AddWithValue("@totalPrice", totalPrice);
 
@@ -40,6 +48,10 @@ namespace SynsPunkt_ApS.Database
             return orderID;
         }
 
+        /// <summary>
+        /// Martin: Gets all orders as a list
+        /// </summary>
+        /// <returns></returns>
         public List<Models.Order> GetAllOrders()
         {
             List<Models.Order> allOrders = new List<Models.Order>();

@@ -51,22 +51,23 @@
     <Compile Include="Database\ConnectionString.cs" />
     <Compile Include="Database\CRUD_Employee.cs" />
     <Compile Include="Database\CRUD_Booking.cs" />
-    <Compile Include="Database\CRUD_Kunde.cs" />
-    <Compile Include="Database\CRUD_Leverandør.cs" />
-    <Compile Include="Database\CRUD_Ordre.cs" />
-    <Compile Include="Database\CRUD_Vare.cs" />
-    <Compile Include="Database\CRUD_Varelinje.cs" />
+    <Compile Include="Database\CRUD_Customer.cs" />
+    <Compile Include="Database\CRUD_Supplier.cs" />
+    <Compile Include="Database\CRUD_Order.cs" />
+    <Compile Include="Database\CRUD_Product.cs" />
+    <Compile Include="Database\CRUD_ProductLine.cs" />
     <Compile Include="Models\Permissions.cs" />
     <Compile Include="Models\Rolle.cs" />
-    <Compile Include="Services\Ansat_service.cs" />
+    <Compile Include="Services\Employee_service.cs" />
     <Compile Include="Services\Booking_service.cs" />
     <Compile Include="Services\ChangePassword.cs" />
-    <Compile Include="Services\Kunde_service.cs" />
-    <Compile Include="Services\LeverandørService.cs" />
+    <Compile Include="Services\Customer_service.cs" />
+    <Compile Include="Services\Supplier_Service.cs" />
     <Compile Include="Services\Ordre_service.cs" />
+    <Compile Include="Services\TextFileGenerator.cs" />
     <Compile Include="Services\UserLogIn.cs" />
-    <Compile Include="Services\Varelinje_service.cs" />
-    <Compile Include="Services\VareService.cs" />
+    <Compile Include="Services\ProductLine_service.cs" />
+    <Compile Include="Services\Product_service.cs" />
     <Compile Include="UI\MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>

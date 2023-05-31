@@ -8,19 +8,19 @@ using System.Windows.Forms;
 
 namespace SynsPunkt_ApS.Database
 {
-    public class CRUD_Leverandør
+    public class CRUD_Supplier
     {
         string connectionString = Database.ConnectionString.GetConnectionString();
 
         /// <summary>
         /// Opretter en ny leverandør i databasen.
         /// </summary>
-        /// <param name="navn"></param>
-        /// <param name="adresse"></param>
+        /// <param name="name"></param>
+        /// <param name="adress"></param>
         /// <param name="email"></param>
-        /// <param name="faktureringsinfo"></param>
-        /// <param name="tlfNummer"></param>
-        public void CreateLeverandør(string navn, string adresse, int postNr, string email, string faktureringsinfo, int tlfNummer)
+        /// <param name="billingInfo"></param>
+        /// <param name="phoneNumber"></param>
+        public void CreateSupplier(string name, string adress, int zipCode, string email, string billingInfo, int phoneNumber)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand();
@@ -29,8 +29,8 @@ namespace SynsPunkt_ApS.Database
             try
             {
                 command.CommandText = "INSERT INTO SP_Leverandør2 (leverandørNavn, adresse, postNr, email, faktureringsOplysninger, telefonNummer) " +
-                                      "VALUES ('" + navn + "', '" + adresse + "', " + postNr + ", '" + email + "', '"
-                                      + faktureringsinfo + "', " + tlfNummer + ")";
+                                      "VALUES ('" + name + "', '" + adress + "', " + zipCode + ", '" + email + "', '"
+                                      + billingInfo + "', " + phoneNumber + ")";
 
 
                 connection.Open();
@@ -52,24 +52,24 @@ namespace SynsPunkt_ApS.Database
         /// </summary>
         /// <param name="levId"></param>
         /// <param name="levId2"></param>
-        /// <param name="navn"></param>
-        /// <param name="adresse"></param>
-        /// <param name="postNr"></param>
+        /// <param name="name"></param>
+        /// <param name="adress"></param>
+        /// <param name="zipCode"></param>
         /// <param name="email"></param>
-        /// <param name="faktureringsinfo"></param>
-        /// <param name="tlfNummer"></param>
-        public Models.Supplier ReadLeverandør(string levId, out string levId2, out string navn, out string adresse, out string postNr, out string email, 
-            out string faktureringsinfo, out string tlfNummer)
+        /// <param name="billingInfo"></param>
+        /// <param name="phoneNumber"></param>
+        public Models.Supplier ReadSupplier(string levId, out string levId2, out string name, out string adress, out string zipCode, out string email, 
+            out string billingInfo, out string phoneNumber)
         {
             levId2 = "";
-            navn = "";
-            adresse = "";
-            postNr = "";
+            name = "";
+            adress = "";
+            zipCode = "";
             email = "";
-            faktureringsinfo = "";
-            tlfNummer = "";
+            billingInfo = "";
+            phoneNumber = "";
 
-            Models.Supplier leveran = new Models.Supplier(0, "", "", 0, "", "", 0);
+            Models.Supplier supplier = new Models.Supplier(0, "", "", 0, "", "", 0);
             SqlConnection connection = new SqlConnection(connectionString);
 
             string query = "SELECT * FROM SP_Leverandør2 WHERE cvrID = " + levId + ";";
@@ -87,17 +87,17 @@ namespace SynsPunkt_ApS.Database
                 while (reader.Read())
                 {
                     //Filling created instance with the selected ID's data.
-                    leveran = new Models.Supplier(Convert.ToInt32(reader["cvrID"]), reader["leverandørNavn"].ToString(), reader["adresse"].ToString(),
+                    supplier = new Models.Supplier(Convert.ToInt32(reader["cvrID"]), reader["leverandørNavn"].ToString(), reader["adresse"].ToString(),
                        Convert.ToInt32(reader["postNr"]), reader["email"].ToString(), reader["faktureringsOplysninger"].ToString(), 
                        Convert.ToInt32(reader["telefonNummer"]));
 
-                    levId2 = leveran.CVRnummer.ToString();
-                    navn = leveran.supplierName;
-                    adresse = leveran.adress;
-                    postNr = leveran.zipCode.ToString();
-                    email = leveran.mail;
-                    faktureringsinfo = leveran.billingInformation;
-                    tlfNummer = leveran.phoneNumber.ToString();
+                    levId2 = supplier.CVRnummer.ToString();
+                    name = supplier.supplierName;
+                    adress = supplier.adress;
+                    zipCode = supplier.zipCode.ToString();
+                    email = supplier.mail;
+                    billingInfo = supplier.billingInformation;
+                    phoneNumber = supplier.phoneNumber.ToString();
                 }
             }
             catch (Exception ex)
@@ -109,10 +109,10 @@ namespace SynsPunkt_ApS.Database
                 command.Dispose();
                 connection.Close();
             }
-            return leveran;
+            return supplier;
         }
 
-        public void UpdateLeverandør(string levId, string navn, string adresse, int postNr, string email, string faktureringsinfo, int tlfNummer)
+        public void UpdateSupplier(string levId, string name, string adress, int zipCode, string email, string billingInfo, int phoneNumber)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand();
@@ -120,8 +120,8 @@ namespace SynsPunkt_ApS.Database
 
             try
             {
-                command.CommandText = "UPDATE SP_Leverandør2 SET leverandørNavn = '" + navn + "', adresse = '" + adresse +
-                    "', postNr = " + postNr + ", email = '" + email + "', faktureringsOplysninger = '" + faktureringsinfo + "', telefonNummer = " + tlfNummer + " " +
+                command.CommandText = "UPDATE SP_Leverandør2 SET leverandørNavn = '" + name + "', adresse = '" + adress +
+                    "', postNr = " + zipCode + ", email = '" + email + "', faktureringsOplysninger = '" + billingInfo + "', telefonNummer = " + phoneNumber + " " +
                     "WHERE cvrID = " + levId + ";";
 
 
@@ -139,7 +139,7 @@ namespace SynsPunkt_ApS.Database
             }
         }
 
-        public void DeleteLeverandør(string levId)
+        public void DeleteSupplier(string levId)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand();
@@ -166,9 +166,9 @@ namespace SynsPunkt_ApS.Database
         /// Henter alle Leverandører fra databasen og returnere en liste af models.Leverandør
         /// </summary>
         /// <returns></returns>
-        public List<Models.Supplier> GetAllLeverandør()
+        public List<Models.Supplier> GetAllSuppliers()
         {
-            List<Models.Supplier> LeverandørList = new List<Models.Supplier>();
+            List<Models.Supplier> SupplierList = new List<Models.Supplier>();
 
             SqlConnection connection = new SqlConnection(connectionString);
 
@@ -187,7 +187,7 @@ namespace SynsPunkt_ApS.Database
                 while (reader.Read())
                 {
                     //Creating new instance of class:
-                    Models.Supplier leverandør = new Models.Supplier(
+                    Models.Supplier supplier = new Models.Supplier(
                        Convert.ToInt32(reader["cvrID"]),
                        reader["leverandørNavn"].ToString(),
                        reader["adresse"].ToString(),
@@ -196,7 +196,7 @@ namespace SynsPunkt_ApS.Database
                        reader["faktureringsOplysninger"].ToString(),
                        Convert.ToInt32(reader["telefonNummer"]));
 
-                    LeverandørList.Add(leverandør);
+                    SupplierList.Add(supplier);
                 }
             }
             catch (Exception ex)
@@ -211,10 +211,10 @@ namespace SynsPunkt_ApS.Database
                 }
                 connection.Close();
             }
-            return LeverandørList;
+            return SupplierList;
         }
 
-        public List<Models.Supplier> SearchLeverandørByName(string name)
+        public List<Models.Supplier> SearchSupplierByName(string name)
         {
             List<Models.Supplier> searchResults = new List<Models.Supplier>();
 
@@ -231,15 +231,15 @@ namespace SynsPunkt_ApS.Database
                 while (reader.Read())
                 {
                     int cvrID = Convert.ToInt32(reader["cvrID"]);
-                    string leverandørNavn = reader["leverandørNavn"].ToString();
-                    string adresse = reader["adresse"].ToString();
-                    int postNr = Convert.ToInt32(reader["postNr"]);
+                    string supplierName = reader["leverandørNavn"].ToString();
+                    string adress = reader["adresse"].ToString();
+                    int zipCode = Convert.ToInt32(reader["postNr"]);
                     string email = reader["email"].ToString();
-                    string faktureringsOplysninger = reader["faktureringsOplysninger"].ToString();
-                    int telefonNummer = Convert.ToInt32(reader["telefonNummer"]);
+                    string billingInfo = reader["faktureringsOplysninger"].ToString();
+                    int phoneNumber = Convert.ToInt32(reader["telefonNummer"]);
 
 
-                    Models.Supplier leverandør = new Models.Supplier(cvrID, leverandørNavn, adresse, postNr, email, faktureringsOplysninger, telefonNummer);
+                    Models.Supplier leverandør = new Models.Supplier(cvrID, supplierName, adress, zipCode, email, billingInfo, phoneNumber);
 
                     searchResults.Add(leverandør);
                 }

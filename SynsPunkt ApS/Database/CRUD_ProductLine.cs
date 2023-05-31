@@ -9,11 +9,17 @@ using System.Windows.Forms;
 
 namespace SynsPunkt_ApS.Database
 {
-    internal class CRUD_Varelinje
+    internal class CRUD_ProductLine
     {
         SqlConnection conn = new SqlConnection(Database.ConnectionString.GetConnectionString());
 
-        public void CreateVarelinje(int vareID, int ordreID, int quantity)
+        /// <summary>
+        /// Martin: Creates a product line in the database
+        /// </summary>
+        /// <param name="productID"></param>
+        /// <param name="orderID"></param>
+        /// <param name="quantity"></param>
+        public void CreateProductLine(int productID, int orderID, int quantity)
         {
             try
             {
@@ -21,10 +27,9 @@ namespace SynsPunkt_ApS.Database
 
                 SqlCommand command = new SqlCommand(query, conn);
 
-                command.Parameters.AddWithValue("@vareID", vareID);
-                command.Parameters.AddWithValue("@ordreID", ordreID); //DBNULL.Value = NULL
+                command.Parameters.AddWithValue("@vareID", productID);
+                command.Parameters.AddWithValue("@ordreID", orderID); //DBNULL.Value = NULL
                 command.Parameters.AddWithValue("@quantity", quantity);
-
 
                 conn.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -40,7 +45,13 @@ namespace SynsPunkt_ApS.Database
 
         }
 
-        public void UpdateVarelinje(int varelinjeID, int ordreID, int quantity)
+        /// <summary>
+        /// Martin: Updates a product line in the database
+        /// </summary>
+        /// <param name="productLineID"></param>
+        /// <param name="orderID"></param>
+        /// <param name="quantity"></param>
+        public void UpdateProductLine(int productLineID, int orderID, int quantity)
         {
             try
             {
@@ -53,8 +64,8 @@ namespace SynsPunkt_ApS.Database
 
                 SqlCommand command = new SqlCommand(query, conn);
 
-                command.Parameters.AddWithValue("@varelinjeID", varelinjeID);
-                command.Parameters.AddWithValue("@ordreID", ordreID);
+                command.Parameters.AddWithValue("@varelinjeID", productLineID);
+                command.Parameters.AddWithValue("@ordreID", orderID);
                 command.Parameters.AddWithValue("@quantity", quantity);
 
                 conn.Open();
@@ -70,14 +81,18 @@ namespace SynsPunkt_ApS.Database
             }
         }
 
-        public void DeleteVarelinje(int varelinjeID)
+        /// <summary>
+        /// Martin: Deletes a product line from the database
+        /// </summary>
+        /// <param name="productLineID"></param>
+        public void DeleteProductLine(int productLineID)
         {
             try
             {
                 string query = "DELETE FROM SP_Varelinje WHERE varelinjeID = @varelinjeID";
                 SqlCommand command = new SqlCommand(query, conn);
 
-                command.Parameters.AddWithValue("@varelinjeID", varelinjeID);
+                command.Parameters.AddWithValue("@varelinjeID", productLineID);
 
                 conn.Open();
                 SqlDataReader reader = command.ExecuteReader();

@@ -56,8 +56,6 @@
             this.dateTimePicker_reportStartTime = new System.Windows.Forms.DateTimePicker();
             this.label_reportDateInterval = new System.Windows.Forms.Label();
             this.label_report = new System.Windows.Forms.Label();
-            this.btn_sendReportMail = new System.Windows.Forms.Button();
-            this.btn_printReport = new System.Windows.Forms.Button();
             this.tabPage_Medarbejder = new System.Windows.Forms.TabPage();
             this.label_employeePassword = new System.Windows.Forms.Label();
             this.tb_employeePassword = new System.Windows.Forms.TextBox();
@@ -180,8 +178,6 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tb_SearchProduct = new System.Windows.Forms.TextBox();
             this.label_basket = new System.Windows.Forms.Label();
             this.btn_SendInvoiceMail = new System.Windows.Forms.Button();
@@ -389,7 +385,7 @@
             this.label_UserName.ForeColor = System.Drawing.Color.White;
             this.label_UserName.Location = new System.Drawing.Point(97, 113);
             this.label_UserName.Name = "label_UserName";
-            this.label_UserName.Size = new System.Drawing.Size(95, 23);
+            this.label_UserName.Size = new System.Drawing.Size(77, 19);
             this.label_UserName.TabIndex = 1;
             this.label_UserName.Text = "User Name";
             this.label_UserName.Click += new System.EventHandler(this.userNameLabel_Click);
@@ -416,12 +412,10 @@
             this.tabPage_Rapport.Controls.Add(this.dateTimePicker_reportStartTime);
             this.tabPage_Rapport.Controls.Add(this.label_reportDateInterval);
             this.tabPage_Rapport.Controls.Add(this.label_report);
-            this.tabPage_Rapport.Controls.Add(this.btn_sendReportMail);
-            this.tabPage_Rapport.Controls.Add(this.btn_printReport);
-            this.tabPage_Rapport.Location = new System.Drawing.Point(4, 26);
+            this.tabPage_Rapport.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Rapport.Name = "tabPage_Rapport";
             this.tabPage_Rapport.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Rapport.Size = new System.Drawing.Size(910, 697);
+            this.tabPage_Rapport.Size = new System.Drawing.Size(910, 701);
             this.tabPage_Rapport.TabIndex = 9;
             this.tabPage_Rapport.Text = "Rapport";
             // 
@@ -485,7 +479,7 @@
             this.label_reportPickEndDate.AutoSize = true;
             this.label_reportPickEndDate.Location = new System.Drawing.Point(101, 551);
             this.label_reportPickEndDate.Name = "label_reportPickEndDate";
-            this.label_reportPickEndDate.Size = new System.Drawing.Size(72, 19);
+            this.label_reportPickEndDate.Size = new System.Drawing.Size(59, 13);
             this.label_reportPickEndDate.TabIndex = 58;
             this.label_reportPickEndDate.Text = "Vælg dato";
             // 
@@ -494,7 +488,7 @@
             this.dateTimePicker_reportEndTime.Checked = false;
             this.dateTimePicker_reportEndTime.Location = new System.Drawing.Point(243, 545);
             this.dateTimePicker_reportEndTime.Name = "dateTimePicker_reportEndTime";
-            this.dateTimePicker_reportEndTime.Size = new System.Drawing.Size(236, 25);
+            this.dateTimePicker_reportEndTime.Size = new System.Drawing.Size(236, 22);
             this.dateTimePicker_reportEndTime.TabIndex = 57;
             this.dateTimePicker_reportEndTime.ValueChanged += new System.EventHandler(this.dateTimePicker_reportEndTime_ValueChanged);
             // 
@@ -503,7 +497,7 @@
             this.label_reportPickStartDate.AutoSize = true;
             this.label_reportPickStartDate.Location = new System.Drawing.Point(101, 514);
             this.label_reportPickStartDate.Name = "label_reportPickStartDate";
-            this.label_reportPickStartDate.Size = new System.Drawing.Size(72, 19);
+            this.label_reportPickStartDate.Size = new System.Drawing.Size(59, 13);
             this.label_reportPickStartDate.TabIndex = 56;
             this.label_reportPickStartDate.Text = "Vælg dato";
             // 
@@ -512,7 +506,7 @@
             this.dateTimePicker_reportStartTime.Checked = false;
             this.dateTimePicker_reportStartTime.Location = new System.Drawing.Point(243, 508);
             this.dateTimePicker_reportStartTime.Name = "dateTimePicker_reportStartTime";
-            this.dateTimePicker_reportStartTime.Size = new System.Drawing.Size(236, 25);
+            this.dateTimePicker_reportStartTime.Size = new System.Drawing.Size(236, 22);
             this.dateTimePicker_reportStartTime.TabIndex = 55;
             this.dateTimePicker_reportStartTime.ValueChanged += new System.EventHandler(this.dateTimePicker_reportStartTime_ValueChanged);
             // 
@@ -521,7 +515,7 @@
             this.label_reportDateInterval.AutoSize = true;
             this.label_reportDateInterval.Location = new System.Drawing.Point(101, 477);
             this.label_reportDateInterval.Name = "label_reportDateInterval";
-            this.label_reportDateInterval.Size = new System.Drawing.Size(84, 19);
+            this.label_reportDateInterval.Size = new System.Drawing.Size(70, 13);
             this.label_reportDateInterval.TabIndex = 54;
             this.label_reportDateInterval.Text = "Datointerval";
             // 
@@ -531,35 +525,9 @@
             this.label_report.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_report.Location = new System.Drawing.Point(384, 4);
             this.label_report.Name = "label_report";
-            this.label_report.Size = new System.Drawing.Size(120, 35);
+            this.label_report.Size = new System.Drawing.Size(95, 28);
             this.label_report.TabIndex = 18;
             this.label_report.Text = "RAPPORT";
-            // 
-            // btn_sendReportMail
-            // 
-            this.btn_sendReportMail.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btn_sendReportMail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_sendReportMail.ForeColor = System.Drawing.Color.Transparent;
-            this.btn_sendReportMail.Location = new System.Drawing.Point(667, 512);
-            this.btn_sendReportMail.Name = "btn_sendReportMail";
-            this.btn_sendReportMail.Size = new System.Drawing.Size(224, 67);
-            this.btn_sendReportMail.TabIndex = 16;
-            this.btn_sendReportMail.Text = "Send Rapport";
-            this.btn_sendReportMail.UseVisualStyleBackColor = false;
-            this.btn_sendReportMail.Click += new System.EventHandler(this.btn_sendReportMail_Click);
-            // 
-            // btn_printReport
-            // 
-            this.btn_printReport.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btn_printReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_printReport.ForeColor = System.Drawing.Color.Transparent;
-            this.btn_printReport.Location = new System.Drawing.Point(667, 599);
-            this.btn_printReport.Name = "btn_printReport";
-            this.btn_printReport.Size = new System.Drawing.Size(224, 67);
-            this.btn_printReport.TabIndex = 17;
-            this.btn_printReport.Text = "Print rapport";
-            this.btn_printReport.UseVisualStyleBackColor = false;
-            this.btn_printReport.Click += new System.EventHandler(this.btn_printReport_Click);
             // 
             // tabPage_Medarbejder
             // 
@@ -593,10 +561,10 @@
             this.tabPage_Medarbejder.Controls.Add(this.label_listOfEmployees);
             this.tabPage_Medarbejder.Controls.Add(this.tb_searchEmployee);
             this.tabPage_Medarbejder.Controls.Add(this.listView_employees);
-            this.tabPage_Medarbejder.Location = new System.Drawing.Point(4, 26);
+            this.tabPage_Medarbejder.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Medarbejder.Name = "tabPage_Medarbejder";
             this.tabPage_Medarbejder.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Medarbejder.Size = new System.Drawing.Size(910, 697);
+            this.tabPage_Medarbejder.Size = new System.Drawing.Size(910, 701);
             this.tabPage_Medarbejder.TabIndex = 8;
             this.tabPage_Medarbejder.Text = "Medarbejder";
             // 
@@ -605,7 +573,7 @@
             this.label_employeePassword.AutoSize = true;
             this.label_employeePassword.Location = new System.Drawing.Point(411, 438);
             this.label_employeePassword.Name = "label_employeePassword";
-            this.label_employeePassword.Size = new System.Drawing.Size(67, 19);
+            this.label_employeePassword.Size = new System.Drawing.Size(56, 13);
             this.label_employeePassword.TabIndex = 71;
             this.label_employeePassword.Text = "Password";
             // 
@@ -613,7 +581,7 @@
             // 
             this.tb_employeePassword.Location = new System.Drawing.Point(533, 435);
             this.tb_employeePassword.Name = "tb_employeePassword";
-            this.tb_employeePassword.Size = new System.Drawing.Size(371, 25);
+            this.tb_employeePassword.Size = new System.Drawing.Size(371, 22);
             this.tb_employeePassword.TabIndex = 70;
             this.tb_employeePassword.UseSystemPasswordChar = true;
             // 
@@ -622,7 +590,7 @@
             this.label_employeeWorkMail.AutoSize = true;
             this.label_employeeWorkMail.Location = new System.Drawing.Point(411, 403);
             this.label_employeeWorkMail.Name = "label_employeeWorkMail";
-            this.label_employeeWorkMail.Size = new System.Drawing.Size(80, 19);
+            this.label_employeeWorkMail.Size = new System.Drawing.Size(67, 13);
             this.label_employeeWorkMail.TabIndex = 69;
             this.label_employeeWorkMail.Text = "Arbejdsmail";
             // 
@@ -630,7 +598,7 @@
             // 
             this.tb_employeeWorkMail.Location = new System.Drawing.Point(533, 400);
             this.tb_employeeWorkMail.Name = "tb_employeeWorkMail";
-            this.tb_employeeWorkMail.Size = new System.Drawing.Size(371, 25);
+            this.tb_employeeWorkMail.Size = new System.Drawing.Size(371, 22);
             this.tb_employeeWorkMail.TabIndex = 68;
             // 
             // label_employeeRole
@@ -638,7 +606,7 @@
             this.label_employeeRole.AutoSize = true;
             this.label_employeeRole.Location = new System.Drawing.Point(412, 368);
             this.label_employeeRole.Name = "label_employeeRole";
-            this.label_employeeRole.Size = new System.Drawing.Size(38, 19);
+            this.label_employeeRole.Size = new System.Drawing.Size(33, 13);
             this.label_employeeRole.TabIndex = 67;
             this.label_employeeRole.Text = "Rolle";
             // 
@@ -646,7 +614,7 @@
             // 
             this.tb_employeeRole.Location = new System.Drawing.Point(534, 365);
             this.tb_employeeRole.Name = "tb_employeeRole";
-            this.tb_employeeRole.Size = new System.Drawing.Size(371, 25);
+            this.tb_employeeRole.Size = new System.Drawing.Size(371, 22);
             this.tb_employeeRole.TabIndex = 66;
             // 
             // label_employeeBU
@@ -654,7 +622,7 @@
             this.label_employeeBU.AutoSize = true;
             this.label_employeeBU.Location = new System.Drawing.Point(412, 333);
             this.label_employeeBU.Name = "label_employeeBU";
-            this.label_employeeBU.Size = new System.Drawing.Size(59, 19);
+            this.label_employeeBU.Size = new System.Drawing.Size(51, 13);
             this.label_employeeBU.TabIndex = 65;
             this.label_employeeBU.Text = "Afdeling";
             // 
@@ -662,7 +630,7 @@
             // 
             this.tb_employeeBU.Location = new System.Drawing.Point(534, 330);
             this.tb_employeeBU.Name = "tb_employeeBU";
-            this.tb_employeeBU.Size = new System.Drawing.Size(371, 25);
+            this.tb_employeeBU.Size = new System.Drawing.Size(371, 22);
             this.tb_employeeBU.TabIndex = 64;
             // 
             // label_employeeZip
@@ -670,7 +638,7 @@
             this.label_employeeZip.AutoSize = true;
             this.label_employeeZip.Location = new System.Drawing.Point(412, 298);
             this.label_employeeZip.Name = "label_employeeZip";
-            this.label_employeeZip.Size = new System.Drawing.Size(87, 19);
+            this.label_employeeZip.Size = new System.Drawing.Size(71, 13);
             this.label_employeeZip.TabIndex = 63;
             this.label_employeeZip.Text = "Postnummer";
             // 
@@ -678,7 +646,7 @@
             // 
             this.tb_employeeZip.Location = new System.Drawing.Point(534, 295);
             this.tb_employeeZip.Name = "tb_employeeZip";
-            this.tb_employeeZip.Size = new System.Drawing.Size(371, 25);
+            this.tb_employeeZip.Size = new System.Drawing.Size(371, 22);
             this.tb_employeeZip.TabIndex = 62;
             this.tb_employeeZip.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
@@ -713,7 +681,7 @@
             this.label_employeeAdress.AutoSize = true;
             this.label_employeeAdress.Location = new System.Drawing.Point(412, 262);
             this.label_employeeAdress.Name = "label_employeeAdress";
-            this.label_employeeAdress.Size = new System.Drawing.Size(57, 19);
+            this.label_employeeAdress.Size = new System.Drawing.Size(47, 13);
             this.label_employeeAdress.TabIndex = 59;
             this.label_employeeAdress.Text = "Adresse";
             // 
@@ -721,7 +689,7 @@
             // 
             this.tb_employeeAdress.Location = new System.Drawing.Point(534, 259);
             this.tb_employeeAdress.Name = "tb_employeeAdress";
-            this.tb_employeeAdress.Size = new System.Drawing.Size(371, 25);
+            this.tb_employeeAdress.Size = new System.Drawing.Size(371, 22);
             this.tb_employeeAdress.TabIndex = 58;
             // 
             // label_employeeEmail
@@ -729,7 +697,7 @@
             this.label_employeeEmail.AutoSize = true;
             this.label_employeeEmail.Location = new System.Drawing.Point(412, 227);
             this.label_employeeEmail.Name = "label_employeeEmail";
-            this.label_employeeEmail.Size = new System.Drawing.Size(41, 19);
+            this.label_employeeEmail.Size = new System.Drawing.Size(34, 13);
             this.label_employeeEmail.TabIndex = 57;
             this.label_employeeEmail.Text = "Email";
             // 
@@ -737,7 +705,7 @@
             // 
             this.tb_employeeEmail.Location = new System.Drawing.Point(534, 224);
             this.tb_employeeEmail.Name = "tb_employeeEmail";
-            this.tb_employeeEmail.Size = new System.Drawing.Size(371, 25);
+            this.tb_employeeEmail.Size = new System.Drawing.Size(371, 22);
             this.tb_employeeEmail.TabIndex = 56;
             // 
             // label_employeePhoneNo
@@ -745,7 +713,7 @@
             this.label_employeePhoneNo.AutoSize = true;
             this.label_employeePhoneNo.Location = new System.Drawing.Point(412, 192);
             this.label_employeePhoneNo.Name = "label_employeePhoneNo";
-            this.label_employeePhoneNo.Size = new System.Drawing.Size(52, 19);
+            this.label_employeePhoneNo.Size = new System.Drawing.Size(45, 13);
             this.label_employeePhoneNo.TabIndex = 55;
             this.label_employeePhoneNo.Text = "Telefon";
             // 
@@ -753,7 +721,7 @@
             // 
             this.tb_employeePhoneNo.Location = new System.Drawing.Point(534, 189);
             this.tb_employeePhoneNo.Name = "tb_employeePhoneNo";
-            this.tb_employeePhoneNo.Size = new System.Drawing.Size(371, 25);
+            this.tb_employeePhoneNo.Size = new System.Drawing.Size(371, 22);
             this.tb_employeePhoneNo.TabIndex = 54;
             this.tb_employeePhoneNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
@@ -762,7 +730,7 @@
             this.label_employeeLastName.AutoSize = true;
             this.label_employeeLastName.Location = new System.Drawing.Point(412, 157);
             this.label_employeeLastName.Name = "label_employeeLastName";
-            this.label_employeeLastName.Size = new System.Drawing.Size(67, 19);
+            this.label_employeeLastName.Size = new System.Drawing.Size(56, 13);
             this.label_employeeLastName.TabIndex = 53;
             this.label_employeeLastName.Text = "Efternavn";
             // 
@@ -770,7 +738,7 @@
             // 
             this.tb_employeeLastName.Location = new System.Drawing.Point(534, 154);
             this.tb_employeeLastName.Name = "tb_employeeLastName";
-            this.tb_employeeLastName.Size = new System.Drawing.Size(371, 25);
+            this.tb_employeeLastName.Size = new System.Drawing.Size(371, 22);
             this.tb_employeeLastName.TabIndex = 52;
             // 
             // btn_CreateEmployee
@@ -791,7 +759,7 @@
             this.label_employeeId.AutoSize = true;
             this.label_employeeId.Location = new System.Drawing.Point(412, 88);
             this.label_employeeId.Name = "label_employeeId";
-            this.label_employeeId.Size = new System.Drawing.Size(62, 19);
+            this.label_employeeId.Size = new System.Drawing.Size(50, 13);
             this.label_employeeId.TabIndex = 50;
             this.label_employeeId.Text = "Ansat ID";
             // 
@@ -800,7 +768,7 @@
             this.label_employeeFirstName.AutoSize = true;
             this.label_employeeFirstName.Location = new System.Drawing.Point(412, 122);
             this.label_employeeFirstName.Name = "label_employeeFirstName";
-            this.label_employeeFirstName.Size = new System.Drawing.Size(59, 19);
+            this.label_employeeFirstName.Size = new System.Drawing.Size(49, 13);
             this.label_employeeFirstName.TabIndex = 49;
             this.label_employeeFirstName.Text = "Fornavn";
             // 
@@ -809,14 +777,14 @@
             this.tb_employeeId.Location = new System.Drawing.Point(534, 85);
             this.tb_employeeId.Name = "tb_employeeId";
             this.tb_employeeId.ReadOnly = true;
-            this.tb_employeeId.Size = new System.Drawing.Size(371, 25);
+            this.tb_employeeId.Size = new System.Drawing.Size(371, 22);
             this.tb_employeeId.TabIndex = 48;
             // 
             // tb_employeeFirstName
             // 
             this.tb_employeeFirstName.Location = new System.Drawing.Point(534, 119);
             this.tb_employeeFirstName.Name = "tb_employeeFirstName";
-            this.tb_employeeFirstName.Size = new System.Drawing.Size(371, 25);
+            this.tb_employeeFirstName.Size = new System.Drawing.Size(371, 22);
             this.tb_employeeFirstName.TabIndex = 47;
             // 
             // label_writeName
@@ -824,7 +792,7 @@
             this.label_writeName.AutoSize = true;
             this.label_writeName.Location = new System.Drawing.Point(10, 532);
             this.label_writeName.Name = "label_writeName";
-            this.label_writeName.Size = new System.Drawing.Size(102, 19);
+            this.label_writeName.Size = new System.Drawing.Size(82, 13);
             this.label_writeName.TabIndex = 46;
             this.label_writeName.Text = "INDTAST NAVN";
             // 
@@ -833,7 +801,7 @@
             this.label_listOfEmployees.AutoSize = true;
             this.label_listOfEmployees.Location = new System.Drawing.Point(6, 39);
             this.label_listOfEmployees.Name = "label_listOfEmployees";
-            this.label_listOfEmployees.Size = new System.Drawing.Size(139, 19);
+            this.label_listOfEmployees.Size = new System.Drawing.Size(113, 13);
             this.label_listOfEmployees.TabIndex = 45;
             this.label_listOfEmployees.Text = "LISTE OVER ANSATTE";
             // 
@@ -841,7 +809,7 @@
             // 
             this.tb_searchEmployee.Location = new System.Drawing.Point(10, 556);
             this.tb_searchEmployee.Name = "tb_searchEmployee";
-            this.tb_searchEmployee.Size = new System.Drawing.Size(384, 25);
+            this.tb_searchEmployee.Size = new System.Drawing.Size(384, 22);
             this.tb_searchEmployee.TabIndex = 44;
             this.tb_searchEmployee.TextChanged += new System.EventHandler(this.tb_searchEmployee_TextChanged);
             // 
@@ -907,10 +875,10 @@
             this.tabPage_LeverandoerOversigt.Controls.Add(this.label_listOfSuppliers);
             this.tabPage_LeverandoerOversigt.Controls.Add(this.tb_supplierID);
             this.tabPage_LeverandoerOversigt.Controls.Add(this.listView_suppliers);
-            this.tabPage_LeverandoerOversigt.Location = new System.Drawing.Point(4, 26);
+            this.tabPage_LeverandoerOversigt.Location = new System.Drawing.Point(4, 22);
             this.tabPage_LeverandoerOversigt.Name = "tabPage_LeverandoerOversigt";
             this.tabPage_LeverandoerOversigt.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_LeverandoerOversigt.Size = new System.Drawing.Size(910, 697);
+            this.tabPage_LeverandoerOversigt.Size = new System.Drawing.Size(910, 701);
             this.tabPage_LeverandoerOversigt.TabIndex = 3;
             this.tabPage_LeverandoerOversigt.Text = "Leverandør";
             this.tabPage_LeverandoerOversigt.Click += new System.EventHandler(this.tabPage4_Click);
@@ -920,7 +888,7 @@
             this.lb_faktu.AutoSize = true;
             this.lb_faktu.Location = new System.Drawing.Point(590, 500);
             this.lb_faktu.Name = "lb_faktu";
-            this.lb_faktu.Size = new System.Drawing.Size(156, 19);
+            this.lb_faktu.Size = new System.Drawing.Size(133, 13);
             this.lb_faktu.TabIndex = 64;
             this.lb_faktu.Text = "Faktureringsoplysninger";
             // 
@@ -938,7 +906,7 @@
             this.lb_postnr.AutoSize = true;
             this.lb_postnr.Location = new System.Drawing.Point(394, 184);
             this.lb_postnr.Name = "lb_postnr";
-            this.lb_postnr.Size = new System.Drawing.Size(50, 19);
+            this.lb_postnr.Size = new System.Drawing.Size(41, 13);
             this.lb_postnr.TabIndex = 62;
             this.lb_postnr.Text = "PostNr";
             // 
@@ -946,7 +914,7 @@
             // 
             this.tb_levpostnr.Location = new System.Drawing.Point(530, 181);
             this.tb_levpostnr.Name = "tb_levpostnr";
-            this.tb_levpostnr.Size = new System.Drawing.Size(371, 25);
+            this.tb_levpostnr.Size = new System.Drawing.Size(371, 22);
             this.tb_levpostnr.TabIndex = 61;
             this.tb_levpostnr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
@@ -955,7 +923,7 @@
             this.label_supplierAccountNo.AutoSize = true;
             this.label_supplierAccountNo.Location = new System.Drawing.Point(394, 361);
             this.label_supplierAccountNo.Name = "label_supplierAccountNo";
-            this.label_supplierAccountNo.Size = new System.Drawing.Size(68, 19);
+            this.label_supplierAccountNo.Size = new System.Drawing.Size(56, 13);
             this.label_supplierAccountNo.TabIndex = 60;
             this.label_supplierAccountNo.Text = "Konto Nr.";
             // 
@@ -963,7 +931,7 @@
             // 
             this.tb_supplierAccountNo.Location = new System.Drawing.Point(530, 358);
             this.tb_supplierAccountNo.Name = "tb_supplierAccountNo";
-            this.tb_supplierAccountNo.Size = new System.Drawing.Size(371, 25);
+            this.tb_supplierAccountNo.Size = new System.Drawing.Size(371, 22);
             this.tb_supplierAccountNo.TabIndex = 59;
             // 
             // label_supplierRegNo
@@ -971,7 +939,7 @@
             this.label_supplierRegNo.AutoSize = true;
             this.label_supplierRegNo.Location = new System.Drawing.Point(394, 326);
             this.label_supplierRegNo.Name = "label_supplierRegNo";
-            this.label_supplierRegNo.Size = new System.Drawing.Size(57, 19);
+            this.label_supplierRegNo.Size = new System.Drawing.Size(48, 13);
             this.label_supplierRegNo.TabIndex = 58;
             this.label_supplierRegNo.Text = "Reg. Nr.";
             // 
@@ -979,7 +947,7 @@
             // 
             this.tb_supplierRegNo.Location = new System.Drawing.Point(530, 323);
             this.tb_supplierRegNo.Name = "tb_supplierRegNo";
-            this.tb_supplierRegNo.Size = new System.Drawing.Size(371, 25);
+            this.tb_supplierRegNo.Size = new System.Drawing.Size(371, 22);
             this.tb_supplierRegNo.TabIndex = 57;
             // 
             // btn_updateSupplier
@@ -1013,7 +981,7 @@
             this.label_supplierBankName.AutoSize = true;
             this.label_supplierBankName.Location = new System.Drawing.Point(394, 285);
             this.label_supplierBankName.Name = "label_supplierBankName";
-            this.label_supplierBankName.Size = new System.Drawing.Size(69, 19);
+            this.label_supplierBankName.Size = new System.Drawing.Size(57, 13);
             this.label_supplierBankName.TabIndex = 54;
             this.label_supplierBankName.Text = "Banknavn";
             // 
@@ -1021,7 +989,7 @@
             // 
             this.tb_supplierBankName.Location = new System.Drawing.Point(530, 282);
             this.tb_supplierBankName.Name = "tb_supplierBankName";
-            this.tb_supplierBankName.Size = new System.Drawing.Size(371, 25);
+            this.tb_supplierBankName.Size = new System.Drawing.Size(371, 22);
             this.tb_supplierBankName.TabIndex = 53;
             // 
             // label_supplierEmail
@@ -1029,7 +997,7 @@
             this.label_supplierEmail.AutoSize = true;
             this.label_supplierEmail.Location = new System.Drawing.Point(394, 247);
             this.label_supplierEmail.Name = "label_supplierEmail";
-            this.label_supplierEmail.Size = new System.Drawing.Size(41, 19);
+            this.label_supplierEmail.Size = new System.Drawing.Size(34, 13);
             this.label_supplierEmail.TabIndex = 52;
             this.label_supplierEmail.Text = "Email";
             // 
@@ -1037,7 +1005,7 @@
             // 
             this.tb_supplierEmail.Location = new System.Drawing.Point(530, 244);
             this.tb_supplierEmail.Name = "tb_supplierEmail";
-            this.tb_supplierEmail.Size = new System.Drawing.Size(371, 25);
+            this.tb_supplierEmail.Size = new System.Drawing.Size(371, 22);
             this.tb_supplierEmail.TabIndex = 51;
             // 
             // label_supplierPhone
@@ -1045,7 +1013,7 @@
             this.label_supplierPhone.AutoSize = true;
             this.label_supplierPhone.Location = new System.Drawing.Point(394, 212);
             this.label_supplierPhone.Name = "label_supplierPhone";
-            this.label_supplierPhone.Size = new System.Drawing.Size(77, 19);
+            this.label_supplierPhone.Size = new System.Drawing.Size(63, 13);
             this.label_supplierPhone.TabIndex = 50;
             this.label_supplierPhone.Text = "TlfNummer";
             // 
@@ -1053,7 +1021,7 @@
             // 
             this.tb_supplierPhone.Location = new System.Drawing.Point(530, 209);
             this.tb_supplierPhone.Name = "tb_supplierPhone";
-            this.tb_supplierPhone.Size = new System.Drawing.Size(371, 25);
+            this.tb_supplierPhone.Size = new System.Drawing.Size(371, 22);
             this.tb_supplierPhone.TabIndex = 49;
             this.tb_supplierPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
@@ -1062,7 +1030,7 @@
             this.label_supplierAdress.AutoSize = true;
             this.label_supplierAdress.Location = new System.Drawing.Point(394, 152);
             this.label_supplierAdress.Name = "label_supplierAdress";
-            this.label_supplierAdress.Size = new System.Drawing.Size(57, 19);
+            this.label_supplierAdress.Size = new System.Drawing.Size(47, 13);
             this.label_supplierAdress.TabIndex = 48;
             this.label_supplierAdress.Text = "Adresse";
             // 
@@ -1070,7 +1038,7 @@
             // 
             this.tb_supplierAdress.Location = new System.Drawing.Point(530, 149);
             this.tb_supplierAdress.Name = "tb_supplierAdress";
-            this.tb_supplierAdress.Size = new System.Drawing.Size(371, 25);
+            this.tb_supplierAdress.Size = new System.Drawing.Size(371, 22);
             this.tb_supplierAdress.TabIndex = 47;
             // 
             // btn_createSupplier
@@ -1091,7 +1059,7 @@
             this.label_supplierIDLine.AutoSize = true;
             this.label_supplierIDLine.Location = new System.Drawing.Point(394, 83);
             this.label_supplierIDLine.Name = "label_supplierIDLine";
-            this.label_supplierIDLine.Size = new System.Drawing.Size(96, 19);
+            this.label_supplierIDLine.Size = new System.Drawing.Size(78, 13);
             this.label_supplierIDLine.TabIndex = 44;
             this.label_supplierIDLine.Text = "Leverandør ID";
             // 
@@ -1100,7 +1068,7 @@
             this.label_supplierNameLine.AutoSize = true;
             this.label_supplierNameLine.Location = new System.Drawing.Point(394, 117);
             this.label_supplierNameLine.Name = "label_supplierNameLine";
-            this.label_supplierNameLine.Size = new System.Drawing.Size(114, 19);
+            this.label_supplierNameLine.Size = new System.Drawing.Size(93, 13);
             this.label_supplierNameLine.TabIndex = 45;
             this.label_supplierNameLine.Text = "Leverandør Navn";
             // 
@@ -1109,14 +1077,14 @@
             this.tb_supplierIdLine.Location = new System.Drawing.Point(530, 80);
             this.tb_supplierIdLine.Name = "tb_supplierIdLine";
             this.tb_supplierIdLine.ReadOnly = true;
-            this.tb_supplierIdLine.Size = new System.Drawing.Size(371, 25);
+            this.tb_supplierIdLine.Size = new System.Drawing.Size(371, 22);
             this.tb_supplierIdLine.TabIndex = 42;
             // 
             // tb_supplierName
             // 
             this.tb_supplierName.Location = new System.Drawing.Point(530, 114);
             this.tb_supplierName.Name = "tb_supplierName";
-            this.tb_supplierName.Size = new System.Drawing.Size(371, 25);
+            this.tb_supplierName.Size = new System.Drawing.Size(371, 22);
             this.tb_supplierName.TabIndex = 43;
             // 
             // label_supplierID
@@ -1124,7 +1092,7 @@
             this.label_supplierID.AutoSize = true;
             this.label_supplierID.Location = new System.Drawing.Point(8, 540);
             this.label_supplierID.Name = "label_supplierID";
-            this.label_supplierID.Size = new System.Drawing.Size(188, 19);
+            this.label_supplierID.Size = new System.Drawing.Size(152, 13);
             this.label_supplierID.TabIndex = 34;
             this.label_supplierID.Text = "INDTAST LEVERANDØRNAVN";
             // 
@@ -1133,7 +1101,7 @@
             this.label_listOfSuppliers.AutoSize = true;
             this.label_listOfSuppliers.Location = new System.Drawing.Point(8, 43);
             this.label_listOfSuppliers.Name = "label_listOfSuppliers";
-            this.label_listOfSuppliers.Size = new System.Drawing.Size(185, 19);
+            this.label_listOfSuppliers.Size = new System.Drawing.Size(151, 13);
             this.label_listOfSuppliers.TabIndex = 32;
             this.label_listOfSuppliers.Text = "LISTE OVER LEVERANDØRER";
             // 
@@ -1141,7 +1109,7 @@
             // 
             this.tb_supplierID.Location = new System.Drawing.Point(12, 564);
             this.tb_supplierID.Name = "tb_supplierID";
-            this.tb_supplierID.Size = new System.Drawing.Size(384, 25);
+            this.tb_supplierID.Size = new System.Drawing.Size(384, 22);
             this.tb_supplierID.TabIndex = 30;
             this.tb_supplierID.TextChanged += new System.EventHandler(this.tb_supplierID_TextChanged);
             this.tb_supplierID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
@@ -1198,10 +1166,10 @@
             this.tabPage_BookingOversigt.Controls.Add(this.dateTimePicker_Bookings);
             this.tabPage_BookingOversigt.Controls.Add(this.label_Bookings);
             this.tabPage_BookingOversigt.Controls.Add(this.listView_Bookings);
-            this.tabPage_BookingOversigt.Location = new System.Drawing.Point(4, 26);
+            this.tabPage_BookingOversigt.Location = new System.Drawing.Point(4, 22);
             this.tabPage_BookingOversigt.Name = "tabPage_BookingOversigt";
             this.tabPage_BookingOversigt.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_BookingOversigt.Size = new System.Drawing.Size(910, 697);
+            this.tabPage_BookingOversigt.Size = new System.Drawing.Size(910, 701);
             this.tabPage_BookingOversigt.TabIndex = 2;
             this.tabPage_BookingOversigt.Text = "Booking";
             this.tabPage_BookingOversigt.Click += new System.EventHandler(this.tabPage3_Click);
@@ -1211,7 +1179,7 @@
             this.lb_customerID.AutoSize = true;
             this.lb_customerID.Location = new System.Drawing.Point(408, 274);
             this.lb_customerID.Name = "lb_customerID";
-            this.lb_customerID.Size = new System.Drawing.Size(62, 19);
+            this.lb_customerID.Size = new System.Drawing.Size(52, 13);
             this.lb_customerID.TabIndex = 58;
             this.lb_customerID.Text = "Lokation";
             // 
@@ -1219,7 +1187,7 @@
             // 
             this.tb_locationID.Location = new System.Drawing.Point(530, 266);
             this.tb_locationID.Name = "tb_locationID";
-            this.tb_locationID.Size = new System.Drawing.Size(371, 25);
+            this.tb_locationID.Size = new System.Drawing.Size(371, 22);
             this.tb_locationID.TabIndex = 57;
             this.tb_locationID.Text = "7";
             this.tb_locationID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
@@ -1232,7 +1200,7 @@
             "09:00"});
             this.cb_timePicker.Location = new System.Drawing.Point(530, 125);
             this.cb_timePicker.Name = "cb_timePicker";
-            this.cb_timePicker.Size = new System.Drawing.Size(371, 25);
+            this.cb_timePicker.Size = new System.Drawing.Size(371, 21);
             this.cb_timePicker.TabIndex = 56;
             this.cb_timePicker.Text = "08:00";
             // 
@@ -1241,7 +1209,7 @@
             this.label_bookingdescription.AutoSize = true;
             this.label_bookingdescription.Location = new System.Drawing.Point(408, 228);
             this.label_bookingdescription.Name = "label_bookingdescription";
-            this.label_bookingdescription.Size = new System.Drawing.Size(75, 19);
+            this.label_bookingdescription.Size = new System.Drawing.Size(62, 13);
             this.label_bookingdescription.TabIndex = 55;
             this.label_bookingdescription.Text = "Beskrivelse";
             // 
@@ -1249,7 +1217,7 @@
             // 
             this.tb_bookingDescription.Location = new System.Drawing.Point(530, 220);
             this.tb_bookingDescription.Name = "tb_bookingDescription";
-            this.tb_bookingDescription.Size = new System.Drawing.Size(371, 25);
+            this.tb_bookingDescription.Size = new System.Drawing.Size(371, 22);
             this.tb_bookingDescription.TabIndex = 54;
             this.tb_bookingDescription.Text = "hej";
             // 
@@ -1258,7 +1226,7 @@
             this.label_customerBooking.AutoSize = true;
             this.label_customerBooking.Location = new System.Drawing.Point(408, 178);
             this.label_customerBooking.Name = "label_customerBooking";
-            this.label_customerBooking.Size = new System.Drawing.Size(48, 19);
+            this.label_customerBooking.Size = new System.Drawing.Size(40, 13);
             this.label_customerBooking.TabIndex = 53;
             this.label_customerBooking.Text = "Kunde";
             // 
@@ -1266,7 +1234,7 @@
             // 
             this.tb_customerBooking.Location = new System.Drawing.Point(530, 175);
             this.tb_customerBooking.Name = "tb_customerBooking";
-            this.tb_customerBooking.Size = new System.Drawing.Size(371, 25);
+            this.tb_customerBooking.Size = new System.Drawing.Size(371, 22);
             this.tb_customerBooking.TabIndex = 52;
             this.tb_customerBooking.Text = "1";
             this.tb_customerBooking.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
@@ -1276,7 +1244,7 @@
             this.label_bookingTime.AutoSize = true;
             this.label_bookingTime.Location = new System.Drawing.Point(408, 133);
             this.label_bookingTime.Name = "label_bookingTime";
-            this.label_bookingTime.Size = new System.Drawing.Size(69, 19);
+            this.label_bookingTime.Size = new System.Drawing.Size(59, 13);
             this.label_bookingTime.TabIndex = 51;
             this.label_bookingTime.Text = "Tidspunkt";
             // 
@@ -1285,7 +1253,7 @@
             this.label_bookingDate.AutoSize = true;
             this.label_bookingDate.Location = new System.Drawing.Point(408, 86);
             this.label_bookingDate.Name = "label_bookingDate";
-            this.label_bookingDate.Size = new System.Drawing.Size(39, 19);
+            this.label_bookingDate.Size = new System.Drawing.Size(32, 13);
             this.label_bookingDate.TabIndex = 49;
             this.label_bookingDate.Text = "Dato";
             // 
@@ -1293,7 +1261,7 @@
             // 
             this.dateTimePicker_bookingInterval.Location = new System.Drawing.Point(530, 86);
             this.dateTimePicker_bookingInterval.Name = "dateTimePicker_bookingInterval";
-            this.dateTimePicker_bookingInterval.Size = new System.Drawing.Size(200, 25);
+            this.dateTimePicker_bookingInterval.Size = new System.Drawing.Size(200, 22);
             this.dateTimePicker_bookingInterval.TabIndex = 48;
             // 
             // btn_updateBooking
@@ -1340,7 +1308,7 @@
             this.label_bookingID.AutoSize = true;
             this.label_bookingID.Location = new System.Drawing.Point(408, 46);
             this.label_bookingID.Name = "label_bookingID";
-            this.label_bookingID.Size = new System.Drawing.Size(77, 19);
+            this.label_bookingID.Size = new System.Drawing.Size(64, 13);
             this.label_bookingID.TabIndex = 43;
             this.label_bookingID.Text = "Booking ID";
             // 
@@ -1349,14 +1317,14 @@
             this.tb_bookingID.Location = new System.Drawing.Point(530, 43);
             this.tb_bookingID.Name = "tb_bookingID";
             this.tb_bookingID.ReadOnly = true;
-            this.tb_bookingID.Size = new System.Drawing.Size(371, 25);
+            this.tb_bookingID.Size = new System.Drawing.Size(371, 22);
             this.tb_bookingID.TabIndex = 42;
             // 
             // dateTimePicker_Bookings
             // 
             this.dateTimePicker_Bookings.Location = new System.Drawing.Point(12, 491);
             this.dateTimePicker_Bookings.Name = "dateTimePicker_Bookings";
-            this.dateTimePicker_Bookings.Size = new System.Drawing.Size(200, 25);
+            this.dateTimePicker_Bookings.Size = new System.Drawing.Size(200, 22);
             this.dateTimePicker_Bookings.TabIndex = 34;
             this.dateTimePicker_Bookings.ValueChanged += new System.EventHandler(this.dateTimePicker_Bookings_ValueChanged);
             // 
@@ -1365,7 +1333,7 @@
             this.label_Bookings.AutoSize = true;
             this.label_Bookings.Location = new System.Drawing.Point(8, 17);
             this.label_Bookings.Name = "label_Bookings";
-            this.label_Bookings.Size = new System.Drawing.Size(86, 19);
+            this.label_Bookings.Size = new System.Drawing.Size(69, 13);
             this.label_Bookings.TabIndex = 32;
             this.label_Bookings.Text = "BOOKINGER";
             // 
@@ -1426,10 +1394,10 @@
             this.tabPage_kundeoversigt.Controls.Add(this.label_list_of_customers);
             this.tabPage_kundeoversigt.Controls.Add(this.tb_searchPhoneNumber);
             this.tabPage_kundeoversigt.Controls.Add(this.listView_customers);
-            this.tabPage_kundeoversigt.Location = new System.Drawing.Point(4, 26);
+            this.tabPage_kundeoversigt.Location = new System.Drawing.Point(4, 22);
             this.tabPage_kundeoversigt.Name = "tabPage_kundeoversigt";
             this.tabPage_kundeoversigt.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_kundeoversigt.Size = new System.Drawing.Size(910, 697);
+            this.tabPage_kundeoversigt.Size = new System.Drawing.Size(910, 701);
             this.tabPage_kundeoversigt.TabIndex = 1;
             this.tabPage_kundeoversigt.Text = "Kunde";
             this.tabPage_kundeoversigt.Click += new System.EventHandler(this.tabPage2_Click);
@@ -1438,7 +1406,7 @@
             // 
             this.tb_CustomerLokation.Location = new System.Drawing.Point(530, 292);
             this.tb_CustomerLokation.Name = "tb_CustomerLokation";
-            this.tb_CustomerLokation.Size = new System.Drawing.Size(371, 25);
+            this.tb_CustomerLokation.Size = new System.Drawing.Size(371, 22);
             this.tb_CustomerLokation.TabIndex = 45;
             // 
             // lb_customerLocation
@@ -1446,7 +1414,7 @@
             this.lb_customerLocation.AutoSize = true;
             this.lb_customerLocation.Location = new System.Drawing.Point(410, 295);
             this.lb_customerLocation.Name = "lb_customerLocation";
-            this.lb_customerLocation.Size = new System.Drawing.Size(62, 19);
+            this.lb_customerLocation.Size = new System.Drawing.Size(52, 13);
             this.lb_customerLocation.TabIndex = 44;
             this.lb_customerLocation.Text = "Lokation";
             // 
@@ -1454,7 +1422,7 @@
             // 
             this.tb_customerPostNr.Location = new System.Drawing.Point(530, 257);
             this.tb_customerPostNr.Name = "tb_customerPostNr";
-            this.tb_customerPostNr.Size = new System.Drawing.Size(371, 25);
+            this.tb_customerPostNr.Size = new System.Drawing.Size(371, 22);
             this.tb_customerPostNr.TabIndex = 43;
             this.tb_customerPostNr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
@@ -1463,7 +1431,7 @@
             this.lb_customerPostNr.AutoSize = true;
             this.lb_customerPostNr.Location = new System.Drawing.Point(410, 260);
             this.lb_customerPostNr.Name = "lb_customerPostNr";
-            this.lb_customerPostNr.Size = new System.Drawing.Size(50, 19);
+            this.lb_customerPostNr.Size = new System.Drawing.Size(41, 13);
             this.lb_customerPostNr.TabIndex = 42;
             this.lb_customerPostNr.Text = "PostNr";
             // 
@@ -1498,7 +1466,7 @@
             this.label_customerAdress.AutoSize = true;
             this.label_customerAdress.Location = new System.Drawing.Point(408, 231);
             this.label_customerAdress.Name = "label_customerAdress";
-            this.label_customerAdress.Size = new System.Drawing.Size(57, 19);
+            this.label_customerAdress.Size = new System.Drawing.Size(47, 13);
             this.label_customerAdress.TabIndex = 39;
             this.label_customerAdress.Text = "Adresse";
             // 
@@ -1506,7 +1474,7 @@
             // 
             this.tb_customerAdress.Location = new System.Drawing.Point(530, 228);
             this.tb_customerAdress.Name = "tb_customerAdress";
-            this.tb_customerAdress.Size = new System.Drawing.Size(371, 25);
+            this.tb_customerAdress.Size = new System.Drawing.Size(371, 22);
             this.tb_customerAdress.TabIndex = 38;
             // 
             // label_customerEmail
@@ -1514,7 +1482,7 @@
             this.label_customerEmail.AutoSize = true;
             this.label_customerEmail.Location = new System.Drawing.Point(408, 196);
             this.label_customerEmail.Name = "label_customerEmail";
-            this.label_customerEmail.Size = new System.Drawing.Size(41, 19);
+            this.label_customerEmail.Size = new System.Drawing.Size(34, 13);
             this.label_customerEmail.TabIndex = 37;
             this.label_customerEmail.Text = "Email";
             // 
@@ -1522,7 +1490,7 @@
             // 
             this.tb_customerEmail.Location = new System.Drawing.Point(530, 193);
             this.tb_customerEmail.Name = "tb_customerEmail";
-            this.tb_customerEmail.Size = new System.Drawing.Size(371, 25);
+            this.tb_customerEmail.Size = new System.Drawing.Size(371, 22);
             this.tb_customerEmail.TabIndex = 36;
             // 
             // label_CustomerPhoneNumber
@@ -1530,7 +1498,7 @@
             this.label_CustomerPhoneNumber.AutoSize = true;
             this.label_CustomerPhoneNumber.Location = new System.Drawing.Point(408, 161);
             this.label_CustomerPhoneNumber.Name = "label_CustomerPhoneNumber";
-            this.label_CustomerPhoneNumber.Size = new System.Drawing.Size(52, 19);
+            this.label_CustomerPhoneNumber.Size = new System.Drawing.Size(45, 13);
             this.label_CustomerPhoneNumber.TabIndex = 35;
             this.label_CustomerPhoneNumber.Text = "Telefon";
             // 
@@ -1538,7 +1506,7 @@
             // 
             this.tb_customerPhoneNumber.Location = new System.Drawing.Point(530, 158);
             this.tb_customerPhoneNumber.Name = "tb_customerPhoneNumber";
-            this.tb_customerPhoneNumber.Size = new System.Drawing.Size(371, 25);
+            this.tb_customerPhoneNumber.Size = new System.Drawing.Size(371, 22);
             this.tb_customerPhoneNumber.TabIndex = 34;
             this.tb_customerPhoneNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
@@ -1547,7 +1515,7 @@
             this.label_lastName.AutoSize = true;
             this.label_lastName.Location = new System.Drawing.Point(408, 126);
             this.label_lastName.Name = "label_lastName";
-            this.label_lastName.Size = new System.Drawing.Size(67, 19);
+            this.label_lastName.Size = new System.Drawing.Size(56, 13);
             this.label_lastName.TabIndex = 33;
             this.label_lastName.Text = "Efternavn";
             // 
@@ -1555,7 +1523,7 @@
             // 
             this.tb_customerLastName.Location = new System.Drawing.Point(530, 123);
             this.tb_customerLastName.Name = "tb_customerLastName";
-            this.tb_customerLastName.Size = new System.Drawing.Size(371, 25);
+            this.tb_customerLastName.Size = new System.Drawing.Size(371, 22);
             this.tb_customerLastName.TabIndex = 32;
             // 
             // btn_createCustomer
@@ -1576,7 +1544,7 @@
             this.label_CustomerID.AutoSize = true;
             this.label_CustomerID.Location = new System.Drawing.Point(408, 57);
             this.label_CustomerID.Name = "label_CustomerID";
-            this.label_CustomerID.Size = new System.Drawing.Size(66, 19);
+            this.label_CustomerID.Size = new System.Drawing.Size(54, 13);
             this.label_CustomerID.TabIndex = 30;
             this.label_CustomerID.Text = "Kunde ID";
             // 
@@ -1585,7 +1553,7 @@
             this.label_firstName.AutoSize = true;
             this.label_firstName.Location = new System.Drawing.Point(408, 91);
             this.label_firstName.Name = "label_firstName";
-            this.label_firstName.Size = new System.Drawing.Size(59, 19);
+            this.label_firstName.Size = new System.Drawing.Size(49, 13);
             this.label_firstName.TabIndex = 30;
             this.label_firstName.Text = "Fornavn";
             // 
@@ -1594,14 +1562,14 @@
             this.tb_customerID.Location = new System.Drawing.Point(530, 54);
             this.tb_customerID.Name = "tb_customerID";
             this.tb_customerID.ReadOnly = true;
-            this.tb_customerID.Size = new System.Drawing.Size(371, 25);
+            this.tb_customerID.Size = new System.Drawing.Size(371, 22);
             this.tb_customerID.TabIndex = 29;
             // 
             // tb_CustomerFirstName
             // 
             this.tb_CustomerFirstName.Location = new System.Drawing.Point(530, 88);
             this.tb_CustomerFirstName.Name = "tb_CustomerFirstName";
-            this.tb_CustomerFirstName.Size = new System.Drawing.Size(371, 25);
+            this.tb_CustomerFirstName.Size = new System.Drawing.Size(371, 22);
             this.tb_CustomerFirstName.TabIndex = 29;
             // 
             // label_SearchPhoneNumber
@@ -1609,7 +1577,7 @@
             this.label_SearchPhoneNumber.AutoSize = true;
             this.label_SearchPhoneNumber.Location = new System.Drawing.Point(6, 501);
             this.label_SearchPhoneNumber.Name = "label_SearchPhoneNumber";
-            this.label_SearchPhoneNumber.Size = new System.Drawing.Size(107, 19);
+            this.label_SearchPhoneNumber.Size = new System.Drawing.Size(88, 13);
             this.label_SearchPhoneNumber.TabIndex = 28;
             this.label_SearchPhoneNumber.Text = "INDTAST TLF.NR";
             // 
@@ -1618,7 +1586,7 @@
             this.label_list_of_customers.AutoSize = true;
             this.label_list_of_customers.Location = new System.Drawing.Point(2, 8);
             this.label_list_of_customers.Name = "label_list_of_customers";
-            this.label_list_of_customers.Size = new System.Drawing.Size(137, 19);
+            this.label_list_of_customers.Size = new System.Drawing.Size(111, 13);
             this.label_list_of_customers.TabIndex = 26;
             this.label_list_of_customers.Text = "LISTE OVER KUNDER";
             // 
@@ -1626,7 +1594,7 @@
             // 
             this.tb_searchPhoneNumber.Location = new System.Drawing.Point(6, 525);
             this.tb_searchPhoneNumber.Name = "tb_searchPhoneNumber";
-            this.tb_searchPhoneNumber.Size = new System.Drawing.Size(384, 25);
+            this.tb_searchPhoneNumber.Size = new System.Drawing.Size(384, 22);
             this.tb_searchPhoneNumber.TabIndex = 24;
             this.tb_searchPhoneNumber.TextChanged += new System.EventHandler(this.tb_searchPhoneNumber_TextChanged);
             this.tb_searchPhoneNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
@@ -1678,10 +1646,10 @@
             this.tabPage_basket.Controls.Add(this.label_basket_list);
             this.tabPage_basket.Controls.Add(this.listView_product_list_buytab);
             this.tabPage_basket.ForeColor = System.Drawing.Color.Black;
-            this.tabPage_basket.Location = new System.Drawing.Point(4, 26);
+            this.tabPage_basket.Location = new System.Drawing.Point(4, 22);
             this.tabPage_basket.Name = "tabPage_basket";
             this.tabPage_basket.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_basket.Size = new System.Drawing.Size(910, 697);
+            this.tabPage_basket.Size = new System.Drawing.Size(910, 701);
             this.tabPage_basket.TabIndex = 0;
             this.tabPage_basket.Text = "Kurv";
             this.tabPage_basket.Click += new System.EventHandler(this.tabPage1_Click);
@@ -1691,7 +1659,7 @@
             this.lb_customerToBuy.AutoSize = true;
             this.lb_customerToBuy.Location = new System.Drawing.Point(7, 566);
             this.lb_customerToBuy.Name = "lb_customerToBuy";
-            this.lb_customerToBuy.Size = new System.Drawing.Size(217, 19);
+            this.lb_customerToBuy.Size = new System.Drawing.Size(182, 13);
             this.lb_customerToBuy.TabIndex = 85;
             this.lb_customerToBuy.Text = "KundeID på kunde som skal købe:";
             // 
@@ -1699,7 +1667,7 @@
             // 
             this.tb_customerToBuy.Location = new System.Drawing.Point(10, 586);
             this.tb_customerToBuy.Name = "tb_customerToBuy";
-            this.tb_customerToBuy.Size = new System.Drawing.Size(384, 25);
+            this.tb_customerToBuy.Size = new System.Drawing.Size(384, 22);
             this.tb_customerToBuy.TabIndex = 84;
             this.tb_customerToBuy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
@@ -1708,7 +1676,7 @@
             this.lb_vareSearch2.AutoSize = true;
             this.lb_vareSearch2.Location = new System.Drawing.Point(7, 479);
             this.lb_vareSearch2.Name = "lb_vareSearch2";
-            this.lb_vareSearch2.Size = new System.Drawing.Size(97, 19);
+            this.lb_vareSearch2.Size = new System.Drawing.Size(81, 13);
             this.lb_vareSearch2.TabIndex = 83;
             this.lb_vareSearch2.Text = "Søg efter vare:";
             // 
@@ -1718,9 +1686,7 @@
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10});
+            this.columnHeader8});
             this.listView_basket_list.FullRowSelect = true;
             this.listView_basket_list.GridLines = true;
             this.listView_basket_list.HideSelection = false;
@@ -1750,19 +1716,11 @@
             this.columnHeader8.Text = "Antal";
             this.columnHeader8.Width = 75;
             // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "Fjern";
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "Tilføj";
-            // 
             // tb_SearchProduct
             // 
             this.tb_SearchProduct.Location = new System.Drawing.Point(10, 499);
             this.tb_SearchProduct.Name = "tb_SearchProduct";
-            this.tb_SearchProduct.Size = new System.Drawing.Size(384, 25);
+            this.tb_SearchProduct.Size = new System.Drawing.Size(384, 22);
             this.tb_SearchProduct.TabIndex = 16;
             this.tb_SearchProduct.TextChanged += new System.EventHandler(this.tb_SearchProduct_TextChanged);
             // 
@@ -1771,7 +1729,7 @@
             this.label_basket.AutoSize = true;
             this.label_basket.Location = new System.Drawing.Point(409, 3);
             this.label_basket.Name = "label_basket";
-            this.label_basket.Size = new System.Drawing.Size(44, 19);
+            this.label_basket.Size = new System.Drawing.Size(35, 13);
             this.label_basket.TabIndex = 14;
             this.label_basket.Text = "KURV";
             // 
@@ -1832,7 +1790,7 @@
             this.label_basket_list.AutoSize = true;
             this.label_basket_list.Location = new System.Drawing.Point(7, 3);
             this.label_basket_list.Name = "label_basket_list";
-            this.label_basket_list.Size = new System.Drawing.Size(73, 19);
+            this.label_basket_list.Size = new System.Drawing.Size(59, 13);
             this.label_basket_list.TabIndex = 10;
             this.label_basket_list.Text = "VARELISTE";
             // 
@@ -1904,10 +1862,10 @@
             this.tabPage_Indstillinger.Controls.Add(this.tb_newPassword2);
             this.tabPage_Indstillinger.Controls.Add(this.tb_NewPassword1);
             this.tabPage_Indstillinger.Controls.Add(this.tb_OldPassword);
-            this.tabPage_Indstillinger.Location = new System.Drawing.Point(4, 26);
+            this.tabPage_Indstillinger.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Indstillinger.Name = "tabPage_Indstillinger";
             this.tabPage_Indstillinger.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Indstillinger.Size = new System.Drawing.Size(910, 697);
+            this.tabPage_Indstillinger.Size = new System.Drawing.Size(910, 701);
             this.tabPage_Indstillinger.TabIndex = 10;
             this.tabPage_Indstillinger.Text = "Indstillinger";
             this.tabPage_Indstillinger.UseVisualStyleBackColor = true;
@@ -1917,7 +1875,7 @@
             this.lb_gammel.AutoSize = true;
             this.lb_gammel.Location = new System.Drawing.Point(64, 38);
             this.lb_gammel.Name = "lb_gammel";
-            this.lb_gammel.Size = new System.Drawing.Size(190, 19);
+            this.lb_gammel.Size = new System.Drawing.Size(160, 13);
             this.lb_gammel.TabIndex = 6;
             this.lb_gammel.Text = "indtast gammel adgangskode";
             // 
@@ -1926,7 +1884,7 @@
             this.lb_ny2.AutoSize = true;
             this.lb_ny2.Location = new System.Drawing.Point(64, 202);
             this.lb_ny2.Name = "lb_ny2";
-            this.lb_ny2.Size = new System.Drawing.Size(88, 19);
+            this.lb_ny2.Size = new System.Drawing.Size(74, 13);
             this.lb_ny2.TabIndex = 5;
             this.lb_ny2.Text = "indst ny igen";
             // 
@@ -1935,7 +1893,7 @@
             this.lb_ny1.AutoSize = true;
             this.lb_ny1.Location = new System.Drawing.Point(64, 122);
             this.lb_ny1.Name = "lb_ny1";
-            this.lb_ny1.Size = new System.Drawing.Size(70, 19);
+            this.lb_ny1.Size = new System.Drawing.Size(58, 13);
             this.lb_ny1.TabIndex = 4;
             this.lb_ny1.Text = "indtast ny";
             // 
@@ -1953,21 +1911,21 @@
             // 
             this.tb_newPassword2.Location = new System.Drawing.Point(67, 218);
             this.tb_newPassword2.Name = "tb_newPassword2";
-            this.tb_newPassword2.Size = new System.Drawing.Size(100, 25);
+            this.tb_newPassword2.Size = new System.Drawing.Size(100, 22);
             this.tb_newPassword2.TabIndex = 2;
             // 
             // tb_NewPassword1
             // 
             this.tb_NewPassword1.Location = new System.Drawing.Point(67, 138);
             this.tb_NewPassword1.Name = "tb_NewPassword1";
-            this.tb_NewPassword1.Size = new System.Drawing.Size(100, 25);
+            this.tb_NewPassword1.Size = new System.Drawing.Size(100, 22);
             this.tb_NewPassword1.TabIndex = 1;
             // 
             // tb_OldPassword
             // 
             this.tb_OldPassword.Location = new System.Drawing.Point(67, 54);
             this.tb_OldPassword.Name = "tb_OldPassword";
-            this.tb_OldPassword.Size = new System.Drawing.Size(100, 25);
+            this.tb_OldPassword.Size = new System.Drawing.Size(100, 22);
             this.tb_OldPassword.TabIndex = 0;
             // 
             // tabPage_Products
@@ -1994,10 +1952,10 @@
             this.tabPage_Products.Controls.Add(this.label_productSupplierList);
             this.tabPage_Products.Controls.Add(this.tb_searchForProduct);
             this.tabPage_Products.Controls.Add(this.listView1_listOfSuppliers);
-            this.tabPage_Products.Location = new System.Drawing.Point(4, 26);
+            this.tabPage_Products.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Products.Name = "tabPage_Products";
             this.tabPage_Products.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Products.Size = new System.Drawing.Size(910, 697);
+            this.tabPage_Products.Size = new System.Drawing.Size(910, 701);
             this.tabPage_Products.TabIndex = 11;
             this.tabPage_Products.Text = "Produkter";
             this.tabPage_Products.UseVisualStyleBackColor = true;
@@ -2019,7 +1977,7 @@
             // 
             this.tb_productPrice.Location = new System.Drawing.Point(531, 104);
             this.tb_productPrice.Name = "tb_productPrice";
-            this.tb_productPrice.Size = new System.Drawing.Size(371, 25);
+            this.tb_productPrice.Size = new System.Drawing.Size(371, 22);
             this.tb_productPrice.TabIndex = 84;
             this.tb_productPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
@@ -2028,7 +1986,7 @@
             this.label_price.AutoSize = true;
             this.label_price.Location = new System.Drawing.Point(395, 106);
             this.label_price.Name = "label_price";
-            this.label_price.Size = new System.Drawing.Size(31, 19);
+            this.label_price.Size = new System.Drawing.Size(25, 13);
             this.label_price.TabIndex = 83;
             this.label_price.Text = "Pris";
             // 
@@ -2037,7 +1995,7 @@
             this.lb_varesearch.AutoSize = true;
             this.lb_varesearch.Location = new System.Drawing.Point(13, 527);
             this.lb_varesearch.Name = "lb_varesearch";
-            this.lb_varesearch.Size = new System.Drawing.Size(97, 19);
+            this.lb_varesearch.Size = new System.Drawing.Size(81, 13);
             this.lb_varesearch.TabIndex = 82;
             this.lb_varesearch.Text = "Søg efter vare:";
             // 
@@ -2045,7 +2003,7 @@
             // 
             this.tb_supplierCVR.Location = new System.Drawing.Point(531, 239);
             this.tb_supplierCVR.Name = "tb_supplierCVR";
-            this.tb_supplierCVR.Size = new System.Drawing.Size(371, 25);
+            this.tb_supplierCVR.Size = new System.Drawing.Size(371, 22);
             this.tb_supplierCVR.TabIndex = 81;
             // 
             // rtb_productdescription
@@ -2087,7 +2045,7 @@
             this.lable_supplierId.AutoSize = true;
             this.lable_supplierId.Location = new System.Drawing.Point(395, 239);
             this.lable_supplierId.Name = "lable_supplierId";
-            this.lable_supplierId.Size = new System.Drawing.Size(104, 19);
+            this.lable_supplierId.Size = new System.Drawing.Size(86, 13);
             this.lable_supplierId.TabIndex = 77;
             this.lable_supplierId.Text = "leverandør CVR";
             // 
@@ -2095,7 +2053,7 @@
             // 
             this.tb_strengt.Location = new System.Drawing.Point(531, 202);
             this.tb_strengt.Name = "tb_strengt";
-            this.tb_strengt.Size = new System.Drawing.Size(371, 25);
+            this.tb_strengt.Size = new System.Drawing.Size(371, 22);
             this.tb_strengt.TabIndex = 76;
             this.tb_strengt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
@@ -2104,7 +2062,7 @@
             this.label_strength.AutoSize = true;
             this.label_strength.Location = new System.Drawing.Point(395, 204);
             this.label_strength.Name = "label_strength";
-            this.label_strength.Size = new System.Drawing.Size(46, 19);
+            this.label_strength.Size = new System.Drawing.Size(37, 13);
             this.label_strength.TabIndex = 75;
             this.label_strength.Text = "styrke";
             // 
@@ -2112,7 +2070,7 @@
             // 
             this.tb_productName.Location = new System.Drawing.Point(531, 167);
             this.tb_productName.Name = "tb_productName";
-            this.tb_productName.Size = new System.Drawing.Size(371, 25);
+            this.tb_productName.Size = new System.Drawing.Size(371, 22);
             this.tb_productName.TabIndex = 74;
             // 
             // label_productName
@@ -2120,7 +2078,7 @@
             this.label_productName.AutoSize = true;
             this.label_productName.Location = new System.Drawing.Point(395, 169);
             this.label_productName.Name = "label_productName";
-            this.label_productName.Size = new System.Drawing.Size(66, 19);
+            this.label_productName.Size = new System.Drawing.Size(54, 13);
             this.label_productName.TabIndex = 73;
             this.label_productName.Text = "Varenavn";
             // 
@@ -2128,7 +2086,7 @@
             // 
             this.tb_quantity.Location = new System.Drawing.Point(531, 132);
             this.tb_quantity.Name = "tb_quantity";
-            this.tb_quantity.Size = new System.Drawing.Size(371, 25);
+            this.tb_quantity.Size = new System.Drawing.Size(371, 22);
             this.tb_quantity.TabIndex = 72;
             this.tb_quantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_OnlyNumbersKeyPress);
             // 
@@ -2137,7 +2095,7 @@
             this.label_quantity.AutoSize = true;
             this.label_quantity.Location = new System.Drawing.Point(395, 134);
             this.label_quantity.Name = "label_quantity";
-            this.label_quantity.Size = new System.Drawing.Size(65, 19);
+            this.label_quantity.Size = new System.Drawing.Size(53, 13);
             this.label_quantity.TabIndex = 71;
             this.label_quantity.Text = "Mængde";
             // 
@@ -2159,7 +2117,7 @@
             this.label_productID.AutoSize = true;
             this.label_productID.Location = new System.Drawing.Point(395, 65);
             this.label_productID.Name = "label_productID";
-            this.label_productID.Size = new System.Drawing.Size(54, 19);
+            this.label_productID.Size = new System.Drawing.Size(43, 13);
             this.label_productID.TabIndex = 67;
             this.label_productID.Text = "Vare ID";
             // 
@@ -2168,7 +2126,7 @@
             this.label_productDescription.AutoSize = true;
             this.label_productDescription.Location = new System.Drawing.Point(396, 284);
             this.label_productDescription.Name = "label_productDescription";
-            this.label_productDescription.Size = new System.Drawing.Size(102, 19);
+            this.label_productDescription.Size = new System.Drawing.Size(85, 13);
             this.label_productDescription.TabIndex = 68;
             this.label_productDescription.Text = "Varebeskrivelse";
             // 
@@ -2177,7 +2135,7 @@
             this.tb_productID.Location = new System.Drawing.Point(531, 62);
             this.tb_productID.Name = "tb_productID";
             this.tb_productID.ReadOnly = true;
-            this.tb_productID.Size = new System.Drawing.Size(371, 25);
+            this.tb_productID.Size = new System.Drawing.Size(371, 22);
             this.tb_productID.TabIndex = 65;
             // 
             // label_productSupplierList
@@ -2185,7 +2143,7 @@
             this.label_productSupplierList.AutoSize = true;
             this.label_productSupplierList.Location = new System.Drawing.Point(9, 25);
             this.label_productSupplierList.Name = "label_productSupplierList";
-            this.label_productSupplierList.Size = new System.Drawing.Size(161, 19);
+            this.label_productSupplierList.Size = new System.Drawing.Size(131, 13);
             this.label_productSupplierList.TabIndex = 64;
             this.label_productSupplierList.Text = "LISTE OVER PRODUKTER";
             // 
@@ -2193,7 +2151,7 @@
             // 
             this.tb_searchForProduct.Location = new System.Drawing.Point(13, 546);
             this.tb_searchForProduct.Name = "tb_searchForProduct";
-            this.tb_searchForProduct.Size = new System.Drawing.Size(384, 25);
+            this.tb_searchForProduct.Size = new System.Drawing.Size(384, 22);
             this.tb_searchForProduct.TabIndex = 63;
             this.tb_searchForProduct.TextChanged += new System.EventHandler(this.tb_searchForProduct_TextChanged);
             // 
@@ -2230,7 +2188,7 @@
             // 
             // MainMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1200, 727);
@@ -2364,8 +2322,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker_reportStartTime;
         private System.Windows.Forms.Label label_reportDateInterval;
         private System.Windows.Forms.Label label_report;
-        private System.Windows.Forms.Button btn_sendReportMail;
-        private System.Windows.Forms.Button btn_printReport;
         private System.Windows.Forms.Button btn_UpdateEmployee;
         private System.Windows.Forms.Button btn_deleteEmployee;
         private System.Windows.Forms.Label label_employeeAdress;
@@ -2437,8 +2393,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;

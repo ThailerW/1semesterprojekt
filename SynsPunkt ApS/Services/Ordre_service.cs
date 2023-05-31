@@ -9,17 +9,28 @@ namespace SynsPunkt_ApS.Services
 {
     internal class Ordre_service
     {
-        private Database.CRUD_Ordre crudOrdre = new Database.CRUD_Ordre();
+        private Database.CRUD_Order crudOrder = new Database.CRUD_Order();
 
-        public int CreateOrder(int kundeID, DateTime orderDate, double totalPrice)
+        /// <summary>
+        /// Martin: Takes inputs, uses database method to create an order, and then returns the OrderID of the order that was just created
+        /// </summary>
+        /// <param name="customerID"></param>
+        /// <param name="orderDate"></param>
+        /// <param name="totalPrice"></param>
+        /// <returns></returns>
+        public int CreateOrder(int customerID, DateTime orderDate, double totalPrice)
         {
-            int orderID = crudOrdre.CreateOrdre(kundeID, orderDate, totalPrice);
+            int orderID = crudOrder.CreateOrder(customerID, orderDate, totalPrice);
             return orderID;
         }
 
+        /// <summary>
+        /// Martin: Uses database method to get a list of orders and then returns said list
+        /// </summary>
+        /// <returns></returns>
         public List<Models.Order> GetAllOrders()
         {
-            return crudOrdre.GetAllOrders();
+            return crudOrder.GetAllOrders();
         }
 
         

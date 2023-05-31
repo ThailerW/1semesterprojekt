@@ -15,7 +15,7 @@ namespace SynsPunkt_ApS.Database
         SqlConnection conn = new SqlConnection(Database.ConnectionString.GetConnectionString());
 
         /// <summary>
-        /// Martin: Opretter en Ansat i databasen
+        /// Martin: Creates an employee in the database
         /// </summary>
         /// <param name="firstName"></param>
         /// <param name="lastName"></param>
@@ -65,7 +65,7 @@ namespace SynsPunkt_ApS.Database
         }
 
         /// <summary>
-        /// Martin: Opdater en Ansats attributter
+        /// Martin: Updates an employees attributes
         /// </summary>
         /// <param name="employeeID"></param>
         /// <param name="firstName"></param>
@@ -125,6 +125,10 @@ namespace SynsPunkt_ApS.Database
             }
         }
 
+        /// <summary>
+        /// Martin: Deletes an employee from the database
+        /// </summary>
+        /// <param name="employeeID"></param>
         public void DeleteEmployee(int employeeID)
         {
             try
@@ -150,7 +154,7 @@ namespace SynsPunkt_ApS.Database
 
 
         /// <summary>
-        /// Martin: Retunerer en instans af Ansat med data baseret på ID (Bruges til at gemme den logged-inds persons data i mainmenu)
+        /// Martin: Returns an instance of Employee with data based on ID (It's used to save the loggedin persons data in mainmenu)
         /// </summary>
         /// <param name="employeeID"></param>
         /// <returns></returns>
@@ -194,6 +198,11 @@ namespace SynsPunkt_ApS.Database
             return Employee;
         }
 
+        /// <summary>
+        /// Martin: Returns a list of employee based on the search string, which is the full name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public List<Models.Employee> SearchEmployeeByName(string name)
         {
             List<Models.Employee> searchResults = new List<Models.Employee>();
@@ -237,7 +246,10 @@ namespace SynsPunkt_ApS.Database
             return searchResults;
         }
 
-
+        /// <summary>
+        /// Martin: Returns all employees in the database as a list
+        /// </summary>
+        /// <returns></returns>
         public List<Models.Employee> GetAllEmployees()
         {
             List<Models.Employee> allEmployees = new List<Models.Employee>();
@@ -279,6 +291,11 @@ namespace SynsPunkt_ApS.Database
             return allEmployees;
         }
 
+        /// <summary>
+        /// Martin: Gets the department name based on the employees locationID
+        /// </summary>
+        /// <param name="departmentID"></param>
+        /// <returns></returns>
         public string GetDepartmentName(int departmentID)
         {
             string departmentName = null;
@@ -301,6 +318,12 @@ namespace SynsPunkt_ApS.Database
             }
             return departmentName;
         }
+
+        /// <summary>
+        /// Martin: Gets the rolename based on the employees roleID
+        /// </summary>
+        /// <param name="roleID"></param>
+        /// <returns></returns>
         public string GetRoleName(int roleID)
         {
             string roleName = null;
