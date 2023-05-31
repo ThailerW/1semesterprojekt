@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace SynsPunkt_ApS.Database
 {
@@ -14,6 +15,8 @@ namespace SynsPunkt_ApS.Database
 
         private string connectionString = "Data Source=mssql15.unoeuro.com;Initial Catalog=oversaftigt_dk_db_test;User ID=oversaftigt_dk;Password=prfHFR9546nEtyb2xDmc";
 
+        
+        //Sebastian: Creates a booking in the database
         public void CreateBooking(Booking newBooking)
         {
 
@@ -53,6 +56,7 @@ namespace SynsPunkt_ApS.Database
         }
 
 
+        //Sebastian: Creates a list of bookings on a certain date
         public List<Booking> GetBookingsPerDate(DateTime dato)
         {
             List<Booking> bookings = new List<Booking>();
@@ -94,6 +98,7 @@ namespace SynsPunkt_ApS.Database
         }
 
 
+        //Sebastian: Updates a booking by updating one or more parameters and returns the updated booking. 
         public void UpdateBooking(Booking updatedBooking)
         {
 
@@ -128,6 +133,7 @@ namespace SynsPunkt_ApS.Database
             }
         }
 
+        //Sebastian: Deletes a booking using with the defined bookingID
         public void DeleteBooking(int bookingId)
         {
             string query = "DELETE FROM SP_Booking WHERE BookingID = @BookingID";
@@ -206,6 +212,7 @@ namespace SynsPunkt_ApS.Database
             return bookingList;
         }
 
+        //Sebastian; Reads a booking from the database
         public Models.Booking ReadBooking(string id, out string bookingID, out string lokationid, out string dato, out string tidspunkt, out string bookingType, out string kundeID)
         {
             bookingID = "";

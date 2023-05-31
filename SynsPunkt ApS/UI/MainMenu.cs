@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -131,6 +132,8 @@ namespace SynsPunkt_ApS
 
         }
 
+        //Sebastian all buttons in the left side of the screen is each when clicked opening up the associated tab. 
+        //This is a way to use the tabcontrol functionality, but making the UI look more sleek and intuitive for the user. 
         private void btn_Vareoversigt_Click_1(object sender, EventArgs e)
         {
             tabControl.SelectedTab = tabPage_basket;
@@ -161,6 +164,7 @@ namespace SynsPunkt_ApS
             tabControl.SelectedTab = tabPage_Indstillinger;
         }
 
+        //Sebastian: As the top bar menu is completely removed to make the design more appealing a new X button was created to close down the program. 
         private void X(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Er du sikker på at du vil lukke programmet?", "ADVARSEL!", MessageBoxButtons.YesNoCancel);
@@ -613,6 +617,7 @@ namespace SynsPunkt_ApS
             }
         }
 
+        //Sebastian: if there are any bookings to display the code adds them to the list using the ReadBooking method
         private void listView_Bookings_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listView_Bookings.SelectedItems.Count > 0)
@@ -625,7 +630,7 @@ namespace SynsPunkt_ApS
 
                 bookingService.ReadBooking(bookingID, out string bookingIDouted, out string lokationID, out string dato, out string tidspunkt, out string bookingType, out string kundeId);
 
-                // Opdater felterne med bookingdata
+                // Update the desired textboxes with information saved in the variables below
                 tb_bookingID.Text = bookingIDouted;
                 dateTimePicker_bookingInterval.Value = DateTime.Parse(dato);
                 cb_timePicker.Text = tidspunkt;
@@ -635,6 +640,7 @@ namespace SynsPunkt_ApS
             }
         }
 
+        //Sebastian; if the dateTimepicker value is changed it will show bookings based on the selectedDate and this booking to the listView.
         private void dateTimePicker_Bookings_ValueChanged(object sender, EventArgs e)
         {
 
@@ -669,10 +675,11 @@ namespace SynsPunkt_ApS
 
         }
 
+        //First a bool is checking to see if a valid locationID is used. secondly a bool is checking if a valid customerID is used. 
+        //If both are true the booking will be created using the CreateBooking method
         private void btn_createBooking_Click(object sender, EventArgs e)
         {
             bool locationIDValid = int.TryParse(tb_locationID.Text, out int locationID); ;
-            //DateTime tidspunkt = DateTime.ParseExact(cb_timePicker.Text, "HH:mm:ss", CultureInfo.InvariantCulture);
             string time = cb_timePicker.Text;
             time = time += ":00";
             DateTime date = dateTimePicker_bookingInterval.Value;
@@ -696,6 +703,8 @@ namespace SynsPunkt_ApS
             }
         }
 
+        //Sebastian: Two booleans are checking to see if location and customerID are both valid.
+        //If both are true the booking is updated using the BookingUpdate method
         private void btn_updateBooking_Click(object sender, EventArgs e)
         {
             Services.BookingService bookingService = new BookingService();
@@ -722,6 +731,8 @@ namespace SynsPunkt_ApS
 
         }
 
+        //Sebastian: using the unique bookingID the user is asked to confirm the choice of deleting the booking.
+        //if yes, uses the DeleteBooking method to delete the booking from the database (through the service layer).
         private void btn_deleteBooking_Click(object sender, EventArgs e)
         {
 

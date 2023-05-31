@@ -15,6 +15,8 @@ namespace SynsPunkt_ApS.Models
         public string BookingType { get; set; }
         public int CustomerID { get; set; }
 
+        //Sebastian: Constructor with all parameters except the bookingID. Used for creating a booking where the database creates a new unique bookingID.
+
         public Booking(int locationid, DateTime dato, string time, string bookingType, int customerID)
         {
 
@@ -25,6 +27,7 @@ namespace SynsPunkt_ApS.Models
             CustomerID = customerID;
         }
 
+        //Sebastian: constructor including a bookingID
         public Booking(int bookingID, int lokationid, DateTime dato, string tidspunkt, string bookingType, int kundeID)
         {
             BookingID = bookingID;
