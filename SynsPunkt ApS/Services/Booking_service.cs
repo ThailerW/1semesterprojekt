@@ -41,5 +41,20 @@ namespace SynsPunkt_ApS.Services
         {
             throw new NotImplementedException();
         }
+
+        public List<Models.Booking> GetAllBookings()
+        {
+            Database.CRUD_Booking crudBooking = new Database.CRUD_Booking();
+            var AlleBooking = crudBooking.GetAllBookings();
+            return AlleBooking;
+        }
+
+        public void ReadBooking(string id, out string bookingID, out string lokationid, out string dato, out string tidspunkt, out string bookingType, out string kundeID)
+        {
+            Database.CRUD_Booking crudBooking = new Database.CRUD_Booking();
+            crudBooking.ReadBooking(id, out bookingID, out lokationid, out dato, out tidspunkt, out bookingType, out kundeID);
+        }
+
+
     }
 }

@@ -61,7 +61,7 @@ namespace SynsPunkt_ApS.Database
             List<Booking> bookings = new List<Booking>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM Booking WHERE dato = @dato";
+                string query = "SELECT * FROM SP_Booking WHERE dato = @dato";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@dato", dato);
 
@@ -100,7 +100,8 @@ namespace SynsPunkt_ApS.Database
         public void UpdateBooking(Booking updatedBooking)
         {
 
-            string query = "UPDATE SP_Booking SET lokationID = @lokationID, tidspunkt = @tidspunkt, dato = @dato, bookingType = @bookingType WHERE BookingID = @bookingID";
+            string query = "UPDATE SP_Booking SET lokationID = @lokationID, tidspunkt = @tidspunkt, dato = @dato, bookingType = @bookingType, kundeID = @kundeID" +
+                " WHERE BookingID = @bookingID";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -111,19 +112,12 @@ namespace SynsPunkt_ApS.Database
                     command.Parameters.AddWithValue("@dato", updatedBooking.Dato);
                     command.Parameters.AddWithValue("@bookingType", updatedBooking.BookingType);
                     command.Parameters.AddWithValue("@bookingID", updatedBooking.BookingID);
+                    command.Parameters.AddWithValue("@kundeID", updatedBooking.KundeID);
 
                     try
                     {
                         connection.Open();
-                        int rowsAffected = command.ExecuteNonQuery();
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Booking opdateret");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Ingen ændringer blev foretaget");
-                        }
+                        command.ExecuteNonQuery();
                     }
                     catch (Exception ex)
                     {
@@ -139,7 +133,7 @@ namespace SynsPunkt_ApS.Database
 
         public void DeleteBooking(int bookingId)
         {
-            string query = "DELETE FROM Booking WHERE BookingID = @BookingID";
+            string query = "DELETE FROM SP_Booking WHERE BookingID = @BookingID";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -155,7 +149,122 @@ namespace SynsPunkt_ApS.Database
             MessageBox.Show("Bookingen er slettet!");
         }
 
+        public List<Models.Booking> GetAllBookings()
+        {
 
+            List<Models.Booking> bookingList = new List<Models.Booking>();
+
+
+            SqlConnection connection = new SqlConnection(connectionString);
+
+
+            SqlCommand command = new SqlCommand();
+            command.Connection = connection;
+            SqlDataReader reader = null;
+
+            try
+            {
+
+                command.CommandText = "SELECT * FROM SP_Booking";
+
+
+                connection.Open();
+
+
+                reader = command.ExecuteReader();
+
+
+                while (reader.Read())
+                {
+
+                    Models.Booking booking = new Models.Booking(
+                        Convert.ToInt32(reader["bookingID"]),
+                        Convert.ToInt32(reader["lokationid"]),
+                        Convert.ToDateTime(reader["dato"]),
+                        reader["tidspunkt"].ToString(),
+                        reader["bookingType"].ToString(),
+                        Convert.ToInt32(reader["kundeID"])
+                    );
+
+
+                    bookingList.Add(booking);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Fejl: " + ex.Message, "Noget gik galt!", MessageBoxButtons.OK);
+            }
+            finally
+            {
+
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+                connection.Close();
+            }
+
+
+            return bookingList;
+        }
+
+        public Models.Booking ReadBooking(string id, out string bookingID, out string lokationid, out string dato, out string tidspunkt, out string bookingType, out string kundeID)
+        {
+            bookingID = "";
+            lokationid = "";
+            dato = "";
+            tidspunkt = "";
+            bookingType = "";
+            kundeID = "";
+
+            Models.Booking booking = new Models.Booking(0, 0, DateTime.MinValue, "", "", 0);
+
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            string query = "SELECT * FROM SP_Booking WHERE bookingID = '" + id + "'";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            SqlDataReader reader = null;
+            try
+            {
+                command.CommandText = query;
+
+                connection.Open();
+                reader = command.ExecuteReader();
+
+
+                while (reader.Read())
+                {
+
+                    booking = new Models.Booking(
+                        Convert.ToInt32(reader["bookingID"]),
+                        Convert.ToInt32(reader["lokationid"]),
+                        Convert.ToDateTime(reader["dato"]),
+                        reader["tidspunkt"].ToString(),
+                        reader["bookingType"].ToString(),
+                        Convert.ToInt32(reader["kundeID"])
+                    );
+
+                    bookingID = reader["bookingID"].ToString();
+                    lokationid = reader["lokationid"].ToString();
+                    dato = reader["dato"].ToString();
+                    tidspunkt = reader["tidspunkt"].ToString();
+                    bookingType = reader["bookingType"].ToString();
+                    kundeID = reader["kundeID"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fejl: " + ex.Message, "OOPS!", MessageBoxButtons.OK);
+            }
+            finally
+            {
+                command.Dispose();
+                connection.Close();
+            }
+            return booking;
+        }
 
 
     }

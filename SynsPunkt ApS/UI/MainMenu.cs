@@ -533,31 +533,53 @@ namespace SynsPunkt_ApS
 
         private void listView_Bookings_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (listView_Bookings.SelectedItems.Count > 0)
+            {
 
+                ListViewItem selectedItem = listView_Bookings.SelectedItems[0];
+                string bookingID = selectedItem.SubItems[0].Text;
+
+                BookingService bookingService = new BookingService();
+
+                bookingService.ReadBooking(bookingID, out string bookingIDouted, out string lokationID, out string dato, out string tidspunkt, out string bookingType, out string kundeId);
+
+                // Opdater felterne med bookingdata
+                tb_bookingID.Text = bookingIDouted;
+                dateTimePicker_bookingInterval.Value = DateTime.Parse(dato);
+                cb_timePicker.Text = tidspunkt;
+                tb_customerBooking.Text = kundeId;
+                tb_bookingDescription.Text = bookingType;
+                tb_locationID.Text = lokationID;
+            }
         }
 
         private void dateTimePicker_Bookings_ValueChanged(object sender, EventArgs e)
         {
 
-            /*DateTime selectedDate = dateTimePicker_Bookings.Value.Date;
+            DateTime selectedDate = dateTimePicker_Bookings.Value;
+            List<Booking> filteredBookings = new List<Booking>();
 
-            // Få fat i bookingerne for den valgte dato (antaget at du har en metode til at hente bookinger baseret på dato)
-            List<Booking> bookinger = GetBookingsPerDate(selectedDate);
 
-            // Rens listen først
-            listView_Bookings.Items.Clear();
-
-            // Tilføj bookingerne til listview'en
-            foreach (Booking booking in bookinger)
+            foreach (Booking booking in listView_Bookings.Items)
             {
-                ListViewItem item = new ListViewItem(booking.BookingId.ToString());
-                item.SubItems.Add(booking.LokationId.ToString());
-                item.SubItems.Add(booking.Tidspunkt.ToString());
-                item.SubItems.Add(booking.BookingType);
-                item.SubItems.Add(booking.KundeId.ToString());
+                if (booking.Dato.Date == selectedDate.Date)
+                {
+                    filteredBookings.Add(booking);
+                }
+            }
+            listView_Bookings.Items.Clear();
+            foreach (Booking booking in filteredBookings)
+            {
 
-                listView_Bookings.Items.Add(item);
-            }*/
+                ListViewItem listViewItem = new ListViewItem(booking.BookingID.ToString());
+                listViewItem.SubItems.Add(booking.LokationID.ToString());
+                listViewItem.SubItems.Add(booking.Tidspunkt);
+                listViewItem.SubItems.Add(booking.Dato.ToShortDateString());
+                listViewItem.SubItems.Add(booking.BookingType);
+                listViewItem.SubItems.Add(booking.KundeID.ToString());
+                listView_Bookings.Items.Add(listViewItem);
+            }
+
         }
 
         private void btn_clearDate_Click(object sender, EventArgs e)
@@ -584,6 +606,7 @@ namespace SynsPunkt_ApS
                 bookingServices.CreateBooking(newBooking);
 
                 MessageBox.Show($"Booking oprettet!");
+                GetAllBookings();
             }
             else
             {
@@ -594,6 +617,7 @@ namespace SynsPunkt_ApS
         private void btn_updateBooking_Click(object sender, EventArgs e)
         {
             Services.BookingService bookingService = new BookingService();
+            bool bookingIDValid = int.TryParse(tb_bookingID.Text, out int bookingID);
             bool lokationIDValid = int.TryParse(tb_locationID.Text, out int lokationID);
             string tidspunkt = cb_timePicker.Text;
             tidspunkt = tidspunkt += ":00";
@@ -604,9 +628,10 @@ namespace SynsPunkt_ApS
             if (lokationIDValid && kundeIDValid)
             {
                 BookingService bookingServicevar = new BookingService();
-                Booking updatedBooking = new Booking(lokationID, dato, tidspunkt, bookingType, kundeID);
+                Booking updatedBooking = new Booking(bookingID, lokationID, dato, tidspunkt, bookingType, kundeID);
                 bookingServicevar.UpdateBooking(updatedBooking);
                 MessageBox.Show($"Booking ændret!");
+                GetAllBookings();
             }
             else
             {
@@ -633,6 +658,8 @@ namespace SynsPunkt_ApS
                 dateTimePicker_bookingInterval.Value = DateTime.Now;
                 tb_bookingDescription.Text = string.Empty;
                 tb_customerBooking.Text = string.Empty;
+
+                GetAllBookings();
             }
             else
             {
@@ -1142,7 +1169,16 @@ namespace SynsPunkt_ApS
 
         private void GetAllBookings()
         {
-
+            listView_Bookings.Items.Clear();
+            Services.BookingService bookingservice = new BookingService();
+            var bookingList = bookingservice.GetAllBookings();
+            foreach (var booking in bookingList)
+            {
+                ListViewItem bookingItem = new ListViewItem(booking.BookingID.ToString());
+                bookingItem.SubItems.Add(booking.BookingType);
+                bookingItem.SubItems.Add(booking.LokationID.ToString());
+                listView_Bookings.Items.Add(bookingItem);
+            }
         }
 
         private void GetAllOrders()

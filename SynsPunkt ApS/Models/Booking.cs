@@ -24,5 +24,15 @@ namespace SynsPunkt_ApS.Models
             BookingType = bookingType;
             KundeID = kundeID;
         }
+
+        public Booking(int bookingID, int lokationid, DateTime dato, string tidspunkt, string bookingType, int kundeID)
+        {
+            BookingID = bookingID;
+            LokationID = lokationid;
+            Dato = dato;
+            Tidspunkt = tidspunkt;
+            BookingType = bookingType;
+            KundeID = kundeID;
+        }
     }
 }

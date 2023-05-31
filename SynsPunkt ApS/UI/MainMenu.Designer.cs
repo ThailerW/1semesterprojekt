@@ -133,7 +133,6 @@
             this.label_bookingTime = new System.Windows.Forms.Label();
             this.label_bookingDate = new System.Windows.Forms.Label();
             this.dateTimePicker_bookingInterval = new System.Windows.Forms.DateTimePicker();
-            this.btn_clearDate = new System.Windows.Forms.Button();
             this.btn_updateBooking = new System.Windows.Forms.Button();
             this.btn_deleteBooking = new System.Windows.Forms.Button();
             this.btn_createBooking = new System.Windows.Forms.Button();
@@ -203,6 +202,7 @@
             this.tb_NewPassword1 = new System.Windows.Forms.TextBox();
             this.tb_OldPassword = new System.Windows.Forms.TextBox();
             this.tabPage_Products = new System.Windows.Forms.TabPage();
+            this.btn_printproductreport = new System.Windows.Forms.Button();
             this.tb_productPrice = new System.Windows.Forms.TextBox();
             this.label_price = new System.Windows.Forms.Label();
             this.lb_varesearch = new System.Windows.Forms.Label();
@@ -227,7 +227,9 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btn_printproductreport = new System.Windows.Forms.Button();
+            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbox_UserNameLogo)).BeginInit();
@@ -1187,7 +1189,6 @@
             this.tabPage_BookingOversigt.Controls.Add(this.label_bookingTime);
             this.tabPage_BookingOversigt.Controls.Add(this.label_bookingDate);
             this.tabPage_BookingOversigt.Controls.Add(this.dateTimePicker_bookingInterval);
-            this.tabPage_BookingOversigt.Controls.Add(this.btn_clearDate);
             this.tabPage_BookingOversigt.Controls.Add(this.btn_updateBooking);
             this.tabPage_BookingOversigt.Controls.Add(this.btn_deleteBooking);
             this.tabPage_BookingOversigt.Controls.Add(this.btn_createBooking);
@@ -1294,19 +1295,6 @@
             this.dateTimePicker_bookingInterval.Size = new System.Drawing.Size(200, 22);
             this.dateTimePicker_bookingInterval.TabIndex = 48;
             // 
-            // btn_clearDate
-            // 
-            this.btn_clearDate.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btn_clearDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_clearDate.ForeColor = System.Drawing.Color.Transparent;
-            this.btn_clearDate.Location = new System.Drawing.Point(263, 487);
-            this.btn_clearDate.Name = "btn_clearDate";
-            this.btn_clearDate.Size = new System.Drawing.Size(133, 33);
-            this.btn_clearDate.TabIndex = 47;
-            this.btn_clearDate.Text = "Ryd dato";
-            this.btn_clearDate.UseVisualStyleBackColor = false;
-            this.btn_clearDate.Click += new System.EventHandler(this.btn_clearDate_Click);
-            // 
             // btn_updateBooking
             // 
             this.btn_updateBooking.BackColor = System.Drawing.Color.DarkSlateGray;
@@ -1382,6 +1370,10 @@
             // 
             // listView_Bookings
             // 
+            this.listView_Bookings.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader18,
+            this.columnHeader19,
+            this.columnHeader20});
             this.listView_Bookings.FullRowSelect = true;
             this.listView_Bookings.HideSelection = false;
             this.listView_Bookings.Location = new System.Drawing.Point(12, 43);
@@ -1389,6 +1381,7 @@
             this.listView_Bookings.Size = new System.Drawing.Size(384, 432);
             this.listView_Bookings.TabIndex = 28;
             this.listView_Bookings.UseCompatibleStateImageBehavior = false;
+            this.listView_Bookings.View = System.Windows.Forms.View.Details;
             this.listView_Bookings.SelectedIndexChanged += new System.EventHandler(this.listView_Bookings_SelectedIndexChanged);
             // 
             // tabPage_kundeoversigt
@@ -1992,6 +1985,19 @@
             this.tabPage_Products.Text = "Produkter";
             this.tabPage_Products.UseVisualStyleBackColor = true;
             // 
+            // btn_printproductreport
+            // 
+            this.btn_printproductreport.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btn_printproductreport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_printproductreport.ForeColor = System.Drawing.Color.Transparent;
+            this.btn_printproductreport.Location = new System.Drawing.Point(768, 527);
+            this.btn_printproductreport.Name = "btn_printproductreport";
+            this.btn_printproductreport.Size = new System.Drawing.Size(133, 67);
+            this.btn_printproductreport.TabIndex = 85;
+            this.btn_printproductreport.Text = "Print raport over alle varer";
+            this.btn_printproductreport.UseVisualStyleBackColor = false;
+            this.btn_printproductreport.Click += new System.EventHandler(this.btn_printproductreport_Click);
+            // 
             // tb_productPrice
             // 
             this.tb_productPrice.Location = new System.Drawing.Point(531, 104);
@@ -2205,18 +2211,20 @@
             this.columnHeader3.Text = "LagerMængde";
             this.columnHeader3.Width = 133;
             // 
-            // btn_printproductreport
+            // columnHeader18
             // 
-            this.btn_printproductreport.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btn_printproductreport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_printproductreport.ForeColor = System.Drawing.Color.Transparent;
-            this.btn_printproductreport.Location = new System.Drawing.Point(768, 527);
-            this.btn_printproductreport.Name = "btn_printproductreport";
-            this.btn_printproductreport.Size = new System.Drawing.Size(133, 67);
-            this.btn_printproductreport.TabIndex = 85;
-            this.btn_printproductreport.Text = "Print raport over alle varer";
-            this.btn_printproductreport.UseVisualStyleBackColor = false;
-            this.btn_printproductreport.Click += new System.EventHandler(this.btn_printproductreport_Click);
+            this.columnHeader18.Text = "BookingID";
+            this.columnHeader18.Width = 110;
+            // 
+            // columnHeader19
+            // 
+            this.columnHeader19.Text = "BookingType";
+            this.columnHeader19.Width = 149;
+            // 
+            // columnHeader20
+            // 
+            this.columnHeader20.Text = "LokationID";
+            this.columnHeader20.Width = 123;
             // 
             // MainMenu
             // 
@@ -2320,7 +2328,6 @@
         private System.Windows.Forms.Button btn_createCustomer;
         private System.Windows.Forms.Label label_CustomerID;
         private System.Windows.Forms.TextBox tb_customerID;
-        private System.Windows.Forms.Button btn_clearDate;
         private System.Windows.Forms.Button btn_updateBooking;
         private System.Windows.Forms.Button btn_deleteBooking;
         private System.Windows.Forms.Button btn_createBooking;
@@ -2459,6 +2466,9 @@
         private System.Windows.Forms.ColumnHeader columnHeader17;
         private System.Windows.Forms.Button btn_crudvare;
         private System.Windows.Forms.Button btn_printproductreport;
+        private System.Windows.Forms.ColumnHeader columnHeader18;
+        private System.Windows.Forms.ColumnHeader columnHeader19;
+        private System.Windows.Forms.ColumnHeader columnHeader20;
     }
 }
 
