@@ -36,7 +36,7 @@ namespace SynsPunkt_ApS
 
         /// <summary>
         /// Martin: Many methods are called so the listviews are ready to display the correct things
-        /// Theis: (Skriv hvad du har gjort med roleID)
+        /// Theis: Checks the users RoleID, and gives permissions according to the ID.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -174,6 +174,12 @@ namespace SynsPunkt_ApS
             }
         }
 
+        /// <summary>
+        /// Theis: If the user has inputted the old password, and two identical new passwords, the password of the logged in user
+        /// will be changed in the database.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_ChangePassWord_Click(object sender, EventArgs e)
         {
             Services.ChangePassword changePass = new Services.ChangePassword();
@@ -708,6 +714,11 @@ namespace SynsPunkt_ApS
 
         }
 
+        /// <summary>
+        /// Theis: Displays the chosen supplier in the textboxes to the right.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listView_suppliers_SelectedIndexChanged(object sender, EventArgs e)
         {
             Services.Supplier_Service supplierService = new Supplier_Service();
@@ -730,6 +741,11 @@ namespace SynsPunkt_ApS
             }
         }
 
+        /// <summary>
+        /// Theis: Searches the database for a supplier with a name that contains what the user inputs in this search bar.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tb_supplierID_TextChanged(object sender, EventArgs e)
         {
             listView_suppliers.Items.Clear();
@@ -976,7 +992,11 @@ namespace SynsPunkt_ApS
             MessageBox.Show("Rapporten blev udskrevet som tekstfil");
         }
 
-
+        /// <summary>
+        /// Displays the selected product in the textboxes.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listView1_listOfSuppliers_SelectedIndexChanged(object sender, EventArgs e)
         {
             Services.Product_service productSerice = new Product_service();
@@ -999,6 +1019,11 @@ namespace SynsPunkt_ApS
             }
         }
 
+        /// <summary>
+        /// Theis: Filters the List of Products by gathering a list of products from the database that contains the user input in its name.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tb_searchForProduct_TextChanged(object sender, EventArgs e)
         {
             listView1_listOfSuppliers.Items.Clear();
@@ -1032,6 +1057,11 @@ namespace SynsPunkt_ApS
             MessageBox.Show("Varerapporten blev udskrevet som tekstfil","Success");
         }
 
+        /// <summary>
+        /// Theis: Creates a new product in the DB with the same data as the user has inputted.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_createProduct_Click(object sender, EventArgs e)
         {
             Services.Product_service vareService = new Product_service();
@@ -1052,6 +1082,11 @@ namespace SynsPunkt_ApS
             }
         }
 
+        /// <summary>
+        /// Theis: Updates the product in the DB with the selected productID, with the new user inputs.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_updateProduct_Click(object sender, EventArgs e)
         {
             Services.Product_service vareService = new Product_service();
@@ -1072,6 +1107,11 @@ namespace SynsPunkt_ApS
             }
         }
 
+        /// <summary>
+        /// Theis: Deletes the selected product from the database.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_deleteProduct_Click(object sender, EventArgs e)
         {
             Services.Product_service vareService = new Product_service();
@@ -1124,6 +1164,9 @@ namespace SynsPunkt_ApS
             }
         }
 
+        /// <summary>
+        /// Martin: Displays all Employees from the DB.
+        /// </summary>
         private void GetAndDisplayAllEmployees()
         {
             Services.Employee_service employeeService = new Services.Employee_service();
@@ -1138,6 +1181,9 @@ namespace SynsPunkt_ApS
             }
         }
 
+        /// <summary>
+        /// Marinh: Displays all Customers from the DB.
+        /// </summary>
         private void GetAndDisplayAllCustomer()
         {
             listView_customers.Items.Clear();
@@ -1154,6 +1200,9 @@ namespace SynsPunkt_ApS
 
         }
 
+        /// <summary>
+        /// Theis: Displays all Products from the DB.
+        /// </summary>
         private void GetAndDisplayAllProducts()
         {
             listView1_listOfSuppliers.Items.Clear();
@@ -1168,6 +1217,9 @@ namespace SynsPunkt_ApS
             }
         }
 
+        /// <summary>
+        /// Sebastian: Displays all Bookings from the DB.
+        /// </summary>
         private void GetAndDisplayAllBookings()
         {
             listView_Bookings.Items.Clear();
@@ -1182,6 +1234,9 @@ namespace SynsPunkt_ApS
             }
         }
 
+        /// <summary>
+        /// Theis: Displays all Suppliers from the DB.
+        /// </summary>
         private void GetAndDisplayAllSuppliers()
         {
             listView_suppliers.Items.Clear();
@@ -1196,6 +1251,9 @@ namespace SynsPunkt_ApS
             }
         }
 
+        /// <summary>
+        /// Martin: Displays all Employees from the DB.
+        /// </summary>
         private void GetAndDisplayAllProductsInBasketTab()
         {
 
@@ -1214,6 +1272,11 @@ namespace SynsPunkt_ApS
 
         }
 
+        /// <summary>
+        /// Theis: Creates a new supplier with the inputted information.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_createSupplier_Click(object sender, EventArgs e)
         {
             Services.Supplier_Service levService = new Supplier_Service();
@@ -1234,6 +1297,11 @@ namespace SynsPunkt_ApS
             }
         }
 
+        /// <summary>
+        /// Theis: Updates the supplier with the selected ID.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_updateSupplier_Click(object sender, EventArgs e)
         {
             Services.Supplier_Service levService = new Supplier_Service();
@@ -1254,6 +1322,11 @@ namespace SynsPunkt_ApS
             }
         }
 
+        /// <summary>
+        /// Theis: Deletes the supplier with the selected ID.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_deleteSupplier_Click(object sender, EventArgs e)
         {
             Services.Supplier_Service levService = new Supplier_Service();

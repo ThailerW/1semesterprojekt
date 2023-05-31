@@ -10,7 +10,7 @@ namespace SynsPunkt_ApS.Services
     public class ChangePassword
     {
         /// <summary>
-        /// Checks if the userid matches the old password, as well as checks if the two new passwords matches, and if both matches
+        /// Theis: Checks if the userid matches the old password, as well as checks if the two new passwords matches, and if both matches
         /// are true, the new password will overwrite the old in the database.
         /// </summary>
         /// <param name="userID"></param>

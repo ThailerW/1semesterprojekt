@@ -13,7 +13,7 @@ namespace SynsPunkt_ApS.Database
         string connectionString = Database.ConnectionString.GetConnectionString();
 
         /// <summary>
-        /// Opretter en ny leverandør i databasen.
+        /// Theis: Creates a new supplier in the database with the given data.
         /// </summary>
         /// <param name="name"></param>
         /// <param name="adress"></param>
@@ -48,7 +48,7 @@ namespace SynsPunkt_ApS.Database
         }
 
         /// <summary>
-        /// Returnere en leverandør udfra valgt ID fra databasen.
+        /// Theis: Reads all data bound to the inputted ID
         /// </summary>
         /// <param name="levId"></param>
         /// <param name="levId2"></param>
@@ -112,6 +112,16 @@ namespace SynsPunkt_ApS.Database
             return supplier;
         }
 
+        /// <summary>
+        /// Theis: Updates all data bound to the inputted ID
+        /// </summary>
+        /// <param name="levId"></param>
+        /// <param name="name"></param>
+        /// <param name="adress"></param>
+        /// <param name="zipCode"></param>
+        /// <param name="email"></param>
+        /// <param name="billingInfo"></param>
+        /// <param name="phoneNumber"></param>
         public void UpdateSupplier(string levId, string name, string adress, int zipCode, string email, string billingInfo, int phoneNumber)
         {
             SqlConnection connection = new SqlConnection(connectionString);
@@ -139,6 +149,10 @@ namespace SynsPunkt_ApS.Database
             }
         }
 
+        /// <summary>
+        /// Theis: Deletees the supplier bound to the inputted ID
+        /// </summary>
+        /// <param name="levId"></param>
         public void DeleteSupplier(string levId)
         {
             SqlConnection connection = new SqlConnection(connectionString);
@@ -163,7 +177,7 @@ namespace SynsPunkt_ApS.Database
         }
 
         /// <summary>
-        /// Henter alle Leverandører fra databasen og returnere en liste af models.Leverandør
+        /// Theis: Returns a list of all suppliers.
         /// </summary>
         /// <returns></returns>
         public List<Models.Supplier> GetAllSuppliers()
@@ -214,6 +228,11 @@ namespace SynsPunkt_ApS.Database
             return SupplierList;
         }
 
+        /// <summary>
+        /// Theis: returns a list of suppliers where the input string is contained in the supplier name.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public List<Models.Supplier> SearchSupplierByName(string name)
         {
             List<Models.Supplier> searchResults = new List<Models.Supplier>();

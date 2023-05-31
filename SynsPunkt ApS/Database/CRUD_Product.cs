@@ -51,7 +51,7 @@ namespace SynsPunkt_ApS.Database
         }
 
         /// <summary>
-        /// Læser al info knyttet til det indtastede vareID
+        /// Theis: Reads all data bound to the inputted ID
         /// </summary>
         /// <param name="vareID"></param>
         /// <returns></returns>
@@ -110,7 +110,7 @@ namespace SynsPunkt_ApS.Database
         }
 
         /// <summary>
-        /// Opdatere en vare med valgt VareID med ny anvgivet data.
+        /// Theis: Updates all data bound to the inputted ID
         /// </summary>
         /// <param name="productID"></param>
         /// <param name="prodcutDescription"></param>
@@ -146,7 +146,7 @@ namespace SynsPunkt_ApS.Database
         }
 
         /// <summary>
-        /// Sletter valgt vare med inputted ID
+        /// Theis: Deletes the product bound to the inputted ID
         /// </summary>
         /// <param name="productID"></param>
         public void DeleteProduct(string productID)
@@ -173,7 +173,7 @@ namespace SynsPunkt_ApS.Database
         }
 
         /// <summary>
-        /// Henter alle vare fra databasen og returnere en liste af models.vare
+        /// Theis: Returns all Products stored in the database in a list.
         /// </summary>
         /// <returns></returns>
         public List<Models.Product> GetAllProducts()
@@ -224,6 +224,11 @@ namespace SynsPunkt_ApS.Database
             return productList;
         }
 
+        /// <summary>
+        /// Theis: Returns a list of products, that contains the inputted string in their name.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public List<Models.Product> SearchProductByName(string name)
         {
             List<Models.Product> searchResults = new List<Models.Product>();

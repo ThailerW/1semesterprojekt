@@ -9,7 +9,7 @@ namespace SynsPunkt_ApS.Database
     public class ConnectionString
     {
         /// <summary>
-        /// Theis: Henter connection string og returnere til metoden.
+        /// Theis: Gets the connection string to the DB and returns it.
         /// </summary>
         /// <returns></returns>
         public static string GetConnectionString()

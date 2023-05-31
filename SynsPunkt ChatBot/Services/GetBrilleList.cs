@@ -8,6 +8,10 @@ namespace SynsPunkt_ChatBot.Services
 {
     public class GetBrilleList
     {
+        /// <summary>
+        /// Theis & Martin: Creates a large list of dummy data for the chatbot to use.
+        /// </summary>
+        /// <returns></returns>
         public List<Models.Briller> GetAllBrilleDummyData()
         {
             //Dummy data via chatgpt

@@ -11,7 +11,7 @@ namespace SynsPunkt_ApS.Database
     public class ChangePassword
     {
         /// <summary>
-        /// Tjekker om brugeren findes i systemet.
+        /// Theis: Checks if the user exists in the system.
         /// </summary>
         /// <param name="userID"></param>
         /// <param name="password"></param>
@@ -22,7 +22,7 @@ namespace SynsPunkt_ApS.Database
             return confirmed;
         }
         /// <summary>
-        /// Ændre adgangskode for den valgte bruger.
+        /// Theis: Change password for the selected user.
         /// </summary>
         /// <param name="userID"></param>
         /// <param name="newPassword"></param>

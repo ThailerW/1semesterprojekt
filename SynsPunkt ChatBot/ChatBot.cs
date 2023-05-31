@@ -28,6 +28,10 @@ namespace SynsPunkt_ChatBot
         double diameterslut = 0;
         bool mærke = false;
 
+        /// <summary>
+        /// Theis & Martin: Depending on the current 'questionAmount', it will write the current question for the user.
+        /// </summary>
+        /// <returns></returns>
         private string ReturnQuestions()
         {
             string question = string.Empty;
@@ -95,6 +99,10 @@ namespace SynsPunkt_ChatBot
             }
         }
 
+        /// <summary>
+        /// Theis & Martin: Returns a list of products that were according to the user inputs.
+        /// </summary>
+        /// <returns></returns>
         public List<Models.Briller> GetResults()
         {
             Services.GetBrilleList brilleListe = new Services.GetBrilleList();
@@ -198,6 +206,9 @@ namespace SynsPunkt_ChatBot
             lb_question.Text = ReturnQuestions();
         }
 
+        /// <summary>
+        /// Theis & Martin: Resets the chatbot to the first question.
+        /// </summary>
         private void ResetChatBot()
         {
             btn_reset.Visible = false;

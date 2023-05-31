@@ -14,7 +14,8 @@ namespace SynsPunkt_ApS.Database
     public class CheckerUserInfo
     {
         /// <summary>
-        /// THEIS: Checker om input data er tilsvarende med data gemt i databasen.
+        /// THEIS: 
+        /// Checks if the input data is the same as the data saved in the database.
         /// </summary>
         /// <param name="userID"></param>
         /// <param name="password"></param>
@@ -24,18 +25,10 @@ namespace SynsPunkt_ApS.Database
             SqlConnection connection = new SqlConnection(connectionString);
             try
             {
-                //Hvis username og password stemmer overens med hinanden vil denne query returnere 1, eller 0 hvis der
-                //ikke opstår et match.
-                //string query = "SELECT COUNT(*) FROM SP_Ansat WHERE AnsatID = @userID AND password = @password";
-
-                //string query = "SELECT COUNT(*) FROM SP_Ansat WHERE AnsatID = '" + userID + "' AND password = '" + password + "'";
-
                 string query = $"SELECT COUNT(*) FROM SP_Ansat WHERE AnsatID = '{userID}' AND password = '{password}'";
 
 
                 SqlCommand command = new SqlCommand(query, connection);
-                //command.Parameters.AddWithValue("@userID", userID);
-                //command.Parameters.AddWithValue("@password", password);
                 connection.Open();
                 int count = (int)command.ExecuteScalar();
                 if (count == 1)
