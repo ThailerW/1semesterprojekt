@@ -34,13 +34,13 @@ namespace SynsPunkt_ApS.Services
             crudLev.DeleteLeverandør(LeverandørID);
         }
 
-        public List<Models.Leverandør> SearchLeverandørByName(string name)
+        public List<Models.Supplier> SearchLeverandørByName(string name)
         {
             Database.CRUD_Leverandør crudLev = new Database.CRUD_Leverandør();
             return crudLev.SearchLeverandørByName(name);
         }
 
-        public List<Models.Leverandør> GetAllLeverandør()
+        public List<Models.Supplier> GetAllLeverandør()
         {
             Database.CRUD_Leverandør crudLev = new Database.CRUD_Leverandør();
             var AlleLeverandør = crudLev.GetAllLeverandør();

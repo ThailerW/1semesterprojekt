@@ -33,13 +33,13 @@ namespace SynsPunkt_ApS.Services
             crudVare.DeleteVare(vareID);
         }
 
-        public List<Models.Vare> SearchVareByName(string name)
+        public List<Models.Product> SearchVareByName(string name)
         {
             Database.CRUD_Vare crudVare = new Database.CRUD_Vare();
             return crudVare.SearchVareByName(name);
         }
 
-        public List<Models.Vare> GetAllVare()
+        public List<Models.Product> GetAllVare()
         {
             Database.CRUD_Vare crudVare = new Database.CRUD_Vare();
             var AlleVare = crudVare.GetAllVare();

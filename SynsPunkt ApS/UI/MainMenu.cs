@@ -18,15 +18,15 @@ namespace SynsPunkt_ApS
 {
     public partial class MainMenu : Form
     {
-        public Models.Ansat LoggedInEmployee;
-        public List<Models.VareLinje> currentLineItems = new List<VareLinje>();
-        public List<Models.Vare> allProducts;
-        public List<Models.Ordre> allOrders;
-        public List<Models.Ordre> ordersWithinDateInterval;
+        public Models.Employee LoggedInEmployee;
+        public List<Models.ProductLine> currentLineItems = new List<ProductLine>();
+        public List<Models.Product> allProducts;
+        public List<Models.Order> allOrders;
+        public List<Models.Order> ordersWithinDateInterval;
         Services.VareService vareservice = new VareService();
         Services.Ordre_service ordreService = new Ordre_service();
 
-        public MainMenu(Models.Ansat loggedInEmployee)
+        public MainMenu(Models.Employee loggedInEmployee)
         {
             allOrders = ordreService.GetAllOrders();
             allProducts = vareservice.GetAllVare();
@@ -192,8 +192,8 @@ namespace SynsPunkt_ApS
                 return;
             }
             int vareID = Convert.ToInt32(listView_product_list_buytab.SelectedItems[0].SubItems[0].Text);
-            Models.Vare chosenProduct = allProducts.FirstOrDefault(v => v.VareNummer == vareID);
-            Models.VareLinje lineItemForChosenProduct = currentLineItems.FirstOrDefault(x => x.Vare == chosenProduct);
+            Models.Product chosenProduct = allProducts.FirstOrDefault(v => v.productNumber == vareID);
+            Models.ProductLine lineItemForChosenProduct = currentLineItems.FirstOrDefault(x => x.product == chosenProduct);
 
             //Tjekker om der er mindst 1 af varen på lager
             if (Convert.ToInt32(listView_product_list_buytab.SelectedItems[0].SubItems[4].Text) <= 0)
@@ -202,20 +202,20 @@ namespace SynsPunkt_ApS
                 return;
             }
 
-            if (currentLineItems.Any(x => x.Vare == chosenProduct))
+            if (currentLineItems.Any(x => x.product == chosenProduct))
             {
                 //Tjekker for at man ikke kan købe flere af en vare end hvad der er på lager
-                if (lineItemForChosenProduct.Mængde == chosenProduct.LagerMængde)
+                if (lineItemForChosenProduct.quantity == chosenProduct.stockQuantity)
                 {
                     MessageBox.Show("Vil du købe flere af denne vare end vi har på lager din bøllebob?", "-3 i matematik", MessageBoxButtons.OK);
                     return;
                 }
-                lineItemForChosenProduct.Mængde += 1;
+                lineItemForChosenProduct.quantity += 1;
                 UpdateBasketListView();
                 return;
             }
             //Hvis alt er ok, tilføjes en ny varelinje til kurven
-            Models.VareLinje varelinje = new VareLinje(chosenProduct, 1, chosenProduct.Pris);
+            Models.ProductLine varelinje = new ProductLine(chosenProduct, 1, chosenProduct.price);
             currentLineItems.Add(varelinje);
             UpdateBasketListView();
         }
@@ -225,10 +225,10 @@ namespace SynsPunkt_ApS
             listView_basket_list.Items.Clear();
             foreach (var lineItem in currentLineItems)
             {
-                ListViewItem lineItemItem = new ListViewItem(lineItem.Vare.VareNummer.ToString());
-                lineItemItem.SubItems.Add(lineItem.Vare.VareNavn);
-                lineItemItem.SubItems.Add(lineItem.totalPris.ToString("N0"));
-                lineItemItem.SubItems.Add(lineItem.Mængde.ToString());
+                ListViewItem lineItemItem = new ListViewItem(lineItem.product.productNumber.ToString());
+                lineItemItem.SubItems.Add(lineItem.product.productName);
+                lineItemItem.SubItems.Add(lineItem.totalPrice.ToString("N0"));
+                lineItemItem.SubItems.Add(lineItem.quantity.ToString());
                 listView_basket_list.Items.Add(lineItemItem);
             }
 
@@ -242,8 +242,8 @@ namespace SynsPunkt_ApS
                 return;
             }
             int vareID = Convert.ToInt32(listView_basket_list.SelectedItems[0].SubItems[0].Text);
-            Models.Vare chosenProduct = allProducts.FirstOrDefault(v => v.VareNummer == vareID);
-            Models.VareLinje lineItemForChosenProduct = currentLineItems.FirstOrDefault(x => x.Vare == chosenProduct);
+            Models.Product chosenProduct = allProducts.FirstOrDefault(v => v.productNumber == vareID);
+            Models.ProductLine lineItemForChosenProduct = currentLineItems.FirstOrDefault(x => x.product == chosenProduct);
 
             currentLineItems.Remove(lineItemForChosenProduct);
             UpdateBasketListView();
@@ -282,16 +282,16 @@ namespace SynsPunkt_ApS
                 double totalPrice = 0;
                 foreach (var lineItem in currentLineItems)
                 {
-                    totalPrice += Convert.ToDouble(lineItem.totalPris);
+                    totalPrice += Convert.ToDouble(lineItem.totalPrice);
                 }
                 int orderID = ordreService.CreateOrder(kundeID, orderDate, totalPrice);
 
                 foreach (var lineItem in currentLineItems)
                 {
-                    varelinjeService.CreateVarelinje(lineItem.Vare.VareNummer, orderID, lineItem.Mængde);
-                    lineItem.Vare.LagerMængde -= lineItem.Mængde;
-                    vareService.UpdateVare(lineItem.Vare.VareNummer.ToString(), lineItem.Vare.VareBeskrivelse,
-                                            lineItem.Vare.LagerMængde, lineItem.Vare.VareNavn, lineItem.Vare.Styrke, lineItem.Vare.LevCVR, lineItem.Vare.Pris);
+                    varelinjeService.CreateVarelinje(lineItem.product.productNumber, orderID, lineItem.quantity);
+                    lineItem.product.stockQuantity -= lineItem.quantity;
+                    vareService.UpdateVare(lineItem.product.productNumber.ToString(), lineItem.product.productDescription,
+                                            lineItem.product.stockQuantity, lineItem.product.productName, lineItem.product.lensStrength, lineItem.product.levCVR, lineItem.product.price);
                 }
                 GetAllVareInBasketTab();
                 MessageBoxText += "Salg udført! " + Environment.NewLine + "OrderID: " + orderID + Environment.NewLine + "KundeID: " + kundeID;
@@ -324,14 +324,14 @@ namespace SynsPunkt_ApS
             }
             else
             {
-                List<Models.Vare> allVare = vareService.SearchVareByName(tb_SearchProduct.Text);
+                List<Models.Product> allVare = vareService.SearchVareByName(tb_SearchProduct.Text);
                 foreach (var vare in allVare)
                 {
-                    ListViewItem vareItem = new ListViewItem(vare.VareNummer.ToString());
-                    vareItem.SubItems.Add(vare.VareNavn);
-                    vareItem.SubItems.Add(vare.Styrke.ToString());
-                    vareItem.SubItems.Add(vare.Pris.ToString());
-                    vareItem.SubItems.Add(vare.LagerMængde.ToString());
+                    ListViewItem vareItem = new ListViewItem(vare.productNumber.ToString());
+                    vareItem.SubItems.Add(vare.productName);
+                    vareItem.SubItems.Add(vare.lensStrength.ToString());
+                    vareItem.SubItems.Add(vare.price.ToString());
+                    vareItem.SubItems.Add(vare.stockQuantity.ToString());
                     listView_product_list_buytab.Items.Add(vareItem);
                 }
 
@@ -348,18 +348,18 @@ namespace SynsPunkt_ApS
 
                 string selectedKundeID = listView_customers.SelectedItems[0].SubItems[0].Text;
 
-                Models.Kunde selectedKunde = kundeServices.GetKunde(Convert.ToInt32(selectedKundeID));
+                Models.Customer selectedKunde = kundeServices.GetKunde(Convert.ToInt32(selectedKundeID));
 
                 ListViewItem selectedItem = listView_customers.SelectedItems[0];
 
                 // Opdater tekstbokse med de valgte kundens oplysninger
-                tb_customerID.Text = selectedKunde.KundeId;
-                tb_CustomerFirstName.Text = selectedKunde.Fornavn;
-                tb_customerLastName.Text = selectedKunde.Efternavn;
-                tb_customerPhoneNumber.Text = selectedKunde.TelefonNummer.ToString();
-                tb_customerEmail.Text = selectedKunde.Mail;
-                tb_customerAdress.Text = selectedKunde.Adresse;
-                tb_customerPostNr.Text = selectedKunde.PostNr.ToString();
+                tb_customerID.Text = selectedKunde.customerID;
+                tb_CustomerFirstName.Text = selectedKunde.firstName;
+                tb_customerLastName.Text = selectedKunde.lastName;
+                tb_customerPhoneNumber.Text = selectedKunde.phoneNumber.ToString();
+                tb_customerEmail.Text = selectedKunde.mail;
+                tb_customerAdress.Text = selectedKunde.adress;
+                tb_customerPostNr.Text = selectedKunde.zipCode.ToString();
             }
         }
 
@@ -377,11 +377,11 @@ namespace SynsPunkt_ApS
             {
                 if (int.TryParse(tb_searchPhoneNumber.Text, out int kundeID))
                 {
-                    Models.Kunde kunde = kundeServices.GetKunde(kundeID);
+                    Models.Customer kunde = kundeServices.GetKunde(kundeID);
                     if (kunde != null)
                     {
-                        ListViewItem listViewItem = new ListViewItem(kunde.TelefonNummer.ToString());
-                        listViewItem.SubItems.Add(kunde.KundeId.ToString());
+                        ListViewItem listViewItem = new ListViewItem(kunde.phoneNumber.ToString());
+                        listViewItem.SubItems.Add(kunde.customerID.ToString());
                         listView_customers.Items.Add(listViewItem);
                     }
                 }
@@ -512,19 +512,19 @@ namespace SynsPunkt_ApS
             listView_customers.Items.Clear();
 
             // Hent opdaterede kundedata fra databasen eller en anden datakilde
-            List<Kunde> customers = kundeServices.GetCustomers();
+            List<Customer> customers = kundeServices.GetCustomers();
 
             // Tilføj kunder som elementer i ListView
-            foreach (Kunde customer in customers)
+            foreach (Customer customer in customers)
             {
-                ListViewItem item = new ListViewItem(customer.KundeId.ToString());
-                item.SubItems.Add(customer.Fornavn);
-                item.SubItems.Add(customer.Efternavn);
-                item.SubItems.Add(customer.TelefonNummer.ToString());
-                item.SubItems.Add(customer.Mail);
-                item.SubItems.Add(customer.Adresse);
+                ListViewItem item = new ListViewItem(customer.customerID.ToString());
+                item.SubItems.Add(customer.firstName);
+                item.SubItems.Add(customer.lastName);
+                item.SubItems.Add(customer.phoneNumber.ToString());
+                item.SubItems.Add(customer.mail);
+                item.SubItems.Add(customer.adress);
 
-                ListViewItem.ListViewSubItem postNrSubItem = new ListViewItem.ListViewSubItem(item, customer.PostNr.ToString());
+                ListViewItem.ListViewSubItem postNrSubItem = new ListViewItem.ListViewSubItem(item, customer.zipCode.ToString());
                 item.SubItems.Add(postNrSubItem);
 
                 listView_customers.Items.Add(item);
@@ -562,7 +562,7 @@ namespace SynsPunkt_ApS
 
             foreach (Booking booking in listView_Bookings.Items)
             {
-                if (booking.Dato.Date == selectedDate.Date)
+                if (booking.Date.Date == selectedDate.Date)
                 {
                     filteredBookings.Add(booking);
                 }
@@ -572,11 +572,11 @@ namespace SynsPunkt_ApS
             {
 
                 ListViewItem listViewItem = new ListViewItem(booking.BookingID.ToString());
-                listViewItem.SubItems.Add(booking.LokationID.ToString());
-                listViewItem.SubItems.Add(booking.Tidspunkt);
-                listViewItem.SubItems.Add(booking.Dato.ToShortDateString());
+                listViewItem.SubItems.Add(booking.LocationID.ToString());
+                listViewItem.SubItems.Add(booking.Time);
+                listViewItem.SubItems.Add(booking.Date.ToShortDateString());
                 listViewItem.SubItems.Add(booking.BookingType);
-                listViewItem.SubItems.Add(booking.KundeID.ToString());
+                listViewItem.SubItems.Add(booking.CustomerID.ToString());
                 listView_Bookings.Items.Add(listViewItem);
             }
 
@@ -700,12 +700,12 @@ namespace SynsPunkt_ApS
             }
             else
             {
-                List<Models.Leverandør> allLeverandør = levService.SearchLeverandørByName(tb_supplierID.Text);
+                List<Models.Supplier> allLeverandør = levService.SearchLeverandørByName(tb_supplierID.Text);
                 foreach (var lev in allLeverandør)
                 {
                     ListViewItem levItem = new ListViewItem(lev.CVRnummer.ToString());
-                    levItem.SubItems.Add(lev.LeverandørNavn);
-                    levItem.SubItems.Add(lev.Email);
+                    levItem.SubItems.Add(lev.supplierName);
+                    levItem.SubItems.Add(lev.mail);
                     listView_suppliers.Items.Add(levItem);
                 }
             }
@@ -725,7 +725,7 @@ namespace SynsPunkt_ApS
 
                 string selectedEmployeeID = listView_employees.SelectedItems[0].SubItems[0].Text;
 
-                Models.Ansat selectedEmployee = ansatService.GetAnsatByID(selectedEmployeeID);
+                Models.Employee selectedEmployee = ansatService.GetAnsatByID(selectedEmployeeID);
 
                 //Textbox tekst opdateres:
                 tb_employeeId.Text = selectedEmployee.EmployeeID.ToString();
@@ -753,7 +753,7 @@ namespace SynsPunkt_ApS
             }
             else
             {
-                List<Models.Ansat> allAnsat = ansatService.SearchAnsatByName(tb_searchEmployee.Text);
+                List<Models.Employee> allAnsat = ansatService.SearchAnsatByName(tb_searchEmployee.Text);
                 foreach (var ansat in allAnsat)
                 {
                     ListViewItem ansatItem = new ListViewItem(ansat.EmployeeID.ToString());
@@ -926,11 +926,11 @@ namespace SynsPunkt_ApS
 
             foreach (var order in ordersWithinDateInterval)
             {
-                Models.Kunde customer = kundeService.GetKunde(order.customerID);
+                Models.Customer customer = kundeService.GetKunde(order.customerID);
 
                 string orderID = order.orderID.ToString().PadRight(10);
                 string customerID = order.customerID.ToString().PadRight(12);
-                string customerName = (customer.Fornavn + " " + customer.Efternavn).PadRight(40);
+                string customerName = (customer.firstName + " " + customer.lastName).PadRight(40);
                 string orderDate = order.orderDate.ToString().PadRight(25);
                 string totalPrice = order.totalPrice.ToString("C2");
 
@@ -990,12 +990,12 @@ namespace SynsPunkt_ApS
             }
             else
             {
-                List<Models.Vare> allVare = vareService.SearchVareByName(tb_searchForProduct.Text);
+                List<Models.Product> allVare = vareService.SearchVareByName(tb_searchForProduct.Text);
                 foreach (var vare in allVare)
                 {
-                    ListViewItem vareItem = new ListViewItem(vare.VareNummer.ToString());
-                    vareItem.SubItems.Add(vare.VareNavn);
-                    vareItem.SubItems.Add(vare.LagerMængde.ToString());
+                    ListViewItem vareItem = new ListViewItem(vare.productNumber.ToString());
+                    vareItem.SubItems.Add(vare.productName);
+                    vareItem.SubItems.Add(vare.stockQuantity.ToString());
                     listView1_listOfSuppliers.Items.Add(vareItem);
                 }
             }
@@ -1019,11 +1019,11 @@ namespace SynsPunkt_ApS
             foreach (var product in allProducts)
             {
                 productReport.AppendLine();
-                productReport.Append(product.VareNummer.ToString().PadRight(10));
-                productReport.Append(product.VareNavn.PadRight(40));
-                productReport.Append(product.LagerMængde.ToString().PadRight(20));
-                productReport.Append(product.Pris.ToString("N0").PadRight(15));
-                productReport.Append(product.LevCVR.ToString().PadRight(15));
+                productReport.Append(product.productNumber.ToString().PadRight(10));
+                productReport.Append(product.productName.PadRight(40));
+                productReport.Append(product.stockQuantity.ToString().PadRight(20));
+                productReport.Append(product.price.ToString("N0").PadRight(15));
+                productReport.Append(product.levCVR.ToString().PadRight(15));
             }
             productReport.AppendLine();
             productReport.AppendLine("----------------------------------------------------------------------------------------------------");
@@ -1113,11 +1113,11 @@ namespace SynsPunkt_ApS
 
             foreach (var order in ordersWithinDateInterval)
             {
-                Models.Kunde customerWithThisOrder = kundeService.GetKunde(order.customerID);
+                Models.Customer customerWithThisOrder = kundeService.GetKunde(order.customerID);
 
                 ListViewItem orderItem = new ListViewItem(order.orderID.ToString());
                 orderItem.SubItems.Add(order.customerID.ToString());
-                orderItem.SubItems.Add(customerWithThisOrder.Fornavn + " " + customerWithThisOrder.Efternavn);
+                orderItem.SubItems.Add(customerWithThisOrder.firstName + " " + customerWithThisOrder.lastName);
                 orderItem.SubItems.Add(order.orderDate.ToString());
                 orderItem.SubItems.Add(order.totalPrice.ToString("N0"));
                 listView_report.Items.Add(orderItem);
@@ -1127,7 +1127,7 @@ namespace SynsPunkt_ApS
         private void GetAllAnsatte()
         {
             Services.Ansat_Services ansatService = new Services.Ansat_Services();
-            List<Models.Ansat> allAnsat = ansatService.GetAllAnsat();
+            List<Models.Employee> allAnsat = ansatService.GetAllAnsat();
             foreach (var ansat in allAnsat)
             {
                 ListViewItem ansatItem = new ListViewItem(ansat.EmployeeID.ToString());
@@ -1144,9 +1144,9 @@ namespace SynsPunkt_ApS
             var kundeList = kunde_Services.GetCustomers();
             foreach (var kunde in kundeList)
             {
-                ListViewItem kundeItem = new ListViewItem(kunde.KundeId.ToString());
-                kundeItem.SubItems.Add(kunde.Fornavn);
-                kundeItem.SubItems.Add(kunde.Efternavn);
+                ListViewItem kundeItem = new ListViewItem(kunde.customerID.ToString());
+                kundeItem.SubItems.Add(kunde.firstName);
+                kundeItem.SubItems.Add(kunde.lastName);
                 listView_customers.Items.Add(kundeItem);
 
             }
@@ -1160,9 +1160,9 @@ namespace SynsPunkt_ApS
             var vareList = vareservice.GetAllVare();
             foreach (var vare in vareList)
             {
-                ListViewItem vareItem = new ListViewItem(vare.VareNummer.ToString());
-                vareItem.SubItems.Add(vare.VareNavn);
-                vareItem.SubItems.Add(vare.LagerMængde.ToString());
+                ListViewItem vareItem = new ListViewItem(vare.productNumber.ToString());
+                vareItem.SubItems.Add(vare.productName);
+                vareItem.SubItems.Add(vare.stockQuantity.ToString());
                 listView1_listOfSuppliers.Items.Add(vareItem);
             }
         }
@@ -1176,7 +1176,7 @@ namespace SynsPunkt_ApS
             {
                 ListViewItem bookingItem = new ListViewItem(booking.BookingID.ToString());
                 bookingItem.SubItems.Add(booking.BookingType);
-                bookingItem.SubItems.Add(booking.LokationID.ToString());
+                bookingItem.SubItems.Add(booking.LocationID.ToString());
                 listView_Bookings.Items.Add(bookingItem);
             }
         }
@@ -1209,8 +1209,8 @@ namespace SynsPunkt_ApS
             foreach (var leverandør in levList)
             {
                 ListViewItem levItem = new ListViewItem(leverandør.CVRnummer.ToString());
-                levItem.SubItems.Add(leverandør.LeverandørNavn);
-                levItem.SubItems.Add(leverandør.Email);
+                levItem.SubItems.Add(leverandør.supplierName);
+                levItem.SubItems.Add(leverandør.mail);
                 listView_suppliers.Items.Add(levItem);
             }
         }
@@ -1223,11 +1223,11 @@ namespace SynsPunkt_ApS
             var vareList = vareservice.GetAllVare();
             foreach (var vare in vareList)
             {
-                ListViewItem vareItem = new ListViewItem(vare.VareNummer.ToString());
-                vareItem.SubItems.Add(vare.VareNavn);
-                vareItem.SubItems.Add(vare.Styrke.ToString());
-                vareItem.SubItems.Add(vare.Pris.ToString());
-                vareItem.SubItems.Add(vare.LagerMængde.ToString());
+                ListViewItem vareItem = new ListViewItem(vare.productNumber.ToString());
+                vareItem.SubItems.Add(vare.productName);
+                vareItem.SubItems.Add(vare.lensStrength.ToString());
+                vareItem.SubItems.Add(vare.price.ToString());
+                vareItem.SubItems.Add(vare.stockQuantity.ToString());
                 listView_product_list_buytab.Items.Add(vareItem);
             }
 

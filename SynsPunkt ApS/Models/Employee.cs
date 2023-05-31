@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SynsPunkt_ApS.Models
 {
-    public class Ansat
+    public class Employee
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -20,7 +20,7 @@ namespace SynsPunkt_ApS.Models
         public string WorkMail { get; set; }
         public int ZipCode { get; set; }
 
-        public Ansat(string firstName, string lastName, int telephoneNumber, string privateMail, string adress,
+        public Employee(string firstName, string lastName, int telephoneNumber, string privateMail, string adress,
             int employeeID, string password, string departmentID, int roleID, string workMail, int zipCode)
         {
             FirstName = firstName;

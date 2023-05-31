@@ -55,10 +55,10 @@ namespace SynsPunkt_ApS.Database
         /// Henter en kunde fra databasen baseret på KundeInfo-id.
         /// </summary>
         /// <param name="KundeInfo">Id'et på den ønskede kunde.</param>
-        public Kunde HentKunde(int KundeID)
+        public Customer HentKunde(int KundeID)
         {
             string query = "SELECT * FROM SP_Kunde WHERE KundeID = @KundeID";
-            Kunde kunde = null;
+            Customer kunde = null;
 
             SqlCommand command = new SqlCommand(query, conn);
             {
@@ -71,7 +71,7 @@ namespace SynsPunkt_ApS.Database
                     {
                         if (reader.Read())
                         {
-                            kunde = new Kunde(
+                            kunde = new Customer(
                                 reader["Fornavn"].ToString(),
                                 reader["Efternavn"].ToString(),
                                 Convert.ToInt32(reader["TelefonNummer"]),
@@ -181,10 +181,10 @@ namespace SynsPunkt_ApS.Database
             }
         }
 
-        public List<Kunde> FindKundeInfo(string kundeNavn)
+        public List<Customer> FindKundeInfo(string kundeNavn)
         {
             string query = "SELECT * FROM Kunder WHERE Navn LIKE @KundeNavn";
-            List<Kunde> kundeListe = new List<Kunde>();
+            List<Customer> kundeListe = new List<Customer>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -199,7 +199,7 @@ namespace SynsPunkt_ApS.Database
                     {
                         while (reader.Read())
                         {
-                            Kunde kunde = new Kunde(
+                            Customer kunde = new Customer(
                                 reader["Fornavn"].ToString(),
                                 reader["Efternavn"].ToString(),
                                 Convert.ToInt32(reader["TelefonNummer"]),
@@ -221,12 +221,12 @@ namespace SynsPunkt_ApS.Database
             return kundeListe;
         }
 
-        public List<Kunde> GetCustomers()
+        public List<Customer> GetCustomers()
         {
             string connectionString = "Data Source=mssql15.unoeuro.com;Initial Catalog=oversaftigt_dk_db_test;User ID=oversaftigt_dk;Password=prfHFR9546nEtyb2xDmc";
 
             string query = "SELECT * FROM SP_Kunde";
-            List<Kunde> customers = new List<Kunde>();
+            List<Customer> customers = new List<Customer>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -239,7 +239,7 @@ namespace SynsPunkt_ApS.Database
                     {
                         while (reader.Read())
                         {
-                            Kunde kunde = new Kunde(
+                            Customer kunde = new Customer(
                                 reader["Fornavn"].ToString(),
                                 reader["Efternavn"].ToString(),
                                 Convert.ToInt32(reader["TelefonNummer"]),

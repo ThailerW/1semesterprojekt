@@ -8,7 +8,7 @@ namespace SynsPunkt_ApS.Services
 {
     public class Ansat_Services
     {
-        private Database.CRUD_Ansat crudAnsat = new Database.CRUD_Ansat();
+        private Database.CRUD_Employee crudAnsat = new Database.CRUD_Employee();
 
         public Ansat_Services()
         {
@@ -18,38 +18,38 @@ namespace SynsPunkt_ApS.Services
         public void CreateAnsat(string fornavn, string efternavn, int telefonNummer, string privatMail, string adresse,
         string adgangskode, string afdeling, string rolle, string arbejdsMail, int postNr)
         {
-            crudAnsat.CreateAnsat(fornavn, efternavn, telefonNummer, privatMail, adresse, adgangskode, afdeling, rolle, arbejdsMail, postNr);
+            crudAnsat.CreateEmployee(fornavn, efternavn, telefonNummer, privatMail, adresse, adgangskode, afdeling, rolle, arbejdsMail, postNr);
 
         }
 
         public void UpdateAnsat(int medarbejderNummer, string fornavn, string efternavn, int telefonNummer, string privatMail, string adresse,
         string adgangskode, string afdeling, string rolle, string arbejdsMail, int postNr)
         {
-            crudAnsat.UpdateAnsat(medarbejderNummer, fornavn, efternavn, telefonNummer, privatMail, adresse,
+            crudAnsat.UpdateEmployee(medarbejderNummer, fornavn, efternavn, telefonNummer, privatMail, adresse,
                                   adgangskode, afdeling, rolle, arbejdsMail, postNr);
         }
 
         public void DeleteAnsat(int medarbejderNummer)
         {
-            crudAnsat.DeleteAnsat(medarbejderNummer);
+            crudAnsat.DeleteEmployee(medarbejderNummer);
         }
 
-        public Models.Ansat GetAnsatByID(string id)
+        public Models.Employee GetAnsatByID(string id)
         {
-            Models.Ansat ansat = crudAnsat.GetAnsatByID(id);
+            Models.Employee ansat = crudAnsat.GetEmployeeByID(id);
             return ansat;
         }
 
-        public List<Models.Ansat> SearchAnsatByName(string name)
+        public List<Models.Employee> SearchAnsatByName(string name)
         {
-            List<Models.Ansat> searchResults = crudAnsat.SearchAnsatByName(name);
+            List<Models.Employee> searchResults = crudAnsat.SearchEmployeeByName(name);
 
             return searchResults;
         }
 
-        public List<Models.Ansat> GetAllAnsat()
+        public List<Models.Employee> GetAllAnsat()
         {
-            List<Models.Ansat> allAnsat = crudAnsat.GetAllAnsat();
+            List<Models.Employee> allAnsat = crudAnsat.GetAllEmployees();
 
             return allAnsat;
         }

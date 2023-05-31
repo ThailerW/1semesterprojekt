@@ -43,13 +43,13 @@ namespace SynsPunkt_ApS.Services
             // Opdateringslogikken for kunden kan placeres her
         }
 
-        public List<Kunde> GetCustomers()
+        public List<Customer> GetCustomers()
         {
             // Hent alle kunder
             return crudKunde.GetCustomers();
         }
 
-        public Kunde GetKunde(int KundeID)
+        public Customer GetKunde(int KundeID)
         {
             Database.CRUD_Kunde crudKunde = new Database.CRUD_Kunde();
             return crudKunde.HentKunde(KundeID);

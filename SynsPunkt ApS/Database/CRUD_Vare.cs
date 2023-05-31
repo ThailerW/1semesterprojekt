@@ -55,7 +55,7 @@ namespace SynsPunkt_ApS.Database
         /// </summary>
         /// <param name="vareID"></param>
         /// <returns></returns>
-        public Models.Vare ReadVare(string id, out string id2, out string vareBeskrivelse, out string lagerMængde, out string vareNavn,
+        public Models.Product ReadVare(string id, out string id2, out string vareBeskrivelse, out string lagerMængde, out string vareNavn,
             out string styrke, out string levCVR, out string pris)
         {
             id2 = "";
@@ -66,7 +66,7 @@ namespace SynsPunkt_ApS.Database
             levCVR = "";
             pris = "";
 
-            Models.Vare vare = new Models.Vare(0, "", 0, "", 0, "", 0);
+            Models.Product vare = new Models.Product(0, "", 0, "", 0, "", 0);
             SqlConnection connection = new SqlConnection(connectionString);
 
             string query = "SELECT * FROM SP_Vare WHERE vareID = '" + id + "'";
@@ -84,17 +84,17 @@ namespace SynsPunkt_ApS.Database
                 while (reader.Read())
                 {
                     //Filling created instance with the selected ID's data.
-                    vare = new Models.Vare(Convert.ToInt32(reader["vareID"]), reader["vareBeskrivelse"].ToString(),
+                    vare = new Models.Product(Convert.ToInt32(reader["vareID"]), reader["vareBeskrivelse"].ToString(),
                        Convert.ToInt32(reader["lagerMængde"]), reader["vareNavn"].ToString(), Convert.ToDecimal(reader["styrke"]),
                        reader["leverandørCVR"].ToString(), Convert.ToDecimal(reader["varePris"]));
 
-                    id2 = vare.VareNummer.ToString();
-                    vareBeskrivelse = vare.VareBeskrivelse;
-                    lagerMængde = vare.LagerMængde.ToString();
-                    vareNavn = vare.VareNavn;
-                    styrke = vare.Styrke.ToString();
-                    levCVR = vare.LevCVR.ToString();
-                    pris = vare.Pris.ToString();
+                    id2 = vare.productNumber.ToString();
+                    vareBeskrivelse = vare.productDescription;
+                    lagerMængde = vare.stockQuantity.ToString();
+                    vareNavn = vare.productName;
+                    styrke = vare.lensStrength.ToString();
+                    levCVR = vare.levCVR.ToString();
+                    pris = vare.price.ToString();
                 }
             }
             catch (Exception ex)
@@ -176,9 +176,9 @@ namespace SynsPunkt_ApS.Database
         /// Henter alle vare fra databasen og returnere en liste af models.vare
         /// </summary>
         /// <returns></returns>
-        public List<Models.Vare> GetAllVare()
+        public List<Models.Product> GetAllVare()
         {
-            List<Models.Vare> vareList = new List<Models.Vare>();
+            List<Models.Product> vareList = new List<Models.Product>();
 
             SqlConnection connection = new SqlConnection(connectionString);
 
@@ -197,7 +197,7 @@ namespace SynsPunkt_ApS.Database
                 while (reader.Read())
                 {
                     //Creating new instance of class:
-                    Models.Vare vare = new Models.Vare(
+                    Models.Product vare = new Models.Product(
                        Convert.ToInt32(reader["vareID"]),
                        reader["vareBeskrivelse"].ToString(),
                        Convert.ToInt32(reader["lagerMængde"]),
@@ -224,9 +224,9 @@ namespace SynsPunkt_ApS.Database
             return vareList;
         }
 
-        public List<Models.Vare> SearchVareByName(string name)
+        public List<Models.Product> SearchVareByName(string name)
         {
-            List<Models.Vare> searchResults = new List<Models.Vare>();
+            List<Models.Product> searchResults = new List<Models.Product>();
 
 
             string query = "SELECT * FROM SP_Vare WHERE vareNavn LIKE '%' + @name + '%'";
@@ -249,7 +249,7 @@ namespace SynsPunkt_ApS.Database
                     decimal varePris = Convert.ToDecimal(reader["varePris"]);
 
 
-                    Models.Vare Vare = new Models.Vare(vareID, vareBeskrivelse, lagerMængde, vareNavn, styrke, levCVR, varePris);
+                    Models.Product Vare = new Models.Product(vareID, vareBeskrivelse, lagerMængde, vareNavn, styrke, levCVR, varePris);
 
                     searchResults.Add(Vare);
                 }

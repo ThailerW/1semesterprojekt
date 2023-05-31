@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace SynsPunkt_ApS.Database
 {
-    public class CRUD_Ansat
+    public class CRUD_Employee
     {
 
         SqlConnection conn = new SqlConnection(Database.ConnectionString.GetConnectionString());
@@ -27,7 +27,7 @@ namespace SynsPunkt_ApS.Database
         /// <param name="roleID"></param>
         /// <param name="workMail"></param>
         /// <param name="zipCode"></param>
-        public void CreateAnsat(string firstName, string lastName, int telephoneNumber, string privateMail, string adress,
+        public void CreateEmployee(string firstName, string lastName, int telephoneNumber, string privateMail, string adress,
         string password, string department, string roleID, string workMail, int zipCode)
         {
             try
@@ -78,7 +78,7 @@ namespace SynsPunkt_ApS.Database
         /// <param name="roleID"></param>
         /// <param name="workMail"></param>
         /// <param name="zipCode"></param>
-        public void UpdateAnsat(int employeeID, string firstName, string lastName, int telephoneNumber, string privateMail, string adress,
+        public void UpdateEmployee(int employeeID, string firstName, string lastName, int telephoneNumber, string privateMail, string adress,
         string password, string department, string roleID, string workMail, int zipCode)
         {
 
@@ -125,7 +125,7 @@ namespace SynsPunkt_ApS.Database
             }
         }
 
-        public void DeleteAnsat(int employeeID)
+        public void DeleteEmployee(int employeeID)
         {
             try
             {
@@ -154,9 +154,9 @@ namespace SynsPunkt_ApS.Database
         /// </summary>
         /// <param name="employeeID"></param>
         /// <returns></returns>
-        public Models.Ansat GetAnsatByID(string employeeID)
+        public Models.Employee GetEmployeeByID(string employeeID)
         {
-            Models.Ansat Employee = null;
+            Models.Employee Employee = null;
 
             try
             {
@@ -168,19 +168,19 @@ namespace SynsPunkt_ApS.Database
 
                 while (reader.Read())
                 {
-                    int medarbejderNummer = Convert.ToInt32(reader["AnsatID"]);
-                    string afdeling = reader["LokationID"].ToString();
-                    string arbejdsEmail = reader["arbejdsMail"].ToString();
-                    string forNavn = reader["forNavn"].ToString();
-                    string efterNavn = reader["efterNavn"].ToString();
-                    int tlf = Convert.ToInt32(reader["telefonNummer"]);
-                    string adresse = reader["adresse"].ToString();
-                    int postNummer = Convert.ToInt32(reader["postNr"]);
-                    int rolleID = Convert.ToInt32(reader["rolleID"]);
+                    int employee_ID = Convert.ToInt32(reader["AnsatID"]);
+                    string department = reader["LokationID"].ToString();
+                    string workMail = reader["arbejdsMail"].ToString();
+                    string firstName = reader["forNavn"].ToString();
+                    string lastName = reader["efterNavn"].ToString();
+                    int phoneNumber = Convert.ToInt32(reader["telefonNummer"]);
+                    string adress = reader["adresse"].ToString();
+                    int zipCode = Convert.ToInt32(reader["postNr"]);
+                    int roleID = Convert.ToInt32(reader["rolleID"]);
                     string password = reader["password"].ToString();
-                    string privatMail = reader["privatMail"].ToString();
+                    string privateMail = reader["privatMail"].ToString();
 
-                    Employee = new Models.Ansat(forNavn, efterNavn, tlf, privatMail, adresse, medarbejderNummer, password, afdeling, rolleID, arbejdsEmail, postNummer);
+                    Employee = new Models.Employee(firstName, lastName, phoneNumber, privateMail, adress, employee_ID, password, department, roleID, workMail, zipCode);
                 }
             }
             catch (Exception ex)
@@ -194,9 +194,9 @@ namespace SynsPunkt_ApS.Database
             return Employee;
         }
 
-        public List<Models.Ansat> SearchAnsatByName(string name)
+        public List<Models.Employee> SearchEmployeeByName(string name)
         {
-            List<Models.Ansat> searchResults = new List<Models.Ansat>();
+            List<Models.Employee> searchResults = new List<Models.Employee>();
 
             try
             {
@@ -208,19 +208,19 @@ namespace SynsPunkt_ApS.Database
 
                 while (reader.Read())
                 {
-                    int medarbejderNummer = Convert.ToInt32(reader["AnsatID"]);
-                    string afdeling = reader["LokationID"].ToString();
-                    string arbejdsEmail = reader["arbejdsMail"].ToString();
-                    string forNavn = reader["forNavn"].ToString();
-                    string efterNavn = reader["efterNavn"].ToString();
-                    int tlf = Convert.ToInt32(reader["telefonNummer"]);
-                    string adresse = reader["adresse"].ToString();
-                    int postNummer = Convert.ToInt32(reader["postNr"]);
-                    int rolleID = Convert.ToInt32(reader["rolleID"]);
+                    int employeeID = Convert.ToInt32(reader["AnsatID"]);
+                    string department = reader["LokationID"].ToString();
+                    string workMail = reader["arbejdsMail"].ToString();
+                    string firstName = reader["forNavn"].ToString();
+                    string lastName = reader["efterNavn"].ToString();
+                    int phoneNumber = Convert.ToInt32(reader["telefonNummer"]);
+                    string adress = reader["adresse"].ToString();
+                    int zipCode = Convert.ToInt32(reader["postNr"]);
+                    int roleID = Convert.ToInt32(reader["rolleID"]);
                     string password = reader["password"].ToString();
-                    string privatMail = reader["privatMail"].ToString();
+                    string privateMail = reader["privatMail"].ToString();
 
-                    Models.Ansat Employee = new Models.Ansat(forNavn, efterNavn, tlf, privatMail, adresse, medarbejderNummer, password, afdeling, rolleID, arbejdsEmail, postNummer);
+                    Models.Employee Employee = new Models.Employee(firstName, lastName, phoneNumber, privateMail, adress, employeeID, password, department, roleID, workMail, zipCode);
 
                     searchResults.Add(Employee);
                 }
@@ -238,9 +238,9 @@ namespace SynsPunkt_ApS.Database
         }
 
 
-        public List<Models.Ansat> GetAllAnsat()
+        public List<Models.Employee> GetAllEmployees()
         {
-            List<Models.Ansat> allAnsat = new List<Models.Ansat>();
+            List<Models.Employee> allEmployees = new List<Models.Employee>();
 
             try
             {
@@ -251,21 +251,21 @@ namespace SynsPunkt_ApS.Database
 
                 while (reader.Read())
                 {
-                    int medarbejderNummer = Convert.ToInt32(reader["AnsatID"]);
-                    string afdeling = reader["LokationID"].ToString();
-                    string arbejdsEmail = reader["arbejdsMail"].ToString();
-                    string forNavn = reader["forNavn"].ToString();
-                    string efterNavn = reader["efterNavn"].ToString();
-                    int tlf = Convert.ToInt32(reader["telefonNummer"]);
-                    string adresse = reader["adresse"].ToString();
-                    int postNummer = Convert.ToInt32(reader["postNr"]);
-                    int rolleID = Convert.ToInt32(reader["rolleID"]);
+                    int employeeID = Convert.ToInt32(reader["AnsatID"]);
+                    string department = reader["LokationID"].ToString();
+                    string workMail = reader["arbejdsMail"].ToString();
+                    string firstName = reader["forNavn"].ToString();
+                    string lastName = reader["efterNavn"].ToString();
+                    int phoneNumber = Convert.ToInt32(reader["telefonNummer"]);
+                    string adress = reader["adresse"].ToString();
+                    int zipCode = Convert.ToInt32(reader["postNr"]);
+                    int roleID = Convert.ToInt32(reader["rolleID"]);
                     string password = reader["password"].ToString();
-                    string privatMail = reader["privatMail"].ToString();
+                    string privateMail = reader["privatMail"].ToString();
 
-                    Models.Ansat Employee = new Models.Ansat(forNavn, efterNavn, tlf, privatMail, adresse, medarbejderNummer, password, afdeling, rolleID, arbejdsEmail, postNummer);
+                    Models.Employee Employee = new Models.Employee(firstName, lastName, phoneNumber, privateMail, adress, employeeID, password, department, roleID, workMail, zipCode);
 
-                    allAnsat.Add(Employee);
+                    allEmployees.Add(Employee);
                 }
             }
             catch (Exception ex)
@@ -276,7 +276,7 @@ namespace SynsPunkt_ApS.Database
             {
                 conn.Close();
             }
-            return allAnsat;
+            return allEmployees;
         }
 
         public string GetDepartmentName(int departmentID)
@@ -323,37 +323,5 @@ namespace SynsPunkt_ApS.Database
             }
             return roleName;
         }
-
-        //public string GetNameAndRights(int AnsatID, out int rolleID)
-        //{
-        //    SqlConnection conn = new SqlConnection(Database.ConnectionString.GetConnectionString());
-        //    string sSQL = $"SELECT fornavn, efternavn, rolleID FROM SP_Ansat WHERE AnsatID = {AnsatID}";
-        //    SqlCommand command = new SqlCommand(sSQL, conn);
-        //    SqlDataReader reader = command.ExecuteReader();
-
-        //    string fullName = string.Empty;
-        //    rolleID = 0;
-        //    while (reader.Read())
-        //    {
-        //        fullName = reader.GetString(0) + " " + reader.GetString(1);
-        //        rolleID = reader.GetInt32(2);
-        //    }
-
-        //    return fullName;
-        //}
-
-
-        //int medarbejderNummer = reader.GetInt32(0);
-        //string afdeling = reader.GetInt32(1).ToString();
-        //string arbejdsEmail = reader.GetString(2);
-        //string forNavn = reader.GetString(3);
-        //string efterNavn = reader.GetString(4);
-        //int tlf = reader.GetInt32(5);
-        //string adresse = reader.GetString(6);
-        //int postNummer = reader.GetInt32(7);
-        //int rolleID = reader.GetInt32(8);
-        //string password = reader.GetString(9);
-        //string privatMail = reader.GetString(10);
-
     }
 }

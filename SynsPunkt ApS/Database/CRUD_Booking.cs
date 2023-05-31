@@ -18,7 +18,7 @@ namespace SynsPunkt_ApS.Database
         {
 
             string query = "DECLARE @tidspunkt time, @bookingType varchar(60);" +
-                            "SET @tidspunkt = CONVERT(time, '" + newBooking.Tidspunkt + "');" +
+                            "SET @tidspunkt = CONVERT(time, '" + newBooking.Time + "');" +
                             "SET @bookingType = '" + newBooking.BookingType + "'; " +
                             "INSERT INTO SP_Booking (LokationID, tidspunkt, dato, bookingType, KundeID) " +
                            "VALUES (@LokationID, @tidspunkt, @dato, @bookingType, @KundeID)";
@@ -26,21 +26,18 @@ namespace SynsPunkt_ApS.Database
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@LokationID", newBooking.LokationID);
-                    command.Parameters.AddWithValue("@tidpunkt", newBooking.Tidspunkt);
-                    command.Parameters.AddWithValue("@dato", newBooking.Dato);
+                    command.Parameters.AddWithValue("@LokationID", newBooking.LocationID);
+                    command.Parameters.AddWithValue("@tidpunkt", newBooking.Time);
+                    command.Parameters.AddWithValue("@dato", newBooking.Date);
                     command.Parameters.AddWithValue("@bookinType", newBooking.BookingType);
-                    command.Parameters.AddWithValue("@KundeID", newBooking.KundeID);
-                    command.ExecuteNonQuery();
+                    command.Parameters.AddWithValue("@KundeID", newBooking.CustomerID);
 
                     try
                     {
                         connection.Open();
                         command.ExecuteNonQuery();
-                        MessageBox.Show("Booking oprettet");
                         connection.Close();
                     }
                     catch (Exception ex)
@@ -107,12 +104,12 @@ namespace SynsPunkt_ApS.Database
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@LokationID", updatedBooking.LokationID);
-                    command.Parameters.AddWithValue("@tidspunkt", updatedBooking.Tidspunkt);
-                    command.Parameters.AddWithValue("@dato", updatedBooking.Dato);
+                    command.Parameters.AddWithValue("@LokationID", updatedBooking.LocationID);
+                    command.Parameters.AddWithValue("@tidspunkt", updatedBooking.Time);
+                    command.Parameters.AddWithValue("@dato", updatedBooking.Date);
                     command.Parameters.AddWithValue("@bookingType", updatedBooking.BookingType);
                     command.Parameters.AddWithValue("@bookingID", updatedBooking.BookingID);
-                    command.Parameters.AddWithValue("@kundeID", updatedBooking.KundeID);
+                    command.Parameters.AddWithValue("@kundeID", updatedBooking.CustomerID);
 
                     try
                     {

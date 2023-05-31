@@ -58,7 +58,7 @@ namespace SynsPunkt_ApS.Database
         /// <param name="email"></param>
         /// <param name="faktureringsinfo"></param>
         /// <param name="tlfNummer"></param>
-        public Models.Leverandør ReadLeverandør(string levId, out string levId2, out string navn, out string adresse, out string postNr, out string email, 
+        public Models.Supplier ReadLeverandør(string levId, out string levId2, out string navn, out string adresse, out string postNr, out string email, 
             out string faktureringsinfo, out string tlfNummer)
         {
             levId2 = "";
@@ -69,7 +69,7 @@ namespace SynsPunkt_ApS.Database
             faktureringsinfo = "";
             tlfNummer = "";
 
-            Models.Leverandør leveran = new Models.Leverandør(0, "", "", 0, "", "", 0);
+            Models.Supplier leveran = new Models.Supplier(0, "", "", 0, "", "", 0);
             SqlConnection connection = new SqlConnection(connectionString);
 
             string query = "SELECT * FROM SP_Leverandør2 WHERE cvrID = " + levId + ";";
@@ -87,17 +87,17 @@ namespace SynsPunkt_ApS.Database
                 while (reader.Read())
                 {
                     //Filling created instance with the selected ID's data.
-                    leveran = new Models.Leverandør(Convert.ToInt32(reader["cvrID"]), reader["leverandørNavn"].ToString(), reader["adresse"].ToString(),
+                    leveran = new Models.Supplier(Convert.ToInt32(reader["cvrID"]), reader["leverandørNavn"].ToString(), reader["adresse"].ToString(),
                        Convert.ToInt32(reader["postNr"]), reader["email"].ToString(), reader["faktureringsOplysninger"].ToString(), 
                        Convert.ToInt32(reader["telefonNummer"]));
 
                     levId2 = leveran.CVRnummer.ToString();
-                    navn = leveran.LeverandørNavn;
-                    adresse = leveran.Adresse;
-                    postNr = leveran.PostNummer.ToString();
-                    email = leveran.Email;
-                    faktureringsinfo = leveran.FaktureringsOplysninger;
-                    tlfNummer = leveran.TelefonNummer.ToString();
+                    navn = leveran.supplierName;
+                    adresse = leveran.adress;
+                    postNr = leveran.zipCode.ToString();
+                    email = leveran.mail;
+                    faktureringsinfo = leveran.billingInformation;
+                    tlfNummer = leveran.phoneNumber.ToString();
                 }
             }
             catch (Exception ex)
@@ -166,9 +166,9 @@ namespace SynsPunkt_ApS.Database
         /// Henter alle Leverandører fra databasen og returnere en liste af models.Leverandør
         /// </summary>
         /// <returns></returns>
-        public List<Models.Leverandør> GetAllLeverandør()
+        public List<Models.Supplier> GetAllLeverandør()
         {
-            List<Models.Leverandør> LeverandørList = new List<Models.Leverandør>();
+            List<Models.Supplier> LeverandørList = new List<Models.Supplier>();
 
             SqlConnection connection = new SqlConnection(connectionString);
 
@@ -187,7 +187,7 @@ namespace SynsPunkt_ApS.Database
                 while (reader.Read())
                 {
                     //Creating new instance of class:
-                    Models.Leverandør leverandør = new Models.Leverandør(
+                    Models.Supplier leverandør = new Models.Supplier(
                        Convert.ToInt32(reader["cvrID"]),
                        reader["leverandørNavn"].ToString(),
                        reader["adresse"].ToString(),
@@ -214,9 +214,9 @@ namespace SynsPunkt_ApS.Database
             return LeverandørList;
         }
 
-        public List<Models.Leverandør> SearchLeverandørByName(string name)
+        public List<Models.Supplier> SearchLeverandørByName(string name)
         {
-            List<Models.Leverandør> searchResults = new List<Models.Leverandør>();
+            List<Models.Supplier> searchResults = new List<Models.Supplier>();
 
 
             string query = "SELECT * FROM SP_Leverandør2 WHERE leverandørNavn LIKE '%' + @name + '%'";
@@ -239,7 +239,7 @@ namespace SynsPunkt_ApS.Database
                     int telefonNummer = Convert.ToInt32(reader["telefonNummer"]);
 
 
-                    Models.Leverandør leverandør = new Models.Leverandør(cvrID, leverandørNavn, adresse, postNr, email, faktureringsOplysninger, telefonNummer);
+                    Models.Supplier leverandør = new Models.Supplier(cvrID, leverandørNavn, adresse, postNr, email, faktureringsOplysninger, telefonNummer);
 
                     searchResults.Add(leverandør);
                 }

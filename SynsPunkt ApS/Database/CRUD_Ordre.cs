@@ -40,9 +40,9 @@ namespace SynsPunkt_ApS.Database
             return orderID;
         }
 
-        public List<Models.Ordre> GetAllOrders()
+        public List<Models.Order> GetAllOrders()
         {
-            List<Models.Ordre> allOrders = new List<Models.Ordre>();
+            List<Models.Order> allOrders = new List<Models.Order>();
 
             try
             {
@@ -58,7 +58,7 @@ namespace SynsPunkt_ApS.Database
                     DateTime orderDate = Convert.ToDateTime(reader["ordreDato"]);
                     double totalPris = Convert.ToDouble(reader["totalPris"]);
 
-                    Models.Ordre order = new Models.Ordre(orderID,customerID, orderDate, totalPris);
+                    Models.Order order = new Models.Order(orderID,customerID, orderDate, totalPris);
                     allOrders.Add(order);
                 }
             }

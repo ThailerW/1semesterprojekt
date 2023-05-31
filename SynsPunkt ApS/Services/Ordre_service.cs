@@ -17,7 +17,7 @@ namespace SynsPunkt_ApS.Services
             return orderID;
         }
 
-        public List<Models.Ordre> GetAllOrders()
+        public List<Models.Order> GetAllOrders()
         {
             return crudOrdre.GetAllOrders();
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SynsPunkt_ApS.Models
 {
-    public class Ordre
+    public class Order
     {
         public int orderID { get; set; }
         public int customerID { get; set; }
@@ -14,7 +14,7 @@ namespace SynsPunkt_ApS.Models
         public double totalPrice { get; set; }
         //public List<Models.VareLinje> SamletVare { get; set; }
 
-        public Ordre(int orderID,int customerID ,DateTime orderDate, double totalPrice)
+        public Order(int orderID,int customerID ,DateTime orderDate, double totalPrice)
         {
             this.customerID = customerID;
             this.orderID = orderID;
